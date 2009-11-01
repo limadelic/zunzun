@@ -1,4 +1,3 @@
-using System.Text.RegularExpressions;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
@@ -33,6 +32,20 @@ namespace Zunzun.Specs {
             var Tokens = The.TokensFrom("http://www.zunzun.com");
 
             Tokens[0].ShouldBeALinkTo("http://www.zunzun.com/");
+        }
+        
+        [TestMethod]
+        public void an_url_should_become_a_link_only_if_it_is_http_https_or_ftp() {
+
+            The.TokensFrom("http://www.zunzun.com")[0]
+                .ShouldBeALinkTo("http://www.zunzun.com/");
+            The.TokensFrom("https://www.zunzun.com")[0]
+                .ShouldBeALinkTo("https://www.zunzun.com/");
+            The.TokensFrom("ftp://www.zunzun.com")[0]
+                .ShouldBeALinkTo("ftp://www.zunzun.com/");
+                
+            The.TokensFrom("file://www.zunzun.com")[0]
+                .ShouldBeALiteralWith("file://www.zunzun.com");
         }
         
         [TestMethod]

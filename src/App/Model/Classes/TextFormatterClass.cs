@@ -36,6 +36,11 @@ namespace Zunzun.App.Model.Classes {
 
         bool IsLink { get { return
             Uri.IsWellFormedUriString(Word, UriKind.Absolute)
+            && Domain.Settings.AcceptedProtocols.Contains(UriScheme)
+        ;}}
+
+        string UriScheme { get { return 
+            new Uri(Word).Scheme
         ;}}
 
         void TokenizeLiteral() { Literal += Word + " "; }
