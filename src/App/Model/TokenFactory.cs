@@ -8,7 +8,7 @@ namespace Zunzun.App.Model {
     public static class TokenFactory {
         
         public static Inline NewLinkToUserHome(string Mention) {
-            var Url = Settings.TwitterUrl + Mention.Remove(0, 1);
+            var Url = Domain.Settings.TwitterUrl + Mention.Remove(0, 1);
 
             return NewLink(Mention, Url);
         }

@@ -30,7 +30,7 @@ namespace Zunzun.App.Model.Classes {
         }
 
         protected bool IsMention { get { return 
-            Word.StartsWith("@")
+            Word.StartsWith(Domain.Settings.MentionPreffix)
         ;}}
 
         bool IsLink { get { return

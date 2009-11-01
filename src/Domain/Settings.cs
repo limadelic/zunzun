@@ -2,9 +2,13 @@ namespace Zunzun.Domain {
 
     public static class Settings {
 
-        public static string UserName = "kinobot";
-        public static string Password = "kashmir";
+        public const string UserName = "kinobot";
+        public const string Password = "kashmir";
         
-        public static int NumberOfTweetsPerRequest = 100;
+        public const int NumberOfTweetsPerRequest = 100;
+
+        public const string TwitterUrl = "http://twitter.com/";
+
+        public const string MentionPreffix = "@";
     }
 }
