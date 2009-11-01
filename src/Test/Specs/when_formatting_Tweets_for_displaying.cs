@@ -1,3 +1,4 @@
+using System.Text.RegularExpressions;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
@@ -31,7 +32,7 @@ namespace Zunzun.Specs {
 
             var Tokens = The.TokensFrom("http://www.zunzun.com");
 
-            Tokens[0].ShouldBeALinkTo("http://www.zunzun.com");
+            Tokens[0].ShouldBeALinkTo("http://www.zunzun.com/");
         }
         
         [TestMethod]
@@ -39,7 +40,17 @@ namespace Zunzun.Specs {
 
             var Tokens = The.TokensFrom("@zunzun");
 
-            Tokens[0].ShouldBeALinkTo("http://twitter.com/zunzun");
+            Tokens[0].ShouldBeALiteralWith("@");
+            Tokens[1].ShouldBeALinkTo("http://twitter.com/zunzun");
+        }
+        
+        [TestMethod]
+        public void a_Mention_with_a_suffix_should_not_include_it_in_the_link() {
+
+            var Tokens = The.TokensFrom("@zunzun:");
+
+            Tokens[1].ShouldBeALinkTo("http://twitter.com/zunzun");
+            Tokens[2].ShouldBeALiteralWith(":");
         }
         
         [TestMethod]
@@ -48,7 +59,7 @@ namespace Zunzun.Specs {
             var Tokens = The.TokensFrom("check this out http://www.zunzun.com ... very nice");
 
             Tokens[0].ShouldBeALiteralWith("check this out ");
-            Tokens[1].ShouldBeALinkTo("http://www.zunzun.com");
+            Tokens[1].ShouldBeALinkTo("http://www.zunzun.com/");
             Tokens[2].ShouldBeALiteralWith(" ... very nice");
         }
     }

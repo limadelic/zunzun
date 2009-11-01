@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using Zunzun.Domain.Helpers;
 
@@ -46,9 +47,22 @@ namespace Zunzun.App.Model.Classes {
         }
 
         void TokenizeMention() {
+            AddMentionPrefixToLiteral();
             AddLiteralToken();
+            AddSuffixToNextLiteral();
             AddMentionToken();
-            SeparateFromNextLiteral();
+        }
+
+        void AddSuffixToNextLiteral() {
+            var Mention = Regex.Match(Word, @"(\w+)(?<Suffix>.*)");
+
+            Word = Mention.Groups[1].Value;
+            Literal = Mention.Groups["Suffix"].Value + " ";
+        }
+
+        void AddMentionPrefixToLiteral() {
+            Literal += "@";
+            Word.Remove(0, 1);
         }
 
         void AddLiteralToken() {

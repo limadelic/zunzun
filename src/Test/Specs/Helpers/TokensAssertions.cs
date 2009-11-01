@@ -12,7 +12,7 @@ namespace Zunzun.Specs.Helpers {
 
         public static void ShouldBeALinkTo(this Inline Token, string Url) {
             Token.ShouldBeA<Hyperlink>();
-            (Token as Hyperlink).NavigateUri.AbsoluteUri.ShouldContain(Url);
+            (Token as Hyperlink).NavigateUri.AbsoluteUri.ShouldBe(Url);
         }
     }
 }
