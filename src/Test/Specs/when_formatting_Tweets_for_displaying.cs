@@ -67,7 +67,7 @@ namespace Zunzun.Specs {
         }
         
         [TestMethod]
-        public void a_url_embedded_in_text_should_become_a_link_and_literals() {
+        public void an_url_embedded_in_text_should_become_a_link_and_literals() {
             
             var Tokens = The.TokensFrom("check this out http://www.zunzun.com ... very nice");
 

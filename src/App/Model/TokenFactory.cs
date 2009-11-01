@@ -25,7 +25,7 @@ namespace Zunzun.App.Model {
             };
             
             Link.Click += RichTextBlock.OpenUrl;
-            Link.Foreground = Link.TryFindResource(Settings.InfoBrush) as Brush;
+            Link.Foreground = Link.TryFindResource(Settings.ContentBrush) as Brush;
 
             return Link;
         }

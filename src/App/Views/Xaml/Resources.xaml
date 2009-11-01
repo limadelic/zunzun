@@ -7,4 +7,5 @@
 	<SolidColorBrush x:Key="InfoBrush" Color="#FF919191"/>
 	<System:Double x:Key="ContentFontSize">12</System:Double>
 	<System:Double x:Key="InfoFontSize">10</System:Double>
+	<SolidColorBrush x:Key="Background" Color="#BF4E4E4E"/>
 </ResourceDictionary>

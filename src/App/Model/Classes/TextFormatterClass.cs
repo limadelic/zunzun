@@ -39,9 +39,7 @@ namespace Zunzun.App.Model.Classes {
             && Domain.Settings.AcceptedProtocols.Contains(UriScheme)
         ;}}
 
-        string UriScheme { get { return 
-            new Uri(Word).Scheme
-        ;}}
+        string UriScheme { get { return new Uri(Word).Scheme; } }
 
         void TokenizeLiteral() { Literal += Word + " "; }
 
@@ -56,13 +54,6 @@ namespace Zunzun.App.Model.Classes {
             AddLiteralToken();
             AddSuffixToNextLiteral();
             AddMentionToken();
-        }
-
-        void AddSuffixToNextLiteral() {
-            var Mention = Regex.Match(Word, @"(\w+)(?<Suffix>.*)");
-
-            Word = Mention.Groups[1].Value;
-            Literal = Mention.Groups["Suffix"].Value + " ";
         }
 
         void AddMentionPrefixToLiteral() {
@@ -82,6 +73,13 @@ namespace Zunzun.App.Model.Classes {
 
         void AddMentionToken() {
             Tokens.Add(TokenFactory.NewLinkToUserHome(Word));
+        }
+
+        void AddSuffixToNextLiteral() {
+            var Mention = Regex.Match(Word, @"(\w+)(?<Suffix>.*)");
+
+            Word = Mention.Groups[1].Value;
+            Literal = Mention.Groups["Suffix"].Value + " ";
         }
 
         void SeparateFromNextLiteral() {

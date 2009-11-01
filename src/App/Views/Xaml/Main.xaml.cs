@@ -1,6 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows.Navigation;
+﻿using System.Collections.Generic;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 
@@ -28,13 +26,8 @@ namespace Zunzun.App.Views.Xaml {
             Presenter.Show();
         }
 
-        void Navigate(object Sender, RequestNavigateEventArgs E) {
-            System.Windows.MessageBox.Show("here");
-        }
-
-        private void Changed(object sender, System.Windows.DependencyPropertyChangedEventArgs e)
-        {
-        	// TODO: Add event handler implementation here.
+        private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        	DragMove();
         }
     }
 }
