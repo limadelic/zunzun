@@ -1,4 +1,3 @@
-using Zunzun.App;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Specs.Helpers;

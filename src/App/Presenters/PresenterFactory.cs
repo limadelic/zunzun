@@ -1,7 +1,6 @@
-using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 
-namespace Zunzun.App {
+namespace Zunzun.App.Presenters {
 
     public static class PresenterFactory {
     

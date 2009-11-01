@@ -1,6 +1,5 @@
 using FluentSpec;
 using Zunzun.Specs.Helpers;
-using Zunzun.App;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;

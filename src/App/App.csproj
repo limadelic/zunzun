@@ -71,7 +71,7 @@
     <Compile Include="Model\TokenFactory.cs" />
     <Compile Include="Model\TextFormatter.cs" />
     <Compile Include="ObjectFactory.cs" />
-    <Compile Include="PresenterFactory.cs" />
+    <Compile Include="Presenters\PresenterFactory.cs" />
     <Compile Include="Presenters\HomePresenter.cs" />
     <Compile Include="Presenters\StatusPresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -87,6 +87,7 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
+    <Compile Include="Settings.cs" />
     <Compile Include="Views\HomeView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
