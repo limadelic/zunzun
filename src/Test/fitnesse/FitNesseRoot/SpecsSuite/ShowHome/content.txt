@@ -1,0 +1,33 @@
+!* Story
+
+In order to Follow People
+I want to see their Tweets 
+
+*!
+!*> Setup
+
+|Show Home|
+
+*!
+
+------ '''Scenario''' ''show home tweets'' ------
+|When|Home is shown        |
+|It  |should contain Tweets|
+
+------ '''Scenario''' ''tweets details'' ------
+!*> define details
+
+!|define|It should contain all the details|
+|It     |should contain a Content         |
+|and    |an Author                        |
+|and    |a Date                           |
+|and    |a Source                         |
+|and    |the Author's Avatar              |
+
+*!
+
+|When    |a Tweet is displayed    |
+|It should contain all the details|
+
+
+

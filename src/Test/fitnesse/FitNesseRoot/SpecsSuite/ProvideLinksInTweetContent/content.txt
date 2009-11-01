@@ -1,0 +1,27 @@
+!* Story
+
+In order to find out more about the Tweet content
+I want to be able to follow links to sites and users
+
+*!
+!*> Setup
+
+!|Provide Links In Tweet Content|
+
+*!
+
+------ '''Scenario''' ''Tweet without Links'' ------
+|Given|the Tweet "hello world!!"      |
+|When |it is formatted for displaying |
+|Then |it should not contain any links|
+
+
+------ '''Scenario''' ''Tweet with a Link'' ------
+|Given|the Tweet "check this cool app http://www.zunzun.com"|
+|When |it is formatted for displaying                       |
+|Then |it should contain a link to "http://www.zunzun.com"  |
+
+------ '''Scenario''' ''Tweet with a Mention'' ------
+|Given|the Tweet "follow me @zunzun"                          |
+|When |it is formatted for displaying                         |
+|Then |it should contain a link to "http://twitter.com/zunzun"|
