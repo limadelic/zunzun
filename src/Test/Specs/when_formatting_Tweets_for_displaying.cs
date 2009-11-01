@@ -1,0 +1,56 @@
+using FluentSpec;
+using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Zunzun.App.Model.Classes;
+using Zunzun.Domain;
+using Zunzun.Specs.Helpers;
+
+namespace Zunzun.Specs {
+
+    [TestClass]
+    public class when_formatting_Tweets_for_displaying : BehaviorOf<TextFormatterClass> {
+    
+        [TestMethod]
+        public void words_should_become_a_single_literal() {
+
+            var Tokens = The.TokensFrom("hello world!!");
+
+            Tokens.Count.ShouldBe(1);
+            Tokens[0].ShouldBeALiteralWith("hello world!!");
+        }
+        
+        [TestMethod]
+        public void the_extra_spaces_should_be_respected() {
+
+            var Tokens = The.TokensFrom("  hello  world!!  ");
+
+            Tokens.Count.ShouldBe(1);
+            Tokens[0].ShouldBeALiteralWith("  hello  world!!  ");
+        }
+        
+        [TestMethod]
+        public void an_url_should_become_a_link() {
+
+            var Tokens = The.TokensFrom("http://www.zunzun.com");
+
+            Tokens[0].ShouldBeALinkTo("http://www.zunzun.com");
+        }
+        
+        [TestMethod]
+        public void a_Mention_should_become_a_link_to_User_Home() {
+
+            var Tokens = The.TokensFrom("@zunzun");
+
+            Tokens[0].ShouldBeALinkTo("http://twitter.com/zunzun");
+        }
+        
+        [TestMethod]
+        public void a_url_embedded_in_text_should_become_a_link_and_literals() {
+            
+            var Tokens = The.TokensFrom("check this out http://www.zunzun.com ... very nice");
+
+            Tokens[0].ShouldBeALiteralWith("check this out ");
+            Tokens[1].ShouldBeALinkTo("http://www.zunzun.com");
+            Tokens[2].ShouldBeALiteralWith(" ... very nice");
+        }
+    }
+}
