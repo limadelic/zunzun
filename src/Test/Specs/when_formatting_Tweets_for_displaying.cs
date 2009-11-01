@@ -1,7 +1,6 @@
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
-using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs {

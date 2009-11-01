@@ -17,7 +17,7 @@ namespace Zunzun.App.Model.Classes {
             var Words = Text.Split(new[] {' '});
 
             Words.ForEach(Tokenize);
-            ProccessRemainingLiteral();
+            AddRemainingLiteral();
             
             return Tokens;
         }
@@ -69,7 +69,7 @@ namespace Zunzun.App.Model.Classes {
             Literal = " ";
         }
 
-        void ProccessRemainingLiteral() {
+        void AddRemainingLiteral() {
             if (String.IsNullOrEmpty(Literal)) return;
             
             Literal = Literal.Remove(Literal.Length - 1);
