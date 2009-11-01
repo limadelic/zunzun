@@ -29,8 +29,8 @@ namespace Zunzun.App.Model.Classes {
             else TokenizeLiteral();
         }
 
-        protected bool IsMention { get {
-            return Word.StartsWith("@")
+        protected bool IsMention { get { return 
+            Word.StartsWith("@")
         ;}}
 
         bool IsLink { get { return
@@ -42,13 +42,13 @@ namespace Zunzun.App.Model.Classes {
         void TokenizeLink() {
             AddLiteralToken();
             AddLinkToken();
-            SeparateLinkFromNextLiteral();
+            SeparateFromNextLiteral();
         }
 
         void TokenizeMention() {
             AddLiteralToken();
             AddMentionToken();
-            SeparateLinkFromNextLiteral();
+            SeparateFromNextLiteral();
         }
 
         void AddLiteralToken() {
@@ -65,7 +65,7 @@ namespace Zunzun.App.Model.Classes {
             Tokens.Add(TokenFactory.NewLinkToUserHome(Word));
         }
 
-        void SeparateLinkFromNextLiteral() {
+        void SeparateFromNextLiteral() {
             Literal = " ";
         }
 
