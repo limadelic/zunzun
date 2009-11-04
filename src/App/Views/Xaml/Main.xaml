@@ -84,7 +84,7 @@
 				<RowDefinition/>
 				<RowDefinition Height="15"/>
 			</Grid.RowDefinitions>
-			<Label HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
+			<Label x:Name="TitleLBL" HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
 			<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="Close" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,2,0"/>
 			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" Grid.Row="1"/>
         </Grid>
