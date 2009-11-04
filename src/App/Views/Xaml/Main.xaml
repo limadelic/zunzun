@@ -77,10 +77,16 @@
 			</Setter>
 		</Style>
 	</Window.Resources>
-    <Border CornerRadius="10,10,0,10" BorderBrush="#FFBABABA" BorderThickness="2,2,2,2" x:Name="MainFRM">
-		<Grid x:Name="MainBOX" MouseLeftButtonDown="DragWindow" Background="{DynamicResource Background}">
-			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" Margin="0,10,0,10" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled"/>
-			<Button HorizontalAlignment="Right" Margin="0,5,10,0" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Padding="3,1,3,3" Click="Close" Content="X"/>
+    <Border CornerRadius="10,10,0,10" BorderBrush="#FFBABABA" BorderThickness="2,2,2,2" x:Name="MainFRM" Background="{DynamicResource Background}">
+		<Grid x:Name="MainBOX" MouseLeftButtonDown="DragWindow" Background="#024E4E4E" ClipToBounds="True">
+			<Grid.RowDefinitions>
+				<RowDefinition Height="20"/>
+				<RowDefinition/>
+				<RowDefinition Height="15"/>
+			</Grid.RowDefinitions>
+			<Label HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
+			<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="Close" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,2,0"/>
+			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" Grid.Row="1"/>
         </Grid>
 	</Border>
 </Window>
