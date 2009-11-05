@@ -82,11 +82,15 @@
 			<Grid.RowDefinitions>
 				<RowDefinition Height="20"/>
 				<RowDefinition/>
-				<RowDefinition Height="15"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="20"/>
 			</Grid.RowDefinitions>
-			<Label x:Name="TitleLBL" HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
+			<Label x:Name="TitleTXT" HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
 			<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="Close" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,2,0"/>
 			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" Grid.Row="1"/>
+			<Button HorizontalAlignment="Center" VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdateBTT" Click="Close" Content="I" Margin="0,2,2,0" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" Grid.Row="3" FontSize="{DynamicResource ContentFontSize}"/>
+			<TextBox x:Name="Update" Text="TextBox" TextWrapping="Wrap" d:LayoutOverrides="Height" Grid.Row="2" MinLines="3" MaxLines="3" Margin="2,0,20,0"/>
+			<Button HorizontalAlignment="Right" VerticalAlignment="Top" x:Name="SendUpdate" Click="OnSendUpdate" Content="S" Margin="0,2,2,0" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Grid.Row="2"/>
         </Grid>
 	</Border>
 </Window>

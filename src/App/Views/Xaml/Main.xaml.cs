@@ -4,18 +4,25 @@ using Zunzun.Domain;
 
 namespace Zunzun.App.Views.Xaml {
 
-    public partial class Main : HomeView {
+    public partial class Main : HomeView, StatusView {
     
         public List<Tweet> Tweets {
             get { return HomeLBX.ItemsSource as List<Tweet>; } 
             set { HomeLBX.ItemsSource = value; }
         }
 
-        HomePresenter Presenter { get; set; }
+        public string UpdateText { 
+            get { return Update.Text; }
+            set { Update.Text = value; } 
+        }
+            
+        HomePresenter HomePresenter { get; set; }
+        StatusPresenter StatusPresenter { get; set;}
     
         public Main() {
             InitializeComponent();
-            Presenter = PresenterFactory.NewHomePresenter(this);
+            HomePresenter = PresenterFactory.NewHomePresenter(this);
+            StatusPresenter = PresenterFactory.NewStatusPresenter(this);
         }
 
         private void Close(object sender, System.Windows.RoutedEventArgs e) {
@@ -23,11 +30,15 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         private void Load(object sender, System.Windows.RoutedEventArgs e) {
-            Presenter.Show();
+            HomePresenter.Show();
         }
 
         private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
         	DragMove();
+        }
+
+        private void OnSendUpdate(object sender, System.Windows.RoutedEventArgs e) {
+        	StatusPresenter.Update();
         }
     }
 }

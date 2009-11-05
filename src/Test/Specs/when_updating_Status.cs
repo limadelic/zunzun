@@ -16,5 +16,14 @@ namespace Zunzun.Specs {
             When.Update(SuperCoolTweet);
             Then.TweetService.Should().UpdateStatus(SuperCoolTweet);
         }
+        
+        [TestMethod]
+        public void should_create_a_Tweet_based_on_view() {
+
+            Given.View.UpdateText = "very cool";
+            When.Update();
+            Then.TweetService.Should()
+                .UpdateStatus(Domain.ObjectFactory.NewTweet("very cool"));
+        }
     }
 }

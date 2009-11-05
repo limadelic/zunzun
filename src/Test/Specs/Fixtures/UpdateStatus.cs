@@ -1,6 +1,6 @@
-using System.Diagnostics;
-using System.Threading;
+using FluentSpec;
 using Zunzun.App.Presenters;
+using Zunzun.App.Views;
 using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
 
@@ -9,11 +9,13 @@ namespace Zunzun.Specs.Fixtures {
     public class UpdateStatus : Spec {
 
         readonly TweetService TweetService;
-        readonly StatusPresenter StatusPresenter = new StatusPresenter();
+        readonly StatusPresenter StatusPresenter;
+        readonly StatusView StatusView;
         private Tweet tweet;
 
         public UpdateStatus() {
-            StatusPresenter = PresenterFactory.NewStatusPresenter();
+            StatusView = Create.TestObjectFor<StatusView>();
+            StatusPresenter = PresenterFactory.NewStatusPresenter(StatusView);
             TweetService = StatusPresenter.TweetService;
         }
 

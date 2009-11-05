@@ -8,15 +8,11 @@ namespace Zunzun.Domain.Classes {
         public string Source { get; set; }
         public string Avatar { get; set; }
 
-        public override bool Equals(object obj)
-        {
-            return base.Equals(obj);
-        }
-
-        public bool Equals(TweetClass Other) {
-            if (ReferenceEquals(null, Other)) return false;
-            if (ReferenceEquals(this, Other)) return true;
-            return Equals(Other.Content, Content);
+        public override bool Equals(object obj) {
+            if (!(obj is TweetClass)) return false;
+            var other = obj as TweetClass;
+            
+            return ReferenceEquals(this, other) || Equals(other.Content, Content);
         }
 
         public override int GetHashCode() {

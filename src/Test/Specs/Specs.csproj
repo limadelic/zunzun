@@ -55,6 +55,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="a_Tweet.cs" />
     <Compile Include="Fixtures\ProvideHyperlinkForTweetContent .cs" />
     <Compile Include="Fixtures\SearchTweets.cs" />
     <Compile Include="Fixtures\ShowHome.cs" />
