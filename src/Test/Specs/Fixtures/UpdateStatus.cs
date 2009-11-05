@@ -1,3 +1,5 @@
+using System.Diagnostics;
+using System.Threading;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
@@ -8,6 +10,7 @@ namespace Zunzun.Specs.Fixtures {
 
         readonly TweetService TweetService;
         readonly StatusPresenter StatusPresenter = new StatusPresenter();
+        private Tweet tweet;
 
         public UpdateStatus() {
             StatusPresenter = PresenterFactory.NewStatusPresenter();
@@ -17,11 +20,12 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
         
             When["Status is updated"] = () => {
-                StatusPresenter.Update(Actors.SuperCoolTweet);
+                tweet = Actors.SuperCoolTweet;
+                StatusPresenter.Update(tweet);
             };
 
             Then["Home should contain the Tweet"] = () => {
-                TweetService.Tweets.ShouldContain(Actors.SuperCoolTweet);
+                TweetService.Tweets.ShouldContain(tweet);
             };
         }
     }

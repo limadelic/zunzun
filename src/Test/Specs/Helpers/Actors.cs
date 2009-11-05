@@ -1,3 +1,4 @@
+using System;
 using Zunzun.Domain;
 
 namespace Zunzun.Specs.Helpers {
@@ -9,7 +10,7 @@ namespace Zunzun.Specs.Helpers {
         ;}}
 
         public static Tweet SuperCoolTweet {
-            get { return ObjectFactory.NewTweet("I'm supercool"); }
+            get { return ObjectFactory.NewTweet(Guid.NewGuid().ToString()); }
         }
     }
 }

@@ -1,3 +1,4 @@
+using System;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
@@ -10,7 +11,7 @@ namespace Zunzun.Specs {
         
         [TestMethod]
         public void should_request_a_Status_Update() {
-            var SuperCoolTweet = new TweetClass {Content = "SuperCool"};
+            var SuperCoolTweet = new TweetClass {Content = new Guid().ToString()};
 
             When.Update(SuperCoolTweet);
             Then.TweetService.Should().UpdateStatus(SuperCoolTweet);
