@@ -14,6 +14,8 @@ namespace Zunzun.App.Presenters {
         }
 
         public void Update() {
+            if (string.IsNullOrEmpty(View.UpdateText)) return;
+            
             Update(Domain.ObjectFactory.NewTweet(View.UpdateText));
         }
     }

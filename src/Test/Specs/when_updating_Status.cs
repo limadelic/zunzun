@@ -25,5 +25,14 @@ namespace Zunzun.Specs {
             Then.TweetService.Should()
                 .UpdateStatus(Domain.ObjectFactory.NewTweet("very cool"));
         }
+        
+        [TestMethod]
+        public void should_not_send_empty_updates() {
+
+            Given.View.UpdateText = string.Empty;
+            When.Update();
+            Then.TweetService.ShouldNot().IgnoringArgs()
+                .UpdateStatus(null);    
+        }
     }
 }
