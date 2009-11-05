@@ -101,5 +101,9 @@ namespace Zunzun.Specs.Fixtures {
                 return false;
             }
         }
+        
+        protected void Fail() { Fail(string.Empty); }
+        
+        protected void Fail(string Message) { throw new Exception(Message); }
     }
 }
