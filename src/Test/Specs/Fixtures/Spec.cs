@@ -17,7 +17,7 @@ namespace Zunzun.Specs.Fixtures {
         protected Dictionary<string, Action> It { get { return DefinedSteps; } }
         protected Dictionary<string, Action> And { get { return DefinedSteps; } }
 
-        protected Dictionary<string, string> Var { get { return CurrentStep.Args; } }
+        protected Dictionary<string, string> Expected { get { return CurrentStep.Args; } }
         
         protected Spec() {
             SetUpSteps();

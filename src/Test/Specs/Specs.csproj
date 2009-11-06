@@ -59,6 +59,7 @@
     <Compile Include="Fixtures\ProvideHyperlinkForTweetContent .cs" />
     <Compile Include="Fixtures\SearchTweets.cs" />
     <Compile Include="Fixtures\ShowHome.cs" />
+    <Compile Include="Fixtures\ShowUserHome.cs" />
     <Compile Include="Fixtures\Spec.cs" />
     <Compile Include="Fixtures\Step.cs" />
     <Compile Include="Fixtures\UpdateStatus.cs" />

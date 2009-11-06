@@ -16,7 +16,7 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() { 
             
             Given[@"the Tweet ""Content"""] = () => {
-                Text = Var["Content"];
+                Text = Expected["Content"];
             };
 
             When["it is formatted for displaying"] = () => {
@@ -30,7 +30,7 @@ namespace Zunzun.Specs.Fixtures {
             Then[@"it should contain a link to ""Url"""] = () => {
                 Tokens.Any(Inline => 
                     Inline is Hyperlink 
-                    && (Inline as Hyperlink).NavigateUri.AbsoluteUri.Contains(Var["Url"])
+                    && (Inline as Hyperlink).NavigateUri.AbsoluteUri.Contains(Expected["Url"])
                 ).ShouldBeTrue();
             };
         }

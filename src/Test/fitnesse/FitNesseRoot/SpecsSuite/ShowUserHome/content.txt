@@ -1,0 +1,33 @@
+!* Story
+
+In order to find out more about a User
+I want to be able to see the User details and Tweets
+
+*!
+!*> Setup
+
+|Show User Home|
+
+*!
+
+------ '''Scenario''' ''show User details'' ------
+!*> define details
+
+!|define|It should contain the User details                       |
+|It     |should be named "zunzun"                                 |
+|And    |the bio should be "snappy & concise twitter app"         |
+|And    |should be Following other users                          |
+|And    |should have Followers                                    |
+|And    |should have total of updates                             |
+|And    |the website should be "http://zunzunapp.com"             |
+|And    |the Twitter Home should be "http://twitter.com/zunzunapp"|
+|And    |should have joined on "2009/11/05"                       |
+|And    |the location should be "Miami, FL"                       |
+|And    |the time zone should be "Eastern Time"                   |
+
+*!
+
+|Given   |the User is "zunzunapp"  |
+|When    |User Home is shown       |
+|It should contain the User details|
+

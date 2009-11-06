@@ -80,6 +80,7 @@
     <Compile Include="Presenters\PresenterFactory.cs" />
     <Compile Include="Presenters\HomePresenter.cs" />
     <Compile Include="Presenters\StatusPresenter.cs" />
+    <Compile Include="Presenters\UserHomePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
@@ -96,6 +97,7 @@
     <Compile Include="Settings.cs" />
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\StatusView.cs" />
+    <Compile Include="Views\UserHomeView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

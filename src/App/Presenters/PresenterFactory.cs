@@ -17,5 +17,11 @@ namespace Zunzun.App.Presenters {
                 TweetService = Domain.ObjectFactory.NewTweetService
             };
         }
+
+        public static UserHomePresenter NewUserHomePresenter(UserHomeView View) { 
+            return new UserHomePresenter {
+                View = View,
+            };
+        }
     }
 }
