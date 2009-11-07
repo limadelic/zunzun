@@ -1,0 +1,17 @@
+!* Story
+
+In order to write Specs faster
+I want to have a template for them
+
+*!
+!*> Setup
+
+|Spec Class Name|
+
+*!
+
+
+------ '''Scenario''' ''Name'' ------
+------ '''Scenario''' ''Name'' ------
+------ '''Scenario''' ''Name'' ------
+------ '''Scenario''' ''Name'' ------

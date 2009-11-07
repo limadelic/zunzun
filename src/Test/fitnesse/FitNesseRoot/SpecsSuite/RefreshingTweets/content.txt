@@ -1,0 +1,19 @@
+!* Story
+
+In order to be constantly updated
+I want the Tweets to be refreshed automatically 
+
+*!
+!*> Setup
+
+|Refreshing Tweets|
+
+*!
+
+
+------ '''Scenario''' ''Refreshing Home Tweets'' ------
+|Given|Home is shown                         |
+|And  |the Refresh Cycle is "2" seconds      |
+|When |Status is updated to "testing refresh"|
+|And  |"2" seconds have passed               |
+|Then |Home should contain "testing refresh" |

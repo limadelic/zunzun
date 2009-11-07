@@ -14,7 +14,6 @@ namespace Zunzun.Specs.Fixtures {
         protected Dictionary<string, Action> Given { get { return DefinedSteps; } }
         protected Dictionary<string, Action> When { get { return DefinedSteps; } }
         protected Dictionary<string, Action> Then { get { return DefinedSteps; } }
-        protected Dictionary<string, Action> It { get { return DefinedSteps; } }
         protected Dictionary<string, Action> And { get { return DefinedSteps; } }
 
         protected Dictionary<string, string> Expected { get { return CurrentStep.Args; } }
@@ -78,8 +77,6 @@ namespace Zunzun.Specs.Fixtures {
         public void when(string Step) { Do(Step); }
 
         public bool and(string Step) { return Test(Step); }
-
-        public bool it(string Step) { return Test(Step); }
 
         public bool then(string Step) { return Test(Step); }
 

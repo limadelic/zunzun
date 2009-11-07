@@ -24,7 +24,7 @@ namespace Zunzun.Specs.Fixtures {
                 HomePresenter.Show(); 
             };
             
-            It["should contain Tweets"] = () => {
+            Then["it should contain Tweets"] = () => {
                 HomeView.Tweets.ShouldNotBeEmpty();
             };
 
@@ -32,7 +32,7 @@ namespace Zunzun.Specs.Fixtures {
                 HomePresenter.Show();
             };
             
-            It["should contain a Content"] = () => {
+            Then["should contain a Content"] = () => {
                 Tweet.Content.ShouldNotBeEmpty();
             };
             
