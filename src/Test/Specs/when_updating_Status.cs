@@ -1,4 +1,5 @@
 using System;
+using System.Windows;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
@@ -33,6 +34,22 @@ namespace Zunzun.Specs {
             When.Update();
             Then.TweetService.ShouldNot().IgnoringArgs()
                 .UpdateStatus(null);    
+        }
+
+        [TestMethod]
+        public void should_clear_view_after_Updating()
+        {
+            Given.View.UpdateText = "Content";
+            When.Update();
+            Should.View.UpdateText = string.Empty;
+        }
+
+        [TestMethod]
+        public void should_toggle_visibility()
+        {
+            Given.View.UpdateVisibility = Visibility.Collapsed;
+            When.ToggleUpdateVisibility();
+            Then.View.UpdateVisibility = Visibility.Visible;
         }
     }
 }

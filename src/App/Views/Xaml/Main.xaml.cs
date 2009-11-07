@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Windows;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 
@@ -15,7 +17,16 @@ namespace Zunzun.App.Views.Xaml {
             get { return Update.Text; }
             set { Update.Text = value; } 
         }
-            
+
+        public Visibility UpdateVisibility
+        {
+            get { 
+                if(Update.Visibility != SendUpdate.Visibility) throw new Exception("The Update controls are out of sync");
+                return Update.Visibility;
+            }
+            set { Update.Visibility = SendUpdate.Visibility = value; }
+        }
+
         HomePresenter HomePresenter { get; set; }
         StatusPresenter StatusPresenter { get; set;}
     
@@ -25,11 +36,11 @@ namespace Zunzun.App.Views.Xaml {
             StatusPresenter = PresenterFactory.NewStatusPresenter(this);
         }
 
-        private void Close(object sender, System.Windows.RoutedEventArgs e) {
+        private void Close(object sender, RoutedEventArgs e) {
             Close();
         }
 
-        private void Load(object sender, System.Windows.RoutedEventArgs e) {
+        private void Load(object sender, RoutedEventArgs e) {
             HomePresenter.Show();
         }
 
@@ -37,8 +48,14 @@ namespace Zunzun.App.Views.Xaml {
         	DragMove();
         }
 
-        private void OnSendUpdate(object sender, System.Windows.RoutedEventArgs e) {
+        private void OnSendUpdate(object sender, RoutedEventArgs e) {
         	StatusPresenter.Update();
+            HomePresenter.Show();
+        }
+
+        private void OnToggleUpdate(object sender, RoutedEventArgs e)
+        {
+            StatusPresenter.ToggleUpdateVisibility();
         }
     }
 }

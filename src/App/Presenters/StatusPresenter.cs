@@ -1,3 +1,5 @@
+using System;
+using System.Windows;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -17,6 +19,17 @@ namespace Zunzun.App.Presenters {
             if (string.IsNullOrEmpty(View.UpdateText)) return;
             
             Update(Domain.ObjectFactory.NewTweet(View.UpdateText));
+            ClearUpdateText();
+        }
+
+        private void ClearUpdateText()
+        {
+            View.UpdateText = string.Empty;
+        }
+
+        public void ToggleUpdateVisibility()
+        {
+            View.UpdateVisibility = View.UpdateVisibility == Visibility.Visible ? Visibility.Collapsed : Visibility.Visible;
         }
     }
 }
