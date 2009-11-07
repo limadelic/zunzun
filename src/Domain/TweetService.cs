@@ -6,5 +6,6 @@ namespace Zunzun.Domain {
     
         List<Tweet> Tweets { get; }
         void UpdateStatus(Tweet Tweet);
+        void UpdateRefreshCycle(int RefreshCycle);
     }
 }

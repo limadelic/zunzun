@@ -18,6 +18,10 @@ namespace Zunzun.Domain.Classes {
             .AsJson().Request();
         }
 
+        public void UpdateRefreshCycle(int RefreshCycle) {
+            
+        }
+
         public virtual ITwitterLeafNode Home { get { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
