@@ -11,7 +11,7 @@ namespace Zunzun.Specs.Fixtures {
         readonly TweetService TweetService;
         readonly StatusPresenter StatusPresenter;
         readonly StatusView StatusView;
-        private Tweet tweet;
+        private Tweet Tweet;
 
         public UpdateStatus() {
             StatusView = Create.TestObjectFor<StatusView>();
@@ -22,12 +22,12 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
         
             When["Status is updated"] = () => {
-                tweet = Actors.SuperCoolTweet;
-                StatusPresenter.Update(tweet);
+                Tweet = Actors.GuidTweet;
+                StatusPresenter.Update(Tweet);
             };
 
             Then["Home should contain the Tweet"] = () => {
-                TweetService.Tweets.ShouldContain(tweet);
+                TweetService.Tweets.ShouldContain(Tweet);
             };
         }
     }

@@ -12,8 +12,8 @@ I want the Tweets to be refreshed automatically
 
 
 ------ '''Scenario''' ''Refreshing Home Tweets'' ------
-|Given|Home is shown                         |
-|And  |the Refresh Cycle is "2" seconds      |
-|When |Status is updated to "testing refresh"|
-|And  |"2" seconds have passed               |
-|Then |Home should contain the Tweet         |
+|Given|Home is shown                   |
+|And  |the Refresh Cycle is "2" seconds|
+|When |Status is updated               |
+|And  |"2" seconds have passed         |
+|Then |Home should contain the Tweet   |

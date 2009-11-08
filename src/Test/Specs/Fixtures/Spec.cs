@@ -72,20 +72,15 @@ namespace Zunzun.Specs.Fixtures {
 
         protected abstract void SetUpSteps();
 
-        public void given(string Step) { Do(Step); }
+        public bool given(string Step) { return Do(Step); }
 
-        public void when(string Step) { Do(Step); }
+        public bool when(string Step) { return Do(Step); }
 
-        public bool and(string Step) { return Test(Step); }
+        public bool and(string Step) { return Do(Step); }
 
-        public bool then(string Step) { return Test(Step); }
+        public bool then(string Step) { return Do(Step); }
 
-        void Do(string DesiredStep) {
-            SetupCurrentStepFrom(DesiredStep);
-            CurrentStep.Execute();
-        }
-
-        bool Test(string DesiredStep) {
+        bool Do(string DesiredStep) {
             SetupCurrentStepFrom(DesiredStep);
             
             try {

@@ -13,7 +13,7 @@ namespace Zunzun.Specs.Fixtures {
         readonly HomePresenter HomePresenter;
         readonly HomeView HomeView;
         readonly TweetService TweetService;
-        
+
         Tweet Tweet { get; set; }
         
         public RefreshingTweets() {
@@ -29,27 +29,27 @@ namespace Zunzun.Specs.Fixtures {
             };
             
             And[@"the Refresh Cycle is ""Refresh Cycle"" seconds"] = () => {
-                var RefreshCycle = Convert.ToInt32(Expected["Refresh Cycle"]);
+                var ExpectedRefreshCycle = Convert.ToInt32(Expected["Refresh Cycle"]);
                 
-                TweetService.UpdateRefreshCycle(RefreshCycle); 
+                TweetService.UpdateRefreshCycle(ExpectedRefreshCycle); 
             };
             
-            When[@"Status is updated to ""Tweet Content"""] = () => {
+            When["Status is updated"] = () => {
             
-                Tweet = Domain.ObjectFactory.NewTweet(Expected["Tweet Content"]);
-                
+                Tweet = Actors.GuidTweet;
+
                 HomePresenter.TweetService.UpdateStatus(Tweet);
             };
             
             And[@"""Wait Time"" seconds have passed"] = () => {
-                var WaitTime = Convert.ToInt32(Expected["Wait Time"]);
+                var ExpectedWaitTime = Convert.ToInt32(Expected["Wait Time"]);
                 
-                Thread.Sleep(WaitTime);
+                Thread.Sleep(ExpectedWaitTime);
             };
             
             Then["Home should contain the Tweet"] = () => {
                 
-                TweetService.Tweets.ShouldContain(Tweet);
+                HomeView.Tweets.ShouldContain(Tweet);
             };
         }
     }
