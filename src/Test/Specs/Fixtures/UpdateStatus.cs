@@ -22,7 +22,7 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
         
             When["Status is updated"] = () => {
-                Tweet = Actors.GuidTweet;
+                Tweet = Actors.UniqueTweet;
                 StatusPresenter.Update(Tweet);
             };
 

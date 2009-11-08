@@ -36,7 +36,7 @@ namespace Zunzun.Specs.Fixtures {
             
             When["Status is updated"] = () => {
             
-                Tweet = Actors.GuidTweet;
+                Tweet = Actors.UniqueTweet;
 
                 HomePresenter.TweetService.UpdateStatus(Tweet);
             };
