@@ -61,11 +61,11 @@ namespace Zunzun.Specs {
 
             readonly List<Tweet> ExpectedNewTweets = Actors.TwoTweets;
             List<Tweet> ActualNewTweets;
-
+            
             [TestMethod]
             public void should_notify_new_Tweets() {
 
-                The.NewTweetsAreAvailable += Tweets => ActualNewTweets = Tweets;
+                Given.NewTweetsAreAvailable += Tweets => ActualNewTweets = Tweets;
                 Given.NewTweets.Are(ExpectedNewTweets);
 
                 When.CheckForNewTweets();
@@ -76,12 +76,19 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_not_notify_if_there_are_no_new_Tweets() {
                 
-                The.NewTweetsAreAvailable += Tweets => Assert.Fail();
+                Given.NewTweetsAreAvailable += Tweets => Assert.Fail();
                 Given.NewTweets.Are(new List<Tweet>());
 
                 this.ShouldNotFail(When.CheckForNewTweets);
             }
-        }
 
+            [TestMethod]
+            public void should_not_check_for_new_Tweets_if_no_one_is_expecting_them() {
+                
+                Given.NewTweets.WillThrow(new Exception());
+
+                this.ShouldNotFail(When.CheckForNewTweets);
+            }
+        }
     }
 }

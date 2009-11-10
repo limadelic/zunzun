@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
@@ -32,12 +31,14 @@ namespace Zunzun.Domain.Classes {
             .Take(Settings.NumberOfTweetsPerRequest).AsJson()
         ;}}
         
-        public virtual event NewTweetsAreAvailable NewTweetsAreAvailable;
-
         public virtual List<Tweet> NewTweets { get { return null; }}
         
+        public event NewTweetsAreAvailable NewTweetsAreAvailable;
+
+        bool NoOneIsExpectingNewTweets { get { return NewTweetsAreAvailable == null; } }
+        
         public void CheckForNewTweets() {
-            if (NewTweetsAreAvailable == null) return;
+            if (NoOneIsExpectingNewTweets) return;
             
             var AvailableTweets = NewTweets;
             if (AvailableTweets.Count == 0) return;
