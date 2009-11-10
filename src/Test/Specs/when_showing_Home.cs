@@ -16,25 +16,30 @@ namespace Zunzun.Specs {
         
         [TestClass]
         public class the_Presenter : BehaviorOf<HomePresenter> {
-
-            List<Tweet> Tweets;
         
-            [TestInitialize]
-            public void SetUp() {
-                Tweets = new List<Tweet> {
-                    Actors.UniqueTweet,
-                    Actors.UniqueTweet,
-                };
-
-                Given.View.Tweets = new ObservableCollection<Tweet>();
-            }
-            
+            readonly List<Tweet> Tweets = Actors.TwoTweets;
+        
             [TestMethod]
             public void should_display_the_Tweets() {
             
+                Given.View.Tweets = new ObservableCollection<Tweet>();
                 Given.TweetService.Tweets.Are(Tweets);
+
                 When.Show();
-                Then.View.Tweets.ToList().ShouldBe(Tweets);
+
+                The.View.Tweets.ToList().ShouldBe(Tweets);
+            }
+            
+            [TestMethod]
+            public void should_keep_the_Tweets_updated() {
+                var NewTweets = Actors.TwoTweets;
+
+                Given.View.Tweets = new ObservableCollection<Tweet>(Tweets);
+
+                When.NewTweetsAreAvailable(NewTweets);
+
+                The.View.Tweets.ToList()
+                    .ShouldBe(Tweets.Concat(NewTweets).ToList());
             }
         }
         
@@ -49,8 +54,13 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_retrieve_the_Tweets() {
                 
-                Home.Given().Request().WillReturn(Actors.FiveTweets);
+                Home.Given().Request().WillReturn(Actors.FiveLiteralTweets);
                 The.Tweets.Count.ShouldBe(5);
+            }
+            
+            [TestMethod]
+            public void should_refresh_the_Tweets() {
+                
             }
         }
 
