@@ -61,7 +61,7 @@ namespace Zunzun.Specs {
 
             [TestMethod]
             public void should_notify_new_Tweets() {
-                List<Tweet> ExpectedNewTweets = Actors.TwoTweets;
+                var ExpectedNewTweets = Actors.TwoTweets;
                 List<Tweet> ActualNewTweets = null;
 
                 Given.NewTweetsAreAvailable += Tweets => ActualNewTweets = Tweets;

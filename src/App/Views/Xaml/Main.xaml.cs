@@ -7,18 +7,6 @@ namespace Zunzun.App.Views.Xaml {
 
     public partial class Main : HomeView, StatusView {
     
-        public ObservableCollection<Tweet> Tweets { get; set; }
-        
-        public bool IsUpdateVisible {
-            get { return UpdateBOX.Visibility == Visibility.Visible; } 
-            set { UpdateBOX.Visibility = value ? Visibility.Visible : Visibility.Collapsed; } 
-        }
-
-        public string UpdateText { 
-            get { return Update.Text; }
-            set { Update.Text = value; } 
-        }
-
         HomePresenter HomePresenter { get; set; }
         StatusPresenter StatusPresenter { get; set;}
     
@@ -30,6 +18,18 @@ namespace Zunzun.App.Views.Xaml {
             
             HomePresenter = PresenterFactory.NewHomePresenter(this);
             StatusPresenter = PresenterFactory.NewStatusPresenter(this);
+        }
+
+        public ObservableCollection<Tweet> Tweets { get; set; }
+        
+        public bool IsUpdateVisible {
+            get { return UpdateBOX.Visibility == Visibility.Visible; } 
+            set { UpdateBOX.Visibility = value ? Visibility.Visible : Visibility.Collapsed; } 
+        }
+
+        public string UpdateText { 
+            get { return Update.Text; }
+            set { Update.Text = value; } 
         }
 
         private void Close(object sender, RoutedEventArgs e) {
