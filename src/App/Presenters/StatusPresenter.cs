@@ -1,10 +1,13 @@
+using System;
+using System.Windows;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
 namespace Zunzun.App.Presenters {
 
     public class StatusPresenter {
-    
+        private const string reply = "@";
+
         public StatusView View { get; set; }
 
         public TweetService TweetService { get; set; }
@@ -25,6 +28,11 @@ namespace Zunzun.App.Presenters {
 
         public void ToggleUpdateVisibility() {
             View.IsUpdateVisible = !View.IsUpdateVisible;
+        }
+
+        public void ReplyTo(Tweet tweet)
+        {
+            View.UpdateText = reply + tweet.Author;
         }
     }
 }

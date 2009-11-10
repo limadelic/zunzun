@@ -1,4 +1,5 @@
 using System;
+using Dimebrain.TweetSharp.Model;
 using System.Collections.Generic;
 using Zunzun.Domain;
 
@@ -13,7 +14,12 @@ namespace Zunzun.Specs.Helpers {
         public static Tweet UniqueTweet {
             get { return ObjectFactory.NewTweet(Guid.NewGuid().ToString()); }
         }
+
+        public static Tweet TweetWithUser
+        {
+            get { return ObjectFactory.NewTweet(new TwitterStatus { User = new TwitterUser{Name = "testuser" }}); }
         
+        }
         public static List<Tweet> TwoTweets { get { 
             return new List<Tweet> { UniqueTweet, UniqueTweet };
         }}

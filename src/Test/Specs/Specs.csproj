@@ -72,7 +72,7 @@
     <Compile Include="when_formatting_Tweets_for_displaying.cs" />
     <Compile Include="when_showing_a_Tweet.cs" />
     <Compile Include="when_showing_Home.cs" />
-    <Compile Include="when_updating_Status.cs" />
+    <Compile Include="given_a_status_presenter.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\fitnesse\dotnet\fitnesse.config">
