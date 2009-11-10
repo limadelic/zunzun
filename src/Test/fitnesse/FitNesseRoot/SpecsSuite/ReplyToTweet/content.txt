@@ -1,0 +1,16 @@
+!*> Story
+
+In order to reply to a tweet
+I want to be able to have the reply prefix added for me
+
+*!
+
+!*> setup
+
+|Reply To Tweet|
+
+*!
+
+|Given|a tweet by user "zunzun"|
+|When|I reply to the Tweet|
+|Then|Update Text contains "@zunzun"|
