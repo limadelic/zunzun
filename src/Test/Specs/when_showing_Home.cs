@@ -59,11 +59,10 @@ namespace Zunzun.Specs {
                 The.Tweets.Count.ShouldBe(5);
             }
 
-            readonly List<Tweet> ExpectedNewTweets = Actors.TwoTweets;
-            List<Tweet> ActualNewTweets;
-            
             [TestMethod]
             public void should_notify_new_Tweets() {
+                List<Tweet> ExpectedNewTweets = Actors.TwoTweets;
+                List<Tweet> ActualNewTweets = null;
 
                 Given.NewTweetsAreAvailable += Tweets => ActualNewTweets = Tweets;
                 Given.NewTweets.Are(ExpectedNewTweets);
