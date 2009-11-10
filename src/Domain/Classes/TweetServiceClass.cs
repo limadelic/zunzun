@@ -1,8 +1,11 @@
+using System;
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
 
 namespace Zunzun.Domain.Classes {
+
+    public delegate void NewTweetsAreAvailable(List<Tweet> Tweets);
     
     public class TweetServiceClass : TweetService {
         
@@ -28,5 +31,18 @@ namespace Zunzun.Domain.Classes {
             .Statuses().OnHomeTimeline()
             .Take(Settings.NumberOfTweetsPerRequest).AsJson()
         ;}}
+        
+        public virtual event NewTweetsAreAvailable NewTweetsAreAvailable;
+
+        public virtual List<Tweet> NewTweets { get { return null; }}
+        
+        public void CheckForNewTweets() {
+            if (NewTweetsAreAvailable == null) return;
+            
+            var AvailableTweets = NewTweets;
+            if (AvailableTweets.Count == 0) return;
+            
+            NewTweetsAreAvailable(AvailableTweets);
+        }
     }
 }

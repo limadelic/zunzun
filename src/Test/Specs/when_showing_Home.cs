@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
@@ -57,10 +58,28 @@ namespace Zunzun.Specs {
                 Home.Given().Request().WillReturn(Actors.FiveLiteralTweets);
                 The.Tweets.Count.ShouldBe(5);
             }
+
+            readonly List<Tweet> ExpectedNewTweets = Actors.TwoTweets;
+            List<Tweet> ActualNewTweets;
+
+            [TestMethod]
+            public void should_notify_new_Tweets() {
+
+                The.NewTweetsAreAvailable += Tweets => ActualNewTweets = Tweets;
+                Given.NewTweets.Are(ExpectedNewTweets);
+
+                When.CheckForNewTweets();
+                
+                ActualNewTweets.ShouldBe(ExpectedNewTweets);
+            }
             
             [TestMethod]
-            public void should_refresh_the_Tweets() {
+            public void should_not_notify_if_there_are_no_new_Tweets() {
                 
+                The.NewTweetsAreAvailable += Tweets => Assert.Fail();
+                Given.NewTweets.Are(new List<Tweet>());
+
+                this.ShouldNotFail(When.CheckForNewTweets);
             }
         }
 
