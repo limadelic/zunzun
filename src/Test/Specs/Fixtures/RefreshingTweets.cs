@@ -1,4 +1,5 @@
 using System;
+using System.Linq;
 using System.Threading;
 using FluentSpec;
 using Zunzun.App.Presenters;
@@ -49,7 +50,7 @@ namespace Zunzun.Specs.Fixtures {
             
             Then["Home should contain the Tweet"] = () => {
                 
-                HomeView.Tweets.ShouldContain(Tweet);
+                HomeView.Tweets.ToList().ShouldContain(Tweet);
             };
         }
     }

@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
@@ -27,7 +28,7 @@ namespace Zunzun.Specs.Fixtures {
             };
 
             Then["Home should contain the Tweet"] = () => {
-                TweetService.Tweets.ShouldContain(Tweet);
+                TweetService.Tweets.ToList().ShouldContain(Tweet);
             };
         }
     }

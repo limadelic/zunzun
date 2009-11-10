@@ -15,16 +15,17 @@ namespace Zunzun.App.Presenters {
         public void Update() {
             if (string.IsNullOrEmpty(View.UpdateText)) return;
 
-            Update(Domain.ObjectFactory.NewTweet(View.UpdateText));
+            var Tweet = Domain.ObjectFactory.NewTweet(View.UpdateText);
+
+            Update(Tweet);
+            
             ClearUpdateText();
         }
 
         void ClearUpdateText() { View.UpdateText = string.Empty; }
 
         public void ToggleUpdateVisibility() {
-            View.UpdateVisibility = View.UpdateVisibility == Visibility.Visible
-                ? Visibility.Collapsed
-                : Visibility.Visible;
+            View.IsUpdateVisible = !View.IsUpdateVisible;
         }
     }
 }

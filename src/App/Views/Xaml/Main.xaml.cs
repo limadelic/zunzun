@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
@@ -8,9 +7,11 @@ namespace Zunzun.App.Views.Xaml {
 
     public partial class Main : HomeView, StatusView {
     
-        public List<Tweet> Tweets {
-            get { return HomeLBX.ItemsSource as List<Tweet>; } 
-            set { HomeLBX.ItemsSource = value; }
+        public ObservableCollection<Tweet> Tweets { get; set; }
+        
+        public bool IsUpdateVisible {
+            get { return UpdateBOX.Visibility == Visibility.Visible; } 
+            set { UpdateBOX.Visibility = value ? Visibility.Visible : Visibility.Collapsed; } 
         }
 
         public string UpdateText { 
@@ -18,20 +19,15 @@ namespace Zunzun.App.Views.Xaml {
             set { Update.Text = value; } 
         }
 
-        public Visibility UpdateVisibility
-        {
-            get { 
-                if(Update.Visibility != SendUpdate.Visibility) throw new Exception("The Update controls are out of sync");
-                return Update.Visibility;
-            }
-            set { Update.Visibility = SendUpdate.Visibility = value; }
-        }
-
         HomePresenter HomePresenter { get; set; }
         StatusPresenter StatusPresenter { get; set;}
     
         public Main() {
+            
+            Tweets = new ObservableCollection<Tweet>();
+
             InitializeComponent();
+            
             HomePresenter = PresenterFactory.NewHomePresenter(this);
             StatusPresenter = PresenterFactory.NewStatusPresenter(this);
         }
@@ -50,7 +46,6 @@ namespace Zunzun.App.Views.Xaml {
 
         private void OnSendUpdate(object sender, RoutedEventArgs e) {
         	StatusPresenter.Update();
-            HomePresenter.Show();
         }
 
         private void OnToggleUpdate(object sender, RoutedEventArgs e)

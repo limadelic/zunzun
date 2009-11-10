@@ -6,9 +6,9 @@ namespace Zunzun.Domain.Classes {
     
     public class TweetServiceClass : TweetService {
         
-        public List<Tweet> Tweets { get {
-            return Home.Request().ToTweets()
-        ;}}
+        List<Tweet> tweets;
+        public List<Tweet> Tweets { get { return tweets ?? InitTweets; }}
+        List<Tweet> InitTweets { get { return tweets = Home.Request().ToTweets();}}
 
         public void UpdateStatus(Tweet Tweet) {
             FluentTwitter.CreateRequest()

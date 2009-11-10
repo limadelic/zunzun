@@ -1,3 +1,4 @@
+using System.Linq;
 using FluentSpec;
 using Zunzun.Specs.Helpers;
 using Zunzun.App.Presenters;
@@ -25,7 +26,7 @@ namespace Zunzun.Specs.Fixtures {
             };
             
             Then["it should contain Tweets"] = () => {
-                HomeView.Tweets.ShouldNotBeEmpty();
+                HomeView.Tweets.ToList().ShouldNotBeEmpty();
             };
 
             When["a Tweet is displayed"] = () => {

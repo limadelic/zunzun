@@ -22,6 +22,14 @@ namespace Zunzun.Specs.Helpers {
             Assert.IsTrue(Items.Contains(Item), "Item is not in List");
         }
 
+        public static void ShouldBe<T>(this List<T> Ones, List<T> Others) {
+            
+            Ones.Count.ShouldBe(Others.Count);
+            
+            for (var i = 0; i < Ones.Count; i++)
+                Ones[i].ShouldBe(Others[i]);
+        }
+
         public static void ShouldNotBeEmpty(this string String) {
             
             Assert.IsFalse(String.IsNullOrEmpty(String), "Unexpected Empty String");

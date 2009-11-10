@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using Dimebrain.TweetSharp.Fluent;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -15,13 +17,24 @@ namespace Zunzun.Specs {
         [TestClass]
         public class the_Presenter : BehaviorOf<HomePresenter> {
 
+            List<Tweet> Tweets;
+        
+            [TestInitialize]
+            public void SetUp() {
+                Tweets = new List<Tweet> {
+                    Actors.UniqueTweet,
+                    Actors.UniqueTweet,
+                };
+
+                Given.View.Tweets = new ObservableCollection<Tweet>();
+            }
+            
             [TestMethod]
             public void should_display_the_Tweets() {
-                var Tweets = new List<Tweet>();
-
+            
                 Given.TweetService.Tweets.Are(Tweets);
                 When.Show();
-                Then.View.Tweets.ShouldBe(Tweets);
+                Then.View.Tweets.ToList().ShouldBe(Tweets);
             }
         }
         
