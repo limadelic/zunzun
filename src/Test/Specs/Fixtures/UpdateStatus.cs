@@ -27,9 +27,8 @@ namespace Zunzun.Specs.Fixtures {
                 StatusPresenter.Update(Tweet);
             };
 
-            Then["Home should contain the Tweet"] = () => {
+            Then["Home should contain the Tweet"] = () => 
                 TweetService.Tweets.ToList().ShouldContain(Tweet);
-            };
         }
     }
 }

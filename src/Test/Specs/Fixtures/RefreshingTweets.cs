@@ -25,9 +25,7 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
 
-            Given["Home is shown"] = () => {
-                HomePresenter.Show(); 
-            };
+            Given["Home is shown"] = () => HomePresenter.Show(); 
             
             And[@"the Refresh Cycle is ""Refresh Cycle"" seconds"] = () => {
                 var ExpectedRefreshCycle = Convert.ToInt32(Expected["Refresh Cycle"]);

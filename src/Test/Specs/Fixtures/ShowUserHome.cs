@@ -18,53 +18,41 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            Given[@"the User is ""UserName"""] = () => {
+            Given[@"the User is ""UserName"""] = () =>
                 UserName = Expected["UserName"];
-            };
             
-            When["User Home is shown"] = () => {
+            When["User Home is shown"] = () => 
                 UserHomePresenter.Show(UserName);
-            };
             
-            Then[@"should be named ""Name"""] = () => {
+            Then[@"should be named ""Name"""] = () => 
                 UserHomeView.Name.ShouldBe(Expected["Name"]);
-            };
             
-            And[@"should have joined on ""JoinedOn"""] = () => {
+            And[@"should have joined on ""JoinedOn"""] = () => 
                 UserHomeView.JoinedOn.ShouldBe(Expected["JoinedOn"]);
-            };
             
-            And[@"the bio should be ""Bio"""] = () => {
+            And[@"the bio should be ""Bio"""] = () => 
                 UserHomeView.Bio.ShouldBe(Expected["Bio"]);
-            };
             
-            And["should be Following other users"] = () => {
+            And["should be Following other users"] = () =>
                 UserHomeView.Following.ShouldNotBe(0);
-            };
             
-            And["should have Followers"] = () => {
+            And["should have Followers"] = () =>
                 UserHomeView.Followers.ShouldNotBe(0);
-            };
             
-            And["should have total of updates"] = () => {
+            And["should have total of updates"] = () => 
                 UserHomeView.UpdatesCount.ShouldNotBe(0);
-            };
             
-            And[@"the website should be ""Website"""] = () => {
+            And[@"the website should be ""Website"""] = () =>
                 UserHomeView.Website.ShouldBe(Expected["Website"]);
-            };
             
-            And[@"the Twitter Home should be ""TwitterHome"""] = () => {
+            And[@"the Twitter Home should be ""TwitterHome"""] = () =>
                 UserHomeView.TwitterHome.ShouldBe(Expected["TwitterHome"]);
-            };
             
-            And[@"the location should be ""Location"""] = () => {
+            And[@"the location should be ""Location"""] = () =>
                 UserHomeView.Location.ShouldBe(Expected["Location"]);
-            };
             
-            And[@"the time zone should be ""TimeZone"""] = () => {
+            And[@"the time zone should be ""TimeZone"""] = () =>
                 UserHomeView.TimeZone.ShouldBe(Expected["TimeZone"]);
-            };
         }
     }
 }
