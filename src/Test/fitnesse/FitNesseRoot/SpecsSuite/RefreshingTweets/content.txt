@@ -17,3 +17,4 @@ I want the Tweets to be refreshed automatically
 |When |Status is updated               |
 |And  |"2" seconds have passed         |
 |Then |Home should contain the Tweet   |
+

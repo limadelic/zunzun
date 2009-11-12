@@ -21,14 +21,14 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            Given(@"a tweet by user ""0""", UserName => {
+            Given("a tweet by user {0}", UserName => {
                 var status = new TwitterStatus {User = new TwitterUser {Name = UserName}};
                 Tweet = ObjectFactory.NewTweet(status);
             });
 
             When("I reply to the Tweet", () => Presenter.ReplyTo(Tweet));
 
-            Then(@"Update Text contains ""0""", ReplyPrefix => 
+            Then("Update Text contains {0}", ReplyPrefix => 
                 View.UpdateText.ShouldContain(ReplyPrefix));
         }
     }

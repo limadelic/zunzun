@@ -18,19 +18,19 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            Given(@"the User is ""0""", UserName => 
+            Given("the User is {0}", UserName => 
                 this.UserName = UserName);
             
             When("User Home is shown", () => 
                 UserHomePresenter.Show(UserName));
             
-            Then(@"should be named ""0""", Name => 
+            Then("should be named {0}", Name => 
                 UserHomeView.Name.ShouldBe(Name));
             
-            And(@"should have joined on ""0""", JoinedOn => 
+            And("should have joined on {0}", JoinedOn => 
                 UserHomeView.JoinedOn.ShouldBe(JoinedOn));
             
-            And(@"the bio should be ""0""", Bio => 
+            And("the bio should be {0}", Bio => 
                 UserHomeView.Bio.ShouldBe(Bio));
             
             And("should be Following other users", () =>
@@ -42,16 +42,16 @@ namespace Zunzun.Specs.Fixtures {
             And("should have total of updates", () => 
                 UserHomeView.UpdatesCount.ShouldNotBe(0));
             
-            And(@"the website should be ""0""", Website =>
+            And("the website should be {0}", Website =>
                 UserHomeView.Website.ShouldBe(Website));
             
-            And(@"the Twitter Home should be ""0""", TwitterHome =>
+            And("the Twitter Home should be {0}", TwitterHome =>
                 UserHomeView.TwitterHome.ShouldBe(TwitterHome));
             
-            And(@"the location should be ""0""", Location =>
+            And("the location should be {0}", Location =>
                 UserHomeView.Location.ShouldBe(Location));
             
-            And(@"the time zone should be ""0""", TimeZone =>
+            And("the time zone should be {0}", TimeZone =>
                 UserHomeView.TimeZone.ShouldBe(TimeZone));
         }
     }

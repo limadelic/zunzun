@@ -27,7 +27,7 @@ namespace Zunzun.Specs.Fixtures {
 
             Given("Home is shown", () => HomePresenter.Show()); 
             
-            And(@"the Refresh Cycle is ""0"" seconds", RefreshCycle => 
+            And("the Refresh Cycle is {0} seconds", RefreshCycle => 
                 TweetService.UpdateRefreshCycle(Convert.ToInt32(RefreshCycle)) 
             );
 
@@ -38,7 +38,7 @@ namespace Zunzun.Specs.Fixtures {
                 HomePresenter.TweetService.UpdateStatus(Tweet);
             });
             
-            And(@"""0"" seconds have passed", WaitTime => 
+            And("{0} seconds have passed", WaitTime => 
                 Thread.Sleep(Convert.ToInt32(WaitTime))
             );
             

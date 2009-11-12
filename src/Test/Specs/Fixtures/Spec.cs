@@ -62,7 +62,7 @@ namespace Zunzun.Specs.Fixtures {
         }
 
         bool Do(string DesiredStep) {
-//            System.Diagnostics.Debugger.Launch();
+        
             SetupCurrentStepFrom(DesiredStep);
             
             try {
