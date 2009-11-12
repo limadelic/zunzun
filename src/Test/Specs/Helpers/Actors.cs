@@ -17,7 +17,7 @@ namespace Zunzun.Specs.Helpers {
 
         public static Tweet TweetWithUser
         {
-            get { return ObjectFactory.NewTweet(new TwitterStatus { User = new TwitterUser{Name = "testuser" }}); }
+            get { return ObjectFactory.NewTweet(new TwitterStatus { User = new TwitterUser{ScreenName = "testuser" }}); }
         
         }
         public static List<Tweet> TwoTweets { get { 

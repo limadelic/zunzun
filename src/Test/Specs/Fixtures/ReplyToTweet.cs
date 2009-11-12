@@ -22,7 +22,7 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
         
             Given("a tweet by user {0}", UserName => {
-                var status = new TwitterStatus {User = new TwitterUser {Name = UserName}};
+                var status = new TwitterStatus {User = new TwitterUser {ScreenName = UserName}};
                 Tweet = ObjectFactory.NewTweet(status);
             });
 

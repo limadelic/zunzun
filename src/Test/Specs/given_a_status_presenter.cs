@@ -73,6 +73,21 @@ namespace Zunzun.Specs {
                 When.ReplyTo(Actors.TweetWithUser);
                 Then.View.UpdateText = "@testuser";
             }
+
+            [TestMethod]
+            public void should_make_Update_visible_if_hidden()
+            {
+                Given.View.IsUpdateVisible = false;
+                When.ReplyTo(Actors.TweetWithUser);
+                Then.View.IsUpdateVisible.ShouldBeTrue();
+            }
+
+            [TestMethod]
+            public void should_focus_on_Update()
+            {
+                When.ReplyTo(Actors.TweetWithUser);
+                Should.View.FocusOnUpdate();
+            }
         }
     }
 }

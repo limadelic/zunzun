@@ -1,5 +1,7 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
+using System.Windows.Controls;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 
@@ -27,6 +29,11 @@ namespace Zunzun.App.Views.Xaml {
             set { UpdateBOX.Visibility = value ? Visibility.Visible : Visibility.Collapsed; } 
         }
 
+        public void FocusOnUpdate()
+        {
+            Update.Focus();
+        }
+
         public string UpdateText { 
             get { return Update.Text; }
             set { Update.Text = value; } 
@@ -51,6 +58,12 @@ namespace Zunzun.App.Views.Xaml {
         private void OnToggleUpdate(object sender, RoutedEventArgs e)
         {
             StatusPresenter.ToggleUpdateVisibility();
+        }
+
+        private void Reply(object sender, RoutedEventArgs e)
+        {
+            var tweet = ((sender as Button).Tag as Tweet);
+            StatusPresenter.ReplyTo( tweet );
         }
     }
 }

@@ -4,5 +4,6 @@ namespace Zunzun.App.Views {
 
         string UpdateText { get; set; }
         bool IsUpdateVisible { get; set; }
+        void FocusOnUpdate();
     }
 }

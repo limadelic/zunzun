@@ -10,7 +10,8 @@ namespace Zunzun.Domain {
             Author = Status.User.Name,
             Avatar = Status.User.ProfileImageUrl,
             Date = Status.CreatedDate.ToString(),
-            Source = Status.Source
+            Source = Status.Source,
+            ScreenName = Status.User.ScreenName
         };}
 
         public static Tweet NewTweet(string StatusText) { 

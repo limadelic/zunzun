@@ -35,16 +35,17 @@
 									<GradientStop Color="#FF000000" Offset="1"/>
 								</LinearGradientBrush>
 							</Border.BorderBrush>
-							<Grid Background="{x:Null}">
+							<Grid Background="{x:Null}" Grid.IsSharedSizeScope="False" Width="Auto" Height="Auto">
 								<Grid.ColumnDefinitions>
 									<ColumnDefinition Width="Auto"/>
 									<ColumnDefinition/>
 								</Grid.ColumnDefinitions>
 								<Grid.RowDefinitions>
-									<RowDefinition/>
-									<RowDefinition/>
+									<RowDefinition Height="0.661*"/>
+									<RowDefinition Height="0*"/>
+									<RowDefinition Height="0.339*"/>
 								</Grid.RowDefinitions>
-								<Image x:Name="AvatarIMG" Grid.ColumnSpan="1" Source="{Binding Avatar, Mode=Default}" Stretch="UniformToFill" Width="50" Height="50" Margin="5" VerticalAlignment="Top"/>
+								<Image x:Name="AvatarIMG" Grid.ColumnSpan="1" Source="{Binding Avatar, Mode=Default}" Stretch="UniformToFill" Width="50" Height="50" Margin="5,5,5,0" VerticalAlignment="Top"/>
 								<Zunzun_App_Controls:RichTextBlock Margin="2,3,2,5" x:Name="ContentTXT" Foreground="{DynamicResource ContentBrush}" TextWrapping="Wrap" FontSize="{DynamicResource ContentFontSize}" Grid.Column="1" Text="{Binding Content, Mode=Default}"/>
 								<Grid Grid.Row="1" Grid.ColumnSpan="2">
 									<Grid.ColumnDefinitions>
@@ -52,10 +53,13 @@
 										<ColumnDefinition Width="Auto"/>
 										<ColumnDefinition Width="*"/>
 									</Grid.ColumnDefinitions>
-									<TextBlock Background="{x:Null}" d:LayoutOverrides="Height" x:Name="AuthorTXT" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Text="{Binding Author, Mode=Default}" TextWrapping="Wrap" Margin="2,0,0,0"/>
-									<TextBlock Grid.Column="1" TextWrapping="Wrap" x:Name="DateTXT" Foreground="{DynamicResource InfoBrush}" Text="{Binding Date, Converter={StaticResource DateToString}, Mode=OneWay}" FontSize="{DynamicResource InfoFontSize}" Margin="2,0,0,0"/>
-									<TextBlock Grid.Column="2" TextWrapping="Wrap" x:Name="SourceTXT" FontSize="{DynamicResource InfoFontSize}" Text="{Binding Source, Converter={StaticResource SourceToString}, Mode=Default}" HorizontalAlignment="Right" Foreground="{DynamicResource InfoBrush}" Margin="0,0,2,0"/>
+									<TextBlock Background="{x:Null}" d:LayoutOverrides="Height" x:Name="Author" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Text="{Binding Author, Mode=Default}" TextWrapping="Wrap" Margin="2,-2,0,2"/>
+									<TextBlock Grid.Column="1" TextWrapping="Wrap" x:Name="Date" Foreground="{DynamicResource InfoBrush}" Text="{Binding Date, Converter={StaticResource DateToString}, Mode=OneWay}" FontSize="{DynamicResource InfoFontSize}" Margin="2,0,0,0"/>
+									<TextBlock Grid.Column="2" TextWrapping="Wrap" x:Name="Source" FontSize="{DynamicResource InfoFontSize}" Text="{Binding Source, Converter={StaticResource SourceToString}, Mode=Default}" HorizontalAlignment="Right" Foreground="{DynamicResource InfoBrush}" Margin="0,0,2,0"/>
 								</Grid>
+								<StackPanel Margin="0,0,-40,0" Grid.RowSpan="3" Grid.Row="2">
+									<Button x:Name="Reply" Margin="0" VerticalAlignment="Bottom" Content="Re" Background="{DynamicResource BTTBrush}" HorizontalAlignment="Left" Width="18" Height="18" d:LayoutOverrides="HorizontalAlignment" Foreground="{DynamicResource ContentBrush}" Tag="{TemplateBinding DataContext}" Click="Reply"/>
+								</StackPanel>
 							</Grid>
 						</Border>
 						<ControlTemplate.Triggers>
@@ -89,7 +93,7 @@
 			<Label x:Name="TitleTXT" HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
 			<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="Close" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,2,0"/>
 			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" Grid.Row="1" ItemsSource="{Binding Tweets, ElementName=MainWND, Mode=Default}"/>
-			<Button HorizontalAlignment="Left" VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdate" Content="I" Margin="2,2,0,0" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" Grid.Row="3" FontSize="{DynamicResource ContentFontSize}" Click="OnToggleUpdate"/>
+			<Button HorizontalAlignment="Left" VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdate" Content="I" Margin="2,2,0,0" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{x:Null}" Grid.Row="3" FontSize="{DynamicResource ContentFontSize}" Click="OnToggleUpdate"/>
 			<Grid x:Name="UpdateBOX" Grid.Row="2">
 				<TextBox x:Name="Update" TextWrapping="Wrap" d:LayoutOverrides="Height, GridBox" MinLines="3" MaxLines="3" Margin="3,0,18,0" BorderBrush="{DynamicResource InfoBrush}" Background="#FFC9C9C9" FontSize="{DynamicResource ContentFontSize}"/>
 				<Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="SendUpdate" Click="OnSendUpdate" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" d:LayoutOverrides="GridBox"/>

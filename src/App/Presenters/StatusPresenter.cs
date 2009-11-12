@@ -32,7 +32,9 @@ namespace Zunzun.App.Presenters {
 
         public void ReplyTo(Tweet tweet)
         {
-            View.UpdateText = reply + tweet.Author;
+            if(!View.IsUpdateVisible) ToggleUpdateVisibility();
+            View.UpdateText = reply + tweet.ScreenName;
+            View.FocusOnUpdate();
         }
     }
 }

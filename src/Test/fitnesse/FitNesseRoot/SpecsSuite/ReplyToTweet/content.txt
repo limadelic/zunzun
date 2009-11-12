@@ -1,7 +1,7 @@
 !*> Story
 
-In order to reply to a tweet
-I want to be able to have the reply prefix added for me
+In order to respond to my fellow Tweeters
+I want to reply to Tweets
 
 *!
 

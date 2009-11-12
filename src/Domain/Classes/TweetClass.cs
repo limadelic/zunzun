@@ -7,6 +7,7 @@ namespace Zunzun.Domain.Classes {
         public string Date { get; set; }
         public string Source { get; set; }
         public string Avatar { get; set; }
+        public string ScreenName { get; set; }
 
         public override bool Equals(object obj) {
             if (!(obj is TweetClass)) return false;
