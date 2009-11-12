@@ -4,7 +4,7 @@ namespace Zunzun.Specs.Fixtures {
     
         protected override void SetUpSteps() {
         
-            When("I search for{0}", Text => {});
+            When("I search for {0}", Text => {});
             
             Then("I should find cool Tweets", () => Fail());
         }
