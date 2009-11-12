@@ -15,19 +15,19 @@ namespace Zunzun.Specs.Fixtures {
     
         protected override void SetUpSteps() { 
             
-            Given[@"the Tweet ""Content"""] = () => Text = Expected["Content"];
+            Given(@"the Tweet ""0""", Content => Text = Content);
 
-            When["it is formatted for displaying"] = () => 
-                Tokens = TextFormatter.TokensFrom(Text);
+            When("it is formatted for displaying", () => 
+                Tokens = TextFormatter.TokensFrom(Text));
 
-            Then["it should not contain any links"] = () => 
-                Tokens.Any(Inline => Inline is Hyperlink).ShouldBeFalse();
+            Then("it should not contain any links", () => 
+                Tokens.Any(Inline => Inline is Hyperlink).ShouldBeFalse());
 
-            Then[@"it should contain a link to ""Url"""] = () => 
+            Then(@"it should contain a link to ""0""", Url => 
                 Tokens.Any(Inline => 
                     Inline is Hyperlink 
-                    && (Inline as Hyperlink).NavigateUri.AbsoluteUri.Contains(Expected["Url"])
-                ).ShouldBeTrue();
+                    && (Inline as Hyperlink).NavigateUri.AbsoluteUri.Contains(Url)
+                ).ShouldBeTrue());
         }
     }
 }

@@ -1,56 +1,21 @@
 using System;
 using System.Collections.Generic;
-using Zunzun.Domain.Helpers;
-using System.Linq;
 
 namespace Zunzun.Specs.Fixtures {
 
     public abstract class Spec {
     
-        readonly Dictionary<string, Action> DefinedSteps = new Dictionary<string, Action>();
         readonly Dictionary<string, Step> Steps = new Dictionary<string, Step>();
         Step CurrentStep { get; set; }
         
-        protected Dictionary<string, Action> Given { get { return DefinedSteps; } }
-        protected Dictionary<string, Action> When { get { return DefinedSteps; } }
-        protected Dictionary<string, Action> Then { get { return DefinedSteps; } }
-        protected Dictionary<string, Action> And { get { return DefinedSteps; } }
+        protected Spec() { SetUpSteps(); }
 
-        protected Dictionary<string, string> Expected { get { return CurrentStep.Args; } }
-
-        protected Spec() {
-            SetUpSteps();
-            BuildSteps();
-        }
-
-        void BuildSteps() { DefinedSteps.ForEach(BuildStep); }
+        protected abstract void SetUpSteps();
         
-        void BuildStep(KeyValuePair<string, Action> Prototype) {
-            
-            var Step = StepFrom(Prototype.Key);
-            
-            Steps[Step.Name] = new Step {
-                Name = Step.Name,
-                Args = Step.Args,
-                Execute = Prototype.Value,
-            };
-        }
-
-        Step StepFrom(string Prototype) {
-            var Step = new Step();
-            var NameArgs = Prototype.Split(new[]{'"'});
-            
-            for (var i = 0; i < NameArgs.Length; i++) 
-                if (i % 2 == 0) Step.Name += NameArgs[i];
-                else Step.Args[NameArgs[i]] = string.Empty;
-
-            return Step;
-        }
-
         void SetupCurrentStepFrom(string DesiredStepPrototype) {
             Action Fail = () => { throw new Exception("Missing implementation for '" + DesiredStepPrototype + "'"); };
 
-            var DesiredStep = StepFrom(DesiredStepPrototype);
+            var DesiredStep = new Step(DesiredStepPrototype);
             
             if (!Steps.ContainsKey(DesiredStep.Name)) Fail();
 
@@ -59,28 +24,45 @@ namespace Zunzun.Specs.Fixtures {
             if (DesiredStep.Args.Count != CorrespondingStep.Args.Count) Fail();
 
             CurrentStep = CorrespondingStep;
-
-            FillCurrentStepArgsFrom(DesiredStep);
+            CurrentStep.Args = DesiredStep.Args;
         }
 
-        void FillCurrentStepArgsFrom(Step DesiredStep) {
+        void SetupStep(Step Step) { Steps[Step.Name] = Step; }
 
-            var i = 0;
-            foreach (var ExpectedArg in DesiredStep.Args) 
-                CurrentStep.Args[CurrentStep.Args.Keys.ElementAt(i++)] = ExpectedArg.Key;
+        public bool Given(string Step) { return Do(Step); }
+        protected void Given(string Step, Action Action) {
+            SetupStep(new Step(Step, Action));
+        }
+        protected void Given(string Step, Action<string> Action) {
+            SetupStep(new Step(Step, Action));
         }
 
-        protected abstract void SetUpSteps();
+        public bool When(string Step) { return Do(Step); }
+        protected void When(string Step, Action Action) {
+            SetupStep(new Step(Step, Action));
+        }
+        protected void When(string Step, Action<string> Action) {
+            SetupStep(new Step(Step, Action));
+        }
 
-        public bool given(string Step) { return Do(Step); }
+        public bool And(string Step) { return Do(Step); }
+        protected void And(string Step, Action Action) {
+            SetupStep(new Step(Step, Action));
+        }
+        protected void And(string Step, Action<string> Action) {
+            SetupStep(new Step(Step, Action));
+        }
 
-        public bool when(string Step) { return Do(Step); }
-
-        public bool and(string Step) { return Do(Step); }
-
-        public bool then(string Step) { return Do(Step); }
+        public bool Then(string Step) { return Do(Step); }
+        protected void Then(string Step, Action Action) {
+            SetupStep(new Step(Step, Action));
+        }
+        protected void Then(string Step, Action<string> Action) {
+            SetupStep(new Step(Step, Action));
+        }
 
         bool Do(string DesiredStep) {
+//            System.Diagnostics.Debugger.Launch();
             SetupCurrentStepFrom(DesiredStep);
             
             try {

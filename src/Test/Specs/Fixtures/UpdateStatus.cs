@@ -22,13 +22,13 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            When["Status is updated"] = () => {
+            When("Status is updated", () => {
                 Tweet = Actors.UniqueTweet;
                 StatusPresenter.Update(Tweet);
-            };
+            });
 
-            Then["Home should contain the Tweet"] = () => 
-                TweetService.Tweets.ToList().ShouldContain(Tweet);
+            When("Home should contain the Tweet", () => 
+                TweetService.Tweets.ToList().ShouldContain(Tweet));
         }
     }
 }

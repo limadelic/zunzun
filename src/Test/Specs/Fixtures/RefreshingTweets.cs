@@ -25,31 +25,26 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
 
-            Given["Home is shown"] = () => HomePresenter.Show(); 
+            Given("Home is shown", () => HomePresenter.Show()); 
             
-            And[@"the Refresh Cycle is ""Refresh Cycle"" seconds"] = () => {
-                var ExpectedRefreshCycle = Convert.ToInt32(Expected["Refresh Cycle"]);
-                
-                TweetService.UpdateRefreshCycle(ExpectedRefreshCycle); 
-            };
-            
-            When["Status is updated"] = () => {
+            And(@"the Refresh Cycle is ""0"" seconds", RefreshCycle => 
+                TweetService.UpdateRefreshCycle(Convert.ToInt32(RefreshCycle)) 
+            );
+
+            When("Status is updated", () => {
             
                 Tweet = Actors.UniqueTweet;
 
                 HomePresenter.TweetService.UpdateStatus(Tweet);
-            };
+            });
             
-            And[@"""Wait Time"" seconds have passed"] = () => {
-                var ExpectedWaitTime = Convert.ToInt32(Expected["Wait Time"]);
-                
-                Thread.Sleep(ExpectedWaitTime);
-            };
+            And(@"""0"" seconds have passed", WaitTime => 
+                Thread.Sleep(Convert.ToInt32(WaitTime))
+            );
             
-            Then["Home should contain the Tweet"] = () => {
-                
-                HomeView.Tweets.ToList().ShouldContain(Tweet);
-            };
+            Then("Home should contain the Tweet", () => 
+                HomeView.Tweets.ToList().ShouldContain(Tweet)
+            );
         }
     }
 }

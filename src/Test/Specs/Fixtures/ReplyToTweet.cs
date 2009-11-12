@@ -6,37 +6,30 @@ using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
 using ObjectFactory=Zunzun.Domain.ObjectFactory;
 
-namespace Zunzun.Specs.Fixtures
-{
-    public class ReplyToTweet : Spec 
-    {
-        private Tweet Tweet;
-        private readonly StatusView View;
-        private readonly StatusPresenter Presenter;
-        
-        public ReplyToTweet()
-        {
+namespace Zunzun.Specs.Fixtures {
+
+    public class ReplyToTweet : Spec {
+    
+        Tweet Tweet;
+        readonly StatusView View;
+        readonly StatusPresenter Presenter;
+
+        public ReplyToTweet() {
             View = Create.TestObjectFor<StatusView>();
             Presenter = PresenterFactory.NewStatusPresenter(View);
         }
 
-        protected override void SetUpSteps()
-        {
-            Given[@"a tweet by user ""User Name"""] = () =>
-            {
-                var status = new TwitterStatus { User = new TwitterUser{ Name = Expected["User Name"] }};
+        protected override void SetUpSteps() {
+        
+            Given(@"a tweet by user ""0""", UserName => {
+                var status = new TwitterStatus {User = new TwitterUser {Name = UserName}};
                 Tweet = ObjectFactory.NewTweet(status);
-            };
+            });
 
-            When["I reply to the Tweet"] = () =>
-            {
-                Presenter.ReplyTo(Tweet);
-            };
+            When("I reply to the Tweet", () => Presenter.ReplyTo(Tweet));
 
-            Then[@"Update Text contains ""Reply Prefix"""] = () =>
-            {
-                View.UpdateText.ShouldContain( Expected["Reply Prefix"] );
-            };
+            Then(@"Update Text contains ""0""", ReplyPrefix => 
+                View.UpdateText.ShouldContain(ReplyPrefix));
         }
     }
 }

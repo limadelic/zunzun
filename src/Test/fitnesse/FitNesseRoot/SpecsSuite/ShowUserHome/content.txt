@@ -14,7 +14,7 @@ I want to be able to see the User details and Tweets
 !*> define details
 
 !|define|It should contain the User details                       |
-|It     |should be named "zunzun"                                 |
+|Then   |should be named "zunzun"                              |
 |And    |the bio should be "snappy & concise twitter app"         |
 |And    |should be Following other users                          |
 |And    |should have Followers                                    |

@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Linq;
 using FluentSpec;
 using Zunzun.Specs.Helpers;
@@ -16,26 +17,28 @@ namespace Zunzun.Specs.Fixtures {
         
         public ShowHome() {
             HomeView = Create.TestObjectFor<HomeView>();
+            HomeView.Tweets = new ObservableCollection<Tweet>();
+            
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
         }
 
         protected override void SetUpSteps() {
 
-            When["Home is shown"] = () => HomePresenter.Show();
+            When("Home is shown", () => HomePresenter.Show());
             
-            Then["it should contain Tweets"] = () => HomeView.Tweets.ToList().ShouldNotBeEmpty();
+            Then("it should contain Tweets", () => HomeView.Tweets.ToList().ShouldNotBeEmpty());
 
-            When["a Tweet is displayed"] = () => HomePresenter.Show();
+            When("a Tweet is displayed", () => HomePresenter.Show());
             
-            Then["should contain a Content"] = () => Tweet.Content.ShouldNotBeEmpty();
+            Then("should contain a Content", () => Tweet.Content.ShouldNotBeEmpty());
             
-            And["an Author"] = () => Tweet.Author.ShouldNotBeEmpty();
+            And("an Author", () => Tweet.Author.ShouldNotBeEmpty());
             
-            And["a Date"] = () => Tweet.Date.ShouldNotBeEmpty();
+            And("a Date", () => Tweet.Date.ShouldNotBeEmpty());
             
-            And["a Source"] = () => Tweet.Source.ShouldNotBeEmpty();
+            And("a Source", () => Tweet.Source.ShouldNotBeEmpty());
             
-            And["the Author's Avatar"] = () => Tweet.Avatar.ShouldNotBeEmpty();
+            And("the Author's Avatar", () => Tweet.Avatar.ShouldNotBeEmpty());
         }
     }
 }

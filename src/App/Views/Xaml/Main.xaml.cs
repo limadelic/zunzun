@@ -12,12 +12,12 @@ namespace Zunzun.App.Views.Xaml {
     
         public Main() {
             
+            HomePresenter = PresenterFactory.NewHomePresenter(this);
+            StatusPresenter = PresenterFactory.NewStatusPresenter(this);
+
             Tweets = new ObservableCollection<Tweet>();
 
             InitializeComponent();
-            
-            HomePresenter = PresenterFactory.NewHomePresenter(this);
-            StatusPresenter = PresenterFactory.NewStatusPresenter(this);
         }
 
         public ObservableCollection<Tweet> Tweets { get; set; }
