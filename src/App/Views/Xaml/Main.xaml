@@ -53,7 +53,7 @@
 										<ColumnDefinition Width="Auto"/>
 										<ColumnDefinition Width="*"/>
 									</Grid.ColumnDefinitions>
-									<TextBlock Background="{x:Null}" d:LayoutOverrides="Height" x:Name="Author" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Text="{Binding Author, Mode=Default}" TextWrapping="Wrap" Margin="2,-2,0,2"/>
+									<TextBlock Background="{x:Null}" d:LayoutOverrides="Height" x:Name="Author" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Text="{Binding Author, Mode=Default}" TextWrapping="Wrap" Margin="2,0,0,2"/>
 									<TextBlock Grid.Column="1" TextWrapping="Wrap" x:Name="Date" Foreground="{DynamicResource InfoBrush}" Text="{Binding Date, Converter={StaticResource DateToString}, Mode=OneWay}" FontSize="{DynamicResource InfoFontSize}" Margin="2,0,0,0"/>
 									<TextBlock Grid.Column="2" TextWrapping="Wrap" x:Name="Source" FontSize="{DynamicResource InfoFontSize}" Text="{Binding Source, Converter={StaticResource SourceToString}, Mode=Default}" HorizontalAlignment="Right" Foreground="{DynamicResource InfoBrush}" Margin="0,0,2,0"/>
 								</Grid>
