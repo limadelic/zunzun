@@ -44,7 +44,7 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         private void Load(object sender, RoutedEventArgs e) {
-            HomePresenter.Show();
+            HomePresenter.Load();
         }
 
         private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {

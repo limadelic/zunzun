@@ -8,5 +8,7 @@ namespace Zunzun.App {
         public static TextFormatter NewTextFormatter { get {
             return new TextFormatterClass();
         }}
+
+        public static Timer NewTimer { get { return new TimerClass(); }}
     }
 }

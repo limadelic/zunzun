@@ -4,8 +4,6 @@ using Zunzun.Domain.Helpers;
 
 namespace Zunzun.Domain.Classes {
 
-    public delegate void NewTweetsAreAvailable(List<Tweet> Tweets);
-    
     public class TweetServiceClass : TweetService {
         
         List<Tweet> tweets;
@@ -20,10 +18,6 @@ namespace Zunzun.Domain.Classes {
             .AsJson().Request();
         }
 
-        public void UpdateRefreshCycle(int RefreshCycle) {
-            
-        }
-
         public virtual ITwitterLeafNode Home { get { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
@@ -32,18 +26,5 @@ namespace Zunzun.Domain.Classes {
         ;}}
         
         public virtual List<Tweet> NewTweets { get { return null; }}
-        
-        public event NewTweetsAreAvailable NewTweetsAreAvailable;
-
-        bool NoOneIsExpectingNewTweets { get { return NewTweetsAreAvailable == null; } }
-        
-        public void CheckForNewTweets() {
-            if (NoOneIsExpectingNewTweets) return;
-            
-            var AvailableTweets = NewTweets;
-            if (AvailableTweets.Count == 0) return;
-            
-            NewTweetsAreAvailable(AvailableTweets);
-        }
     }
 }

@@ -74,6 +74,8 @@
     <Compile Include="Converters\SourceToString.cs" />
     <Compile Include="Converters\DateToString.cs" />
     <Compile Include="Model\Classes\TextFormatterClass.cs" />
+    <Compile Include="Model\Classes\TimerClass.cs" />
+    <Compile Include="Model\Timer.cs" />
     <Compile Include="Model\TokenFactory.cs" />
     <Compile Include="Model\TextFormatter.cs" />
     <Compile Include="ObjectFactory.cs" />

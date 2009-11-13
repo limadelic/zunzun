@@ -6,6 +6,7 @@ using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
+using Timer=Zunzun.App.Model.Timer;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -13,30 +14,27 @@ namespace Zunzun.Specs.Fixtures {
         
         readonly HomePresenter HomePresenter;
         readonly HomeView HomeView;
-        readonly TweetService TweetService;
+        readonly Timer Timer;
 
-        Tweet Tweet { get; set; }
+        readonly Tweet Tweet = Actors.UniqueTweet;
         
         public RefreshingTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
-            TweetService = HomePresenter.TweetService;
+            Timer = HomePresenter.Timer;
         }
 
         protected override void SetUpSteps() {
 
-            Given("Home is shown", () => HomePresenter.Show()); 
-            
-            And("the Refresh Cycle is {0} seconds", RefreshCycle => 
-                TweetService.UpdateRefreshCycle(Convert.ToInt32(RefreshCycle)) 
+            Given("the Refresh Cycle is {0} seconds", RefreshCycle => 
+                App.Settings.DefaultRefreshCycle = Convert.ToInt32(RefreshCycle) 
             );
 
-            When("Status is updated", () => {
+            And("Home is shown", () => HomePresenter.Load()); 
             
-                Tweet = Actors.UniqueTweet;
-
-                HomePresenter.TweetService.UpdateStatus(Tweet);
-            });
+            When("Status is updated", () => 
+                HomePresenter.TweetService.UpdateStatus(Tweet)
+            );
             
             And("{0} seconds have passed", WaitTime => 
                 Thread.Sleep(Convert.ToInt32(WaitTime))

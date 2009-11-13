@@ -23,5 +23,7 @@ namespace Zunzun.Specs.Helpers {
         public static List<Tweet> TwoTweets { get { 
             return new List<Tweet> { UniqueTweet, UniqueTweet };
         }}
+
+        public static int OneMillisecond { get { return 1; } }
     }
 }

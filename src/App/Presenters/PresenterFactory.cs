@@ -7,7 +7,8 @@ namespace Zunzun.App.Presenters {
         public static HomePresenter NewHomePresenter(HomeView View) {
             return new HomePresenter {
                 View = View,
-                TweetService = Domain.ObjectFactory.NewTweetService
+                TweetService = Domain.ObjectFactory.NewTweetService,
+                Timer = ObjectFactory.NewTimer
             };
         }
 
