@@ -6,7 +6,6 @@ using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
-using Timer=Zunzun.App.Model.Timer;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -14,14 +13,12 @@ namespace Zunzun.Specs.Fixtures {
         
         readonly HomePresenter HomePresenter;
         readonly HomeView HomeView;
-        readonly Timer Timer;
 
         readonly Tweet Tweet = Actors.UniqueTweet;
         
         public RefreshingTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
-            Timer = HomePresenter.Timer;
         }
 
         protected override void SetUpSteps() {
