@@ -2,6 +2,8 @@ namespace Zunzun.Domain.Classes {
     
     public class TweetClass : Tweet {
     
+        public long Id { get; set; }
+
         public string Content { get; set; }
         public string Author { get; set; }
         public string Date { get; set; }

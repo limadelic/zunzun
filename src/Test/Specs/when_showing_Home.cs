@@ -76,7 +76,7 @@ namespace Zunzun.Specs {
                 
                 When.NotifyEvery(Actors.OneMillisecond);
 
-                Thread.Sleep(Actors.OneMillisecond);
+                Thread.Sleep(Actors.OneHundredMilliseconds);
                 
                 TickReceived.ShouldBeTrue();
             }

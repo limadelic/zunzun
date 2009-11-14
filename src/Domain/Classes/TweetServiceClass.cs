@@ -25,6 +25,15 @@ namespace Zunzun.Domain.Classes {
             .Take(Settings.NumberOfTweetsPerRequest).AsJson()
         ;}}
         
-        public virtual List<Tweet> NewTweets { get { return null; }}
+        public virtual List<Tweet> NewTweets { get {
+            return TweetsSinceLastOne.Request().ToTweets();
+        }}
+
+        public virtual ITwitterLeafNode TweetsSinceLastOne { get { return 
+            FluentTwitter.CreateRequest()
+            .AuthenticateAs(Settings.UserName, Settings.Password)
+            .Statuses().OnHomeTimeline()
+            .Since(Tweets[0].Id).AsJson()
+        ;}}
     }
 }

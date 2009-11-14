@@ -12,7 +12,7 @@ I want the Tweets to be refreshed automatically
 
 
 ------ '''Scenario''' ''Refreshing Home Tweets'' ------
-|Given|the Refresh Cycle is "2" seconds|
+|Given|the Refresh Cycle is "1" seconds|
 |And  |Home is shown                   |
 |When |Status is updated               |
 |And  |"2" seconds have passed         |

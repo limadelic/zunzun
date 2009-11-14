@@ -6,6 +6,7 @@ namespace Zunzun.Domain {
     public static class ObjectFactory {
         
         public static Tweet NewTweet(TwitterStatus Status) { return new TweetClass {
+            Id = Status.Id,
             Content = Status.Text,
             Author = Status.User.Name,
             Avatar = Status.User.ProfileImageUrl,

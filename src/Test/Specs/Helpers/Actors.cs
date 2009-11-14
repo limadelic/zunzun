@@ -25,5 +25,6 @@ namespace Zunzun.Specs.Helpers {
         }}
 
         public static int OneMillisecond { get { return 1; } }
+        public static int OneHundredMilliseconds { get { return 100; } }
     }
 }
