@@ -101,16 +101,20 @@ namespace Zunzun.Specs {
         [TestClass]
         public class the_TweetsService : BehaviorOf<TweetServiceClass> {
         
-            readonly ITwitterLeafNode Home = TestObjectFor<ITwitterLeafNode>();
-
-            [TestInitialize]
-            public void SetUp() { Given.Home.Is(Home); }
+            readonly ITwitterLeafNode Spec = Actors.FiveTweetsTestSpec; 
 
             [TestMethod]
             public void should_retrieve_the_Tweets() {
                 
-                Home.Given().Request().WillReturn(Actors.FiveLiteralTweets);
+                Given.HomeSpec.Is(Spec);
                 The.Tweets.Count.ShouldBe(5);
+            }
+            
+            [TestMethod]
+            public void should_retrieve_Tweets_since_latest_id() {
+                
+                Given.TweetsSinceSpec(42).Is(Spec);
+                The.TweetsSince(42).Count.ShouldBe(5);
             }
         }
     }
