@@ -44,5 +44,10 @@ namespace Zunzun.Specs.Helpers {
             
             (Bigger > Smaller).ShouldBeTrue();            
         }
+
+        public static void ShouldBeLessThan(this int Smaller, int Bigger) {
+            
+            (Smaller < Bigger).ShouldBeTrue();            
+        }
     }
 }

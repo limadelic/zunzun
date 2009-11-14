@@ -60,7 +60,19 @@ namespace Zunzun.Specs {
                 When.CheckForNewTweets();
 
                 The.View.Tweets.ToList()
-                    .ShouldBe(Tweets.Concat(NewTweets).ToList());
+                    .ShouldBe(NewTweets.Concat(Tweets).ToList());
+            }
+
+            [TestMethod]
+            public void should_place_new_Tweets_above_older_ones() {
+                var NewTweet = Actors.UniqueTweet;
+
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
+                Given.TweetService.NewTweets.Are(new List<Tweet> {NewTweet});
+                
+                When.CheckForNewTweets();
+                
+                The.View.Tweets[0].ShouldBe(NewTweet);
             }
         }
         

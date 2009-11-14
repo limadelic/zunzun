@@ -3,7 +3,6 @@ using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading;
 using FluentSpec;
-using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
@@ -11,13 +10,15 @@ using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
 
-    [TestClass]
     public class RefreshingTweets : Spec {
         
         readonly HomePresenter HomePresenter;
         readonly HomeView HomeView;
+        Tweet OriginalFirstTweet;
 
         readonly Tweet Tweet = Actors.UniqueTweet;
+        
+        ObservableCollection<Tweet> TweetsShown { get { return HomeView.Tweets; } }
         
         public RefreshingTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
@@ -32,7 +33,10 @@ namespace Zunzun.Specs.Fixtures {
                 App.Settings.DefaultRefreshCycle = Convert.ToInt32(RefreshCycle) * 1000
             );
 
-            And("Home is shown", () => HomePresenter.Load()); 
+            And("Home is shown", () => {
+                HomePresenter.Load();
+                OriginalFirstTweet = TweetsShown[0];
+            }); 
             
             When("Status is updated", () => 
                 HomePresenter.TweetService.UpdateStatus(Tweet)
@@ -43,16 +47,13 @@ namespace Zunzun.Specs.Fixtures {
             );
             
             Then("Home should contain the Tweet", () => 
-                HomeView.Tweets.ToList().ShouldContain(Tweet)
+                TweetsShown.ToList().ShouldContain(Tweet)
             );
-        }
-        
-        [TestMethod]
-        public void Refreshing_Home_Tweets() {
-            HomePresenter.Show();
-            var TweetsCount = HomeView.Tweets.Count();
-            HomePresenter.CheckForNewTweets();
-            HomeView.Tweets.Count().ShouldBeGreaterThan(TweetsCount);
+
+            And("the Tweet should be shown above the older ones", () => 
+                TweetsShown.IndexOf(Tweet)
+                .ShouldBeLessThan(TweetsShown.IndexOf(OriginalFirstTweet))
+            );
         }
     }
 }

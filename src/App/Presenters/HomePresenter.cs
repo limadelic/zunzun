@@ -25,7 +25,9 @@ namespace Zunzun.App.Presenters {
         }
 
         public void CheckForNewTweets() {
-            TweetService.NewTweets.ForEach(View.Tweets.Add);
+            var NewTweets = TweetService.NewTweets;
+            for (var i = NewTweets.Count - 1; i >= 0; i--) 
+                View.Tweets.Insert(0, NewTweets[i]);
         }
     }
 }
