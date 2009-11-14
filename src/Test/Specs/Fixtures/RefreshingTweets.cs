@@ -50,9 +50,9 @@ namespace Zunzun.Specs.Fixtures {
                 TweetsShown.ToList().ShouldContain(Tweet)
             );
 
-            And("the Tweet should be shown above the older ones", () => 
-                TweetsShown.IndexOf(Tweet)
-                .ShouldBeLessThan(TweetsShown.IndexOf(OriginalFirstTweet))
+            And("the Tweet should be shown above the older ones", () => {
+                TweetsShown.ToList().ShouldContain(Tweet);
+                TweetsShown.IndexOf(Tweet).ShouldBeLessThan(TweetsShown.IndexOf(OriginalFirstTweet));}
             );
         }
     }

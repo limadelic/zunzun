@@ -1,25 +1,26 @@
-using System.Timers;
+using System;
+using System.Windows.Threading;
 
 namespace Zunzun.App.Model.Classes {
 
     public class TimerClass : Timer {
     
-        readonly System.Timers.Timer SystemTimer;
+        readonly DispatcherTimer SystemTimer;
         
         public event OnTime Notify;
         
         public TimerClass() {
-            SystemTimer = new System.Timers.Timer();
-            SystemTimer.Elapsed += Elapsed;
+            SystemTimer = new DispatcherTimer();
+            SystemTimer.Tick += Tick;
         }
 
-        void Elapsed(object Sender, ElapsedEventArgs E) { 
+        void Tick(object Sender, EventArgs E) {
             if (Notify != null) Notify();
         }
 
         public void NotifyEvery(int Milliseconds) {
-            SystemTimer.Interval = Milliseconds;
-            SystemTimer.Enabled = true;
+            SystemTimer.Interval = new TimeSpan(0, 0, 0, 0, Milliseconds);
+            SystemTimer.Start();
         }
     }
 }

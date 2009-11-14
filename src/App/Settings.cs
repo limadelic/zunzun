@@ -5,6 +5,6 @@ namespace Zunzun.App {
         public const string InfoBrush = "InfoBrush";
         public const string ContentBrush = "ContentBrush";
         
-        public static int DefaultRefreshCycle = 1000;
+        public static int DefaultRefreshCycle = 3 * 1000;
     }
 }
