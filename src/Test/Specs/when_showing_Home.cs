@@ -5,7 +5,6 @@ using System.Threading;
 using Dimebrain.TweetSharp.Fluent;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using Zunzun.App.Model.Classes;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
@@ -77,7 +76,7 @@ namespace Zunzun.Specs {
         }
         
         [TestClass]
-        public class the_Timer : BehaviorOf<TimerClass>{
+        public class the_Timer : BehaviorOf<TestTimer>{
             
             [Ignore] // timer works only with the UI loaded
             [TestMethod]

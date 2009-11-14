@@ -25,6 +25,7 @@ namespace Zunzun.Specs.Fixtures {
             HomeView.Tweets = new ObservableCollection<Tweet>();
 
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
+            HomePresenter.Timer = new TestTimer();
         }
 
         protected override void SetUpSteps() {

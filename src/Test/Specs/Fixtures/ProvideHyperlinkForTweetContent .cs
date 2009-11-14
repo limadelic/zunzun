@@ -18,16 +18,19 @@ namespace Zunzun.Specs.Fixtures {
             Given("the Tweet {0}", Content => Text = Content);
 
             When("it is formatted for displaying", () => 
-                Tokens = TextFormatter.TokensFrom(Text));
+                Tokens = TextFormatter.TokensFrom(Text)
+            );
 
             Then("it should not contain any links", () => 
-                Tokens.Any(Inline => Inline is Hyperlink).ShouldBeFalse());
+                Tokens.Any(Inline => Inline is Hyperlink).ShouldBeFalse()
+            );
 
             Then("it should contain a link to {0}", Url => 
                 Tokens.Any(Inline => 
                     Inline is Hyperlink 
                     && (Inline as Hyperlink).NavigateUri.AbsoluteUri.Contains(Url)
-                ).ShouldBeTrue());
+                ).ShouldBeTrue()
+            );
         }
     }
 }
