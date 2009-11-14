@@ -6,9 +6,7 @@ namespace Zunzun.Domain.Classes {
 
     public class TweetServiceClass : TweetService {
         
-        List<Tweet> tweets;
-        public List<Tweet> Tweets { get { return tweets ?? InitTweets; }}
-        List<Tweet> InitTweets { get { return tweets = Request(HomeSpec); }}
+        public List<Tweet> Tweets { get { return Request(HomeSpec); }}
 
         public List<Tweet> TweetsSince(long Id) { 
             return Request(TweetsSinceSpec(Id));
