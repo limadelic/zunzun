@@ -6,7 +6,7 @@ using Zunzun.Domain;
 
 namespace Zunzun.App.Views.Xaml {
 
-    public partial class Main : HomeView, StatusView {
+    public partial class Main : HomeView, StatusView, UserHomeView {
     
         HomePresenter HomePresenter { get; set; }
         StatusPresenter StatusPresenter { get; set;}
@@ -22,6 +22,7 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         public ObservableCollection<Tweet> Tweets { get; set; }
+        public User User { get; set; }
         
         public bool IsUpdateVisible {
             get { return UpdateBOX.Visibility == Visibility.Visible; } 

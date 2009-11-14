@@ -12,7 +12,7 @@ namespace Zunzun.Domain.Classes {
         public int UpdatesCount { get; set; }
         
         public string Website { get; set; }
-        public string TwitterHome { get; set; }
+        public string TwitterHome { get { return Settings.TwitterUrl + UserName; }}
         
         public string Location { get; set; }
         public string TimeZone { get; set; }

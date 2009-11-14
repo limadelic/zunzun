@@ -99,7 +99,7 @@ namespace Zunzun.Specs {
         }
         
         [TestClass]
-        public class the_TweetsService : BehaviorOf<TweetServiceClass> {
+        public class the_TweetService : BehaviorOf<TweetServiceClass> {
         
             readonly ITwitterLeafNode Spec = Actors.FiveTweetsTestSpec; 
 
@@ -113,7 +113,7 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_retrieve_Tweets_since_latest_id() {
                 
-                Given.TweetsSinceSpec(42).Is(Spec);
+                Given.TweetsSinceSpec(42).WillReturn(Spec);
                 The.TweetsSince(42).Count.ShouldBe(5);
             }
         }

@@ -22,6 +22,7 @@ namespace Zunzun.App.Presenters {
         public static UserHomePresenter NewUserHomePresenter(UserHomeView View) { 
             return new UserHomePresenter {
                 View = View,
+                UserService = Domain.ObjectFactory.NewUserService
             };
         }
     }

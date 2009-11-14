@@ -1,3 +1,4 @@
+using System;
 using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Classes;
 
@@ -20,5 +21,20 @@ namespace Zunzun.Domain {
         }
 
         public static TweetService NewTweetService { get { return new TweetServiceClass(); } }
+
+        public static UserService NewUserService { get { return new UserServiceClass(); } }
+
+        public static User NewUser(TwitterUser User) { return new UserClass {
+            Name = User.Name,
+            UserName = User.ScreenName,
+            Bio = User.Description,
+            JoinedOn = User.CreatedDate.ToString(),
+            Following = User.FriendsCount,
+            Followers = User.FollowersCount,
+            UpdatesCount = User.StatusesCount,
+            Website = User.Url,
+            Location = User.Location,
+            TimeZone = User.TimeZone
+        };}
     }
 }

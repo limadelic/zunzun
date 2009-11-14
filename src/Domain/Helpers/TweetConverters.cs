@@ -3,7 +3,6 @@ using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Model;
 
 namespace Zunzun.Domain.Helpers {
-
     public static class TweetConverters {
         
         public static List<Tweet> ToTweets(this string Response) {

@@ -50,8 +50,10 @@
     <Compile Include="Classes\TweetClass.cs" />
     <Compile Include="Classes\TweetServiceClass.cs" />
     <Compile Include="Classes\UserClass.cs" />
+    <Compile Include="Classes\UserServiceClass.cs" />
     <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\TweetConverters.cs" />
+    <Compile Include="Helpers\UserConverters.cs" />
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Settings.cs" />
