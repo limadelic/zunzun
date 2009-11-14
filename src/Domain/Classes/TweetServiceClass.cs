@@ -13,17 +13,18 @@ namespace Zunzun.Domain.Classes {
         }
 
         public void UpdateStatus(Tweet Tweet) {
+            Statuses.Update(Tweet.Content)
+            .AsJson().Request();
+        }
+
+        ITwitterStatuses Statuses { get { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
             .Statuses()
-            .Update(Tweet.Content)
-            .AsJson().Request();
-        }
-        
+        ;}}
+
         ITwitterHomeTimeline Home { get { return 
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Statuses().OnHomeTimeline()
+            Statuses.OnHomeTimeline()
         ;}}
 
         List<Tweet> Request(ITwitterLeafNode Spec) {
