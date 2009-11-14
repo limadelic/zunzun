@@ -4,6 +4,7 @@ using Dimebrain.TweetSharp.Model;
 using System.Collections.Generic;
 using FluentSpec;
 using Zunzun.Domain;
+using Zunzun.Domain.Classes;
 using ObjectFactory=Zunzun.Domain.ObjectFactory;
 
 namespace Zunzun.Specs.Helpers {
@@ -34,5 +35,9 @@ namespace Zunzun.Specs.Helpers {
 
         public static int OneMillisecond { get { return 1; } }
         public static int OneHundredMilliseconds { get { return 100; } }
+        
+        public static User Zunzun { get { return new UserClass {
+            UserName = "zunzunapp"
+        };}}
     }
 }

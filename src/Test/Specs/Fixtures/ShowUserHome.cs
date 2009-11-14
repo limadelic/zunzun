@@ -1,6 +1,7 @@
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
+using Zunzun.Domain;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -10,6 +11,8 @@ namespace Zunzun.Specs.Fixtures {
 
         readonly UserHomePresenter UserHomePresenter;
         readonly UserHomeView UserHomeView;
+        
+        User User { get { return UserHomeView.User; }}
         
         public ShowUserHome() {
             UserHomeView = Create.TestObjectFor<UserHomeView>();
@@ -25,34 +28,34 @@ namespace Zunzun.Specs.Fixtures {
                 UserHomePresenter.Show(UserName));
             
             Then("should be named {0}", Name => 
-                UserHomeView.Name.ShouldBe(Name));
+                User.Name.ShouldBe(Name));
             
             And("should have joined on {0}", JoinedOn => 
-                UserHomeView.JoinedOn.ShouldBe(JoinedOn));
+                User.JoinedOn.ShouldBe(JoinedOn));
             
             And("the bio should be {0}", Bio => 
-                UserHomeView.Bio.ShouldBe(Bio));
+                User.Bio.ShouldBe(Bio));
             
             And("should be Following other users", () =>
-                UserHomeView.Following.ShouldNotBe(0));
+                User.Following.ShouldNotBe(0));
             
             And("should have Followers", () =>
-                UserHomeView.Followers.ShouldNotBe(0));
+                User.Followers.ShouldNotBe(0));
             
             And("should have total of updates", () => 
-                UserHomeView.UpdatesCount.ShouldNotBe(0));
+                User.UpdatesCount.ShouldNotBe(0));
             
             And("the website should be {0}", Website =>
-                UserHomeView.Website.ShouldBe(Website));
+                User.Website.ShouldBe(Website));
             
             And("the Twitter Home should be {0}", TwitterHome =>
-                UserHomeView.TwitterHome.ShouldBe(TwitterHome));
+                User.TwitterHome.ShouldBe(TwitterHome));
             
             And("the location should be {0}", Location =>
-                UserHomeView.Location.ShouldBe(Location));
+                User.Location.ShouldBe(Location));
             
             And("the time zone should be {0}", TimeZone =>
-                UserHomeView.TimeZone.ShouldBe(TimeZone));
+                User.TimeZone.ShouldBe(TimeZone));
         }
     }
 }

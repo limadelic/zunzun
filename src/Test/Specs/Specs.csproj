@@ -74,6 +74,7 @@
     <Compile Include="when_showing_a_Tweet.cs" />
     <Compile Include="when_showing_Home.cs" />
     <Compile Include="given_a_status_presenter.cs" />
+    <Compile Include="when_showing_UserHome.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\fitnesse\dotnet\fitnesse.config">

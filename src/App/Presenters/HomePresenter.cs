@@ -1,6 +1,7 @@
 using Zunzun.App.Model;
 using Zunzun.App.Views;
 using Zunzun.Domain;
+using Zunzun.Domain.Helpers;
 
 namespace Zunzun.App.Presenters {
     
@@ -28,8 +29,7 @@ namespace Zunzun.App.Presenters {
 
         public void CheckForNewTweets() {
             var NewTweets = TweetService.TweetsSince(LatestTweet.Id);
-            for (var i = NewTweets.Count - 1; i >= 0; i--) 
-                View.Tweets.Insert(0, NewTweets[i]);
+            View.Tweets.InsertAtTop(NewTweets);
         }
     }
 }
