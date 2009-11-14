@@ -24,8 +24,10 @@ namespace Zunzun.App.Presenters {
             Timer.NotifyEvery(Settings.DefaultRefreshCycle);
         }
 
+        Tweet LatestTweet { get { return View.Tweets[0]; }}
+
         public void CheckForNewTweets() {
-            var NewTweets = TweetService.NewTweets;
+            var NewTweets = TweetService.TweetsSince(LatestTweet.Id);
             for (var i = NewTweets.Count - 1; i >= 0; i--) 
                 View.Tweets.Insert(0, NewTweets[i]);
         }

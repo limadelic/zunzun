@@ -51,10 +51,12 @@ namespace Zunzun.Specs {
             
             [TestMethod]
             public void should_keep_the_Tweets_sync() {
+                var CurrentTweets = new ObservableCollection<Tweet>(Tweets);
+                var LatestTweet = CurrentTweets[0];
                 var NewTweets = Actors.TwoTweets;
 
-                Given.View.Tweets = new ObservableCollection<Tweet>(Tweets);
-                Given.TweetService.NewTweets.Are(NewTweets);
+                Given.View.Tweets = CurrentTweets;
+                Given.TweetService.TweetsSince(LatestTweet.Id).Are(NewTweets);
 
                 When.CheckForNewTweets();
 
@@ -64,10 +66,12 @@ namespace Zunzun.Specs {
 
             [TestMethod]
             public void should_place_new_Tweets_above_older_ones() {
+                var CurrentTweets = new ObservableCollection<Tweet>(Tweets);
+                var LatestTweet = CurrentTweets[0];
                 var NewTweet = Actors.UniqueTweet;
 
-                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
-                Given.TweetService.NewTweets.Are(new List<Tweet> {NewTweet});
+                Given.View.Tweets = new ObservableCollection<Tweet>(Tweets);
+                Given.TweetService.TweetsSince(LatestTweet.Id).Is(new List<Tweet> {NewTweet});
                 
                 When.CheckForNewTweets();
                 

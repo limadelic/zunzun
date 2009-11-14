@@ -8,15 +8,7 @@ namespace Zunzun.Domain.Classes {
         
         List<Tweet> tweets;
         public List<Tweet> Tweets { get { return tweets ?? InitTweets; }}
-        List<Tweet> InitTweets { get { return tweets = Home.Request().ToTweets();}}
-
-        public void UpdateStatus(Tweet Tweet) {
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Statuses()
-            .Update(Tweet.Content)
-            .AsJson().Request();
-        }
+        List<Tweet> InitTweets { get { return tweets = Request(Home); }}
 
         public virtual ITwitterLeafNode Home { get { return 
             FluentTwitter.CreateRequest()
@@ -25,15 +17,27 @@ namespace Zunzun.Domain.Classes {
             .Take(Settings.NumberOfTweetsPerRequest).AsJson()
         ;}}
         
-        public virtual List<Tweet> NewTweets { get {
-            return TweetsSinceLastOne.Request().ToTweets();
-        }}
+        public void UpdateStatus(Tweet Tweet) {
+            FluentTwitter.CreateRequest()
+            .AuthenticateAs(Settings.UserName, Settings.Password)
+            .Statuses()
+            .Update(Tweet.Content)
+            .AsJson().Request();
+        }
+        
+        List<Tweet> Request(ITwitterLeafNode Spec) {
+            return Spec.Request().ToTweets();
+        }
 
-        public virtual ITwitterLeafNode TweetsSinceLastOne { get { return 
+        public List<Tweet> TweetsSince(long Id) { 
+            return Request(TweetsSinceSpec(Id));
+        }
+
+        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
             .Statuses().OnHomeTimeline()
-            .Since(Tweets[0].Id).AsJson()
-        ;}}
+            .Since(Id).AsJson()
+        ;}
     }
 }
