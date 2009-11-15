@@ -13,7 +13,7 @@ namespace Zunzun.Domain.Classes {
         public virtual ITwitterLeafNode UserByUserName(string UserName) { return 
             FluentTwitter.CreateRequest()
             .Users().ShowProfileFor(UserName)
-            .AsXml()
+            .AsJson()
         ;}
 
         User Request(ITwitterLeafNode Spec) { return 

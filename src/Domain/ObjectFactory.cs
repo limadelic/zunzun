@@ -1,4 +1,3 @@
-using System;
 using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Classes;
 
