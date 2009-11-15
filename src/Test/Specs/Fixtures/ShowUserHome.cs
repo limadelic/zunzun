@@ -1,7 +1,9 @@
+using System.Linq;
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
+using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -27,8 +29,11 @@ namespace Zunzun.Specs.Fixtures {
             When("User Home is shown", () => 
                 UserHomePresenter.Show(UserName));
             
-            Then("should be named {0}", Name => 
+            And("should be named {0}", Name => 
                 User.Name.ShouldBe(Name));
+
+            And("should have a picture", () => 
+                User.Picture.ShouldNotBeNull());
             
             And("should have joined on {0}", JoinedOn => 
                 User.JoinedOn.ShouldBe(JoinedOn));
@@ -56,6 +61,9 @@ namespace Zunzun.Specs.Fixtures {
             
             And("the time zone should be {0}", TimeZone =>
                 User.TimeZone.ShouldBe(TimeZone));
+
+            Then("the User Tweets should be displayed", () =>
+                UserHomeView.Tweets.ToList().ShouldNotBeEmpty());
         }
     }
 }

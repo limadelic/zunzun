@@ -13,8 +13,9 @@ I want to be able to see the User details and Tweets
 ------ '''Scenario''' ''show User details'' ------
 !*> define details
 
-!|define|It should contain the User details                       |
-|Then   |should be named "zunzun"                                 |
+!|define|Then the User Details should be displayed                |
+|And    |should be named "zunzun"                                 |
+|And    |should have a picture                                    |
 |And    |the bio should be "snappy & concise twitter app"         |
 |And    |should be Following other users                          |
 |And    |should have Followers                                    |
@@ -27,7 +28,13 @@ I want to be able to see the User details and Tweets
 
 *!
 
-|Given   |the User is "zunzunapp"  |
-|When    |User Home is shown       |
-|It should contain the User details|
+|Given      |the User is "zunzunapp"      |
+|When       |User Home is shown           |
+|Then the User Details should be displayed|
+
+------ '''Scenario''' ''show User Tweets'' ------
+|Given|the User is "zunzunapp"            |
+|When |User Home is shown                 |
+|Then |the User Tweets should be displayed|
+
 

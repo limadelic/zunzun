@@ -8,7 +8,7 @@ namespace Zunzun.Domain {
         string Author { get; set; }
         string Date { get; set; }
         string Source { get; set; }
-        string Avatar { get; set; }
+        string Picture { get; set; }
         string ScreenName { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Zunzun.Domain {
             Id = Status.Id,
             Content = Status.Text,
             Author = Status.User.Name,
-            Avatar = Status.User.ProfileImageUrl,
+            Picture = Status.User.ProfileImageUrl,
             Date = Status.CreatedDate.ToString(),
             Source = Status.Source,
             ScreenName = Status.User.ScreenName
@@ -26,6 +26,7 @@ namespace Zunzun.Domain {
         public static User NewUser(TwitterUser User) { return new UserClass {
             Name = User.Name,
             UserName = User.ScreenName,
+            Picture = User.ProfileImageUrl,
             Bio = User.Description,
             JoinedOn = User.CreatedDate.ToString(),
             Following = User.FriendsCount,

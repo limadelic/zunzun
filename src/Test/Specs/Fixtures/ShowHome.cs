@@ -38,7 +38,7 @@ namespace Zunzun.Specs.Fixtures {
             
             And("a Source", () => Tweet.Source.ShouldNotBeEmpty());
             
-            And("the Author's Avatar", () => Tweet.Avatar.ShouldNotBeEmpty());
+            And("the Author's Picture", () => Tweet.Picture.ShouldNotBeEmpty());
         }
     }
 }

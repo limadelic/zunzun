@@ -11,18 +11,18 @@ I want to see their Tweets
 *!
 
 ------ '''Scenario''' ''show home tweets'' ------
-|When|Home is shown        |
-|Then| it should contain Tweets|
+|When|Home is shown           |
+|Then|it should contain Tweets|
 
 ------ '''Scenario''' ''tweets details'' ------
 !*> define details
 
 !|define|It should contain all the details|
-|Then |should contain a Content         |
-|And|an Author                        |
-|And|a Date                           |
-|And|a Source                         |
-|And|the Author's Avatar              |
+|Then   |should contain a Content         |
+|And    |an Author                        |
+|And    |a Date                           |
+|And    |a Source                         |
+|And    |the Author's Picture             |
 
 *!
 

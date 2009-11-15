@@ -4,6 +4,7 @@ namespace Zunzun.Domain {
         
         string Name { get; set; }
         string UserName { get; set; }
+        string Picture { get; set; }
         string Bio { get; set; }
         string JoinedOn { get; set; }
         
