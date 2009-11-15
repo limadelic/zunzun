@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Zunzun.App.Presenters;
@@ -44,28 +43,28 @@ namespace Zunzun.App.Views.Xaml {
             set { Update.Text = value; } 
         }
 
-        private void Close(object sender, RoutedEventArgs e) {
+        void Close(object sender, RoutedEventArgs e) {
             Close();
         }
 
-        private void Load(object sender, RoutedEventArgs e) {
+        void Load(object sender, RoutedEventArgs e) {
             HomePresenter.Load();
         }
 
-        private void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
+        void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
         	DragMove();
         }
 
-        private void OnSendUpdate(object sender, RoutedEventArgs e) {
+        void OnSendUpdate(object sender, RoutedEventArgs e) {
         	StatusPresenter.Update();
         }
 
-        private void OnToggleUpdate(object sender, RoutedEventArgs e)
+        void OnToggleUpdate(object sender, RoutedEventArgs e)
         {
             StatusPresenter.ToggleUpdateVisibility();
         }
 
-        private void Reply(object sender, RoutedEventArgs e)
+        void Reply(object sender, RoutedEventArgs e)
         {
             var tweet = ((sender as Button).Tag as Tweet);
             StatusPresenter.ReplyTo( tweet );
@@ -74,6 +73,10 @@ namespace Zunzun.App.Views.Xaml {
         void ShowUserHome(object Sender, RoutedEventArgs e) {
             var UserName = (e as Events.ShowUserHome.ShowUserHomeEventArgs).UserName;
             UserHomePresenter.Show(UserName);
+        }
+
+        void ShowHome(object sender, RoutedEventArgs e) {
+        	HomePresenter.Show();
         }
 
     }

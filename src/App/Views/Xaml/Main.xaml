@@ -92,11 +92,14 @@
 			<Label x:Name="TitleTXT" HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
 			<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="Close" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,2,0"/>
 			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" Grid.Row="1" ItemsSource="{Binding Tweets, ElementName=MainWND, Mode=Default}"/>
-			<Button HorizontalAlignment="Left" VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdate" Content="I" Margin="2,2,0,0" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" Grid.Row="3" FontSize="{DynamicResource ContentFontSize}" Click="OnToggleUpdate"/>
 			<Grid x:Name="UpdateBOX" Grid.Row="2">
 				<TextBox x:Name="Update" TextWrapping="Wrap" d:LayoutOverrides="Height, GridBox" MinLines="3" MaxLines="3" Margin="3,0,18,0" BorderBrush="{DynamicResource InfoBrush}" Background="#FFC9C9C9" FontSize="{DynamicResource ContentFontSize}"/>
 				<Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="SendUpdate" Click="OnSendUpdate" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" d:LayoutOverrides="GridBox"/>
 			</Grid>
+			<StackPanel HorizontalAlignment="Left" Margin="2,2,0,0" Grid.Row="3" d:LayoutOverrides="Height" Orientation="Horizontal">
+				<Button VerticalAlignment="Top" IsCancel="True" x:Name="Home" Content="H" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Click="ShowHome" Width="18"/>
+				<Button VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdate" Content="I" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Click="OnToggleUpdate" Width="18" Margin="2,0,0,0"/>
+			</StackPanel>
         </Grid>
 	</Border>
 </Window>
