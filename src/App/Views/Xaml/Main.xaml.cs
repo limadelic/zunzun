@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using System.Windows.Controls;
 using Zunzun.App.Presenters;
@@ -9,16 +10,20 @@ namespace Zunzun.App.Views.Xaml {
     public partial class Main : HomeView, StatusView, UserHomeView {
     
         HomePresenter HomePresenter { get; set; }
+        UserHomePresenter UserHomePresenter { get; set; }
         StatusPresenter StatusPresenter { get; set;}
     
         public Main() {
             
             HomePresenter = PresenterFactory.NewHomePresenter(this);
+            UserHomePresenter = PresenterFactory.NewUserHomePresenter(this);
             StatusPresenter = PresenterFactory.NewStatusPresenter(this);
 
             Tweets = new ObservableCollection<Tweet>();
 
             InitializeComponent();
+            
+            AddHandler(Events.ShowUserHome.ShowUserHomeEvent, new RoutedEventHandler(ShowUserHome), true);
         }
 
         public ObservableCollection<Tweet> Tweets { get; set; }
@@ -65,5 +70,11 @@ namespace Zunzun.App.Views.Xaml {
             var tweet = ((sender as Button).Tag as Tweet);
             StatusPresenter.ReplyTo( tweet );
         }
+
+        void ShowUserHome(object Sender, RoutedEventArgs e) {
+            var UserName = (e as Events.ShowUserHome.ShowUserHomeEventArgs).UserName;
+            UserHomePresenter.Show(UserName);
+        }
+
     }
 }

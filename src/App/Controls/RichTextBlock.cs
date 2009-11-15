@@ -30,5 +30,14 @@ namespace Zunzun.App.Controls {
 
             E.Handled = true;
         }
+
+        public static void ShowUserHome(object Sender, RoutedEventArgs E) {
+            var Link = Sender as Hyperlink;
+            var UserName = (Link.Inlines.FirstInline as Run).Text;
+            
+            Events.ShowUserHome.RaiseCommandEvent(UserName, Sender);
+
+            E.Handled = true;
+        }
     }
 }

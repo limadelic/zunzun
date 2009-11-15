@@ -73,6 +73,7 @@
     <Compile Include="Controls\RichTextBlock.cs" />
     <Compile Include="Converters\SourceToString.cs" />
     <Compile Include="Converters\DateToString.cs" />
+    <Compile Include="Events\ShowUserHome.cs" />
     <Compile Include="Model\Classes\TextFormatterClass.cs" />
     <Compile Include="Model\Classes\TimerClass.cs" />
     <Compile Include="Model\Timer.cs" />
