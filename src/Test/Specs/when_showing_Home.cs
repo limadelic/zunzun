@@ -41,6 +41,17 @@ namespace Zunzun.Specs {
             }
             
             [TestMethod]
+            public void should_clear_before_displaying_Tweets() {
+            
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
+                Given.TweetService.Tweets.Are(Tweets);
+
+                When.Show();
+
+                The.View.Tweets.ToList().ShouldBe(Tweets);
+            }
+            
+            [TestMethod]
             public void should_refresh_periodically() {
                 
                 When.SetupTimer();

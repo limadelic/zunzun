@@ -8,17 +8,16 @@ namespace Zunzun.Domain.Classes {
         
         public List<Tweet> Tweets { get { return Request(HomeSpec); }}
 
-        public List<Tweet> TweetsSince(long Id) { 
-            return Request(TweetsSinceSpec(Id));
-        }
+        public List<Tweet> TweetsSince(long Id) { return 
+            Request(TweetsSinceSpec(Id))
+        ;}
 
-        public List<Tweet> TweetsBy(User User) {
-            return Request(TweetsByUserNameSpec(User.UserName));
-        }
+        public List<Tweet> TweetsBy(User User) { return 
+            Request(TweetsByUserNameSpec(User.UserName))
+        ;}
 
         public void UpdateStatus(Tweet Tweet) {
-            Statuses.Update(Tweet.Content)
-            .AsJson().Request();
+            UpdateStatusSpec(Tweet.Content).Request();
         }
 
         ITwitterStatuses Statuses { get { return 
@@ -39,16 +38,34 @@ namespace Zunzun.Domain.Classes {
             return Spec.Request().ToTweets();
         }
 
-        public virtual ITwitterLeafNode HomeSpec { get { return 
-            Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
-        ;}}
+        #region Specs
         
-        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return 
-            Home.Since(Id).AsJson()
-        ;}
+        public virtual ITwitterLeafNode HomeSpec {
+            get {
+                return
+                    Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
+                    ;
+            }
+        }
 
-        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) { return 
-            User.For(UserName).AsJson()
-        ;}
+        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) {
+            return
+                Home.Since(Id).AsJson()
+                ;
+        }
+
+        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) {
+            return
+                User.For(UserName).AsJson()
+                ;
+        }
+
+        ITwitterLeafNode UpdateStatusSpec(string Content) {
+            return
+                Statuses.Update(Content).AsJson()
+                ;
+        }
+
+        #endregion
     }
 }

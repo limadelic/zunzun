@@ -9,12 +9,21 @@ namespace Zunzun.App.Presenters {
         public UserService UserService { get; set; }
         public TweetService TweetService { get; set; }
 
-        public void Show(string UserName) {
-            var User = UserService.FindByUserName(UserName);
-            View.User = User;
+        User User;
 
+        public void Show(string UserName) {
+            ShowUser(UserName);
+            ShowUserTweets();
+        }
+
+        void ShowUserTweets() {
             View.Tweets.Clear();
             TweetService.TweetsBy(User).ForEach(View.Tweets.Add);
+        }
+
+        void ShowUser(string UserName) {
+            User = UserService.FindByUserName(UserName);
+            View.User = User;
         }
     }
 }

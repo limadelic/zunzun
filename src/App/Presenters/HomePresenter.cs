@@ -17,6 +17,7 @@ namespace Zunzun.App.Presenters {
         }
 
         public virtual void Show() {
+            View.Tweets.Clear();
             TweetService.Tweets.ForEach(View.Tweets.Add);
         }
 
