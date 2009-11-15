@@ -8,13 +8,13 @@ namespace Zunzun.App.Views.Xaml {
 
     public partial class Main : HomeView, StatusView, UserHomeView {
     
-        HomePresenter HomePresenter { get; set; }
+//        HomePresenter HomePresenter { get; set; }
         UserHomePresenter UserHomePresenter { get; set; }
         StatusPresenter StatusPresenter { get; set;}
     
         public Main() {
             
-            HomePresenter = PresenterFactory.NewHomePresenter(this);
+//            HomePresenter = PresenterFactory.NewHomePresenter(this);
             UserHomePresenter = PresenterFactory.NewUserHomePresenter(this);
             StatusPresenter = PresenterFactory.NewStatusPresenter(this);
 
@@ -48,7 +48,7 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         void Load(object sender, RoutedEventArgs e) {
-            HomePresenter.Load();
+//            HomePresenter.Load();
         }
 
         void DragWindow(object sender, System.Windows.Input.MouseButtonEventArgs e) {
@@ -75,8 +75,8 @@ namespace Zunzun.App.Views.Xaml {
             UserHomePresenter.Show(UserName);
         }
 
-        void ShowHome(object sender, RoutedEventArgs e) {
-        	HomePresenter.Show();
+        void OnGoHome(object sender, RoutedEventArgs e) {
+//        	HomePresenter.Show();
         }
 
     }

@@ -1,17 +1,10 @@
-﻿<Window
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-	xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-	xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-	mc:Ignorable="d" 
-	xmlns:Converters="clr-namespace:Zunzun.App.Converters" xmlns:Zunzun_App_Controls="clr-namespace:Zunzun.App.Controls"
-    xmlns:local="clr-namespace:Zunzun.App.Views.Xaml"
-    x:Class="Zunzun.App.Views.Xaml.Main"
-    Title="Zunzun" Background="{x:Null}" WindowStyle="None" AllowsTransparency="True" x:Name="MainWND" WindowStartupLocation="CenterScreen" Loaded="Load" ResizeMode="CanResizeWithGrip" MinWidth="250" MinHeight="100" Width="300" Height="600" 
-	>
-	<Window.Resources>
-		<Converters:SourceToString x:Key="SourceToString"/>
-		<Converters:DateToString x:Key="DateToString"/>
+    xmlns:Zunzun_App_Converters="clr-namespace:Zunzun.App.Converters" xmlns:Zunzun_App_Controls="clr-namespace:Zunzun.App.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="userControl" x:Class="Zunzun.App.Views.Xaml.Home" mc:Ignorable="d" Loaded="Load">
+	<UserControl.Resources>
+		<Zunzun_App_Converters:DateToString x:Key="DateToString"/>
+		<Zunzun_App_Converters:SourceToString x:Key="SourceToString"/>
 		<Style x:Key="TweetListBoxItemStyle" TargetType="{x:Type ListBoxItem}">
 			<Setter Property="Background" Value="Transparent"/>
 			<Setter Property="HorizontalContentAlignment" Value="{Binding HorizontalContentAlignment, RelativeSource={RelativeSource AncestorType={x:Type ItemsControl}}}"/>
@@ -81,27 +74,6 @@
 				</Setter.Value>
 			</Setter>
 		</Style>
-	</Window.Resources>
-    <Border CornerRadius="10,10,0,10" BorderBrush="#FFBABABA" BorderThickness="2,2,2,2" x:Name="MainFRM" Background="{DynamicResource Background}">
-		<Grid x:Name="MainBOX" MouseLeftButtonDown="DragWindow" Background="#024E4E4E" ClipToBounds="True">
-			<Grid.RowDefinitions>
-				<RowDefinition Height="20"/>
-				<RowDefinition/>
-				<RowDefinition Height="Auto"/>
-				<RowDefinition Height="20"/>
-			</Grid.RowDefinitions>
-			<Label x:Name="TitleTXT" HorizontalAlignment="Left" Margin="10,0,0,0" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
-			<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="Close" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,2,0"/>
-			<ListBox IsSynchronizedWithCurrentItem="True" x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" Grid.Row="1" ItemsSource="{Binding Tweets, ElementName=MainWND, Mode=Default}" Visibility="Collapsed"/>
-			<Grid x:Name="UpdateBOX" Grid.Row="2">
-				<TextBox x:Name="Update" TextWrapping="Wrap" d:LayoutOverrides="Height, GridBox" MinLines="3" MaxLines="3" Margin="3,0,18,0" BorderBrush="{DynamicResource InfoBrush}" Background="#FFC9C9C9" FontSize="{DynamicResource ContentFontSize}"/>
-				<Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="SendUpdate" Click="OnSendUpdate" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" d:LayoutOverrides="GridBox"/>
-			</Grid>
-			<StackPanel HorizontalAlignment="Left" Margin="2,2,0,0" Grid.Row="3" Orientation="Horizontal" d:LayoutOverrides="Height">
-				<Button VerticalAlignment="Top" IsCancel="True" x:Name="GoHome" Content="H" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Click="OnGoHome" Width="18"/>
-				<Button VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdate" Content="I" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Click="OnToggleUpdate" Margin="2,0,0,0" Width="18"/>
-			</StackPanel>
-			<local:Home x:Name="Home" Grid.Row="1"/>
-        </Grid>
-	</Border>
-</Window>
+	</UserControl.Resources>
+	<ListBox x:Name="HomeLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetListBoxItemStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}"/>
+</UserControl>
