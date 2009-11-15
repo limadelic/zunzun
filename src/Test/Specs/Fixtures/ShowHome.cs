@@ -30,7 +30,7 @@ namespace Zunzun.Specs.Fixtures {
 
             When("a Tweet is displayed", () => HomePresenter.Show());
             
-            Then("should contain a Content", () => Tweet.Content.ShouldNotBeEmpty());
+            And("should contain a Content", () => Tweet.Content.ShouldNotBeEmpty());
             
             And("an Author", () => Tweet.Author.ShouldNotBeEmpty());
             

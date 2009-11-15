@@ -1,3 +1,4 @@
+using System.Collections.ObjectModel;
 using System.Linq;
 using FluentSpec;
 using Zunzun.App.Presenters;
@@ -18,6 +19,8 @@ namespace Zunzun.Specs.Fixtures {
         
         public ShowUserHome() {
             UserHomeView = Create.TestObjectFor<UserHomeView>();
+            UserHomeView.Tweets = new ObservableCollection<Tweet>();
+            
             UserHomePresenter = PresenterFactory.NewUserHomePresenter(UserHomeView);
         }
 

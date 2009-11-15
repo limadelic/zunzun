@@ -17,17 +17,17 @@ I want to see their Tweets
 ------ '''Scenario''' ''tweets details'' ------
 !*> define details
 
-!|define|It should contain all the details|
-|Then   |should contain a Content         |
-|And    |an Author                        |
-|And    |a Date                           |
-|And    |a Source                         |
-|And    |the Author's Picture             |
+!|define|Then all the details should be presented|
+|And    |should contain a Content                |
+|And    |an Author                               |
+|And    |a Date                                  |
+|And    |a Source                                |
+|And    |the Author's Picture                    |
 
 *!
 
-|When    |a Tweet is displayed    |
-|It should contain all the details|
+|When        |a Tweet is displayed       |
+|Then all the details should be presented|
 
 
 

@@ -12,6 +12,10 @@ namespace Zunzun.Domain.Classes {
             return Request(TweetsSinceSpec(Id));
         }
 
+        public List<Tweet> TweetsBy(User User) {
+            return Request(TweetsByUserNameSpec(User.UserName));
+        }
+
         public void UpdateStatus(Tweet Tweet) {
             Statuses.Update(Tweet.Content)
             .AsJson().Request();
@@ -27,6 +31,10 @@ namespace Zunzun.Domain.Classes {
             Statuses.OnHomeTimeline()
         ;}}
 
+        ITwitterUserTimeline User { get { return 
+            Statuses.OnUserTimeline()
+        ;}}
+
         List<Tweet> Request(ITwitterLeafNode Spec) {
             return Spec.Request().ToTweets();
         }
@@ -37,6 +45,10 @@ namespace Zunzun.Domain.Classes {
         
         public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return 
             Home.Since(Id).AsJson()
+        ;}
+
+        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) { return 
+            User.For(UserName).AsJson()
         ;}
     }
 }
