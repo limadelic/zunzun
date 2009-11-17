@@ -24,6 +24,7 @@
 				<Button VerticalAlignment="Top" IsCancel="True" x:Name="GoHome" Content="H" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Click="OnGoHome" Width="18"/>
 				<Button VerticalAlignment="Top" IsCancel="True" x:Name="ToggleUpdate" Content="I" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Margin="2,0,0,0" Width="18"/>
 			</StackPanel>
+			<local:UserHome x:Name="UserHome" Grid.Row="1"/>
 			<local:Home x:Name="Home" Grid.Row="1"/>
 			<local:Update x:Name="Update" d:LayoutOverrides="Height" Grid.Row="2"/>
         </Grid>

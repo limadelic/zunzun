@@ -5,10 +5,10 @@ namespace Zunzun.App.Views.Xaml {
 
     public partial class Update : StatusView {
     
-        StatusPresenter StatusPresenter { get; set; }
+        StatusPresenter Presenter { get; set; }
 
         public Update() {
-            StatusPresenter = PresenterFactory.NewStatusPresenter(this);
+            Presenter = PresenterFactory.NewStatusPresenter(this);
             InitializeComponent();
         }
 
@@ -27,16 +27,16 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         void OnSend(object Sender, RoutedEventArgs Args) {
-        	StatusPresenter.Update();
+        	Presenter.Update();
         }
 
         public void OnReply(object Sender, RoutedEventArgs Args) {
             var Tweet = (Args as Events.Reply.Args).Tweet;
-            StatusPresenter.ReplyTo(Tweet);
+            Presenter.ReplyTo(Tweet);
         }
 
         public void OnToggleVisibility(object Sender, RoutedEventArgs Args) {
-            StatusPresenter.ToggleUpdateVisibility();
+            Presenter.ToggleUpdateVisibility();
         }
     }
 }

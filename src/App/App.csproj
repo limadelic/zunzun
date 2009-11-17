@@ -91,6 +91,7 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Controls\Extensions.cs" />
     <Compile Include="Events\Extensions.cs" />
     <Compile Include="Events\Reply.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">

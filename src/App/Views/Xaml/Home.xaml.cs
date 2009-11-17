@@ -7,24 +7,23 @@ namespace Zunzun.App.Views.Xaml {
 
     public partial class Home : HomeView {
     
-        HomePresenter HomePresenter { get; set; }
+        HomePresenter Presenter { get; set; }
         public ObservableCollection<Tweet> Tweets { get; set; }      
           
         public Home() {
-            HomePresenter = PresenterFactory.NewHomePresenter(this);
-            Tweets = new ObservableCollection<Tweet>();
+            Setup();
             InitializeComponent();
         }
 
-//        void OnReply(object Sender, RoutedEventArgs Args) {
-//            var Tweet = (Sender as FrameworkElement).DataContext as Tweet;
-//            Events.Reply.To(Tweet, Sender);
-//        }
+        void Setup() {
+            Presenter = PresenterFactory.NewHomePresenter(this);
+            Tweets = new ObservableCollection<Tweet>();
+        }
 
         void OnLoad(object Sender, RoutedEventArgs Args) {
             if (Settings.IsInDesignMode) return;
             
-            HomePresenter.Load();
+            Presenter.Load();
         }
     }
 }
