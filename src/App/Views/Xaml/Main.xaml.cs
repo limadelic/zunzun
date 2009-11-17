@@ -23,7 +23,7 @@ namespace Zunzun.App.Views.Xaml {
         void RegisterEvents() {
             AddHandler(Events.ShowUserHome.Event, new RoutedEventHandler(OnShowUserHome));
             AddHandler(Events.Reply.Event, new RoutedEventHandler(Update.OnReply));
-            ToggleUpdate.Click += Update.OnToggleUpdate;
+            ToggleUpdate.Click += Update.OnToggleVisibility;
         }
 
         public ObservableCollection<Tweet> Tweets { get; set; }

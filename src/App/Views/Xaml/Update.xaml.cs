@@ -35,7 +35,7 @@ namespace Zunzun.App.Views.Xaml {
             StatusPresenter.ReplyTo(Tweet);
         }
 
-        public void OnToggleUpdate(object Sender, RoutedEventArgs Args) {
+        public void OnToggleVisibility(object Sender, RoutedEventArgs Args) {
             StatusPresenter.ToggleUpdateVisibility();
         }
     }
