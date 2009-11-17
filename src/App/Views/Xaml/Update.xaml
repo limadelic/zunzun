@@ -1,8 +1,14 @@
-﻿<UserControl x:Class="Zunzun.App.Views.Xaml.Update"
+﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    Height="300" Width="300">
-    <Grid>
-            
-    </Grid>
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Class="Zunzun.App.Views.Xaml.Update"
+    mc:Ignorable="d">
+	<Grid x:Name="UpdateBOX">
+		<Grid.ColumnDefinitions>
+			<ColumnDefinition/>
+			<ColumnDefinition Width="Auto"/>
+		</Grid.ColumnDefinitions>
+		<TextBox x:Name="TweetContent" TextWrapping="Wrap" d:LayoutOverrides="Height, GridBox" MinLines="3" MaxLines="3" Margin="3,0,0,0" BorderBrush="{DynamicResource InfoBrush}" Background="#FFC9C9C9" FontSize="{DynamicResource ContentFontSize}"/>
+		<Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="Send" Click="OnSend" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" d:LayoutOverrides="GridBox" Grid.Column="1"/>
+	</Grid>
 </UserControl>

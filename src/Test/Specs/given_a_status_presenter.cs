@@ -54,13 +54,13 @@ namespace Zunzun.Specs {
             public void should_toggle_visibility()
             {
 
-                Given.View.IsUpdateVisible = true;
+                Given.View.IsVisible = true;
 
                 When.ToggleUpdateVisibility();
-                Then.View.IsUpdateVisible.ShouldBeFalse();
+                Then.View.IsVisible.ShouldBeFalse();
 
                 When.ToggleUpdateVisibility();
-                Then.View.IsUpdateVisible.ShouldBeTrue();
+                Then.View.IsVisible.ShouldBeTrue();
             }
         }
 
@@ -77,9 +77,9 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_make_Update_visible_if_hidden()
             {
-                Given.View.IsUpdateVisible = false;
+                Given.View.IsVisible = false;
                 When.ReplyTo(Actors.TweetWithUser);
-                Then.View.IsUpdateVisible.ShouldBeTrue();
+                Then.View.IsVisible.ShouldBeTrue();
             }
 
             [TestMethod]

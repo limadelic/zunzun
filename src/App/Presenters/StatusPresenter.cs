@@ -1,5 +1,3 @@
-using System;
-using System.Windows;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -27,13 +25,12 @@ namespace Zunzun.App.Presenters {
         void ClearUpdateText() { View.UpdateText = string.Empty; }
 
         public void ToggleUpdateVisibility() {
-            View.IsUpdateVisible = !View.IsUpdateVisible;
+            View.IsVisible = !View.IsVisible;
         }
 
-        public void ReplyTo(Tweet tweet)
-        {
-            if(!View.IsUpdateVisible) ToggleUpdateVisibility();
-            View.UpdateText = reply + tweet.ScreenName;
+        public void ReplyTo(Tweet Tweet) {
+            if(!View.IsVisible) ToggleUpdateVisibility();
+            View.UpdateText = reply + Tweet.ScreenName;
             View.FocusOnUpdate();
         }
     }

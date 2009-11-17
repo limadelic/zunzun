@@ -12,11 +12,11 @@ namespace Zunzun.App.Controls {
                 new FrameworkPropertyMetadata(OnTextPropertyChanged));
         }
 
-        static void OnTextPropertyChanged(DependencyObject D, DependencyPropertyChangedEventArgs E) {
-            if (E.NewValue.ToString() == E.OldValue.ToString()) return;
+        static void OnTextPropertyChanged(DependencyObject Sender, DependencyPropertyChangedEventArgs Args) {
+            if (Args.NewValue.ToString() == Args.OldValue.ToString()) return;
             
-            var TextBoxWithUrl = D as RichTextBlock;
-            var Text = E.NewValue.ToString();
+            var TextBoxWithUrl = Sender as RichTextBlock;
+            var Text = Args.NewValue.ToString();
             var Formatter = ObjectFactory.NewTextFormatter;
 
             TextBoxWithUrl.Inlines.Clear();
@@ -27,17 +27,13 @@ namespace Zunzun.App.Controls {
             var Link = Sender as Hyperlink;
              
             Process.Start(new ProcessStartInfo(Link.NavigateUri.AbsoluteUri));
-
-            E.Handled = true;
         }
 
         public static void ShowUserHome(object Sender, RoutedEventArgs E) {
             var Link = Sender as Hyperlink;
             var UserName = (Link.Inlines.FirstInline as Run).Text;
             
-            Events.ShowUserHome.RaiseCommandEvent(UserName, Sender);
-
-            E.Handled = true;
+            Events.ShowUserHome.Of(UserName, Sender);
         }
     }
 }

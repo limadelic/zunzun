@@ -1,7 +1,7 @@
 ﻿<UserControl
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-    xmlns:Zunzun_App_Converters="clr-namespace:Zunzun.App.Converters" xmlns:Zunzun_App_Controls="clr-namespace:Zunzun.App.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="userControl" x:Class="Zunzun.App.Views.Xaml.Home" mc:Ignorable="d" Loaded="Load">
+    xmlns:Zunzun_App_Converters="clr-namespace:Zunzun.App.Converters" xmlns:Zunzun_App_Controls="clr-namespace:Zunzun.App.Controls" xmlns:d="http://schemas.microsoft.com/expression/blend/2008" xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="userControl" x:Class="Zunzun.App.Views.Xaml.Home" mc:Ignorable="d" Loaded="OnLoad">
 	<UserControl.Resources>
 		<Zunzun_App_Converters:DateToString x:Key="DateToString"/>
 		<Zunzun_App_Converters:SourceToString x:Key="SourceToString"/>
@@ -51,7 +51,7 @@
 									<TextBlock Grid.Column="2" TextWrapping="Wrap" x:Name="Source" FontSize="{DynamicResource InfoFontSize}" Text="{Binding Source, Converter={StaticResource SourceToString}, Mode=Default}" HorizontalAlignment="Right" Foreground="{DynamicResource InfoBrush}" Margin="0,0,2,0"/>
 								</Grid>
 								<StackPanel Grid.RowSpan="1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right">
-									<Button x:Name="Reply" Content="@" Tag="{TemplateBinding DataContext}" Click="Reply" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" />
+									<Button x:Name="Reply" Content="@" Tag="{TemplateBinding DataContext}" Click="OnReply" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" />
 								</StackPanel>
 							</Grid>
 						</Border>

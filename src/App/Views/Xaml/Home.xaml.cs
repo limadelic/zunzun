@@ -16,10 +16,14 @@ namespace Zunzun.App.Views.Xaml {
             InitializeComponent();
         }
 
-        void Reply(object sender, RoutedEventArgs e) {
+        void OnReply(object Sender, RoutedEventArgs Args) {
+            var Tweet = (Sender as FrameworkElement).DataContext as Tweet;
+            Events.Reply.To(Tweet, Sender);
         }
 
-        void Load(object sender, RoutedEventArgs e) {
+        void OnLoad(object Sender, RoutedEventArgs Args) {
+            if (Settings.IsInDesignMode) return;
+            
             HomePresenter.Load();
         }
     }

@@ -91,6 +91,8 @@
     </Compile>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Events\Extensions.cs" />
+    <Compile Include="Events\Reply.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
