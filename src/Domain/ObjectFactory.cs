@@ -26,7 +26,7 @@ namespace Zunzun.Domain {
         public static User NewUser(TwitterUser User) { return new UserClass {
             Name = User.Name,
             UserName = User.ScreenName,
-            Picture = User.ProfileImageUrl,
+            Picture = User.ProfileImageUrl.Replace(Settings.SmallPicSuffix, ""),
             Bio = User.Description,
             JoinedOn = User.CreatedDate.ToString(),
             Following = User.FriendsCount,

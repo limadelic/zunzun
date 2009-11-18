@@ -10,7 +10,11 @@ namespace Zunzun.App.Views.Xaml {
         UserHomePresenter UserHomePresenter { get; set; }
     
         public ObservableCollection<Tweet> Tweets { get; set; }
-        public User User { get; set; }
+        
+        public User User {
+            get { return DataContext as User; }
+            set { DataContext = value; }
+        }
         
         public UserHome() {
             Setup();

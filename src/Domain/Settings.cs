@@ -14,5 +14,6 @@ namespace Zunzun.Domain {
         public const string MentionPreffix = "@";
 
         public static readonly List<string> AcceptedProtocols = new List<string> { "http", "https", "ftp" };
+        public const string SmallPicSuffix = "_normal";
     }
 }
