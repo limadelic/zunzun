@@ -11,10 +11,21 @@
     		<RowDefinition Height="Auto"/>
     		<RowDefinition/>
     	</Grid.RowDefinitions>
-    	<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" PictureVisibility="Collapsed"/>
-    	<StackPanel Margin="0,0,0,4" Orientation="Vertical" d:LayoutOverrides="Height">
-    		<Image x:Name="Picture" Margin="2,0" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill"/>
-    		<Label x:Name="Name" Content="{Binding Name, Mode=Default}" Foreground="{DynamicResource ContentBrush}" d:LayoutOverrides="Width"/>
-    	</StackPanel>
+    	<Image x:Name="Picture" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill" VerticalAlignment="Top"/>
+    	<TabControl Margin="0,-23,0,10" Style="{DynamicResource UserHomeTabControlStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1">
+    		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Profile">
+    			<Grid/>
+    		</TabItem>
+    		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Tweets">
+    			<Grid>
+    				<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}" HorizontalAlignment="Left" VerticalAlignment="Bottom" PictureVisibility="Collapsed" Margin="0,0,0,-18"/>
+    			</Grid>
+    		</TabItem>
+    	</TabControl>
+    	<Label x:Name="Name" Foreground="{DynamicResource ContentBrush}" d:LayoutOverrides="Height" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="{Binding Name, Mode=Default}" Background="{x:Null}" FontSize="{DynamicResource ContentFontSize}">
+    		<Label.Effect>
+    			<DropShadowEffect ShadowDepth="2" BlurRadius="0"/>
+    		</Label.Effect>
+    	</Label>
     </Grid>
 </UserControl>
