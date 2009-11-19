@@ -1,0 +1,16 @@
+!*> Story
+
+In order to respond to someone privately
+I want to Direct Message Someone
+
+*!
+
+!*> setup
+
+|Update Status|
+
+*!
+
+|Given|a tweet by user "zunzun"|
+|When|I send the user a Direct Message|
+|Then|Update text starts with "D zunzun"|

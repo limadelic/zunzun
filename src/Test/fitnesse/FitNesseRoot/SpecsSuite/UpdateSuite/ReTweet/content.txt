@@ -1,0 +1,17 @@
+!*> story
+
+In order to broadcast a tweet I enjoyed
+I want to be able to Retweet
+
+*!
+
+!*> setup
+
+|Update Status|
+
+*!
+
+
+|Given|A tweet by user "kinobot" with content "I use zunzun!"|
+|When|I retweet it|
+|Then|Update text starts with "RT @kinobot I use zunzun!"|

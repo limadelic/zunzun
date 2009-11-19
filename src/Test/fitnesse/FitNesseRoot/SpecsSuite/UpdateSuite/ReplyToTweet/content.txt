@@ -1,0 +1,16 @@
+!*> Story
+
+In order to respond to my fellow Tweeters
+I want to reply to Tweets
+
+*!
+
+!*> setup
+
+|Update Status|
+
+*!
+
+|Given|a tweet by user "zunzun"|
+|When|I reply to the Tweet|
+|Then|Update text starts with "@zunzun"|
