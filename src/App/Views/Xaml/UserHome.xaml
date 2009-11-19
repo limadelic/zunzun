@@ -2,7 +2,8 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
-    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" x:Name="userControl" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:Controls="clr-namespace:Zunzun.App.Controls" x:Name="userControl" 
     x:Class="Zunzun.App.Views.Xaml.UserHome"
     mc:Ignorable="d" DataContext="{Binding User, ElementName=userControl, Mode=Default}">
     <Grid>
@@ -10,7 +11,7 @@
     		<RowDefinition Height="Auto"/>
     		<RowDefinition/>
     	</Grid.RowDefinitions>
-    	<ListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1"/>
+    	<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}" HorizontalAlignment="Left" VerticalAlignment="Top" Grid.Row="1" PictureVisibility="Collapsed"/>
     	<StackPanel Margin="0,0,0,4" Orientation="Vertical" d:LayoutOverrides="Height">
     		<Image x:Name="Picture" Margin="2,0" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill"/>
     		<Label x:Name="Name" Content="{Binding Name, Mode=Default}" Foreground="{DynamicResource ContentBrush}" d:LayoutOverrides="Width"/>

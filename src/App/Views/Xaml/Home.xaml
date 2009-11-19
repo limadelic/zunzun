@@ -3,9 +3,10 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml" 
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    xmlns:Controls="clr-namespace:Zunzun.App.Controls" 
     x:Name="userControl" 
     x:Class="Zunzun.App.Views.Xaml.Home" 
     mc:Ignorable="d" Loaded="OnLoad">
     
-	<ListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}"/>
+	<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}"/>
 </UserControl>

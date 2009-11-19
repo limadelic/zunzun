@@ -4,7 +4,12 @@ namespace Zunzun.Domain.Classes {
     
         public string Name { get; set; }
         public string UserName { get; set; }
-        public string Picture { get; set; }
+
+        string picture;
+        public string Picture {
+            get { return picture; } 
+            set { picture = value.Replace(Settings.SmallPicSuffix, ""); }
+        }
         public string Bio { get; set; }
         public string JoinedOn { get; set; }
         

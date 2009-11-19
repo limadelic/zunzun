@@ -358,7 +358,7 @@
 								<RowDefinition Height="0*"/>
 								<RowDefinition Height="0.339*"/>
 							</Grid.RowDefinitions>
-							<Image x:Name="Picture" Grid.ColumnSpan="1" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill" Width="50" Height="50" Margin="5,5,5,0" VerticalAlignment="Top"/>
+							<Image x:Name="Picture" Grid.ColumnSpan="1" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill" Width="50" Height="50" Margin="5,5,5,0" VerticalAlignment="Top" Visibility="{Binding Path=PictureVisibility, RelativeSource={RelativeSource Mode=FindAncestor, AncestorType={x:Type ListBox}}}" />
 							<Zunzun_App_Controls:RichTextBlock Margin="2,3,2,5" x:Name="ContentTXT" Foreground="{DynamicResource ContentBrush}" TextWrapping="Wrap" FontSize="{DynamicResource ContentFontSize}" Grid.Column="1" Text="{Binding Content, Mode=Default}"/>
 							<Grid Grid.Row="1" Grid.ColumnSpan="2">
 								<Grid.ColumnDefinitions>
