@@ -17,12 +17,16 @@ namespace Zunzun.Specs.Fixtures {
         public Step(string Prototype, Action Action) : this(Prototype) { this.Action = Action; }
 
         public Step(string Prototype, Action<string> Action) : this(Prototype) { Action1 = Action; }
+
+        public Step(string prototype, Action<string, string> action) : this(prototype) { Action2 = action; }
         
         public string Name = string.Empty;
         public List<string> Args = new List<string>();
 
         readonly Action Action;
         readonly Action<string> Action1;
+        private readonly Action<string, string> Action2;
+
 
         public void Execute() {
             if (Args.Count == 0) Action();

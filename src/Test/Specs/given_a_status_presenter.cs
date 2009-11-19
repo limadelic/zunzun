@@ -71,7 +71,7 @@ namespace Zunzun.Specs {
             public void should_set_update_text_to_the_User()
             {
                 When.ReplyTo(Actors.TweetWithUser);
-                Then.View.UpdateText = "@testuser";
+                Then.View.UpdateText = "@testuser ";
             }
 
             [TestMethod]
@@ -86,6 +86,58 @@ namespace Zunzun.Specs {
             public void should_focus_on_Update()
             {
                 When.ReplyTo(Actors.TweetWithUser);
+                Should.View.FocusOnUpdate();
+            }
+        }
+
+        [TestClass]
+        public class when_retweeting : BehaviorOf<StatusPresenter>
+        {
+            [TestMethod]
+            public void should_set_update_text_to_retweet_standards()
+            {
+                When.Retweet(Actors.TweetWithUserAndContent);
+                Then.View.UpdateText = "RT @testuser papaya! ";
+            }
+
+            [TestMethod]
+            public void should_make_Update_visible_if_hidden()
+            {
+                Given.View.IsVisible = false;
+                When.Retweet(Actors.TweetWithUser);
+                Then.View.IsVisible.ShouldBeTrue();
+            }
+
+            [TestMethod]
+            public void should_focus_on_Update()
+            {
+                When.Retweet(Actors.TweetWithUser);
+                Should.View.FocusOnUpdate();
+            }
+        }
+
+        [TestClass]
+        public class when_direct_messaging : BehaviorOf<StatusPresenter>
+        {
+            [TestMethod]
+            public void should_set_update_text_to_directmessage_standards()
+            {
+                When.DirectMessage(Actors.TweetWithUser);
+                Then.View.UpdateText = "D testuser ";
+            }
+
+            [TestMethod]
+            public void should_make_Update_visible_if_hidden()
+            {
+                Given.View.IsVisible = false;
+                When.DirectMessage(Actors.TweetWithUser);
+                Then.View.IsVisible.ShouldBeTrue();
+            }
+
+            [TestMethod]
+            public void should_focus_on_Update()
+            {
+                When.DirectMessage(Actors.TweetWithUser);
                 Should.View.FocusOnUpdate();
             }
         }

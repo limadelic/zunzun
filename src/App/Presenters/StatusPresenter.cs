@@ -4,20 +4,22 @@ using Zunzun.Domain;
 namespace Zunzun.App.Presenters {
 
     public class StatusPresenter {
-        private const string reply = "@";
+        private const string RetweetPrefix = "RT";
+        private const string ReplyPrefix = "@";
+        private const string DirectMessagePrefix = "D";
 
         public StatusView View { get; set; }
 
         public TweetService TweetService { get; set; }
 
-        public void Update(Tweet Tweet) { TweetService.UpdateStatus(Tweet); }
+        public void Update(Tweet tweet) { TweetService.UpdateStatus(tweet); }
 
         public void Update() {
             if (string.IsNullOrEmpty(View.UpdateText)) return;
 
-            var Tweet = Domain.ObjectFactory.NewTweet(View.UpdateText);
+            var tweet = Domain.ObjectFactory.NewTweet(View.UpdateText);
 
-            Update(Tweet);
+            Update(tweet);
             
             ClearUpdateText();
         }
@@ -28,10 +30,28 @@ namespace Zunzun.App.Presenters {
             View.IsVisible = !View.IsVisible;
         }
 
-        public void ReplyTo(Tweet Tweet) {
+        public void ReplyTo(Tweet tweet)
+        {
+            FocusOnUpdate();
+            View.UpdateText = ReplyPrefix + tweet.ScreenName + " ";
+        }
+
+        void FocusOnUpdate()
+        {
             if(!View.IsVisible) ToggleUpdateVisibility();
-            View.UpdateText = reply + Tweet.ScreenName;
             View.FocusOnUpdate();
+        }
+
+        public void Retweet(Tweet tweet)
+        {
+            FocusOnUpdate();
+            View.UpdateText = RetweetPrefix + " " + ReplyPrefix + tweet.ScreenName + " " + tweet.Content + " ";
+        }
+
+        public void DirectMessage(Tweet tweet)
+        {
+            FocusOnUpdate();
+            View.UpdateText = DirectMessagePrefix + " " + tweet.ScreenName + " ";
         }
     }
 }

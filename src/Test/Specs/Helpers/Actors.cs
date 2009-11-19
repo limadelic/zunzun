@@ -47,5 +47,11 @@ namespace Zunzun.Specs.Helpers {
         public static User Zunzun { get { return new UserClass {
             UserName = ZunzunUserName
         };}}
+
+        public static Tweet TweetWithUserAndContent { get { 
+            var tweet = TweetWithUser;
+            tweet.Content = "papaya!";
+            return tweet;
+        } }
     }
 }

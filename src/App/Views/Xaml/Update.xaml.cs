@@ -23,7 +23,11 @@ namespace Zunzun.App.Views.Xaml {
 
         public string UpdateText {
             get { return TweetContent.Text; } 
-            set { TweetContent.Text = value; }
+            set
+            {
+				TweetContent.Text = value;
+                TweetContent.SelectionStart = value.Length;
+            }
         }
 
         void OnSend(object Sender, RoutedEventArgs Args) {
@@ -33,6 +37,7 @@ namespace Zunzun.App.Views.Xaml {
         public void OnReply(object Sender, RoutedEventArgs Args) {
             var Tweet = (Args as Events.Reply.Args).Tweet;
             Presenter.ReplyTo(Tweet);
+            
         }
 
         public void OnToggleVisibility(object Sender, RoutedEventArgs Args) {
