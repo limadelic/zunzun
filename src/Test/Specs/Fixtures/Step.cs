@@ -28,9 +28,20 @@ namespace Zunzun.Specs.Fixtures {
         private readonly Action<string, string> Action2;
 
 
-        public void Execute() {
-            if (Args.Count == 0) Action();
-            else Action1(Args[0]);
+        public void Execute()
+        {
+            switch (Args.Count)
+            {
+                case 0:
+                    Action();
+                    break;
+                case 1:
+                    Action1(Args[0]);
+                    break;
+                default:
+                    Action2(Args[0], Args[1]);
+                    break;
+            }
         }
     }
 }

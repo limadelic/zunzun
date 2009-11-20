@@ -34,7 +34,6 @@ namespace Zunzun.Specs.Fixtures {
 
             Given("A tweet by user {0} with content {1}", (UserName, Content) =>
             {
-                Debugger.Launch();
                 var status = new TwitterStatus {User = new TwitterUser {ScreenName = UserName}, Text = Content};
                 Tweet = ObjectFactory.NewTweet(status);
             });

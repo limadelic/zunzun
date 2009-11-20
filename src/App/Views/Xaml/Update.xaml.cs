@@ -1,4 +1,6 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
+using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 
 namespace Zunzun.App.Views.Xaml {
@@ -42,6 +44,18 @@ namespace Zunzun.App.Views.Xaml {
 
         public void OnToggleVisibility(object Sender, RoutedEventArgs Args) {
             Presenter.ToggleUpdateVisibility();
+        }
+
+        public void OnRetweet(object sender, RoutedEventArgs Args)
+        {
+            var Tweet = (Args as Retweet.Args).Tweet;
+            Presenter.Retweet(Tweet);
+        }
+
+        public void OnDirectMessage(object sender, RoutedEventArgs Args)
+        {
+            var Tweet = (Args as DirectMessage.Args).Tweet;
+            Presenter.DirectMessage(Tweet);
         }
     }
 }
