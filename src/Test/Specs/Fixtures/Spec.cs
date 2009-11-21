@@ -48,6 +48,9 @@ namespace Zunzun.Specs.Fixtures {
         protected void When(string Step, Action<string> Action) {
             SetupStep(new Step(Step, Action));
         }
+        protected void When(string Step, Action<string, string> Action) {
+            SetupStep(new Step(Step, Action));
+        }
 
         public bool And(string Step) { return Do(Step); }
         protected void And(string Step, Action Action) {
@@ -62,6 +65,9 @@ namespace Zunzun.Specs.Fixtures {
             SetupStep(new Step(Step, Action));
         }
         protected void Then(string Step, Action<string> Action) {
+            SetupStep(new Step(Step, Action));
+        }
+        protected void Then(string Step, Action<string, string> Action) {
             SetupStep(new Step(Step, Action));
         }
 

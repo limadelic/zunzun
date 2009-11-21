@@ -1,5 +1,3 @@
-using System;
-using System.Diagnostics;
 using System.Linq;
 using Dimebrain.TweetSharp.Model;
 using FluentSpec;
@@ -26,6 +24,7 @@ namespace Zunzun.Specs.Fixtures {
         }
 
         protected override void SetUpSteps() {
+        
             Given("a tweet by user {0}", UserName =>
             {
                 var status = new TwitterStatus { User = new TwitterUser { ScreenName = UserName } };
@@ -37,6 +36,8 @@ namespace Zunzun.Specs.Fixtures {
                 var status = new TwitterStatus {User = new TwitterUser {ScreenName = UserName}, Text = Content};
                 Tweet = ObjectFactory.NewTweet(status);
             });
+
+            When("I reply {0} to {1}", (Original, Reply) => Fail("pending"));
 
             When("I reply to the Tweet", () => StatusPresenter.ReplyTo(Tweet));
 
@@ -53,8 +54,8 @@ namespace Zunzun.Specs.Fixtures {
                 TweetService.Tweets.ToList().ShouldContain(Tweet));
 
             Then("Update text starts with {0}", Contents => Assert.IsTrue(StatusView.UpdateText.StartsWith(Contents)));
-                
 
+            Then("{0} should be linked to {1}", (Reply, Original) => Fail("pending"));
         }
     }
 }

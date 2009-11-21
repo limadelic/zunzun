@@ -4,13 +4,17 @@ In order to respond to my fellow Tweeters
 I want to reply to Tweets
 
 *!
-
 !*> setup
 
 |Update Status|
 
 *!
 
-|Given|a tweet by user "zunzun"|
-|When|I reply to the Tweet|
-|Then|Update text starts with "@zunzun"|
+------ '''Scenario''' ''composing the Reply'' ------
+|Given|a tweet by user "zunzun"         |
+|When |I reply to the Tweet             |
+|Then |Update text starts with "@zunzun"|
+
+------ '''Scenario''' ''the Reply should be linked to the original Tweet'' ------
+|When|I reply "cool" to "zunzun"         |
+|Then|"cool" should be linked to "zunzun"|
