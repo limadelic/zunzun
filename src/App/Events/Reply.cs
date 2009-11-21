@@ -9,16 +9,7 @@ namespace Zunzun.App.Events {
             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(object));
 
         public static void To(Tweet Tweet, object Source) {
-            var Args = new Args(Event, Source, Tweet);
-            Source.RaiseEvent(Args);
-        }
-
-        public class Args : RoutedEventArgs {
-        
-            public Tweet Tweet;
-
-            public Args(RoutedEvent RoutedEvent, object Source, Tweet Tweet)
-                : base(RoutedEvent, Source) { this.Tweet = Tweet; }
+            TweetEvent.Trigger(Tweet, Source, Event);
         }
     }
 }

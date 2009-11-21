@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using FluentSpec;
@@ -11,7 +12,7 @@ namespace Zunzun.Specs.Fixtures {
     public class ShowUserHome : Spec {
 
         string UserName;
-
+        
         readonly UserHomePresenter UserHomePresenter;
         readonly UserHomeView UserHomeView;
         

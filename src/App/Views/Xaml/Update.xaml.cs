@@ -2,6 +2,7 @@
 using System.Windows;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
+using Zunzun.Domain;
 
 namespace Zunzun.App.Views.Xaml {
 
@@ -36,26 +37,25 @@ namespace Zunzun.App.Views.Xaml {
         	Presenter.Update();
         }
 
-        public void OnReply(object Sender, RoutedEventArgs Args) {
-            var Tweet = (Args as Events.Reply.Args).Tweet;
-            Presenter.ReplyTo(Tweet);
-            
-        }
-
         public void OnToggleVisibility(object Sender, RoutedEventArgs Args) {
             Presenter.ToggleUpdateVisibility();
         }
 
-        public void OnRetweet(object sender, RoutedEventArgs Args)
-        {
-            var Tweet = (Args as Retweet.Args).Tweet;
-            Presenter.Retweet(Tweet);
+        public void OnReply(object Sender, RoutedEventArgs Args) {
+            ExecuteTweetEvent(Presenter.ReplyTo, Args);
         }
 
-        public void OnDirectMessage(object sender, RoutedEventArgs Args)
-        {
-            var Tweet = (Args as DirectMessage.Args).Tweet;
-            Presenter.DirectMessage(Tweet);
+        public void OnRetweet(object sender, RoutedEventArgs Args){
+            ExecuteTweetEvent(Presenter.Retweet, Args);
+        }
+
+        public void OnDirectMessage(object sender, RoutedEventArgs Args) {
+            ExecuteTweetEvent(Presenter.DirectMessage, Args);
+        }
+
+        void ExecuteTweetEvent(Action<Tweet> Action, RoutedEventArgs Args) {
+            var Tweet = (Args as TweetEvent.Args).Tweet;
+            Action(Tweet);
         }
     }
 }
