@@ -45,17 +45,17 @@ namespace Zunzun.App.Views.Xaml {
             ExecuteTweetEvent(Presenter.ReplyTo, Args);
         }
 
-        public void OnRetweet(object sender, RoutedEventArgs Args){
+        public void OnRetweet(object Sender, RoutedEventArgs Args){
             ExecuteTweetEvent(Presenter.Retweet, Args);
         }
 
-        public void OnDirectMessage(object sender, RoutedEventArgs Args) {
+        public void OnDirectMessage(object Sender, RoutedEventArgs Args) {
             ExecuteTweetEvent(Presenter.DirectMessage, Args);
         }
 
-        void ExecuteTweetEvent(Action<Tweet> Action, RoutedEventArgs Args) {
+        void ExecuteTweetEvent(Action<Tweet> Event, RoutedEventArgs Args) {
             var Tweet = (Args as TweetEvent.Args).Tweet;
-            Action(Tweet);
+            Event(Tweet);
         }
     }
 }
