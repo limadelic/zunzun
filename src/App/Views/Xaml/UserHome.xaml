@@ -55,7 +55,8 @@
     				</StackPanel>
     				<StackPanel Grid.Row="4" Orientation="Horizontal" Visibility="{Binding Website, Converter={StaticResource StringToVisibility}, Mode=Default}">
     					<Label x:Name="WwwLBL" Content="www" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
-    					<Controls:RichTextBlock x:Name="Website" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding Website, Mode=Default}"/>
+    					<Controls:RichTextBlock x:Name="Website" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" 
+							Foreground="{DynamicResource ContentBrush}" Text="{Binding Website, Mode=Default}"/>
     				</StackPanel>
     			</Grid>
     		</TabItem>

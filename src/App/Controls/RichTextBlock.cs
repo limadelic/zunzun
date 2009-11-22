@@ -2,6 +2,7 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
+using Zunzun.App.Model;
 
 namespace Zunzun.App.Controls {
 
@@ -15,13 +16,25 @@ namespace Zunzun.App.Controls {
         static void OnTextPropertyChanged(DependencyObject Sender, DependencyPropertyChangedEventArgs Args) {
             if (Args.NewValue.ToString() == Args.OldValue.ToString()) return;
             
-            var TextBoxWithUrl = Sender as RichTextBlock;
-            var Text = Args.NewValue.ToString();
+            ReformatText(Sender as RichTextBlock, Args.NewValue.ToString()); 
+        }
+
+        static void ReformatText(RichTextBlock TextBoxWithUrl, string Text) {
+            if (TextBoxWithUrl.IsReformatting) return;
+
             var Formatter = ObjectFactory.NewTextFormatter;
 
-            TextBoxWithUrl.Inlines.Clear();
-            TextBoxWithUrl.Inlines.AddRange(Formatter.TokensFrom(Text));
+            try { TextBoxWithUrl.StartReformatting();
+
+                TextBoxWithUrl.Inlines.Clear();
+                TextBoxWithUrl.Inlines.AddRange(Formatter.TokensFrom(Text));
+
+            } finally { TextBoxWithUrl.StopReformatting(); }
         }
+
+        public bool IsReformatting { get; private set; }
+        void StartReformatting() { IsReformatting = true; }
+        void StopReformatting() { IsReformatting = false; }
 
         public static void OpenUrl(object Sender, RoutedEventArgs E) {
             var Link = Sender as Hyperlink;
