@@ -2,7 +2,6 @@ using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Documents;
-using Zunzun.App.Model;
 
 namespace Zunzun.App.Controls {
 
@@ -19,17 +18,17 @@ namespace Zunzun.App.Controls {
             ReformatText(Sender as RichTextBlock, Args.NewValue.ToString()); 
         }
 
-        static void ReformatText(RichTextBlock TextBoxWithUrl, string Text) {
-            if (TextBoxWithUrl.IsReformatting) return;
+        static void ReformatText(RichTextBlock RichTextBlock, string Text) {
+            if (RichTextBlock.IsReformatting) return;
 
             var Formatter = ObjectFactory.NewTextFormatter;
 
-            try { TextBoxWithUrl.StartReformatting();
+            try { RichTextBlock.StartReformatting();
 
-                TextBoxWithUrl.Inlines.Clear();
-                TextBoxWithUrl.Inlines.AddRange(Formatter.TokensFrom(Text));
+                RichTextBlock.Inlines.Clear();
+                RichTextBlock.Inlines.AddRange(Formatter.TokensFrom(Text));
 
-            } finally { TextBoxWithUrl.StopReformatting(); }
+            } finally { RichTextBlock.StopReformatting(); }
         }
 
         public bool IsReformatting { get; private set; }
