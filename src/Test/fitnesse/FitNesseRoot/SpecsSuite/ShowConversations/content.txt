@@ -1,0 +1,18 @@
+!* Story
+
+In order to follow what multiple ppl are saying 
+I want to see their Conversation
+
+*!
+!*> Setup
+
+|Show Conversation|
+
+*!
+
+------ '''Scenario''' ''a monologue'' ------
+|Given|I say "hello"             |
+|And  |I say "good bye"          |
+|When |I look at the Conversation|
+|Then |it should say "hello"     |
+|And  |it should say "good bye"  |

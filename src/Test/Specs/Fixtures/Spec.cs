@@ -86,7 +86,7 @@ namespace Zunzun.Specs.Fixtures {
             }
         }
         
-        protected void Fail() { Fail(string.Empty); }
+        protected void Pending() { Fail("Pending step implementation"); }
         
         protected void Fail(string Message) { throw new Exception(Message); }
     }

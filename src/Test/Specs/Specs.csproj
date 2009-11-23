@@ -60,6 +60,7 @@
     <Compile Include="Fixtures\RefreshingTweets.cs" />
     <Compile Include="Fixtures\ReplyToTweet.cs" />
     <Compile Include="Fixtures\SearchTweets.cs" />
+    <Compile Include="Fixtures\ShowConversation.cs" />
     <Compile Include="Fixtures\ShowHome.cs" />
     <Compile Include="Fixtures\ShowUserHome.cs" />
     <Compile Include="Fixtures\Spec.cs" />

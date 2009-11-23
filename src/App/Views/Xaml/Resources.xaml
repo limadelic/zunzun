@@ -94,9 +94,9 @@
 		</Setter>
 	</Style>
 	<LinearGradientBrush x:Key="BTTBrush" EndPoint="0.5,1" StartPoint="0.5,0" SpreadMethod="Reflect">
-		<GradientStop Color="#7F4D4C4C" Offset="0"/>
-		<GradientStop Color="#7FABABAB" Offset="1"/>
-		<GradientStop Color="#7F8E8E8E" Offset="0.494"/>
+		<GradientStop Color="#BF4D4C4C" Offset="0"/>
+		<GradientStop Color="#BFABABAB" Offset="1"/>
+		<GradientStop Color="#BF8E8E8E" Offset="0.494"/>
 	</LinearGradientBrush>
 	<Thickness x:Key="NoThickness">0</Thickness>
 	<Style x:Key="ScrollBarThumb" TargetType="{x:Type Thumb}">
@@ -371,9 +371,9 @@
 								<TextBlock Grid.Column="2" TextWrapping="Wrap" x:Name="Source" FontSize="{DynamicResource InfoFontSize}" Text="{Binding Source, Converter={StaticResource SourceToString}, Mode=Default}" HorizontalAlignment="Right" Foreground="{DynamicResource InfoBrush}" Margin="0,0,2,0"/>
 							</Grid>
 							<StackPanel Grid.RowSpan="1" Grid.Row="0" Grid.Column="1" VerticalAlignment="Bottom" HorizontalAlignment="Right" Orientation="Horizontal">
-								<Button x:Name="Reply" Click="OnReply" Content="@" Tag="{TemplateBinding DataContext}" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" />
-								<Button x:Name="Retweet" Click="OnRetweet" Content="RT" Tag="{TemplateBinding DataContext}" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" />
-								<Button x:Name="DirectMessage" Click="OnDirectMessage" Content="D" Tag="{TemplateBinding DataContext}" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" />
+								<Button x:Name="Reply" Click="OnReply" Content="@" Tag="{TemplateBinding DataContext}" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" Width="18" Height="18" />
+								<Button x:Name="Retweet" Click="OnRetweet" Content="RT" Tag="{TemplateBinding DataContext}" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" Width="18" Height="18" />
+								<Button x:Name="DirectMessage" Click="OnDirectMessage" Content="D" Tag="{TemplateBinding DataContext}" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" Width="18" Height="18" />
 							</StackPanel>
 						</Grid>
 					</Border>

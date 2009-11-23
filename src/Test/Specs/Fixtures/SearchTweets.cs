@@ -6,7 +6,7 @@ namespace Zunzun.Specs.Fixtures {
         
             When("I search for {0}", Text => {});
             
-            Then("I should find cool Tweets", () => Fail());
+            Then("I should find cool Tweets", () => Pending());
         }
     }
 }
