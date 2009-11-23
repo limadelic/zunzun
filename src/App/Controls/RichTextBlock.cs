@@ -31,7 +31,7 @@ namespace Zunzun.App.Controls {
             } finally { RichTextBlock.StopReformatting(); }
         }
 
-        public bool IsReformatting { get; private set; }
+        bool IsReformatting;
         void StartReformatting() { IsReformatting = true; }
         void StopReformatting() { IsReformatting = false; }
 

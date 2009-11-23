@@ -1,19 +1,17 @@
 ﻿using System.Windows;
-using Zunzun.App.Controls;
 
 namespace Zunzun.App.Views.Xaml {
 
     public partial class Main {
-    
+        
         public Main() {
             InitializeComponent();
             RegisterEvents();
         }
-
+        
         void RegisterEvents() {
             
             AddHandler(Events.ShowUserHome.Event, new RoutedEventHandler(OnShowUserHome));
-            AddHandler(Events.ShowUserHome.Event, new RoutedEventHandler(UserHome.OnShowUserHome));
             
             AddHandler(Events.Reply.Event, new RoutedEventHandler(Update.OnReply));
             AddHandler(Events.Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
@@ -31,13 +29,13 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         void OnShowUserHome(object Sender, RoutedEventArgs e) {
-            UserHome.Show();
-            Home.Hide();
+            var UserHome = new UserHome();
+            UserHome.OnShowUserHome(Sender, e);
+            ContentPlaceholder.Child = UserHome;
         }
 
         void OnGoHome(object sender, RoutedEventArgs e) {
-            Home.Show();
-            UserHome.Hide();
+            ContentPlaceholder.Child = Home;
         }
     }
 }

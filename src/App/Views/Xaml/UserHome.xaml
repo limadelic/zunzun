@@ -26,7 +26,7 @@
     			<DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
     		</Label.Effect>
     	</Label>
-    	<TabControl Margin="0,-22,0,10" Style="{DynamicResource UserHomeTabControlStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}">
+    	<TabControl Margin="0,-22,0,0" Style="{DynamicResource UserHomeTabControlStyle}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}" Background="{x:Null}">
     		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Profile">
     			<Grid Margin="5" ScrollViewer.VerticalScrollBarVisibility="Auto">
     				<Grid.ColumnDefinitions>
@@ -76,14 +76,14 @@
     					<TextBlock x:Name="JoinedOn" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding JoinedOn, Converter={StaticResource DateToString}, ConverterParameter=MMM d yyyy, Mode=Default}" TextWrapping="Wrap"/>
     				</StackPanel>
     				<StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0,0,0,3" Visibility="{Binding Location, Converter={StaticResource StringToVisibility}, Mode=Default}">
-    					<Label Content="from" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
+    					<Label Content="location" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
     					<TextBlock x:Name="Location" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" TextWrapping="Wrap" Text="{Binding Location, Mode=Default}"/>
     				</StackPanel>
     			</Grid>
     		</TabItem>
     		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Tweets">
     			<Grid>
-    				<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}" HorizontalAlignment="Left" VerticalAlignment="Bottom" PictureVisibility="Collapsed" Margin="0,0,0,-18"/>
+    				<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}" PictureVisibility="Collapsed"/>
     			</Grid>
     		</TabItem>
     	</TabControl>
