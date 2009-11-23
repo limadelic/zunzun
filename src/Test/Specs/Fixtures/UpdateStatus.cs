@@ -37,7 +37,7 @@ namespace Zunzun.Specs.Fixtures {
                 Tweet = ObjectFactory.NewTweet(status);
             });
 
-            When("I reply {0} to {1}", (Original, Reply) => Fail("pending"));
+            When("I reply {0} to {1}", (Original, Reply) => Pending());
 
             When("I reply to the Tweet", () => StatusPresenter.ReplyTo(Tweet));
 
@@ -55,7 +55,7 @@ namespace Zunzun.Specs.Fixtures {
 
             Then("Update text starts with {0}", Contents => Assert.IsTrue(StatusView.UpdateText.StartsWith(Contents)));
 
-            Then("{0} should be linked to {1}", (Reply, Original) => Fail("pending"));
+            Then("{0} should be linked to {1}", (Reply, Original) => Pending());
         }
     }
 }
