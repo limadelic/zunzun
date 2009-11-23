@@ -12,6 +12,7 @@
     x:Class="Zunzun.App.Views.Xaml.UserHome"
     DataContext="{Binding User, ElementName=userControl, Mode=Default}">
 	<UserControl.Resources>
+		<Zunzun_App_Converters:DateToString x:Key="DateToString"/>
 		<Zunzun_App_Converters:StringToVisibility x:Key="StringToVisibility"/>
 	</UserControl.Resources>
     <Grid>
@@ -25,7 +26,7 @@
     			<DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
     		</Label.Effect>
     	</Label>
-    	<TabControl Margin="0,-22,0,10" Style="{DynamicResource UserHomeTabControlStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1">
+    	<TabControl Margin="0,-22,0,10" Style="{DynamicResource UserHomeTabControlStyle}" Background="{x:Null}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}">
     		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Profile">
     			<Grid Margin="5" ScrollViewer.VerticalScrollBarVisibility="Auto">
     				<Grid.ColumnDefinitions>
@@ -38,9 +39,16 @@
     					<RowDefinition Height="Auto"/>
     					<RowDefinition Height="Auto"/>
     					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
+    					<RowDefinition Height="Auto"/>
     				</Grid.RowDefinitions>
-    				<TextBlock x:Name="ProfileName" Margin="0,0,0,3" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding Name, Mode=Default}" TextWrapping="Wrap" d:LayoutOverrides="Width, Height"/>
-    				<TextBlock x:Name="UserName" Text="{Binding Name, Mode=Default}" TextWrapping="Wrap" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" d:LayoutOverrides="Width, Height"/>
+    				<StackPanel Orientation="Horizontal" d:LayoutOverrides="Height" Margin="0,1,0,2">
+    					<TextBlock x:Name="ProfileName" Margin="0,0,-0.001,0" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding Name, Mode=Default}" TextWrapping="Wrap" d:LayoutOverrides="Width"/>
+    					<Label x:Name="BeforeUserName" Margin="3,0,0,0" VerticalAlignment="Bottom" Content="(@" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}"/>
+    					<TextBlock x:Name="UserName" Text="{Binding UserName, Mode=Default}" TextWrapping="Wrap" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" d:LayoutOverrides="Width" Margin="0,0,-0.001,0"/>
+    					<Label x:Name="AfterUserName" VerticalAlignment="Bottom" Content=")" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}"/>
+    				</StackPanel>
     				<TextBlock x:Name="Bio" Margin="0,0,0,3" Grid.Row="1" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding Bio, Mode=Default}" TextWrapping="Wrap" d:LayoutOverrides="Width, Height" Visibility="{Binding Bio, Converter={StaticResource StringToVisibility}, Mode=Default}"/>
     				<StackPanel Margin="0,0,0,3" Grid.Row="2" Orientation="Horizontal" d:LayoutOverrides="Height">
     					<Label x:Name="FollowingLBL" Margin="0,0,3,0" VerticalAlignment="Bottom" Content="following" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}"/>
@@ -48,15 +56,28 @@
     					<Label x:Name="FollowersLBL" Content=", followed by" Margin="0,0,3,0" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}"/>
     					<TextBlock x:Name="Followers" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding Followers, Mode=Default}" TextWrapping="Wrap"/>
     				</StackPanel>
-    				<StackPanel Orientation="Horizontal" Grid.Row="3">
+    				<StackPanel Orientation="Horizontal" Grid.Row="3" Margin="0,0,0,3">
     					<Label x:Name="WithLBL" Content="with" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
     					<TextBlock x:Name="TweetsCount" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding UpdatesCount, Mode=Default}" TextWrapping="Wrap"/>
     					<Label x:Name="TweetsLBL" Content="tweets" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="3,0,0,0"/>
     				</StackPanel>
-    				<StackPanel Grid.Row="4" Orientation="Horizontal" Visibility="{Binding Website, Converter={StaticResource StringToVisibility}, Mode=Default}">
+    				<StackPanel Grid.Row="4" Orientation="Horizontal" Visibility="{Binding Website, Converter={StaticResource StringToVisibility}, Mode=Default}" Margin="0,0,0,3">
     					<Label x:Name="WwwLBL" Content="www" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
     					<Controls:RichTextBlock x:Name="Website" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" 
-							Foreground="{DynamicResource ContentBrush}" Text="{Binding Website, Mode=Default}"/>
+    						Foreground="{DynamicResource ContentBrush}" Text="{Binding Website, Mode=Default}"/>
+    				</StackPanel>
+    				<StackPanel Grid.Row="5" Orientation="Horizontal" Margin="0,0,0,3">
+    					<Label Content="twitter" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
+    					<Controls:RichTextBlock x:Name="TwitterHome" TextWrapping="Wrap" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" 
+    						Foreground="{DynamicResource ContentBrush}" Text="{Binding TwitterHome, Mode=Default}"/>
+    				</StackPanel>
+    				<StackPanel Orientation="Horizontal" Grid.Row="6" Margin="0,0,0,3">
+    					<Label Content="member since" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
+    					<TextBlock x:Name="JoinedOn" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" Text="{Binding JoinedOn, Converter={StaticResource DateToString}, ConverterParameter=MMM d yyyy, Mode=Default}" TextWrapping="Wrap"/>
+    				</StackPanel>
+    				<StackPanel Orientation="Horizontal" Grid.Row="7" Margin="0,0,0,3" Visibility="{Binding Location, Converter={StaticResource StringToVisibility}, Mode=Default}">
+    					<Label Content="from" VerticalAlignment="Bottom" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource InfoBrush}" Padding="{DynamicResource NoThickness}" Margin="0,0,3,0"/>
+    					<TextBlock x:Name="Location" VerticalAlignment="Bottom" FontSize="{DynamicResource ContentFontSize}" Foreground="{DynamicResource ContentBrush}" TextWrapping="Wrap" Text="{Binding Location, Mode=Default}"/>
     				</StackPanel>
     			</Grid>
     		</TabItem>

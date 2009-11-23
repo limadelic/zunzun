@@ -7,7 +7,7 @@ namespace Zunzun.App.Converters {
     public class DateToString : IValueConverter {
     
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture) {
-            return System.Convert.ToDateTime(value).ToString("ddd, MMM d HH:mm");
+            return System.Convert.ToDateTime(value).ToString(parameter.ToString());
         }
         
         public object ConvertBack(object value, Type targetType, object parameter, CultureInfo culture) {
