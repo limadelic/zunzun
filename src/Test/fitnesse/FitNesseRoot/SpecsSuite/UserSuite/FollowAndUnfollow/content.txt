@@ -1,0 +1,15 @@
+!* Story
+
+In order to see Tweets
+I want to Follow or Unfollow users 
+
+*!
+!*> Setup
+
+|Follow And Unfollow|
+
+*!
+
+------ '''Scenario''' ''follow the zunzun'' ------
+|When|I follow "zunzunapp"                           |
+|Then|"zunzunapp" should be among the people I follow|

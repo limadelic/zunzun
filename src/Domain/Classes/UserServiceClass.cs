@@ -19,5 +19,7 @@ namespace Zunzun.Domain.Classes {
         User Request(ITwitterLeafNode Spec) { return 
             Spec.Request().AsUser().ToUser()
         ;}
+
+        public void Follow(string UserName) {}
     }
 }
