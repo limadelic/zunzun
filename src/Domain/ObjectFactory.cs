@@ -12,7 +12,8 @@ namespace Zunzun.Domain {
             Picture = Status.User.ProfileImageUrl,
             Date = Status.CreatedDate.ToString(),
             Source = Status.Source,
-            ScreenName = Status.User.ScreenName
+            ScreenName = Status.User.ScreenName,
+            ReplyTo = Status.InReplyToStatusId
         };}
 
         public static Tweet NewTweet(string StatusText) { 

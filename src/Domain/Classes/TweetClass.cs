@@ -1,8 +1,11 @@
+using System;
+
 namespace Zunzun.Domain.Classes {
     
     public class TweetClass : Tweet {
     
         public long Id { get; set; }
+        public long ReplyTo { get; set; }
 
         public string Content { get; set; }
         public string Author { get; set; }

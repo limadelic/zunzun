@@ -3,6 +3,7 @@ namespace Zunzun.Domain {
     public interface Tweet {
     
         long Id { get; set; }
+        long ReplyTo { get; set; }
         
         string Content { get; set; }
         string Author { get; set; }

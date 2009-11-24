@@ -27,7 +27,7 @@ namespace Zunzun.Specs.Fixtures {
         
             Given("a tweet by user {0}", UserName =>
             {
-                var status = new TwitterStatus { User = new TwitterUser { ScreenName = UserName } };
+                var status = new TwitterStatus { User = new TwitterUser { ScreenName = UserName }, Id = new System.Random().Next() };
                 Tweet = ObjectFactory.NewTweet(status);
             });
 
@@ -37,7 +37,12 @@ namespace Zunzun.Specs.Fixtures {
                 Tweet = ObjectFactory.NewTweet(status);
             });
 
-            When("I reply {0} to {1}", (Original, Reply) => Pending());
+            When("I reply {0} to the Tweet", (Reply) => 
+            { 
+                StatusPresenter.ReplyTo(Tweet);
+                StatusView.UpdateText += Reply;
+                StatusPresenter.Update();
+            });
 
             When("I reply to the Tweet", () => StatusPresenter.ReplyTo(Tweet));
 
@@ -55,7 +60,11 @@ namespace Zunzun.Specs.Fixtures {
 
             Then("Update text starts with {0}", Contents => Assert.IsTrue(StatusView.UpdateText.StartsWith(Contents)));
 
-            Then("{0} should be linked to {1}", (Reply, Original) => Pending());
+            Then("{0} should be linked to {1}", (Reply, Original) =>
+            {
+                var SentTweet = TweetService.Tweets.Where(x => x.Content.Equals(Reply)).First();
+                SentTweet.ReplyTo.ShouldBe(Tweet.Id);
+            });
         }
     }
 }

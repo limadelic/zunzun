@@ -1,3 +1,4 @@
+using System;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -12,7 +13,17 @@ namespace Zunzun.App.Presenters {
 
         public TweetService TweetService { get; set; }
 
-        public void Update(Tweet tweet) { TweetService.UpdateStatus(tweet); }
+        public long AssociatedTweetId { get; set; }
+
+        public void Update(Tweet tweet)
+        {
+            if (HasAssociatedTweet)
+                TweetService.SendReply(tweet, AssociatedTweetId);
+            else
+                TweetService.UpdateStatus(tweet);
+        }
+
+        protected bool HasAssociatedTweet { get { return AssociatedTweetId > 0; } }
 
         public void Update() {
             if (string.IsNullOrEmpty(View.UpdateText)) return;
@@ -32,6 +43,7 @@ namespace Zunzun.App.Presenters {
 
         public void ReplyTo(Tweet tweet)
         {
+            AssociatedTweetId = tweet.Id;
             FocusOnUpdate();
             View.UpdateText = ReplyPrefix + tweet.ScreenName + " ";
         }

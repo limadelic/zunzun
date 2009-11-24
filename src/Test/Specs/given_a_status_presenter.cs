@@ -88,6 +88,37 @@ namespace Zunzun.Specs {
                 When.ReplyTo(Actors.TweetWithUser);
                 Should.View.FocusOnUpdate();
             }
+
+            [TestMethod]
+            public void should_associate_Tweet_with_Original()
+            {
+                var Tweet = Actors.TweetWithUserAndId;
+                When.ReplyTo(Tweet);
+                Should.AssociatedTweetId = Tweet.Id;
+            }
+
+            [TestMethod]
+            public void should_request_a_Reply_if_associated_Tweet_Exists()
+            {
+                Given.AssociatedTweetId = 42;
+                var ReplyTweet = ObjectFactory.NewTweet("Poop");
+
+                When.Update(ReplyTweet);
+
+                Then.TweetService.Should().SendReply(ReplyTweet, 42);
+            }
+
+//            [TestMethod]
+//            public void should_attach_to_original_Tweet()
+//            {
+//                var OrigTweet = Actors.TweetWithUserAndId;
+//                var ReplyTweet = ObjectFactory.NewTweet("@testuser ");
+//
+//                When.ReplyTo(OrigTweet);
+//                When.Update(ReplyTweet);
+//
+//                ReplyTweet.ReplyTo.ShouldBe(OrigTweet.Id);
+//            }
         }
 
         [TestClass]

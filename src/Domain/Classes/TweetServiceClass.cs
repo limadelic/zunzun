@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
@@ -19,6 +20,12 @@ namespace Zunzun.Domain.Classes {
         public void UpdateStatus(Tweet Tweet) {
             UpdateStatusSpec(Tweet.Content).Request();
         }
+
+        public void SendReply(Tweet tweet, long associatedTweetId)
+        {
+            ReplyStatusSpec(tweet.Content, associatedTweetId).Request();
+        }
+
 
         ITwitterStatuses Statuses { get { return 
             FluentTwitter.CreateRequest()
@@ -64,6 +71,11 @@ namespace Zunzun.Domain.Classes {
             return
                 Statuses.Update(Content).AsJson()
                 ;
+        }
+
+        private ITwitterLeafNode ReplyStatusSpec(string content, long id)
+        {
+            return Statuses.Update(content).InReplyToStatus(id).AsJson();
         }
 
         #endregion
