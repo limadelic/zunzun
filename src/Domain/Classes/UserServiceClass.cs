@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
@@ -21,5 +22,6 @@ namespace Zunzun.Domain.Classes {
         ;}
 
         public void Follow(string UserName) {}
+        public List<User> Following { get { return null; } }
     }
 }
