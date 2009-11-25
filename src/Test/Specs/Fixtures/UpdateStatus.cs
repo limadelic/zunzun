@@ -37,7 +37,7 @@ namespace Zunzun.Specs.Fixtures {
                 Tweet = ObjectFactory.NewTweet(status);
             });
 
-            When("I reply {0} to the Tweet", (Reply) => 
+            When("I reply {0} to the Tweet", Reply => 
             { 
                 StatusPresenter.ReplyTo(Tweet);
                 StatusView.UpdateText += Reply;
