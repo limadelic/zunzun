@@ -50,15 +50,26 @@ namespace Zunzun.Specs.Helpers {
 
         public static Tweet TweetWithUserAndContent { get { 
             var tweet = TweetWithUser;
-            tweet.Content = "papaya!";
+            tweet.Content = "and now for something completely different";
             return tweet;
-        } }
+        }}
 
         public static Tweet TweetWithUserAndId { get { 
             var tweet = TweetWithUser;
             tweet.Id = 42;
             return tweet;
-            }
-        }
+        }}
+
+        const string RawFollowingTwoUsers = @"{""profile_sidebar_fill_color"":""CCCCCC"",""description"":""natural born programmer"",""screen_name"":""msuarz"",""friends_count"":147,""status"":{""in_reply_to_user_id"":4999611,""in_reply_to_status_id"":null,""truncated"":false,""source"":""<a href=\""http://www.tweetdeck.com/\"" rel=\""nofollow\"">TweetDeck</a>"",""favorited"":false,""in_reply_to_screen_name"":""futureturnip"",""created_at"":""Tue Nov 24 00:19:01 +0000 2009"",""id"":5992629515,""text"":""@futureturnip u know fluentspec was the first mock framework to work with silverlight ... n' no one cared :) #Pyrrhic_victory""},""following"":true,""statuses_count"":660,""time_zone"":""Eastern Time (US & Canada)"",""profile_sidebar_border_color"":""999999"",""notifications"":false,""favourites_count"":1,""geo_enabled"":false,""profile_text_color"":""333333"",""url"":""http://msuarz.blogspot.com/"",""profile_background_image_url"":""http://a3.twimg.com/profile_background_images/12641165/tech_background.gif"",""verified"":false,""profile_link_color"":""0084B4"",""protected"":false,""profile_background_tile"":true,""created_at"":""Sun May 10 02:48:15 +0000 2009"",""location"":""miami"",""name"":""mike suarez"",""profile_background_color"":""9AE4E8"",""profile_image_url"":""http://a3.twimg.com/profile_images/264581807/mini_normal.png"",""id"":38981100,""utc_offset"":-18000,""followers_count"":74},{""profile_sidebar_fill_color"":""e0ff92"",""description"":null,""screen_name"":""jperkelens"",""friends_count"":11,""status"":{""in_reply_to_user_id"":14291248,""in_reply_to_status_id"":4112364670,""truncated"":false,""source"":""<a href=\""http://www.tweetdeck.com/\"" rel=\""nofollow\"">TweetDeck</a>"",""favorited"":false,""in_reply_to_screen_name"":""daric"",""created_at"":""Sun Sep 20 04:39:46 +0000 2009"",""id"":4117981485,""text"":""@daric I'm guessing ND did well this week...""},""following"":true,""statuses_count"":23,""time_zone"":null,""profile_sidebar_border_color"":""87bc44"",""notifications"":false,""favourites_count"":0,""geo_enabled"":false,""profile_text_color"":""000000"",""url"":null,""profile_background_image_url"":""http://s.twimg.com/a/1258674567/images/themes/theme1/bg.png"",""verified"":false,""profile_link_color"":""0000ff"",""protected"":false,""profile_background_tile"":false,""created_at"":""Fri Jul 31 16:30:51 +0000 2009"",""location"":null,""name"":""Jan Paul Erkelens"",""profile_background_color"":""9ae4e8"",""profile_image_url"":""http://a1.twimg.com/profile_images/393146608/avatar_normal.jpg"",""id"":61810086,""utc_offset"":null,""followers_count"":15}";
+
+        public static ITwitterLeafNode FollowingTwoUsersTestSpec { get {
+            var Spec = Create.TestObjectFor<ITwitterLeafNode>();
+            Spec.Given().Request().WillReturn(RawFollowingTwoUsers);
+            return Spec;
+        }}
+
+        public static List<User> TwoUsers { get { return new List<User> {
+            Zunzun, Zunzun    
+        };}}
     }
 }

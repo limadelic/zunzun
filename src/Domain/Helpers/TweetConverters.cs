@@ -5,13 +5,9 @@ using Dimebrain.TweetSharp.Model;
 namespace Zunzun.Domain.Helpers {
     public static class TweetConverters {
         
-        public static List<Tweet> ToTweets(this string Response) {
-            var Results = new List<Tweet>();
-
-            Response.AsStatuses().ForEach(Status =>
-                Results.Add(Status.ToTweet()));
-            
-            return Results;
+        public static IEnumerable<Tweet> ToTweets(this string Response) {
+            foreach (var Status in Response.AsStatuses())
+                yield return Status.ToTweet();
         }
         
         public static Tweet ToTweet(this TwitterStatus Status) { 

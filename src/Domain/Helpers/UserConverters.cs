@@ -1,3 +1,5 @@
+using System.Collections.Generic;
+using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Model;
 
 namespace Zunzun.Domain.Helpers {
@@ -7,5 +9,10 @@ namespace Zunzun.Domain.Helpers {
         public static User ToUser(this TwitterUser User) {
             return ObjectFactory.NewUser(User);
         }
-    }
+ 
+        public static IEnumerable<User> ToUsers(this string Request) {
+            foreach (var User in Request.AsUsers()) 
+                yield return User.ToUser();
+        }
+   }
 }

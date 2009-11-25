@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
 
@@ -42,7 +43,7 @@ namespace Zunzun.Domain.Classes {
         ;}}
 
         List<Tweet> Request(ITwitterLeafNode Spec) { return 
-            Spec.Request().ToTweets()
+            Spec.Request().ToTweets().ToList()
         ;}
 
         #region Specs

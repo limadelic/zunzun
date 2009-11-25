@@ -128,7 +128,7 @@ namespace Zunzun.Specs {
             public void should_set_update_text_to_retweet_standards()
             {
                 When.Retweet(Actors.TweetWithUserAndContent);
-                Then.View.UpdateText = "RT @testuser papaya! ";
+                Then.View.UpdateText = "RT @testuser and now for something completely different ";
             }
 
             [TestMethod]

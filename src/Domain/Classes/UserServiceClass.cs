@@ -1,5 +1,6 @@
+using System;
 using System.Collections.Generic;
-using System.Diagnostics;
+using System.Linq;
 using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
@@ -22,17 +23,28 @@ namespace Zunzun.Domain.Classes {
             Spec.Request().AsUser().ToUser()
         ;}
 
+        public virtual List<User> RequestUsers(ITwitterLeafNode Spec) { return 
+            Spec.Request().ToUsers().ToList()
+        ;}
+
         public void Follow(string UserName) {
             FollowUserSpec(UserName).Request()
         ;}
         
-        public List<User> Following { get { return null; } }
+        public List<User> Following { get { return 
+            RequestUsers(FollowingSpec)
+        ;}}
         
+        public virtual ITwitterLeafNode FollowingSpec { get { return 
+            FluentTwitter.CreateRequest()
+            .AuthenticateAs(Settings.UserName, Settings.Password)
+            .Users().GetFriends().AsJson()
+        ;}}
+
         public virtual ITwitterLeafNode FollowUserSpec(string UserName) { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Friendships().Befriend(UserName)
-            .AsJson()
+            .Friendships().Befriend(UserName).AsJson()
         ;}
     }
 }
