@@ -49,6 +49,7 @@
   <ItemGroup>
     <Compile Include="Classes\TweetClass.cs" />
     <Compile Include="Classes\TweetServiceClass.cs" />
+    <Compile Include="Classes\TwitterAPI.cs" />
     <Compile Include="Classes\UserClass.cs" />
     <Compile Include="Classes\UserServiceClass.cs" />
     <Compile Include="Helpers\Extensions.cs" />

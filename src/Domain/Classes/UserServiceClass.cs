@@ -9,13 +9,7 @@ namespace Zunzun.Domain.Classes {
     public class UserServiceClass : UserService {
     
         public User FindByUserName(string UserName) { return 
-            Request(UserByUserName(UserName))
-        ;}
-
-        public virtual ITwitterLeafNode UserByUserName(string UserName) { return 
-            FluentTwitter.CreateRequest()
-            .Users().ShowProfileFor(UserName)
-            .AsJson()
+            Request(UserByUserNameSpec(UserName))
         ;}
 
         User Request(ITwitterLeafNode Spec) { return 
@@ -26,34 +20,36 @@ namespace Zunzun.Domain.Classes {
             Spec.Request().ToUsers().ToList()
         ;}
 
-        public void Follow(string UserName) {
-            FollowUserSpec(UserName).Request()
-        ;}
-        
         public List<User> Following { get { return 
             RequestUsers(FollowingSpec)
         ;}}
 
+        public void Follow(string UserName) {
+            FollowUserSpec(UserName).Request()
+        ;}
+        
         public void Unfollow(string UserName) {
             UnfollowUserSpec(UserName).Request()
         ;}
 
+        #region Specs
+
+        public virtual ITwitterLeafNode UserByUserNameSpec(string UserName) { return 
+            TwitterAPI.Users.ShowProfileFor(UserName).AsJson()
+        ;}
+        
         public virtual ITwitterLeafNode FollowingSpec { get { return 
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Users().GetFriends().AsJson()
+            TwitterAPI.Friends.AsJson()
         ;}}
 
         public virtual ITwitterLeafNode FollowUserSpec(string UserName) { return 
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Friendships().Befriend(UserName).AsJson()
+            TwitterAPI.Friendships.Befriend(UserName).AsJson()
         ;}
 
         public virtual ITwitterLeafNode UnfollowUserSpec(string UserName) { return 
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Friendships().Destroy(UserName).AsJson()
+            TwitterAPI.Friendships.Destroy(UserName).AsJson()
         ;}
+        
+        #endregion
     }
 }

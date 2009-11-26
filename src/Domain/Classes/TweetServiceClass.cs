@@ -27,21 +27,6 @@ namespace Zunzun.Domain.Classes {
             ReplyStatusSpec(Tweet.Content, AssociatedTweetId).Request();
         }
 
-
-        ITwitterStatuses Statuses { get { return 
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Statuses()
-        ;}}
-
-        ITwitterHomeTimeline Home { get { return 
-            Statuses.OnHomeTimeline()
-        ;}}
-
-        ITwitterUserTimeline User { get { return 
-            Statuses.OnUserTimeline()
-        ;}}
-
         List<Tweet> Request(ITwitterLeafNode Spec) { return 
             Spec.Request().ToTweets().ToList()
         ;}
@@ -49,23 +34,23 @@ namespace Zunzun.Domain.Classes {
         #region Specs
 
         public virtual ITwitterLeafNode HomeSpec { get { return 
-            Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
+            TwitterAPI.HomeStatuses.Take(Settings.NumberOfTweetsPerRequest).AsJson()
         ;}}
 
         public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return 
-            Home.Since(Id).AsJson()
+            TwitterAPI.HomeStatuses.Since(Id).AsJson()
         ;}
 
         public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) { return 
-            User.For(UserName).AsJson()
+            TwitterAPI.UserStatuses.For(UserName).AsJson()
         ;}
 
         ITwitterLeafNode UpdateStatusSpec(string Content) { return 
-            Statuses.Update(Content).AsJson()
+            TwitterAPI.Statuses.Update(Content).AsJson()
         ;}
 
         ITwitterLeafNode ReplyStatusSpec(string Content, long Id) { return 
-            Statuses.Update(Content)
+            TwitterAPI.Statuses.Update(Content)
             .InReplyToStatus(Id).AsJson()
         ;}
 

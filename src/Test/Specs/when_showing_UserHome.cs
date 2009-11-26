@@ -64,7 +64,7 @@ namespace Zunzun.Specs {
                 const string UserName = Actors.ZunzunUserName;
                 var Spec = Actors.ZunzunTestSpec;
                 
-                Given.UserByUserName(UserName).WillReturn(Spec);
+                Given.UserByUserNameSpec(UserName).WillReturn(Spec);
                 
                 var UserFound = When.FindByUserName(UserName);
                 
