@@ -1,12 +1,11 @@
 using System.Linq;
-using Dimebrain.TweetSharp.Model;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
+using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
-using ObjectFactory=Zunzun.Domain.ObjectFactory;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -25,16 +24,18 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            Given("a tweet by user {0}", UserName =>
-            {
-                var status = new TwitterStatus { User = new TwitterUser { ScreenName = UserName }, Id = new System.Random().Next() };
-                Tweet = ObjectFactory.NewTweet(status);
+            Given("a tweet by user {0}", UserName => {
+                Tweet = new TweetClass {
+                    Author = new UserClass { UserName = UserName }
+                };
             });
 
             Given("A tweet by user {0} with content {1}", (UserName, Content) =>
             {
-                var status = new TwitterStatus {User = new TwitterUser {ScreenName = UserName}, Text = Content};
-                Tweet = ObjectFactory.NewTweet(status);
+                Tweet = new TweetClass {
+                    Content = Content,
+                    Author = new UserClass { UserName = UserName }
+                };
             });
 
             When("I reply {0} to the Tweet", Reply => 

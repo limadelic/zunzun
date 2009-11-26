@@ -8,11 +8,10 @@ namespace Zunzun.Domain {
         public static Tweet NewTweet(TwitterStatus Status) { return new TweetClass {
             Id = Status.Id,
             Content = Status.Text,
-            Author = Status.User.Name,
+            Author = NewUser(Status.User),
             Picture = Status.User.ProfileImageUrl,
             Date = Status.CreatedDate.ToString(),
             Source = Status.Source,
-            ScreenName = Status.User.ScreenName,
             ReplyTo = Status.InReplyToStatusId
         };}
 

@@ -4,13 +4,12 @@ In order to respond to my fellow Tweeters
 I want to reply to Tweets
 
 *!
-
 !*> setup
 
 |Reply To Tweet|
 
 *!
 
-|Given|a tweet by user "zunzun"|
-|When|I reply to the Tweet|
-|Then|Update Text contains "@zunzun"|
+|Given|a tweet by user "${ZunzunApp}"      |
+|When |I reply to the Tweet                |
+|Then |Update Text contains "@${ZunzunApp}"|

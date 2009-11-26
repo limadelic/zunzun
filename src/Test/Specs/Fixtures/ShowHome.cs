@@ -32,7 +32,7 @@ namespace Zunzun.Specs.Fixtures {
             
             And("should contain a Content", () => Tweet.Content.ShouldNotBeEmpty());
             
-            And("an Author", () => Tweet.Author.ShouldNotBeEmpty());
+            And("an Author", () => Tweet.Author.ShouldNotBeNull());
             
             And("a Date", () => Tweet.Date.ShouldNotBeEmpty());
             

@@ -1,10 +1,9 @@
-using Dimebrain.TweetSharp.Model;
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
+using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
-using ObjectFactory=Zunzun.Domain.ObjectFactory;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -21,9 +20,10 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            Given("a tweet by user {0}", UserName => {
-                var status = new TwitterStatus {User = new TwitterUser {ScreenName = UserName}};
-                Tweet = ObjectFactory.NewTweet(status);
+            Given("a tweet by user {0}", UserName => { 
+                Tweet = new TweetClass {
+                    Author = new UserClass { UserName = UserName }
+                };
             });
 
             When("I reply to the Tweet", () => Presenter.ReplyTo(Tweet));

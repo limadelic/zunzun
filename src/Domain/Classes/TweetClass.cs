@@ -1,5 +1,3 @@
-using System;
-
 namespace Zunzun.Domain.Classes {
     
     public class TweetClass : Tweet {
@@ -8,11 +6,10 @@ namespace Zunzun.Domain.Classes {
         public long ReplyTo { get; set; }
 
         public string Content { get; set; }
-        public string Author { get; set; }
+        public User Author { get; set; }
         public string Date { get; set; }
         public string Source { get; set; }
         public string Picture { get; set; }
-        public string ScreenName { get; set; }
 
         public override bool Equals(object obj) {
             if (!(obj is TweetClass)) return false;

@@ -71,7 +71,7 @@ namespace Zunzun.Specs {
             public void should_set_update_text_to_the_User()
             {
                 When.ReplyTo(Actors.TweetWithUser);
-                Then.View.UpdateText = "@testuser ";
+                Then.View.UpdateText = "@zunzunapp ";
             }
 
             [TestMethod]
@@ -128,7 +128,7 @@ namespace Zunzun.Specs {
             public void should_set_update_text_to_retweet_standards()
             {
                 When.Retweet(Actors.TweetWithUserAndContent);
-                Then.View.UpdateText = "RT @testuser and now for something completely different ";
+                Then.View.UpdateText = "RT @zunzunapp and now for something completely different ";
             }
 
             [TestMethod]
@@ -154,7 +154,7 @@ namespace Zunzun.Specs {
             public void should_set_update_text_to_directmessage_standards()
             {
                 When.DirectMessage(Actors.TweetWithUser);
-                Then.View.UpdateText = "D testuser ";
+                Then.View.UpdateText = "D zunzunapp ";
             }
 
             [TestMethod]

@@ -1,1 +1,7 @@
+!*> define
+
+!define ZunzunApp {zunzunapp}
+
+*!
+
 !contents -R2 -g -p -f -h

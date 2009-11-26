@@ -1,11 +1,10 @@
-!*> story
+!*> Story
 
 In order to broadcast a tweet I enjoyed
 I want to be able to Retweet
 
 *!
-
-!*> setup
+!*> Setup
 
 |Update Status|
 
@@ -13,5 +12,5 @@ I want to be able to Retweet
 
 
 |Given|A tweet by user "kinobot" with content "I use zunzun!"|
-|When|I retweet it|
-|Then|Update text starts with "RT @kinobot I use zunzun!"|
+|When |I retweet it                                          |
+|Then |Update text starts with "RT @kinobot I use zunzun!"   |
