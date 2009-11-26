@@ -38,7 +38,17 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         private void OnFollow(object Sender, RoutedEventArgs e) {
-            FollowUser.Of(User.UserName, Sender);
+            FollowUser.With(User.UserName, Sender);
+        }
+
+        private void OnUnfollow(object Sender, RoutedEventArgs e) {
+            UnfollowUser.With(User.UserName, Sender);
+        }
+
+        public void OnUserChanged(object Sender, RoutedEventArgs E) { 
+            var UserName = (E as UserEvent.Args).UserName;
+            if (!User.UserName.Equals(UserName)) return;
+            UserHomePresenter.Show(UserName);
         }
     }
 }

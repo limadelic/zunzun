@@ -2,9 +2,9 @@ using System.Windows;
 
 namespace Zunzun.App.Events {
 
-    public class FollowUser {
+    public class UserChanged {
         
-        public static readonly RoutedEvent Event = EventManager.RegisterRoutedEvent("FollowUser",
+        public static readonly RoutedEvent Event = EventManager.RegisterRoutedEvent("UserChanged",
             RoutingStrategy.Bubble, typeof(RoutedEventHandler), typeof(object));
 
         public static void With(string UserName, object Source) {

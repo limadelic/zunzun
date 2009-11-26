@@ -90,7 +90,7 @@
     			</Label.Effect>
     		</Label>
     		<Button VerticalAlignment="Center" IsCancel="True" x:Name="Follow" Content="F" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="18" Click="OnFollow"/>
-    		<Button VerticalAlignment="Center" IsCancel="True" x:Name="Unfollow" Content="U" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="18"/>
+    		<Button VerticalAlignment="Center" IsCancel="True" x:Name="Unfollow" Content="U" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="18" Click="OnUnfollow"/>
     	</StackPanel>
     </Grid>
 </UserControl>

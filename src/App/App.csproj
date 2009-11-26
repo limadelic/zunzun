@@ -101,6 +101,8 @@
     <Compile Include="Events\Reply.cs" />
     <Compile Include="Events\Retweet.cs" />
     <Compile Include="Events\TweetEvent.cs" />
+    <Compile Include="Events\UnfollowUser.cs" />
+    <Compile Include="Events\UserChanged.cs" />
     <Compile Include="Events\UserEvent.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
