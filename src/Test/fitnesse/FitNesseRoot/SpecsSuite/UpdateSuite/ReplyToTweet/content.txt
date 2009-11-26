@@ -11,11 +11,11 @@ I want to reply to Tweets
 *!
 
 ------ '''Scenario''' ''composing the Reply'' ------
-|Given|a tweet by user "zunzun"         |
-|When |I reply to the Tweet             |
-|Then |Update text starts with "@zunzun"|
+|Given|a tweet by user "zunzunapp"         |
+|When |I reply to the Tweet                |
+|Then |Update text starts with "@zunzunapp"|
 
 ------ '''Scenario''' ''the Reply should be linked to the original Tweet'' ------
-|Given|a tweet by user "zunzun"           |
-|When |I reply "cool" to the Tweet        |
-|Then |"cool" should be linked to "zunzun"|
+|Given|a tweet by user "zunzunapp"           |
+|When |I reply "cool" to the Tweet           |
+|Then |"cool" should be linked to "zunzunapp"|

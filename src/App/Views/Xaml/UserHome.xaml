@@ -21,12 +21,7 @@
     		<RowDefinition/>
     	</Grid.RowDefinitions>
     	<Image x:Name="Picture" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill" VerticalAlignment="Top"/>
-    	<Label x:Name="FullName" Foreground="{DynamicResource ContentBrush}" d:LayoutOverrides="Height" HorizontalAlignment="Right" VerticalAlignment="Bottom" Background="{x:Null}" Content="{Binding Name, Mode=Default}" FontSize="{DynamicResource ContentFontSize}">
-    		<Label.Effect>
-    			<DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
-    		</Label.Effect>
-    	</Label>
-    	<TabControl Margin="0,-22,0,0" Style="{DynamicResource UserHomeTabControlStyle}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}" Background="{x:Null}">
+    	<TabControl Margin="0,-22,0,0" Style="{DynamicResource UserHomeTabControlStyle}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}" Background="{x:Null}" d:IsHidden="True">
     		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Profile">
     			<Grid Margin="5" ScrollViewer.VerticalScrollBarVisibility="Auto">
     				<Grid.ColumnDefinitions>
@@ -87,5 +82,13 @@
     			</Grid>
     		</TabItem>
     	</TabControl>
+    	<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
+    		<Button IsCancel="True" x:Name="Follow" Content="Follow" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" VerticalAlignment="Center" Margin="0,0,20,0" Click="OnFollow"/>
+    		<Label x:Name="FullName" Foreground="{DynamicResource ContentBrush}" VerticalAlignment="Center" Background="{x:Null}" Content="{Binding Name, Mode=Default}" FontSize="{DynamicResource ContentFontSize}">
+    			<Label.Effect>
+    				<DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
+    			</Label.Effect>
+    		</Label>
+    	</StackPanel>
     </Grid>
 </UserControl>

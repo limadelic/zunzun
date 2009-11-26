@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 
@@ -27,9 +28,12 @@ namespace Zunzun.App.Views.Xaml {
         }
         
         public void OnShowUserHome(object Sender, RoutedEventArgs e) {
-            var UserName = (e as Events.ShowUserHome.Args).UserName;
+            var UserName = (e as UserEvent.Args).UserName;
             UserHomePresenter.Show(UserName);
         }
 
+        private void OnFollow(object Sender, RoutedEventArgs e) {
+            FollowUser.Of(User.UserName, Sender);
+        }
     }
 }

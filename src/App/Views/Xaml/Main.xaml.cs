@@ -1,4 +1,5 @@
 ﻿using System.Windows;
+using Zunzun.App.Events;
 
 namespace Zunzun.App.Views.Xaml {
 
@@ -11,11 +12,12 @@ namespace Zunzun.App.Views.Xaml {
         
         void RegisterEvents() {
             
-            AddHandler(Events.ShowUserHome.Event, new RoutedEventHandler(OnShowUserHome));
+            AddHandler(ShowUserHome.Event, new RoutedEventHandler(OnShowUserHome));
+            AddHandler(FollowUser.Event, new RoutedEventHandler(OnFollowUser));
             
-            AddHandler(Events.Reply.Event, new RoutedEventHandler(Update.OnReply));
-            AddHandler(Events.Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
-            AddHandler(Events.DirectMessage.Event, new RoutedEventHandler(Update.OnDirectMessage));
+            AddHandler(Reply.Event, new RoutedEventHandler(Update.OnReply));
+            AddHandler(Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
+            AddHandler(DirectMessage.Event, new RoutedEventHandler(Update.OnDirectMessage));
             
             ToggleUpdate.Click += Update.OnToggleVisibility;
         }
@@ -36,6 +38,13 @@ namespace Zunzun.App.Views.Xaml {
 
         void OnGoHome(object sender, RoutedEventArgs e) {
             ContentPlaceholder.Child = Home;
+        }
+
+        void OnFollowUser(object Sender, RoutedEventArgs E) {
+            var UserName = (E as UserEvent.Args).UserName;
+            var UserService = Domain.ObjectFactory.NewUserService;
+            
+            UserService.Follow(UserName);
         }
     }
 }
