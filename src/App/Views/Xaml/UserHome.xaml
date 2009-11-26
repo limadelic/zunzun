@@ -12,6 +12,7 @@
     x:Class="Zunzun.App.Views.Xaml.UserHome"
     DataContext="{Binding User, ElementName=userControl, Mode=Default}">
 	<UserControl.Resources>
+		<BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter"/>
 		<Zunzun_App_Converters:DateToString x:Key="DateToString"/>
 		<Zunzun_App_Converters:StringToVisibility x:Key="StringToVisibility"/>
 	</UserControl.Resources>
@@ -21,7 +22,7 @@
     		<RowDefinition/>
     	</Grid.RowDefinitions>
     	<Image x:Name="Picture" Source="{Binding Picture, Mode=Default}" Stretch="UniformToFill" VerticalAlignment="Top"/>
-    	<TabControl Margin="0,-22,0,0" Style="{DynamicResource UserHomeTabControlStyle}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}" Background="{x:Null}" d:IsHidden="True">
+    	<TabControl Margin="0,-22,0,0" Style="{DynamicResource UserHomeTabControlStyle}" BorderBrush="{x:Null}" Foreground="{x:Null}" Grid.Row="1" Padding="{DynamicResource NoThickness}" Background="{x:Null}">
     		<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Profile">
     			<Grid Margin="5" ScrollViewer.VerticalScrollBarVisibility="Auto">
     				<Grid.ColumnDefinitions>
@@ -82,13 +83,14 @@
     			</Grid>
     		</TabItem>
     	</TabControl>
-    	<StackPanel HorizontalAlignment="Right" Orientation="Horizontal" VerticalAlignment="Bottom">
-    		<Button IsCancel="True" x:Name="Follow" Content="Follow" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" VerticalAlignment="Center" Margin="0,0,20,0" Click="OnFollow"/>
+    	<StackPanel HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
     		<Label x:Name="FullName" Foreground="{DynamicResource ContentBrush}" VerticalAlignment="Center" Background="{x:Null}" Content="{Binding Name, Mode=Default}" FontSize="{DynamicResource ContentFontSize}">
     			<Label.Effect>
     				<DropShadowEffect BlurRadius="0" ShadowDepth="2"/>
     			</Label.Effect>
     		</Label>
+    		<Button VerticalAlignment="Center" IsCancel="True" x:Name="Follow" Content="F" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="18" Click="OnFollow"/>
+    		<Button VerticalAlignment="Center" IsCancel="True" x:Name="Unfollow" Content="U" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="18"/>
     	</StackPanel>
     </Grid>
 </UserControl>

@@ -1,5 +1,6 @@
 ﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Zunzun.App.Converters;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
@@ -12,6 +13,10 @@ namespace Zunzun.App.Views.Xaml {
     
         public ObservableCollection<Tweet> Tweets { get; set; }
         
+        public bool AllowToFollow { set { Follow.IsVisibleIf(value); } }
+
+        public bool AllowToUnfollow { set { Unfollow.IsVisibleIf(value); } }
+
         public User User {
             get { return DataContext as User; }
             set { DataContext = value; }

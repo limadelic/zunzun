@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using Zunzun.App.Converters;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
@@ -17,7 +18,7 @@ namespace Zunzun.App.Views.Xaml {
 
         public new bool IsVisible { 
             get { return base.IsVisible; } 
-            set { Visibility = value ? Visibility.Visible : Visibility.Collapsed; } 
+            set { this.IsVisibleIf(value); } 
         }
 
         public void FocusOnUpdate() {

@@ -93,6 +93,7 @@
   <ItemGroup>
     <Compile Include="Controls\Extensions.cs" />
     <Compile Include="Controls\TweetsListBox.cs" />
+    <Compile Include="Converters\BoolToVisibility.cs" />
     <Compile Include="Converters\StringToVisibility.cs" />
     <Compile Include="Events\DirectMessage.cs" />
     <Compile Include="Events\Extensions.cs" />

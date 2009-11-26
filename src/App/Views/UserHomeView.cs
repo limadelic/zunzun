@@ -7,5 +7,7 @@ namespace Zunzun.App.Views {
 
         User User { get; set; }
         ObservableCollection<Tweet> Tweets { get; set; }
+        bool AllowToFollow { set; }
+        bool AllowToUnfollow { set; }
     }
 }

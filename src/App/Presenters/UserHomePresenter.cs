@@ -1,3 +1,4 @@
+using System.Linq;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -12,18 +13,30 @@ namespace Zunzun.App.Presenters {
         User User;
 
         public void Show(string UserName) {
-            ShowUser(UserName);
-            ShowUserTweets();
+            
+            User = UserService.FindByUserName(UserName);
+            
+            ShowUser();
+            ShowActions();
+            ShowTweets();
         }
 
-        void ShowUserTweets() {
+        void ShowTweets() {
             View.Tweets.Clear();
             TweetService.TweetsBy(User).ForEach(View.Tweets.Add);
         }
 
-        void ShowUser(string UserName) {
-            User = UserService.FindByUserName(UserName);
-            View.User = User;
+        void ShowUser() { View.User = User; }
+
+        void ShowActions() {
+            var isFollowing = IsFollowing;
+            View.AllowToFollow = !isFollowing;
+            View.AllowToUnfollow = isFollowing;
         }
+
+        bool IsFollowing { get { return 
+            UserService.Following.Any(FollowedUser =>
+                FollowedUser.UserName.Equals(User.UserName))
+        ;}}
     }
 }
