@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dimebrain.TweetSharp.Extensions;
@@ -33,7 +34,10 @@ namespace Zunzun.Domain.Classes {
         public List<User> Following { get { return 
             RequestUsers(FollowingSpec)
         ;}}
-        
+
+        public void Unfollow(string UserName) { 
+        }
+
         public virtual ITwitterLeafNode FollowingSpec { get { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)

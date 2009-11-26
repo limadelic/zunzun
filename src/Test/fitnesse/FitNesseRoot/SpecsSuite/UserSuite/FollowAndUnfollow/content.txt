@@ -10,6 +10,10 @@ I want to Follow or Unfollow users
 
 *!
 
+------ '''Scenario''' ''stop following the zunzun'' ------
+|When|I unfollow "zunzunapp"                             |
+|Then|"zunzunapp" should not be among the people I follow|
+
 ------ '''Scenario''' ''follow the zunzun'' ------
 |When|I follow "zunzunapp"                           |
 |Then|"zunzunapp" should be among the people I follow|
