@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dimebrain.TweetSharp.Extensions;
@@ -35,8 +34,9 @@ namespace Zunzun.Domain.Classes {
             RequestUsers(FollowingSpec)
         ;}}
 
-        public void Unfollow(string UserName) { 
-        }
+        public void Unfollow(string UserName) {
+            UnfollowUserSpec(UserName).Request()
+        ;}
 
         public virtual ITwitterLeafNode FollowingSpec { get { return 
             FluentTwitter.CreateRequest()
@@ -48,6 +48,12 @@ namespace Zunzun.Domain.Classes {
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
             .Friendships().Befriend(UserName).AsJson()
+        ;}
+
+        public virtual ITwitterLeafNode UnfollowUserSpec(string UserName) { return 
+            FluentTwitter.CreateRequest()
+            .AuthenticateAs(Settings.UserName, Settings.Password)
+            .Friendships().Destroy(UserName).AsJson()
         ;}
     }
 }

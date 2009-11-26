@@ -7,16 +7,25 @@ using Zunzun.Specs.Helpers;
 namespace Zunzun.Specs {
 
     [TestClass]
-    public class when_following_a_User : BehaviorOf<UserServiceClass> {
+    public class when_following_and_unfollowing_a_User : BehaviorOf<UserServiceClass> {
+        
+        const string UserName = Actors.ZunzunUserName;
+        readonly ITwitterLeafNode Spec = TestObjectFor<ITwitterLeafNode>();
         
         [TestMethod]
         public void should_post_a_Follow_request() {
-            var FollowUserSpec = TestObjectFor<ITwitterLeafNode>();
-            const string UserName = "zunzun";
             
-            Given.FollowUserSpec(UserName).Is(FollowUserSpec);
+            Given.FollowUserSpec(UserName).Is(Spec);
             When.Follow(UserName);
-            FollowUserSpec.Should().Request();
+            Spec.Should().Request();
+        }
+        
+        [TestMethod]
+        public void should_post_an_Unfollow_request() {
+            
+            Given.UnfollowUserSpec(UserName).Is(Spec);
+            When.Unfollow(UserName);
+            Spec.Should().Request();
         }
         
         [TestMethod]
