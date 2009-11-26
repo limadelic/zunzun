@@ -1,11 +1,15 @@
 ﻿using System.Windows;
 using Zunzun.App.Events;
+using Zunzun.App.Presenters;
 
 namespace Zunzun.App.Views.Xaml {
 
-    public partial class Main {
+    public partial class Main : ZunzunView {
+    
+        readonly ZunzunPresenter Presenter; 
         
         public Main() {
+            Presenter = PresenterFactory.NewZunzunPresenter(this);
             InitializeComponent();
             RegisterEvents();
         }
@@ -44,18 +48,12 @@ namespace Zunzun.App.Views.Xaml {
 
         void OnFollowUser(object Sender, RoutedEventArgs E) {
             var UserName = (E as UserEvent.Args).UserName;
-            var UserService = Domain.ObjectFactory.NewUserService;
-            
-            UserService.Follow(UserName);
-            UserChanged.With(UserName, Sender);
+            Presenter.Follow(UserName);
         }
 
         void OnUnfollowUser(object Sender, RoutedEventArgs E) { 
             var UserName = (E as UserEvent.Args).UserName;
-            var UserService = Domain.ObjectFactory.NewUserService;
-            
-            UserService.Unfollow(UserName);
-            UserChanged.With(UserName, Sender);
+            Presenter.Unfollow(UserName);
         }
     }
 }

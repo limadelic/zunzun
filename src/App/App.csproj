@@ -104,6 +104,7 @@
     <Compile Include="Events\UnfollowUser.cs" />
     <Compile Include="Events\UserChanged.cs" />
     <Compile Include="Events\UserEvent.cs" />
+    <Compile Include="Presenters\ZunzunPresenter.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
@@ -145,6 +146,7 @@
     <Compile Include="Views\HomeView.cs" />
     <Compile Include="Views\StatusView.cs" />
     <Compile Include="Views\UserHomeView.cs" />
+    <Compile Include="Views\ZunzunView.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>

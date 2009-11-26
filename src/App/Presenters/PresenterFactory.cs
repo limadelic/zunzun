@@ -4,6 +4,13 @@ namespace Zunzun.App.Presenters {
 
     public static class PresenterFactory {
 
+        public static ZunzunPresenter NewZunzunPresenter(ZunzunView View) {
+            return new ZunzunPresenter {
+                View = View,
+                UserService = Domain.ObjectFactory.NewUserService
+            };
+        }
+
         public static HomePresenter NewHomePresenter(HomeView View) {
             return new HomePresenter {
                 View = View,

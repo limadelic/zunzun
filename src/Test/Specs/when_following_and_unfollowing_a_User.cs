@@ -14,6 +14,24 @@ namespace Zunzun.Specs {
         const string UserName = Actors.ZunzunUserName;
         
         [TestClass]
+        public class a_ZunzunPresenter : BehaviorOf<ZunzunPresenter> {
+
+            [TestMethod]
+            public void should_delegate_Follow_to_service() {
+
+                When.Follow(UserName);
+                Then.UserService.Should().Follow(UserName);
+            }
+
+            [TestMethod]
+            public void should_delegate_Unfollow_to_service() {
+
+                When.Unfollow(UserName);
+                Then.UserService.Should().Unfollow(UserName);
+            }
+        }
+        
+        [TestClass]
         public class a_UserPresenter : BehaviorOf<UserHomePresenter> {
         
             [TestInitialize]
