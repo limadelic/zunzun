@@ -1,7 +1,10 @@
+using System;
 using System.Collections.Generic;
+using System.Windows;
 using Dimebrain.TweetSharp.Fluent;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
@@ -17,16 +20,36 @@ namespace Zunzun.Specs {
         public class a_ZunzunPresenter : BehaviorOf<ZunzunPresenter> {
 
             [TestMethod]
-            public void should_delegate_Follow_to_service() {
+            public void should_handle_Follow_and_Unfollow_events() {
+            
+                var OnFollowUser = GivenHandlerFor(Expected.OnFollowUser);
+                var OnUnfollowUser = GivenHandlerFor(Expected.OnUnfollowUser);
 
-                When.Follow(UserName);
+                When.RegisterEvents();
+
+                Then.View.Should().AddHandler(FollowUser.Event, OnFollowUser);
+                Then.View.Should().AddHandler(UnfollowUser.Event, OnUnfollowUser);
+            }
+
+            Delegate GivenHandlerFor(EventHandler<RoutedEventArgs> Method) { 
+                var Handler = new RoutedEventHandler(Method);
+                Given.Handler(Method).Is(Handler);
+                return Handler;
+            }
+
+            readonly UserEvent.Args Args = new UserEvent.Args(null, null, UserName);
+            
+            [TestMethod]
+            public void should_delegate_Follow_to_service() {
+            
+                When.OnFollowUser(null, Args);
                 Then.UserService.Should().Follow(UserName);
             }
 
             [TestMethod]
             public void should_delegate_Unfollow_to_service() {
 
-                When.Unfollow(UserName);
+                When.OnUnfollowUser(null, Args);
                 Then.UserService.Should().Unfollow(UserName);
             }
         }

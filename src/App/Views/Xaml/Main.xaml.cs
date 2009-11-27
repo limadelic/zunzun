@@ -15,10 +15,8 @@ namespace Zunzun.App.Views.Xaml {
         }
         
         void RegisterEvents() {
-            
+        
             AddHandler(ShowUserHome.Event, new RoutedEventHandler(OnShowUserHome));
-            AddHandler(FollowUser.Event, new RoutedEventHandler(OnFollowUser));
-            AddHandler(UnfollowUser.Event, new RoutedEventHandler(OnUnfollowUser));
             
             AddHandler(Reply.Event, new RoutedEventHandler(Update.OnReply));
             AddHandler(Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
@@ -44,16 +42,6 @@ namespace Zunzun.App.Views.Xaml {
 
         void OnGoHome(object sender, RoutedEventArgs e) {
             ContentPlaceholder.Child = Home;
-        }
-
-        void OnFollowUser(object Sender, RoutedEventArgs E) {
-            var UserName = (E as UserEvent.Args).UserName;
-            Presenter.Follow(UserName);
-        }
-
-        void OnUnfollowUser(object Sender, RoutedEventArgs E) { 
-            var UserName = (E as UserEvent.Args).UserName;
-            Presenter.Unfollow(UserName);
         }
     }
 }

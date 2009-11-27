@@ -5,10 +5,15 @@ namespace Zunzun.App.Presenters {
     public static class PresenterFactory {
 
         public static ZunzunPresenter NewZunzunPresenter(ZunzunView View) {
-            return new ZunzunPresenter {
+            
+            var Presenter = new ZunzunPresenter {
                 View = View,
                 UserService = Domain.ObjectFactory.NewUserService
             };
+            
+            Presenter.RegisterEvents();
+            
+            return Presenter;
         }
 
         public static HomePresenter NewHomePresenter(HomeView View) {
