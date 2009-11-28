@@ -1,10 +1,14 @@
+using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
+using System.Windows;
 using Dimebrain.TweetSharp.Fluent;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
+using Zunzun.App.Events;
 using Zunzun.App.Presenters;
+using Zunzun.App.Views.Xaml;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
@@ -15,6 +19,50 @@ namespace Zunzun.Specs {
     public class when_showing_UserHome {
         
         static readonly User Zunzun = Actors.Zunzun;
+        
+        [TestClass]
+        public class the_ZunzunPresenter : BehaviorOfZunzunPresenter {
+            
+            [TestMethod]
+            public void should_handle_the_show_event() {
+                
+                var OnShowUserHome = GivenHandlerFor(Expected.OnShowUserHome);
+                When.RegisterEvents();
+                Then.View.Should().AddHandler(ShowUserHome.Event, OnShowUserHome);
+            }
+        }
+        
+        [TestClass]
+        public class the_ZunzunPresenter_on_show : BehaviorOfZunzunPresenter {
+            
+            readonly object Sender = new object();
+            readonly UserHome UserHome = new UserHome();
+            readonly RoutedEventArgs Args = new RoutedEventArgs();
+            Delegate OnUserChanged;
+
+            [TestInitialize]
+            public void SetUp() {
+                OnUserChanged = GivenHandlerFor(UserHome.OnUserChanged);
+                Given.NewUserHome.Is(UserHome);
+                
+                When.OnShowUserHome(Sender, Args);
+            }
+
+            [TestMethod]
+            public void should_delegate_on_UserHome_control() {
+                Should.Show(UserHome, Sender, Args);
+            }
+
+            [TestMethod]
+            public void should_notify_UserHome_about_UserChanges() {
+                Then.View.Should().AddHandler(UserChanged.Event, OnUserChanged);
+            }
+            
+            [TestMethod]
+            public void should_display_the_UserHome() {
+                Then.View.Should().Show(UserHome);
+            }
+        }
         
         [TestClass]
         public class the_Presenter : BehaviorOf<UserHomePresenter> {

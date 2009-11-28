@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using System.Windows;
 using Dimebrain.TweetSharp.Fluent;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -17,7 +15,7 @@ namespace Zunzun.Specs {
         const string UserName = Actors.ZunzunUserName;
         
         [TestClass]
-        public class a_ZunzunPresenter : BehaviorOf<ZunzunPresenter> {
+        public class a_ZunzunPresenter : BehaviorOfZunzunPresenter {
 
             [TestMethod]
             public void should_handle_Follow_and_Unfollow_events() {
@@ -29,12 +27,6 @@ namespace Zunzun.Specs {
 
                 Then.View.Should().AddHandler(FollowUser.Event, OnFollowUser);
                 Then.View.Should().AddHandler(UnfollowUser.Event, OnUnfollowUser);
-            }
-
-            Delegate GivenHandlerFor(EventHandler<RoutedEventArgs> Method) { 
-                var Handler = new RoutedEventHandler(Method);
-                Given.Handler(Method).Is(Handler);
-                return Handler;
             }
 
             readonly UserEvent.Args Args = new UserEvent.Args(null, null, UserName);

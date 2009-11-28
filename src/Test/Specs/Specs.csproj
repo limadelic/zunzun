@@ -68,6 +68,7 @@
     <Compile Include="Fixtures\Step.cs" />
     <Compile Include="Fixtures\UpdateStatus.cs" />
     <Compile Include="Helpers\Actors.cs" />
+    <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
     <Compile Include="Helpers\ShouldAssertions.cs" />
     <Compile Include="Helpers\TestTimer.cs" />
     <Compile Include="Helpers\TokensAssertions.cs" />

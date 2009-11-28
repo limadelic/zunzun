@@ -16,8 +16,6 @@ namespace Zunzun.App.Views.Xaml {
         
         void RegisterEvents() {
         
-            AddHandler(ShowUserHome.Event, new RoutedEventHandler(OnShowUserHome));
-            
             AddHandler(Reply.Event, new RoutedEventHandler(Update.OnReply));
             AddHandler(Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
             AddHandler(DirectMessage.Event, new RoutedEventHandler(Update.OnDirectMessage));
@@ -33,15 +31,12 @@ namespace Zunzun.App.Views.Xaml {
         	DragMove();
         }
 
-        void OnShowUserHome(object Sender, RoutedEventArgs e) {
-            var UserHome = new UserHome();
-            UserHome.OnShowUserHome(Sender, e);
-            AddHandler(UserChanged.Event, new RoutedEventHandler(UserHome.OnUserChanged));
-            ContentPlaceholder.Child = UserHome;
-        }
-
         void OnGoHome(object sender, RoutedEventArgs e) {
             ContentPlaceholder.Child = Home;
+        }
+
+        public void Show(UIElement ContentControl) {
+            ContentPlaceholder.Child = ContentControl;
         }
     }
 }
