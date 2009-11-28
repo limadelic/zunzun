@@ -28,7 +28,7 @@ namespace Zunzun.Domain.Classes {
         }
 
         List<Tweet> Request(ITwitterLeafNode Spec) { return 
-            Spec.Request().ToTweets().ToList()
+            Spec.Request().ToTweets()
         ;}
 
         #region Specs
