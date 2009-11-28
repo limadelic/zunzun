@@ -10,8 +10,13 @@ I want to have my credentials stored in zunzun
 
 *!
 
+------ '''Scenario''' ''first time'' ------
+|When|the program is launched              |
+|Then|the user should be requested to login|
+
 ------ '''Scenario''' ''existing credentials'' ------
-|Given|the credentials have been recorded    |
-|When |the program is launched               |
-|Then |the user login should not be requested|
-|And  |the credentials should be loaded      |
+|Given|the credentials have been recorded       |
+|When |the program is launched                  |
+|Then |the user should not be requested to login|
+|And  |the credentials should be loaded         |
+

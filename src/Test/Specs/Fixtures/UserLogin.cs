@@ -26,9 +26,12 @@ namespace Zunzun.Specs.Fixtures {
             
             When("the program is launched", () => ZunzunPresenter.Load());
             
-            Then("the user login should not be requested", () => 
-                ZunzunView.ShouldNot().RequestLogin());
+            Then("the user should be requested to login", () => 
+                ZunzunView.Should().RequestLogin());
                 
+            Then("the user should not be requested to login", () => 
+                ZunzunView.ShouldNot().RequestLogin());
+
             And("the credentials should be loaded", () => {
                 Domain.Settings.UserName.ShouldBe(UserName);
                 Domain.Settings.Password.ShouldBe(Password);
