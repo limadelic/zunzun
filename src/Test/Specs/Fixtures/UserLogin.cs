@@ -37,5 +37,18 @@ namespace Zunzun.Specs.Fixtures {
                 Domain.Settings.Password.ShouldBe(Password);
             });
         }
+        
+        string BackupUserName = "username";
+        string BackupPassword = "password";
+        
+        public void BackupCredentials() {
+            BackupUserName = Domain.Settings.UserName;
+            BackupPassword = Domain.Settings.Password;
+        }
+        
+        public void RestoreCredentials() {
+            Domain.Settings.UserName = BackupUserName;
+            Domain.Settings.Password = BackupPassword;
+        }
     }
 }
