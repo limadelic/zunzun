@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
 

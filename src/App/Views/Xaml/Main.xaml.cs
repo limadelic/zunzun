@@ -6,10 +6,10 @@ namespace Zunzun.App.Views.Xaml {
 
     public partial class Main : ZunzunView {
     
-//        readonly ZunzunPresenter Presenter; 
-        
+        readonly ZunzunPresenter Presenter;
+
         public Main() {
-            PresenterFactory.NewZunzunPresenter(this);
+            Presenter = PresenterFactory.NewZunzunPresenter(this);
             InitializeComponent();
             RegisterEvents();
         }
@@ -24,7 +24,7 @@ namespace Zunzun.App.Views.Xaml {
             ToggleUpdate.Click += Update.OnToggleVisibility;
         }
 
-        void OnClose(object sender, RoutedEventArgs e) {
+        void OnClose(object Sender, RoutedEventArgs Args) {
             Close();
         }
 
@@ -32,10 +32,16 @@ namespace Zunzun.App.Views.Xaml {
         	DragMove();
         }
 
-        void OnGoHome(object sender, RoutedEventArgs e) { Show(Home); }
+        void OnGoHome(object Sender, RoutedEventArgs Args) { Show(Home); }
 
         public void Show(UIElement ContentControl) {
             ContentPlaceholder.Child = ContentControl;
+        }
+
+        public void RequestLogin() {}
+
+        void Load(object Sender, RoutedEventArgs Args) {
+            Presenter.Load();
         }
     }
 }

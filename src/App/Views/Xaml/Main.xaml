@@ -8,7 +8,7 @@
     x:Class="Zunzun.App.Views.Xaml.Main"
     Title="Zunzun" Background="{x:Null}" WindowStyle="None" 
     AllowsTransparency="True" x:Name="MainWND" 
-    WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="250" MinHeight="100" Width="300" Height="600" 
+    WindowStartupLocation="CenterScreen" ResizeMode="CanResizeWithGrip" MinWidth="250" MinHeight="100" Width="300" Height="600" Loaded="Load" 
 	>
     <Border CornerRadius="10,10,0,10" BorderBrush="#FFBABABA" BorderThickness="2,2,2,2" x:Name="MainFRM" Background="{DynamicResource Background}">
 		<Grid x:Name="MainBOX" MouseLeftButtonDown="OnDragWindow" Background="#024E4E4E" ClipToBounds="True">

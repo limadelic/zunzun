@@ -67,11 +67,13 @@
     <Compile Include="Fixtures\Spec.cs" />
     <Compile Include="Fixtures\Step.cs" />
     <Compile Include="Fixtures\UpdateStatus.cs" />
+    <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="Helpers\Actors.cs" />
     <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
     <Compile Include="Helpers\ShouldAssertions.cs" />
     <Compile Include="Helpers\TestTimer.cs" />
     <Compile Include="Helpers\TokensAssertions.cs" />
+    <Compile Include="Helpers\when_starting_zunzun.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="when_following_and_unfollowing_a_User.cs" />
     <Compile Include="when_formatting_Tweets_for_displaying.cs" />

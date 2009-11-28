@@ -1,6 +1,7 @@
 using System;
 using System.Windows;
 using Zunzun.App.Events;
+using Zunzun.App.Model;
 using Zunzun.App.Views;
 using Zunzun.App.Views.Xaml;
 using Zunzun.Domain;
@@ -10,6 +11,7 @@ namespace Zunzun.App.Presenters {
     public class ZunzunPresenter {
     
         public UserService UserService { get; set; }
+        public UserAuthenticator UserAuthenticator { get; set; }
         public ZunzunView View { get; set; }
         
         public void RegisterEvents() {
@@ -46,5 +48,11 @@ namespace Zunzun.App.Presenters {
         }
 
         public virtual UserHome NewUserHome { get { return new UserHome(); }}
+
+        public void Load() { EnsureUserCredentials(); }
+        
+        void EnsureUserCredentials() {
+            if (UserAuthenticator.HasCredentials) UserAuthenticator.UseCredentials();
+        }
     }
 }

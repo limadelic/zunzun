@@ -104,6 +104,8 @@
     <Compile Include="Events\UnfollowUser.cs" />
     <Compile Include="Events\UserChanged.cs" />
     <Compile Include="Events\UserEvent.cs" />
+    <Compile Include="Model\Classes\UserAuthenticatorClass.cs" />
+    <Compile Include="Model\UserAuthenticator.cs" />
     <Compile Include="Presenters\ZunzunPresenter.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
@@ -151,6 +153,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include="app.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>

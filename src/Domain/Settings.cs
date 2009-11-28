@@ -4,8 +4,8 @@ namespace Zunzun.Domain {
 
     public static class Settings {
     
-        public const string UserName = "kinobot";
-        public const string Password = "kashmir";
+        public static string UserName = "kinobot";
+        public static string Password = "kashmir";
         
         public const int NumberOfTweetsPerRequest = 100;
 

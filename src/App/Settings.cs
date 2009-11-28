@@ -9,5 +9,15 @@ namespace Zunzun.App {
 
         public static readonly bool IsInDesignMode =
             System.ComponentModel.DesignerProperties.GetIsInDesignMode(new System.Windows.DependencyObject());
+    
+        public static string UserName { 
+            get { return Properties.Settings.Default.UserName; }
+            set { Properties.Settings.Default.UserName = value; }
+        }
+        
+        public static string Password { 
+            get { return Properties.Settings.Default.Password; }
+            set { Properties.Settings.Default.Password = value; }
+        }
     }
 }

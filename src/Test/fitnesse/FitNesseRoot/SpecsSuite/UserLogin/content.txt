@@ -1,0 +1,17 @@
+!* Story
+
+In order to simplify the access to twitter
+I want to have my credentials stored in zunzun
+
+*!
+!*> Setup
+
+|User Login|
+
+*!
+
+------ '''Scenario''' ''existing credentials'' ------
+|Given|the credentials have been recorded    |
+|When |the program is launched               |
+|Then |the user login should not be requested|
+|And  |the credentials should be loaded      |
