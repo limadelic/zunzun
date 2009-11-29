@@ -8,8 +8,8 @@ namespace Zunzun.App.Model.Classes {
         ;}}
 
         public void UseCredentials() {
-            Domain.Settings.UserName = Settings.UserName;
-            Domain.Settings.Password = Settings.Password;
+            Settings.UserName = Domain.Settings.UserName;
+            Settings.Password = Domain.Settings.Password;
         }
     }
 }

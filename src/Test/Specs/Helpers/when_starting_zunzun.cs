@@ -14,7 +14,7 @@ namespace Zunzun.Specs.Helpers {
 
                 Given.UserAuthenticator.HasCredentials.Is(true);
                 When.Load();
-                Then.UserAuthenticator.Should().UseCredentials();
+                Then.View.ShouldNot().RequestLogin();
             }
 
         }
@@ -23,8 +23,8 @@ namespace Zunzun.Specs.Helpers {
         public class a_UserAuthenticator : BehaviorOf<UserAuthenticatorClass> {
         
             void GivenCredentials(string UserName, string Password) {
-                App.Settings.UserName = UserName;
-                App.Settings.Password = Password;
+                Domain.Settings.UserName = UserName;
+                Domain.Settings.Password = Password;
             }
 
             [TestMethod]
@@ -46,17 +46,6 @@ namespace Zunzun.Specs.Helpers {
                 
                 GivenCredentials("UserName", string.Empty);
                 When.HasCredentials.ShouldBeFalse();
-            }
-            
-            [TestMethod]
-            public void should_use_the_stored_credentials() {
-                
-                GivenCredentials("UserName", "Password");
-                
-                When.UseCredentials();
-                
-                Domain.Settings.UserName.ShouldBe("UserName");
-                Domain.Settings.Password.ShouldBe("Password");
             }
         }
     }

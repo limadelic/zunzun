@@ -20,8 +20,8 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
 
             Given("the credentials have been recorded", () => {
-                App.Settings.UserName = UserName;
-                App.Settings.Password = Password;
+                Domain.Settings.UserName = UserName;
+                Domain.Settings.Password = Password;
             });
             
             When("the program is launched", () => ZunzunPresenter.Load());
