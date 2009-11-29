@@ -6,20 +6,20 @@ I want to have my credentials stored in zunzun
 *!
 !*> Setup
 
-|User Login|
+|User Login        |
 |Backup Credentials|
 
 *!
 
 ------ '''Scenario''' ''first time'' ------
-|When|the program is launched              |
-|Then|the user should be requested to login|
+|Given|the are no credentials recorded      |
+|When |the program is launched              |
+|Then |the user should be requested to login|
 
 ------ '''Scenario''' ''existing credentials'' ------
 |Given|the credentials have been recorded       |
 |When |the program is launched                  |
 |Then |the user should not be requested to login|
-|And  |the credentials should be loaded         |
 
 !*> Teardown
 

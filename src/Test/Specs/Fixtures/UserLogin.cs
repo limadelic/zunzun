@@ -9,33 +9,30 @@ namespace Zunzun.Specs.Fixtures {
         const string UserName = "username";
         const string Password = "password";
 
-        readonly ZunzunView ZunzunView;
-        readonly ZunzunPresenter ZunzunPresenter;
+        ZunzunView ZunzunView;
+        ZunzunPresenter ZunzunPresenter;
         
-        public UserLogin() {
+        void Launch() {
             ZunzunView = Create.TestObjectFor<ZunzunView>();
             ZunzunPresenter = PresenterFactory.NewZunzunPresenter(ZunzunView);
+            ZunzunPresenter.Load();
         }
 
         protected override void SetUpSteps() {
+        
+            Given("the are no credentials recorded", () =>
+                Helpers.Given.Credentials(null, null));
 
-            Given("the credentials have been recorded", () => {
-                Domain.Settings.UserName = UserName;
-                Domain.Settings.Password = Password;
-            });
+            Given("the credentials have been recorded", () => 
+                Helpers.Given.Credentials(UserName, Password));
             
-            When("the program is launched", () => ZunzunPresenter.Load());
+            When("the program is launched", Launch);
             
             Then("the user should be requested to login", () => 
                 ZunzunView.Should().RequestLogin());
                 
             Then("the user should not be requested to login", () => 
                 ZunzunView.ShouldNot().RequestLogin());
-
-            And("the credentials should be loaded", () => {
-                Domain.Settings.UserName.ShouldBe(UserName);
-                Domain.Settings.Password.ShouldBe(Password);
-            });
         }
         
         string BackupUserName = "username";

@@ -6,10 +6,5 @@ namespace Zunzun.App.Model.Classes {
             !string.IsNullOrEmpty(Settings.UserName)
             && !string.IsNullOrEmpty(Settings.Password)
         ;}}
-
-        public void UseCredentials() {
-            Settings.UserName = Domain.Settings.UserName;
-            Settings.Password = Domain.Settings.Password;
-        }
     }
 }

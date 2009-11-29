@@ -70,6 +70,7 @@
     <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="Helpers\Actors.cs" />
     <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
+    <Compile Include="Helpers\Given.cs" />
     <Compile Include="Helpers\ShouldAssertions.cs" />
     <Compile Include="Helpers\TestTimer.cs" />
     <Compile Include="Helpers\TokensAssertions.cs" />

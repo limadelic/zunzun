@@ -17,34 +17,36 @@ namespace Zunzun.Specs.Helpers {
                 Then.View.ShouldNot().RequestLogin();
             }
 
+            [TestMethod]
+            public void should_request_credentials_if_missing() {
+
+                Given.UserAuthenticator.HasCredentials.Is(false);
+                When.Load();
+                Then.View.Should().RequestLogin();
+            }
         }
         
         [TestClass]
         public class a_UserAuthenticator : BehaviorOf<UserAuthenticatorClass> {
         
-            void GivenCredentials(string UserName, string Password) {
-                Domain.Settings.UserName = UserName;
-                Domain.Settings.Password = Password;
-            }
-
             [TestMethod]
             public void should_have_credentials_if_username_and_password_are_present() {
             
-                GivenCredentials("UserName", "Password");
+                Helpers.Given.Credentials("UserName", "Password");
                 When.HasCredentials.ShouldBeTrue();
             }
 
             [TestMethod]
             public void should_not_have_credentials_if_missing_username() {
                 
-                GivenCredentials(null, "Password");
+                Helpers.Given.Credentials(null, "Password");
                 When.HasCredentials.ShouldBeFalse();
             }
             
             [TestMethod]
             public void should_not_have_credentials_if_missing_password() {
                 
-                GivenCredentials("UserName", string.Empty);
+                Helpers.Given.Credentials("UserName", string.Empty);
                 When.HasCredentials.ShouldBeFalse();
             }
         }

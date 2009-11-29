@@ -52,7 +52,8 @@ namespace Zunzun.App.Presenters {
         public void Load() { EnsureUserCredentials(); }
         
         void EnsureUserCredentials() {
-            if (UserAuthenticator.HasCredentials) UserAuthenticator.UseCredentials();
+            if (UserAuthenticator.HasCredentials) return;
+            View.RequestLogin();
         }
     }
 }
