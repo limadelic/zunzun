@@ -9,8 +9,12 @@ namespace Zunzun.App.Presenters {
         public UserAuthenticator UserAuthenticator { get; set; }
         
         public void Login() {
-            UserAuthenticator.Authenticate(View.UserName, View.Password);
-            View.Close();
+            try {
+
+                UserAuthenticator.Authenticate(View.UserName, View.Password);
+                View.Close();
+
+            } catch { View.ShowError(); }
         }
     }
 }

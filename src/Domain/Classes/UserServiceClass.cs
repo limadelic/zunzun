@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using Dimebrain.TweetSharp.Extensions;
@@ -32,6 +33,11 @@ namespace Zunzun.Domain.Classes {
             UnfollowUserSpec(UserName).Request()
         ;}
 
+        public bool AreValid(string UserName, string Password) { return 
+            AreValidCredentialsSpec(UserName, Password)
+                .Request().AsUser() != null
+        ;}
+
         #region Specs
 
         public virtual ITwitterLeafNode UserByUserNameSpec(string UserName) { return 
@@ -48,6 +54,11 @@ namespace Zunzun.Domain.Classes {
 
         public virtual ITwitterLeafNode UnfollowUserSpec(string UserName) { return 
             TwitterAPI.Friendships.Destroy(UserName).AsJson()
+        ;}
+        
+        public virtual ITwitterLeafNode AreValidCredentialsSpec(string UserName, string Password) { return 
+            TwitterAPI.Request.AuthenticateAs(UserName, Password)
+            .Account().VerifyCredentials().AsJson()            
         ;}
         
         #endregion

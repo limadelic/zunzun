@@ -69,5 +69,22 @@ namespace Zunzun.Specs.Helpers {
         public static List<User> TwoUsers { get { return new List<User> {
             Zunzun, Zunzun    
         };}}
+
+        
+        const string RawCredentials = "{\"profile_sidebar_fill_color\":\"e0ff92\",\"description\":null,\"screen_name\":\"kinobot\",\"friends_count\":28,\"status\":{\"in_reply_to_user_id\":null,\"in_reply_to_status_id\":null,\"truncated\":false,\"source\":\"web\",\"favorited\":false,\"in_reply_to_screen_name\":null,\"created_at\":\"Sun Nov 29 20:20:44 +0000 2009\",\"id\":6178720450,\"text\":\"0981550c-c371-4508-a8b5-86f3d1f548eb\"},\"following\":false,\"statuses_count\":202,\"time_zone\":null,\"profile_sidebar_border_color\":\"87bc44\",\"notifications\":false,\"favourites_count\":0,\"geo_enabled\":false,\"profile_text_color\":\"000000\",\"url\":null,\"profile_background_image_url\":\"http://s.twimg.com/a/1259091217/images/themes/theme1/bg.png\",\"verified\":false,\"profile_link_color\":\"0000ff\",\"protected\":false,\"profile_background_tile\":false,\"created_at\":\"Sun Oct 11 18:51:55 +0000 2009\",\"location\":null,\"name\":\"kinobot\",\"profile_background_color\":\"9ae4e8\",\"profile_image_url\":\"http://s.twimg.com/a/1259091217/images/default_profile_5_normal.png\",\"id\":81659009,\"utc_offset\":null,\"followers_count\":5}";
+        
+        public static ITwitterLeafNode CredentialsSpec { get {
+            var Spec = Create.TestObjectFor<ITwitterLeafNode>();
+            Spec.Given().Request().WillReturn(RawCredentials);
+            return Spec;
+        }}
+        
+        const string RawError = "{\"request\":\"/account/verify_credentials.json\",\"error\":\"Could not authenticate you.\"}";
+
+        public static ITwitterLeafNode ErrorSpec { get {
+            var Spec = Create.TestObjectFor<ITwitterLeafNode>();
+            Spec.Given().Request().WillReturn(RawError);
+            return Spec;
+        }}
     }
 }
