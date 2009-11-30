@@ -12,12 +12,9 @@ namespace Zunzun.Specs.Fixtures {
         ZunzunView ZunzunView;
         ZunzunPresenter ZunzunPresenter;
         
-        void Launch() {
-            ZunzunView = Create.TestObjectFor<ZunzunView>();
-            ZunzunPresenter = PresenterFactory.NewZunzunPresenter(ZunzunView);
-            ZunzunPresenter.Load();
-        }
-
+        LoginView LoginView;
+        LoginPresenter LoginPresenter;
+        
         protected override void SetUpSteps() {
         
             Given("the are no credentials recorded", () =>
@@ -25,18 +22,38 @@ namespace Zunzun.Specs.Fixtures {
 
             Given("the credentials have been recorded", () => 
                 Helpers.Given.Credentials(UserName, Password));
+                
+            Given("the user is requested to login", () => {
+                LoginView = Create.TestObjectFor<LoginView>();
+                LoginPresenter = PresenterFactory.NewLoginPresenter(LoginView);
+            });
             
-            When("the program is launched", Launch);
+            When("the program is launched", () => {
+                ZunzunView = Create.TestObjectFor<ZunzunView>();
+                ZunzunPresenter = PresenterFactory.NewZunzunPresenter(ZunzunView);
+                ZunzunPresenter.Load();
+            });
+            
+            When("the correct credentials are supplied", () => {
+                LoginView.UserName = BackupUserName;
+                LoginView.Password = BackupPassword;
+                LoginPresenter.Login();
+            });
             
             Then("the user should be requested to login", () => 
                 ZunzunView.Should().RequestLogin());
                 
             Then("the user should not be requested to login", () => 
                 ZunzunView.ShouldNot().RequestLogin());
+
+            Then("the credentials should be recorded", () => {
+                Domain.Settings.UserName.ShouldBe(LoginView.UserName);
+                Domain.Settings.Password.ShouldBe(LoginView.Password);
+            });
         }
-        
-        string BackupUserName = "username";
-        string BackupPassword = "password";
+
+        string BackupUserName;
+        string BackupPassword;
         
         public void BackupCredentials() {
             BackupUserName = Domain.Settings.UserName;

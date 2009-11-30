@@ -1,6 +1,7 @@
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
+using Zunzun.App.Presenters;
 
 namespace Zunzun.Specs.Helpers {
 
@@ -48,6 +49,22 @@ namespace Zunzun.Specs.Helpers {
                 
                 Helpers.Given.Credentials("UserName", string.Empty);
                 When.HasCredentials.ShouldBeFalse();
+            }
+        }
+        
+        [TestClass]
+        public class a_LoginPresenter : BehaviorOf<LoginPresenter> {
+            
+            [TestMethod]
+            public void should_authenticate_credentials() {
+
+                Given.View.UserName = "username";
+                Given.View.Password = "password";
+
+                When.Login();
+                
+                Then.UserAuthenticator.Should()
+                    .Authenticate("username", "password");
             }
         }
     }

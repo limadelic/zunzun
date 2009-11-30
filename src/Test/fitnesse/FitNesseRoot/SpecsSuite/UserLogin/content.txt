@@ -16,6 +16,11 @@ I want to have my credentials stored in zunzun
 |When |the program is launched              |
 |Then |the user should be requested to login|
 
+------ '''Scenario''' ''successful login'' ------
+|Given|the user is requested to login      |
+|When |the correct credentials are supplied|
+|Then |the credentials should be recorded  |
+
 ------ '''Scenario''' ''existing credentials'' ------
 |Given|the credentials have been recorded       |
 |When |the program is launched                  |

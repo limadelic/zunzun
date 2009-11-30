@@ -1,3 +1,4 @@
+using System;
 using Zunzun.App.Views;
 
 namespace Zunzun.App.Presenters {
@@ -38,6 +39,10 @@ namespace Zunzun.App.Presenters {
                 UserService = Domain.ObjectFactory.NewUserService,
                 TweetService = Domain.ObjectFactory.NewTweetService,
             };
+        }
+
+        public static LoginPresenter NewLoginPresenter(LoginView View) {
+            return new LoginPresenter { View = View };
         }
     }
 }
