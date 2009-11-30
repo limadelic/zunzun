@@ -25,6 +25,7 @@ I want to have my credentials stored in zunzun
 |Given|the user is requested to login      |
 |When |the correct credentials are supplied|
 |Then |the credentials should be recorded  |
+|And  |the password should be encrypted    |
 
 ------ '''Scenario''' ''existing credentials'' ------
 |Given|the credentials have been recorded       |

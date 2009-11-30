@@ -27,6 +27,9 @@ namespace Zunzun.Specs.Fixtures {
         readonly Action<string> Action1;
         private readonly Action<string, string> Action2;
 
+        public override string ToString() { return 
+            String.Format(Name, Args)
+        ;}
 
         public void Execute()
         {

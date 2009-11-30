@@ -74,6 +74,18 @@ namespace Zunzun.Specs.Helpers {
                 Domain.Settings.UserName.ShouldBe(UserName);
                 Domain.Settings.Password.ShouldBe(Password);
             }
+            
+            [TestMethod]
+            public void should_encrypt_the_password() {
+                const string EncryptedPassword = "!@##@$0054";
+                
+                Given.UserService.AreValid(UserName, Password).Is(true);
+                Given.KeyMaker.Encrypt(Password).Is(EncryptedPassword);
+                
+                When.Authenticate(UserName, Password);
+                
+                Domain.Settings.EncryptedPassword.ShouldBe(EncryptedPassword);
+            }
         }
         
         [TestClass]

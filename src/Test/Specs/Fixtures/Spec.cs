@@ -81,7 +81,8 @@ namespace Zunzun.Specs.Fixtures {
                 return true;
                 
             } catch (Exception e) {
-                Console.WriteLine(e.Message);
+                var Msg = "Failed on step [" + CurrentStep + "] due to [" + e.Message + "]";
+                Console.WriteLine(Msg);
                 return false;
             }
         }

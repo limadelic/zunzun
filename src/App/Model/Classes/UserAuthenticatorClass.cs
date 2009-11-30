@@ -1,4 +1,5 @@
 using System;
+using Tools;
 using Zunzun.Domain;
 
 namespace Zunzun.App.Model.Classes {
@@ -6,6 +7,7 @@ namespace Zunzun.App.Model.Classes {
     public class UserAuthenticatorClass : UserAuthenticator {
     
         public UserService UserService { get; set; }
+        public KeyMaker KeyMaker { get; set; }
 
         public bool HasCredentials { get { return 
             !string.IsNullOrEmpty(Settings.UserName)
@@ -19,6 +21,7 @@ namespace Zunzun.App.Model.Classes {
                 
             Domain.Settings.UserName = UserName;
             Domain.Settings.Password = Password;
+            Domain.Settings.EncryptedPassword = KeyMaker.Encrypt(Password);
         }
     }
 }

@@ -156,6 +156,10 @@
       <Project>{1312AB15-85D1-4963-94C9-EEA2BCE53E78}</Project>
       <Name>Domain</Name>
     </ProjectReference>
+    <ProjectReference Include="..\Tools\Tools.csproj">
+      <Project>{E4F850ED-2C67-4DF5-B644-7663A9A9E283}</Project>
+      <Name>Tools</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

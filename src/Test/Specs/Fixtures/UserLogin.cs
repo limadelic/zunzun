@@ -60,6 +60,9 @@ namespace Zunzun.Specs.Fixtures {
 
             Then("an error message should be displayed", () => 
                 LoginView.Should().ShowError());
+
+            And("the password should be encrypted", () =>
+                Domain.Settings.EncryptedPassword.ShouldNotBeEmpty());
         }
 
         string BackupUserName;

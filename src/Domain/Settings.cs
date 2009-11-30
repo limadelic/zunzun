@@ -18,7 +18,9 @@ namespace Zunzun.Domain {
             get { return Properties.Settings.Default.Password;  }
             set { Properties.Settings.Default.Password = value; }
         }
-        
+
+        public static string EncryptedPassword { get; set; }
+
         public const int NumberOfTweetsPerRequest = 100;
 
         public const string TwitterUrl = "http://twitter.com/";

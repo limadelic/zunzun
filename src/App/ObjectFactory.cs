@@ -11,10 +11,9 @@ namespace Zunzun.App {
 
         public static Timer NewTimer { get { return new TimerClass(); }}
         
-        public static UserAuthenticator NewUserAuthenticator { get { return new 
-            UserAuthenticatorClass {
-                UserService = Domain.ObjectFactory.NewUserService
-            }
-        ;}}
+        public static UserAuthenticator NewUserAuthenticator { get { return new UserAuthenticatorClass {
+            UserService = Domain.ObjectFactory.NewUserService,
+            KeyMaker = Tools.ObjectFactory.NewKeyMaker
+        };}}
     }
 }
