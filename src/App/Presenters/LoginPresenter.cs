@@ -10,6 +10,7 @@ namespace Zunzun.App.Presenters {
         
         public void Login() {
             UserAuthenticator.Authenticate(View.UserName, View.Password);
+            View.Close();
         }
     }
 }

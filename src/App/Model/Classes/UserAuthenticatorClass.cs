@@ -7,7 +7,9 @@ namespace Zunzun.App.Model.Classes {
             && !string.IsNullOrEmpty(Settings.Password)
         ;}}
 
-        public void Authenticate(string Username, string Password) { 
+        public void Authenticate(string UserName, string Password) {
+            Domain.Settings.UserName = UserName;
+            Domain.Settings.Password = Password;
         }
     }
 }

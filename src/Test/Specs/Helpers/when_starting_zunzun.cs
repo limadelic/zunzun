@@ -7,6 +7,9 @@ namespace Zunzun.Specs.Helpers {
 
     public class when_starting_zunzun {
 
+        const string Password = "password";
+        const string UserName = "username";
+            
         [TestClass]
         public class the_ZunzunPresenter : BehaviorOfZunzunPresenter {
 
@@ -50,21 +53,37 @@ namespace Zunzun.Specs.Helpers {
                 Helpers.Given.Credentials("UserName", string.Empty);
                 When.HasCredentials.ShouldBeFalse();
             }
+            
+            [TestMethod]
+            public void should_apply_the_User_credentials() {
+                
+                When.Authenticate(UserName, Password);
+                
+                Domain.Settings.UserName.ShouldBe(UserName);
+                Domain.Settings.Password.ShouldBe(Password);
+            }
         }
         
         [TestClass]
         public class a_LoginPresenter : BehaviorOf<LoginPresenter> {
-            
+
             [TestMethod]
             public void should_authenticate_credentials() {
 
-                Given.View.UserName = "username";
-                Given.View.Password = "password";
+                Given.View.UserName = UserName;
+                Given.View.Password = Password;
 
                 When.Login();
                 
                 Then.UserAuthenticator.Should()
-                    .Authenticate("username", "password");
+                    .Authenticate(UserName, Password);
+            }
+            
+            [TestMethod]
+            public void should_close_upon_valid_credentials() {
+                
+                When.Login();
+                Then.View.Should().Close();
             }
         }
     }

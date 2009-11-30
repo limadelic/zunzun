@@ -4,5 +4,7 @@ namespace Zunzun.App.Views {
     
         string UserName { get; set; }
         string Password { get; set; }
+        
+        void Close();
     }
 }
