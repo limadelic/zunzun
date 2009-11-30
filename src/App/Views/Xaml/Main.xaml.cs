@@ -38,7 +38,10 @@ namespace Zunzun.App.Views.Xaml {
             ContentPlaceholder.Child = ContentControl;
         }
 
-        public void RequestLogin() {}
+        public void RequestLogin() {
+            var Login = new Login { Owner = this };
+            Login.ShowDialog();
+        }
 
         void Load(object Sender, RoutedEventArgs Args) {
             Presenter.Load();

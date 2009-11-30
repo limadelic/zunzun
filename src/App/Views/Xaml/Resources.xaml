@@ -458,4 +458,6 @@
 			</Setter.Value>
 		</Setter>
 	</Style>
+	<CornerRadius x:Key="RoundWindowsBorder">10,10,0,10</CornerRadius>
+	<Thickness x:Key="WindowsBorderThickness">2</Thickness>
 </ResourceDictionary>

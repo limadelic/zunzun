@@ -1,0 +1,33 @@
+﻿<Window
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+    x:Class="Zunzun.App.Views.Xaml.Login"
+    Title="Login" AllowsTransparency="True" 
+    WindowStartupLocation="CenterOwner" 
+    WindowStyle="None" Background="{x:Null}" mc:Ignorable="d" Width="245" Height="125">
+	<Border Background="{DynamicResource Background}" BorderBrush="{DynamicResource InfoBrush}" BorderThickness="{DynamicResource WindowsBorderThickness}" CornerRadius="10">
+		<Grid Margin="10">
+        
+			<Grid.RowDefinitions>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition Height="Auto"/>
+				<RowDefinition/>
+			</Grid.RowDefinitions>
+			<Grid.ColumnDefinitions>
+				<ColumnDefinition Width="Auto"/>
+				<ColumnDefinition Width="Auto"/>
+			</Grid.ColumnDefinitions>
+			<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="User Name" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}"/>
+			<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Password" Foreground="{DynamicResource ContentBrush}" Grid.Row="1" Padding="{DynamicResource NoThickness}"/>
+			<TextBox x:Name="UserNameTXT" TextWrapping="Wrap" Grid.Column="1" Width="150" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}"/>
+			<PasswordBox x:Name="PasswordTXT" HorizontalAlignment="Left" d:LayoutOverrides="Height" Width="150" Grid.Column="1" Grid.Row="1" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}"/>
+			<StackPanel d:LayoutOverrides="Height" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
+				<Button VerticalAlignment="Top" x:Name="LoginBTT" Content="Login" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" HorizontalAlignment="Left" Width="50" Click="OnLogin"/>
+				<Button VerticalAlignment="Top" IsCancel="True" x:Name="CancelBTT" Content="Cancel" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="50" Margin="30,0,0,0"/>
+			</StackPanel>
+        
+		</Grid>
+	</Border>
+</Window>

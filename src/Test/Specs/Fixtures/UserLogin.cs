@@ -35,14 +35,14 @@ namespace Zunzun.Specs.Fixtures {
             });
             
             When("invalid credentials are supplied", () => {
-                LoginView.UserName = BackupUserName;
-                LoginView.Password = "invalid pass";
+                LoginView.Given().UserName.Is(BackupUserName);
+                LoginView.Given().Password.Is("invalid pass");
                 LoginPresenter.Login();
             });
             
             When("the correct credentials are supplied", () => {
-                LoginView.UserName = BackupUserName;
-                LoginView.Password = BackupPassword;
+                LoginView.Given().UserName.Is(BackupUserName);
+                LoginView.Given().Password.Is(BackupPassword);
                 LoginPresenter.Login();
             });
             
@@ -53,8 +53,8 @@ namespace Zunzun.Specs.Fixtures {
                 ZunzunView.ShouldNot().RequestLogin());
 
             Then("the credentials should be recorded", () => {
-                Domain.Settings.UserName.ShouldBe(LoginView.UserName);
-                Domain.Settings.Password.ShouldBe(LoginView.Password);
+                Domain.Settings.UserName.ShouldBe(BackupUserName);
+                Domain.Settings.Password.ShouldBe(BackupPassword);
             });
 
             Then("an error message should be displayed", () => 

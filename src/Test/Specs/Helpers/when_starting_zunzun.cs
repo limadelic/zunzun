@@ -83,8 +83,8 @@ namespace Zunzun.Specs.Helpers {
             [TestMethod]
             public void should_authenticate_credentials() {
 
-                Given.View.UserName = UserName;
-                Given.View.Password = Password;
+                Given.View.UserName.Is(UserName);
+                Given.View.Password.Is(Password);
 
                 When.Login();
                 
@@ -102,8 +102,8 @@ namespace Zunzun.Specs.Helpers {
             [TestMethod]
             public void should_show_error_upon_invalid_credentials() {
                 
-                Given.View.UserName = UserName;
-                Given.View.Password = Password;
+                Given.View.UserName.Is(UserName);
+                Given.View.Password.Is(Password);
                 
                 Given.UserAuthenticator.Authenticate(UserName, Password); 
                     WillThrow(new Exception());
