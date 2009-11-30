@@ -6,7 +6,7 @@
     x:Class="Zunzun.App.Views.Xaml.Login"
     Title="Login" AllowsTransparency="True" 
     WindowStartupLocation="CenterOwner" 
-    WindowStyle="None" Background="{x:Null}" mc:Ignorable="d" Width="245" Height="125">
+    WindowStyle="None" Background="{x:Null}" mc:Ignorable="d" Width="250" Height="125">
 	<Border Background="{DynamicResource Background}" BorderBrush="{DynamicResource InfoBrush}" BorderThickness="{DynamicResource WindowsBorderThickness}" CornerRadius="10">
 		<Grid Margin="10">
         
@@ -21,12 +21,13 @@
 			</Grid.ColumnDefinitions>
 			<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="User Name" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}"/>
 			<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Password" Foreground="{DynamicResource ContentBrush}" Grid.Row="1" Padding="{DynamicResource NoThickness}"/>
-			<TextBox x:Name="UserNameTXT" TextWrapping="Wrap" Grid.Column="1" Width="150" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}"/>
-			<PasswordBox x:Name="PasswordTXT" HorizontalAlignment="Left" d:LayoutOverrides="Height" Width="150" Grid.Column="1" Grid.Row="1" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}"/>
+			<TextBox x:Name="UserNameTXT" TextWrapping="Wrap" Grid.Column="1" Width="150" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" TextChanged="HideError"/>
+			<PasswordBox x:Name="PasswordTXT" HorizontalAlignment="Left" d:LayoutOverrides="Height" Width="150" Grid.Column="1" Grid.Row="1" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" PasswordChanged="HideError"/>
 			<StackPanel d:LayoutOverrides="Height" Orientation="Horizontal" Grid.Row="2" Grid.ColumnSpan="2" VerticalAlignment="Center" HorizontalAlignment="Center">
 				<Button VerticalAlignment="Top" x:Name="LoginBTT" Content="Login" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" HorizontalAlignment="Left" Width="50" Click="OnLogin" IsDefault="True"/>
 				<Button VerticalAlignment="Top" IsCancel="True" x:Name="CancelBTT" Content="Cancel" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Width="50" Margin="30,0,0,0"/>
 			</StackPanel>
+			<Label x:Name="ErrorTXT" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Invalid credentials. Please try again." Foreground="#FFBC5F5F" Padding="{DynamicResource NoThickness}" Grid.Row="2" FontStyle="Italic" FontSize="{DynamicResource InfoFontSize}" Grid.ColumnSpan="2" Margin="0,-6,0,0" Visibility="Hidden"/>
         
 		</Grid>
 	</Border>

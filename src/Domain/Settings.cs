@@ -5,8 +5,8 @@ namespace Zunzun.Domain {
     public static class Settings {
     
         static Settings() {
-//            UserName = "kinobot";
-//            Password = "kashmir";
+            UserName = "kinobot";
+            Password = "kashmir";
         }
 
         public static string UserName {

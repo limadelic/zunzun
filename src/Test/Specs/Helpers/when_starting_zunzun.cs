@@ -5,7 +5,6 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
 using Zunzun.App.Presenters;
 using Zunzun.Domain.Classes;
-using Zunzun.Specs.Fixtures;
 
 namespace Zunzun.Specs.Helpers {
 
