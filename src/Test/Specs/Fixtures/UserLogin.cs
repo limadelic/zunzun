@@ -1,6 +1,7 @@
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
+using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -41,8 +42,8 @@ namespace Zunzun.Specs.Fixtures {
             });
             
             When("the correct credentials are supplied", () => {
-                LoginView.Given().UserName.Is(BackupUserName);
-                LoginView.Given().Password.Is(BackupPassword);
+                LoginView.Given().UserName.Is(Actors.KinobotUserName);
+                LoginView.Given().Password.Is(Actors.KinobotPassword);
                 LoginPresenter.Login();
             });
             
@@ -53,8 +54,8 @@ namespace Zunzun.Specs.Fixtures {
                 ZunzunView.ShouldNot().RequestLogin());
 
             Then("the credentials should be recorded", () => {
-                Domain.Settings.UserName.ShouldBe(BackupUserName);
-                Domain.Settings.Password.ShouldBe(BackupPassword);
+                Domain.Settings.UserName.ShouldBe(Actors.KinobotUserName);
+                Domain.Settings.Password.ShouldBe(Actors.KinobotPassword);
             });
 
             Then("an error message should be displayed", () => 

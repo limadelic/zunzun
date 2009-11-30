@@ -32,6 +32,9 @@ namespace Zunzun.Specs.Helpers {
         public static int OneMillisecond { get { return 1; } }
         public static int OneHundredMilliseconds { get { return 100; } }
 
+        public const string KinobotUserName = "kinobot";
+        public const string KinobotPassword = "kashmir";
+
         public const string ZunzunUserName = "zunzunapp";
         public const string RawZunzun = "{\"following\":null,\"geo_enabled\":false,\"profile_background_tile\":false,\"description\":\"snappy & concise twitter app\",\"profile_background_color\":\"9ae4e8\",\"status\":{\"in_reply_to_user_id\":null,\"in_reply_to_status_id\":null,\"truncated\":false,\"favorited\":false,\"in_reply_to_screen_name\":null,\"source\":\"web\",\"created_at\":\"Sun Nov 08 16:44:29 +0000 2009\",\"id\":5535183525,\"text\":\"test\"},\"favourites_count\":0,\"profile_sidebar_fill_color\":\"e0ff92\",\"url\":\"http://zunzun.us\",\"verified\":false,\"notifications\":null,\"statuses_count\":1,\"time_zone\":\"Eastern Time (US & Canada)\",\"friends_count\":1,\"profile_sidebar_border_color\":\"87bc44\",\"created_at\":\"Fri Nov 06 01:38:13 +0000 2009\",\"profile_image_url\":\"http://a1.twimg.com/profile_images/516155390/logosq_normal.png\",\"protected\":false,\"profile_text_color\":\"000000\",\"location\":\"Miami, FL\",\"screen_name\":\"zunzunapp\",\"name\":\"zunzun\",\"profile_background_image_url\":\"http://s.twimg.com/a/1258070043/images/themes/theme1/bg.png\",\"followers_count\":2,\"id\":87839102,\"utc_offset\":-18000,\"profile_link_color\":\"0000ff\"}";
 
