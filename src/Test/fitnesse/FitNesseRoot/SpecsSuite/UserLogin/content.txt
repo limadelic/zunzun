@@ -16,6 +16,11 @@ I want to have my credentials stored in zunzun
 |When |the program is launched              |
 |Then |the user should be requested to login|
 
+------ '''Scenario''' ''unsuccessful login'' ------
+|Given|the user is requested to login      |
+|When |invalid credentials are supplied    |
+|Then |an error message should be displayed|
+
 ------ '''Scenario''' ''successful login'' ------
 |Given|the user is requested to login      |
 |When |the correct credentials are supplied|

@@ -6,5 +6,6 @@ namespace Zunzun.App.Views {
         string Password { get; set; }
         
         void Close();
+        void ShowError();
     }
 }

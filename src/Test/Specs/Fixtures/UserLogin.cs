@@ -34,6 +34,12 @@ namespace Zunzun.Specs.Fixtures {
                 ZunzunPresenter.Load();
             });
             
+            When("invalid credentials are supplied", () => {
+                LoginView.UserName = BackupUserName;
+                LoginView.Password = "invalid pass";
+                LoginPresenter.Login();
+            });
+            
             When("the correct credentials are supplied", () => {
                 LoginView.UserName = BackupUserName;
                 LoginView.Password = BackupPassword;
@@ -50,6 +56,9 @@ namespace Zunzun.Specs.Fixtures {
                 Domain.Settings.UserName.ShouldBe(LoginView.UserName);
                 Domain.Settings.Password.ShouldBe(LoginView.Password);
             });
+
+            Then("an error message should be displayed", () => 
+                LoginView.Should().ShowError());
         }
 
         string BackupUserName;
