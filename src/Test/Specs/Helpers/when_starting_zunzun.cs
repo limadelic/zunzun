@@ -33,6 +33,14 @@ namespace Zunzun.Specs.Helpers {
                 When.Load();
                 Then.View.Should().RequestLogin();
             }
+            
+            [TestMethod]
+            public void should_exit_if_no_credentials_are_supplied() {
+                
+                Given.UserAuthenticator.HasCredentials.Is(false);
+                When.Load();
+                Then.View.Should().Close();
+            }
         }
         
         [TestClass]

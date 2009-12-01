@@ -8,5 +8,6 @@ namespace Zunzun.App.Views {
         void AddHandler(RoutedEvent Event, Delegate Handler);
         void Show(UIElement ContentControl);
         void RequestLogin();
+        void Close();
     }
 }
