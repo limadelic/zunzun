@@ -13,7 +13,7 @@ namespace Zunzun.App {
         
         public static UserAuthenticator NewUserAuthenticator { get { return new UserAuthenticatorClass {
             UserService = Domain.ObjectFactory.NewUserService,
-            KeyMaker = Tools.ObjectFactory.NewKeyMaker
+            KeyMaker = Utils.ObjectFactory.NewKeyMaker
         };}}
     }
 }

@@ -4,3 +4,9 @@
 !define TEST_RUNNER {dotnet\Runner.exe}
 
 *!
+!*> defines
+
+!define COLLAPSE_SETUP {true}
+!define COLLAPSE_TEARDOWN {true}
+
+*!

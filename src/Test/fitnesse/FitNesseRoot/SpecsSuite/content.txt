@@ -1,6 +1,8 @@
 !*> define
 
 !define ZunzunApp {zunzunapp}
+!define KinobotUserName {kinobot}
+!define KinobotPassword {kashmir}
 
 *!
 

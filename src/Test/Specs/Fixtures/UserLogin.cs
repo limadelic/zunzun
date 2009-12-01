@@ -2,19 +2,21 @@ using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Specs.Helpers;
+using Zunzun.Utils;
 
 namespace Zunzun.Specs.Fixtures {
 
     public class UserLogin : Spec {
     
         const string UserName = "username";
-        const string Password = "password";
 
         ZunzunView ZunzunView;
         ZunzunPresenter ZunzunPresenter;
         
         LoginView LoginView;
         LoginPresenter LoginPresenter;
+
+        KeyMaker KeyMaker = Utils.ObjectFactory.NewKeyMaker;
         
         protected override void SetUpSteps() {
         
@@ -22,7 +24,7 @@ namespace Zunzun.Specs.Fixtures {
                 Helpers.Given.Credentials(null, null));
 
             Given("the credentials have been recorded", () => 
-                Helpers.Given.Credentials(UserName, Password));
+                Helpers.Given.Credentials(UserName, Actors.KinobotEncryptedPassword));
                 
             Given("the user is requested to login", () => {
                 LoginView = Create.TestObjectFor<LoginView>();
@@ -36,7 +38,7 @@ namespace Zunzun.Specs.Fixtures {
             });
             
             When("invalid credentials are supplied", () => {
-                LoginView.Given().UserName.Is(BackupUserName);
+                LoginView.Given().UserName.Is(Actors.KinobotUserName);
                 LoginView.Given().Password.Is("invalid pass");
                 LoginPresenter.Login();
             });
@@ -54,28 +56,41 @@ namespace Zunzun.Specs.Fixtures {
                 ZunzunView.ShouldNot().RequestLogin());
 
             Then("the credentials should be recorded", () => {
-                Domain.Settings.UserName.ShouldBe(Actors.KinobotUserName);
-                Domain.Settings.Password.ShouldBe(Actors.KinobotPassword);
+                Utils.Properties.Settings.Default.UserName.ShouldBe(Actors.KinobotUserName);
+                Utils.Properties.Settings.Default.Password.ShouldNotBeEmpty();
             });
 
             Then("an error message should be displayed", () => 
                 LoginView.Should().ShowError());
 
             And("the password should be encrypted", () =>
-                Domain.Settings.EncryptedPassword.ShouldNotBeEmpty());
+                KeyMaker.Decrypt(Utils.Properties.Settings.Default.Password)
+                    .ShouldBe(Actors.KinobotPassword));
         }
 
+        #region backup/restore
+        
         string BackupUserName;
         string BackupPassword;
-        
+        string BackupEncryptedPassword;
+
         public void BackupCredentials() {
+
             BackupUserName = Domain.Settings.UserName;
             BackupPassword = Domain.Settings.Password;
+            BackupEncryptedPassword = Utils.Properties.Settings.Default.Password;
         }
-        
+
         public void RestoreCredentials() {
+
             Domain.Settings.UserName = BackupUserName;
             Domain.Settings.Password = BackupPassword;
+
+            Utils.Properties.Settings.Default.UserName = BackupUserName;
+            Utils.Properties.Settings.Default.Password = BackupEncryptedPassword;
+            Utils.Properties.Settings.Default.Save();
         }
+
+        #endregion
     }
 }

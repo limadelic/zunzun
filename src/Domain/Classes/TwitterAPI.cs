@@ -3,6 +3,7 @@ using Dimebrain.TweetSharp.Fluent;
 namespace Zunzun.Domain.Classes {
 
     public static class TwitterAPI {
+    
         public static IFluentTwitter Request { get { return FluentTwitter.CreateRequest(); }}
         
         static IFluentTwitter AuthenticatedRequest { get { return 

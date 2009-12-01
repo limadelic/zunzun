@@ -1,0 +1,8 @@
+|Suite Set Up|
+
+!*> setup credentials
+
+|User Name|${KinobotUserName}|
+|Password |${KinobotPassword}|
+
+*!

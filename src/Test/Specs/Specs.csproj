@@ -66,6 +66,7 @@
     <Compile Include="Fixtures\ShowUserHome.cs" />
     <Compile Include="Fixtures\Spec.cs" />
     <Compile Include="Fixtures\Step.cs" />
+    <Compile Include="Fixtures\SuiteSetUpFixture.cs" />
     <Compile Include="Fixtures\UpdateStatus.cs" />
     <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="Helpers\Actors.cs" />
@@ -97,9 +98,9 @@
       <Project>{1312AB15-85D1-4963-94C9-EEA2BCE53E78}</Project>
       <Name>Domain</Name>
     </ProjectReference>
-    <ProjectReference Include="..\..\Tools\Tools.csproj">
+    <ProjectReference Include="..\..\Utils\Utils.csproj">
       <Project>{E4F850ED-2C67-4DF5-B644-7663A9A9E283}</Project>
-      <Name>Tools</Name>
+      <Name>Utils</Name>
     </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
