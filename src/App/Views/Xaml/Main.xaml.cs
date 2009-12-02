@@ -46,5 +46,9 @@ namespace Zunzun.App.Views.Xaml {
         void Load(object Sender, RoutedEventArgs Args) {
             Presenter.Load();
         }
+
+        private void OnSettings(object sender, RoutedEventArgs e) {
+            Presenter.ShowSettings();
+        }
     }
 }

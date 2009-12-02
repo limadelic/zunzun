@@ -20,7 +20,10 @@
 			</Grid.RowDefinitions>
 			<Grid x:Name="Header" Margin="10,0,2,0">
 				<Label x:Name="TitleTXT" HorizontalAlignment="Left" Content="zunzun" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="Height" FontFamily="Segoe Script" FontSize="16" FontWeight="Bold"/>
-				<Button HorizontalAlignment="Right" VerticalAlignment="Top" IsCancel="True" x:Name="CloseApp" Click="OnClose" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18" Margin="0,2,0,0"/>
+				<StackPanel HorizontalAlignment="Right" Margin="0,2,0,0" Orientation="Horizontal">
+					<Button VerticalAlignment="Top" x:Name="SettingsBTT" Click="OnSettings" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" FontWeight="Bold" Width="18" Height="18" Content="@" Foreground="{DynamicResource ContentBrush}"/>
+					<Button VerticalAlignment="Top" IsCancel="True" x:Name="CloseBTT" Click="OnClose" Content="X" Style="{DynamicResource DefaultButtonStyle}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" FontSize="{DynamicResource InfoFontSize}" Foreground="{DynamicResource ContentBrush}" FontWeight="Bold" Width="18" Height="18"/>
+				</StackPanel>
 			</Grid>
 			<StackPanel x:Name="Options" HorizontalAlignment="Left" Margin="2,2,0,0" Grid.Row="3" Orientation="Horizontal" d:LayoutOverrides="Height">
 				<Button VerticalAlignment="Top" x:Name="GoHome" Content="H" Style="{DynamicResource DefaultButtonStyle}" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Click="OnGoHome" Width="18"/>

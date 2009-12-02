@@ -59,5 +59,9 @@ namespace Zunzun.App.Presenters {
                 if (!UserAuthenticator.HasCredentials) View.Close();
             }
         }
+
+        public void ShowSettings() {
+            View.RequestLogin();
+        }
     }
 }
