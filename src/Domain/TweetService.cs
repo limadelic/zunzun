@@ -9,6 +9,6 @@ namespace Zunzun.Domain {
         List<Tweet> TweetsBy(User User);
 
         void UpdateStatus(Tweet Tweet);
-        void SendReply(Tweet tweet, long associatedTweetID);
+        void SendReply(Tweet tweet);
     }
 }

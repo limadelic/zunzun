@@ -17,7 +17,10 @@ namespace Zunzun.App.Presenters {
         public void Update(Tweet tweet)
         {
             if (HasAssociatedTweet)
-                TweetService.SendReply(tweet, AssociatedTweetId);
+            {
+                tweet.ReplyTo = AssociatedTweetId;
+                TweetService.SendReply(tweet);
+            }
             else
                 TweetService.UpdateStatus(tweet);
         }
@@ -44,7 +47,7 @@ namespace Zunzun.App.Presenters {
         {
             AssociatedTweetId = tweet.Id;
             FocusOnUpdate();
-            View.UpdateText = ReplyPrefix + tweet.Author.UserName + " ";
+            View.UpdateText = ReplyPrefix + tweet.ScreenName + " ";
         }
 
         void FocusOnUpdate()
@@ -56,13 +59,13 @@ namespace Zunzun.App.Presenters {
         public void Retweet(Tweet tweet)
         {
             FocusOnUpdate();
-            View.UpdateText = RetweetPrefix + " " + ReplyPrefix + tweet.Author.UserName + " " + tweet.Content + " ";
+            View.UpdateText = RetweetPrefix + " " + ReplyPrefix + tweet.ScreenName + " " + tweet.Content + " ";
         }
 
         public void DirectMessage(Tweet tweet)
         {
             FocusOnUpdate();
-            View.UpdateText = DirectMessagePrefix + " " + tweet.Author.UserName + " ";
+            View.UpdateText = DirectMessagePrefix + " " + tweet.ScreenName + " ";
         }
     }
 }

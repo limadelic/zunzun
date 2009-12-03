@@ -1,3 +1,4 @@
+using System;
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
@@ -5,10 +6,8 @@ using Zunzun.Domain.Helpers;
 namespace Zunzun.Domain.Classes {
 
     public class TweetServiceClass : TweetService {
-    
-        public List<Tweet> Tweets { get { return 
-            Request(HomeSpec)
-        ;}}
+        
+        public List<Tweet> Tweets { get { return Request(HomeSpec); }}
 
         public List<Tweet> TweetsSince(long Id) { return 
             Request(TweetsSinceSpec(Id))
@@ -19,39 +18,65 @@ namespace Zunzun.Domain.Classes {
         ;}
 
         public void UpdateStatus(Tweet Tweet) {
-            UpdateStatusSpec(Tweet.Content).Request()
-        ;}
-
-        public void SendReply(Tweet Tweet, long AssociatedTweetId) {
-            ReplyStatusSpec(Tweet.Content, AssociatedTweetId).Request();
+            UpdateStatusSpec(Tweet.Content).Request();
         }
 
-        List<Tweet> Request(ITwitterLeafNode Spec) { return 
-            Spec.Request().ToTweets()
-        ;}
+        public void SendReply(Tweet tweet)
+        {
+            ReplyStatusSpec(tweet.Content, tweet.ReplyTo).Request();
+        }
 
-        #region Specs
 
-        public virtual ITwitterLeafNode HomeSpec { get { return 
-            TwitterAPI.HomeStatuses.Take(Settings.NumberOfTweetsPerRequest).AsJson()
+        ITwitterStatuses Statuses { get { return 
+            FluentTwitter.CreateRequest()
+            .AuthenticateAs(Settings.UserName, Settings.Password)
+            .Statuses()
         ;}}
 
-        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return 
-            TwitterAPI.HomeStatuses.Since(Id).AsJson()
-        ;}
+        ITwitterHomeTimeline Home { get { return 
+            Statuses.OnHomeTimeline()
+        ;}}
 
-        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) { return 
-            TwitterAPI.UserStatuses.For(UserName).AsJson()
-        ;}
+        ITwitterUserTimeline User { get { return 
+            Statuses.OnUserTimeline()
+        ;}}
 
-        ITwitterLeafNode UpdateStatusSpec(string Content) { return 
-            TwitterAPI.Statuses.Update(Content).AsJson()
-        ;}
+        List<Tweet> Request(ITwitterLeafNode Spec) {
+            return Spec.Request().ToTweets();
+        }
 
-        ITwitterLeafNode ReplyStatusSpec(string Content, long Id) { return 
-            TwitterAPI.Statuses.Update(Content)
-            .InReplyToStatus(Id).AsJson()
-        ;}
+        #region Specs
+        
+        public virtual ITwitterLeafNode HomeSpec {
+            get {
+                return
+                    Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
+                    ;
+            }
+        }
+
+        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) {
+            return
+                Home.Since(Id).AsJson()
+                ;
+        }
+
+        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) {
+            return
+                User.For(UserName).AsJson()
+                ;
+        }
+
+        ITwitterLeafNode UpdateStatusSpec(string Content) {
+            return
+                Statuses.Update(Content).AsJson()
+                ;
+        }
+
+        private ITwitterLeafNode ReplyStatusSpec(string content, long id)
+        {
+            return Statuses.Update(content).InReplyToStatus(id).AsJson();
+        }
 
         #endregion
     }

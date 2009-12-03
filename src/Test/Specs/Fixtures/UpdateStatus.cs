@@ -1,11 +1,13 @@
+using System;
 using System.Linq;
+using Dimebrain.TweetSharp.Model;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Domain;
-using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
+using ObjectFactory=Zunzun.Domain.ObjectFactory;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -14,6 +16,7 @@ namespace Zunzun.Specs.Fixtures {
         readonly TweetService TweetService;
         readonly StatusPresenter StatusPresenter;
         readonly StatusView StatusView;
+        private long origId;
         private Tweet Tweet;
 
         public UpdateStatus() {
@@ -24,28 +27,13 @@ namespace Zunzun.Specs.Fixtures {
 
         protected override void SetUpSteps() {
         
-            Given("a tweet by user {0}", UserName => {
-                Tweet = new TweetClass {
-                    Author = new UserClass { UserName = UserName }
-                };
-            });
-
-            Given("A tweet by user {0} with content {1}", (UserName, Content) =>
+            Given("a tweet by user {0}", UserName =>
             {
-                Tweet = new TweetClass {
-                    Content = Content,
-                    Author = new UserClass { UserName = UserName }
-                };
+                var status = new TwitterStatus { Id = origId = new Random().Next() , User = new TwitterUser { ScreenName = UserName }};
+                Tweet = ObjectFactory.NewTweet(status);
             });
 
-            When("I reply {0} to the Tweet", Reply => 
-            { 
-                StatusPresenter.ReplyTo(Tweet);
-                StatusView.UpdateText += Reply;
-                StatusPresenter.Update();
-            });
-
-            When("I reply to the Tweet", () => StatusPresenter.ReplyTo(Tweet));
+            When("I reply to the Tweet", () => StatusPresenter.ReplyTo(Tweet) );
 
             When("I send the user a Direct Message", () => StatusPresenter.DirectMessage(Tweet) );
 
@@ -56,15 +44,17 @@ namespace Zunzun.Specs.Fixtures {
                 StatusPresenter.Update(Tweet);
             });
 
+            And("I submit my update", () => StatusPresenter.Update());
+
             Then("Home should contain the Tweet", () => 
                 TweetService.Tweets.ToList().ShouldContain(Tweet));
 
             Then("Update text starts with {0}", Contents => Assert.IsTrue(StatusView.UpdateText.StartsWith(Contents)));
 
-            Then("{0} should be linked to {1}", (Reply, Original) =>
+            Then("my tweet should be linked to tweet {0}", TweetId =>
             {
-                var SentTweet = TweetService.Tweets.Where(x => x.Content.Equals(Reply)).First();
-                SentTweet.ReplyTo.ShouldBe(Tweet.Id);
+                var SentTweet = TweetService.Tweets.Where(x => x.ScreenName.Equals("kinobot")).First();
+                SentTweet.ReplyTo.ShouldBe(origId);
             });
         }
     }
