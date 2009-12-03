@@ -2,6 +2,7 @@ using System;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
+using Zunzun.Domain;
 using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
 using ObjectFactory = Zunzun.Domain.ObjectFactory;
@@ -67,6 +68,8 @@ namespace Zunzun.Specs {
         [TestClass]
         public class when_replying_to_a_Tweet : BehaviorOf<StatusPresenter>
         {
+            const long AssociatedTweetId = 42;
+
             [TestMethod]
             public void should_set_update_text_to_the_User()
             {
@@ -100,12 +103,12 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_request_a_Reply_if_associated_Tweet_Exists()
             {
-                Given.AssociatedTweetId = 42;
-                var ReplyTweet = ObjectFactory.NewTweet("Poop");
+                Given.AssociatedTweetId = AssociatedTweetId;
+                var ReplyTweet = TestObjectFor<Tweet>();
 
                 When.Update(ReplyTweet);
 
-                ReplyTweet.ReplyTo.ShouldBe(42);
+                ReplyTweet.ReplyTo.ShouldBe(AssociatedTweetId);
                 Then.TweetService.Should().SendReply(ReplyTweet);
             }
 
@@ -129,7 +132,7 @@ namespace Zunzun.Specs {
             public void should_set_update_text_to_retweet_standards()
             {
                 When.Retweet(Actors.TweetWithUserAndContent);
-                Then.View.UpdateText = "RT @zunzunapp and now for something completely different ";
+                Then.View.UpdateText = "RT @zunzunapp good day today ";
             }
 
             [TestMethod]
