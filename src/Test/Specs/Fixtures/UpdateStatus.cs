@@ -52,7 +52,8 @@ namespace Zunzun.Specs.Fixtures {
             Then("Home should contain the Tweet", () => 
                 TweetService.Tweets.ToList().ShouldContain(Tweet));
 
-            Then("Update text starts with {0}", Contents => Assert.IsTrue(StatusView.UpdateText.StartsWith(Contents)));
+            Then("Update text starts with {0}", Contents => 
+                StatusView.UpdateText.StartsWith(Contents).ShouldBeTrue());
 
             Then("my tweet should be linked to tweet {0}", TweetId =>
             {

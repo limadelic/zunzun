@@ -59,7 +59,6 @@
     <Compile Include="Fixtures\FollowAndUnfollow.cs" />
     <Compile Include="Fixtures\ProvideHyperlinkForTweetContent .cs" />
     <Compile Include="Fixtures\RefreshingTweets.cs" />
-    <Compile Include="Fixtures\ReplyToTweet.cs" />
     <Compile Include="Fixtures\SearchTweets.cs" />
     <Compile Include="Fixtures\ShowConversation.cs" />
     <Compile Include="Fixtures\ShowHome.cs" />

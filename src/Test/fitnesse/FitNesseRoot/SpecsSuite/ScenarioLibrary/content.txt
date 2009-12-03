@@ -1,5 +1,0 @@
-!|define|It should contain all the details|
-|It    |should contain a Text            |
-|and   |an Author                        |
-|and   |a Date                           |
-|and   |a Source                         |
