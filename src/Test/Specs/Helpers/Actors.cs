@@ -16,7 +16,6 @@ namespace Zunzun.Specs.Helpers {
         public static ITwitterLeafNode FiveTweetsTestSpec { get { return
             SpecFrom(FiveRawTweets)
         ;}}
-           
 
         public static Tweet UniqueTweet {
             get { return ObjectFactory.NewTweet(Guid.NewGuid().ToString()); }
