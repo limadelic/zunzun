@@ -6,3 +6,9 @@
 |Password |${KinobotPassword}|
 
 *!
+
+!*< this is just to get it green
+
+|reject|crap| 
+
+*!

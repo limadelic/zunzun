@@ -1,6 +1,5 @@
 using System;
 using Dimebrain.TweetSharp.Fluent;
-using Dimebrain.TweetSharp.Model;
 using System.Collections.Generic;
 using FluentSpec;
 using Zunzun.Domain;
