@@ -105,7 +105,8 @@ namespace Zunzun.Specs {
 
                 When.Update(ReplyTweet);
 
-                Then.TweetService.Should().SendReply(ReplyTweet, 42);
+                ReplyTweet.ReplyTo.ShouldBe(42);
+                Then.TweetService.Should().SendReply(ReplyTweet);
             }
 
 //            [TestMethod]

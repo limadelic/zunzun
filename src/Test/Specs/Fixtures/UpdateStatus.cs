@@ -53,7 +53,7 @@ namespace Zunzun.Specs.Fixtures {
 
             Then("my tweet should be linked to tweet {0}", TweetId =>
             {
-                var SentTweet = TweetService.Tweets.Where(x => x.ScreenName.Equals("kinobot")).First();
+                var SentTweet = TweetService.Tweets.Where(x => x.Author.UserName.Equals("kinobot")).First();
                 SentTweet.ReplyTo.ShouldBe(origId);
             });
         }
