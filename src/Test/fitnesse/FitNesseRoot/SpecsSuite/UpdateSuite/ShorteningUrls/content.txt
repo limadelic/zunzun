@@ -1,0 +1,30 @@
+!* Story
+
+In order to save characters in my tweets
+I want to be able to shorten urls
+
+*!
+!*> Setup
+
+|Shortening Urls|
+
+*!
+!*> vars
+
+!define LongUrl {http://www.twitter.com/zunzunapp}
+
+*!
+
+------ '''Scenario''' ''shortening a url'' ------
+|When|entering an Update containing a url|
+|Then|the url should be shortened        |
+
+!*< coming soon
+{{{
+------ '''Scenario''' ''Using tiny url'' ------
+|Given|an update with content that starts with "${LongUrl}"  |
+|And  |the service used is "tiny url"                        |
+|When |the url is shortened                                  |
+|Then |the update content should be shorter than "${LongUrl}"|
+}}}
+*!

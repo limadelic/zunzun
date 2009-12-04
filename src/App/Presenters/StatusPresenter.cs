@@ -4,6 +4,7 @@ using Zunzun.Domain;
 namespace Zunzun.App.Presenters {
 
     public class StatusPresenter {
+    
         private const string RetweetPrefix = "RT";
         private const string ReplyPrefix = "@";
         private const string DirectMessagePrefix = "D";
@@ -66,6 +67,10 @@ namespace Zunzun.App.Presenters {
         {
             FocusOnUpdate();
             View.UpdateText = DirectMessagePrefix + " " + tweet.Author.UserName + " ";
+        }
+
+        public void UpdateTextChanged() {
+            
         }
     }
 }
