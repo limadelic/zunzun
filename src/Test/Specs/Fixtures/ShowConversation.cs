@@ -8,12 +8,12 @@ namespace Zunzun.Specs.Fixtures {
 
     public class ShowConversation : Spec {
 
-        private StatusPresenter Presenter;
+        private UpdateStatusPresenter Presenter;
         private string origContent;
 
         public ShowConversation()
         {
-            Presenter = PresenterFactory.NewStatusPresenter(Create.TestObjectFor<StatusView>());
+            Presenter = PresenterFactory.NewStatusPresenter(Create.TestObjectFor<UpdateStatusView>());
         }
 
         protected override void SetUpSteps() {

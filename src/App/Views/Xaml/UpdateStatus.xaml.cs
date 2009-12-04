@@ -7,11 +7,11 @@ using Zunzun.Domain;
 
 namespace Zunzun.App.Views.Xaml {
 
-    public partial class Update : StatusView {
+    public partial class UpdateStatus : UpdateStatusView {
     
-        StatusPresenter Presenter { get; set; }
+        UpdateStatusPresenter Presenter { get; set; }
 
-        public Update() {
+        public UpdateStatus() {
             Presenter = PresenterFactory.NewStatusPresenter(this);
             InitializeComponent();
         }

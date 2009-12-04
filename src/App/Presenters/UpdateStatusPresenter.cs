@@ -1,17 +1,18 @@
+using System;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
 namespace Zunzun.App.Presenters {
 
-    public class StatusPresenter {
+    public class UpdateStatusPresenter {
     
         private const string RetweetPrefix = "RT";
         private const string ReplyPrefix = "@";
         private const string DirectMessagePrefix = "D";
 
-        public StatusView View { get; set; }
-
+        public UpdateStatusView View { get; set; }
         public TweetService TweetService { get; set; }
+        public UrlShrinker UrlShrinker { get; set; }
 
         public long AssociatedTweetId { get; set; }
 
@@ -70,7 +71,7 @@ namespace Zunzun.App.Presenters {
         }
 
         public void UpdateTextChanged() {
-            
+            View.UpdateText = UrlShrinker.Shorten(View.UpdateText);
         }
     }
 }

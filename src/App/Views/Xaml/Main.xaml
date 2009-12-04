@@ -34,7 +34,7 @@
 			<Border x:Name="ContentPlaceholder" Grid.Row="1">
 				<local:Home x:Name="Home"/>
 			</Border>
-			<local:Update x:Name="Update" d:LayoutOverrides="Height" Grid.Row="2"/>
+			<local:UpdateStatus x:Name="Update" d:LayoutOverrides="Height" Grid.Row="2"/>
         </Grid>
 	</Border>
 </Window>

@@ -16,7 +16,7 @@ namespace Zunzun.App.Views.Xaml {
         
         void RegisterEvents() {
             
-            // needs to go inside the Update control
+            // needs to go inside the UpdateStatus control
             AddHandler(Reply.Event, new RoutedEventHandler(Update.OnReply));
             AddHandler(Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
             AddHandler(DirectMessage.Event, new RoutedEventHandler(Update.OnDirectMessage));

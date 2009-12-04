@@ -7,24 +7,24 @@ namespace Zunzun.Specs.Fixtures {
 
     public class ShorteningUrls : Spec {
 
-        readonly StatusPresenter StatusPresenter;
-        readonly StatusView StatusView;
+        readonly UpdateStatusPresenter UpdateStatusPresenter;
+        readonly UpdateStatusView UpdateStatusView;
         const string OriginalUrl = "http://www.twitter.com/zunzunapp";
         
         public ShorteningUrls() {
-            StatusView = Create.TestObjectFor<StatusView>();
-            StatusPresenter = PresenterFactory.NewStatusPresenter(StatusView);
+            UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
+            UpdateStatusPresenter = PresenterFactory.NewStatusPresenter(UpdateStatusView);
         }
         
         protected override void SetUpSteps() {
 
             When("entering an Update containing a url", () => {
-                StatusView.UpdateText = OriginalUrl;
-                StatusPresenter.UpdateTextChanged();
+                UpdateStatusView.UpdateText = OriginalUrl;
+                UpdateStatusPresenter.UpdateTextChanged();
             });
 
             Then("the url should be shortened", () => 
-                StatusView.UpdateText.Length
+                UpdateStatusView.UpdateText.Length
                     .ShouldBeLessThan(OriginalUrl.Length)
             );
         }

@@ -77,7 +77,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Xaml\Update.xaml">
+    <Page Include="Views\Xaml\UpdateStatus.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -125,8 +125,8 @@
       <DependentUpon>Login.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Xaml\Resources.xaml.cs" />
-    <Compile Include="Views\Xaml\Update.xaml.cs">
-      <DependentUpon>Update.xaml</DependentUpon>
+    <Compile Include="Views\Xaml\UpdateStatus.xaml.cs">
+      <DependentUpon>UpdateStatus.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Xaml\UserHome.xaml.cs">
       <DependentUpon>UserHome.xaml</DependentUpon>
@@ -142,14 +142,14 @@
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="Presenters\PresenterFactory.cs" />
     <Compile Include="Presenters\HomePresenter.cs" />
-    <Compile Include="Presenters\StatusPresenter.cs" />
+    <Compile Include="Presenters\UpdateStatusPresenter.cs" />
     <Compile Include="Presenters\UserHomePresenter.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
       <SubType>Code</SubType>
     </Compile>
     <Compile Include="Settings.cs" />
     <Compile Include="Views\HomeView.cs" />
-    <Compile Include="Views\StatusView.cs" />
+    <Compile Include="Views\UpdateStatusView.cs" />
     <Compile Include="Views\UserHomeView.cs" />
     <Compile Include="Views\ZunzunView.cs" />
     <None Include="app.config" />

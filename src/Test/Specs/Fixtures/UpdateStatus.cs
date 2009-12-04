@@ -13,15 +13,15 @@ namespace Zunzun.Specs.Fixtures {
     public class UpdateStatus : Spec {
 
         readonly TweetService TweetService;
-        readonly StatusPresenter StatusPresenter;
-        readonly StatusView StatusView;
+        readonly UpdateStatusPresenter UpdateStatusPresenter;
+        readonly UpdateStatusView UpdateStatusView;
         private long origId;
         private Tweet Tweet;
 
         public UpdateStatus() {
-            StatusView = Create.TestObjectFor<StatusView>();
-            StatusPresenter = PresenterFactory.NewStatusPresenter(StatusView);
-            TweetService = StatusPresenter.TweetService;
+            UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
+            UpdateStatusPresenter = PresenterFactory.NewStatusPresenter(UpdateStatusView);
+            TweetService = UpdateStatusPresenter.TweetService;
         }
 
         protected override void SetUpSteps() {
@@ -36,24 +36,24 @@ namespace Zunzun.Specs.Fixtures {
                 Author = new UserClass { UserName = UserName }
             });
 
-            When("I reply to the Tweet", () => StatusPresenter.ReplyTo(Tweet) );
+            When("I reply to the Tweet", () => UpdateStatusPresenter.ReplyTo(Tweet) );
 
-            When("I send the user a Direct Message", () => StatusPresenter.DirectMessage(Tweet) );
+            When("I send the user a Direct Message", () => UpdateStatusPresenter.DirectMessage(Tweet) );
 
-            When("I retweet it", () => StatusPresenter.Retweet(Tweet));
+            When("I retweet it", () => UpdateStatusPresenter.Retweet(Tweet));
 
             When("Status is updated", () => {
                 Tweet = Actors.UniqueTweet;
-                StatusPresenter.Update(Tweet);
+                UpdateStatusPresenter.Update(Tweet);
             });
 
-            And("I submit my update", () => StatusPresenter.Update());
+            And("I submit my update", () => UpdateStatusPresenter.Update());
 
             Then("Home should contain the Tweet", () => 
                 TweetService.Tweets.ToList().ShouldContain(Tweet));
 
             Then("Update text starts with {0}", Contents => 
-                StatusView.UpdateText.StartsWith(Contents).ShouldBeTrue());
+                UpdateStatusView.UpdateText.StartsWith(Contents).ShouldBeTrue());
 
             Then("my tweet should be linked to tweet {0}", TweetId =>
             {

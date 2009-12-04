@@ -13,7 +13,7 @@ namespace Zunzun.Specs {
     public class given_a_status_presenter {
 
         [TestClass]
-        public class when_updating_Status : BehaviorOf<StatusPresenter>
+        public class when_updating_Status : BehaviorOf<UpdateStatusPresenter>
         {
             [TestMethod]
             public void should_request_a_Status_Update()
@@ -66,7 +66,7 @@ namespace Zunzun.Specs {
         }
 
         [TestClass]
-        public class when_replying_to_a_Tweet : BehaviorOf<StatusPresenter>
+        public class when_replying_to_a_Tweet : BehaviorOf<UpdateStatusPresenter>
         {
             const long AssociatedTweetId = 42;
 
@@ -126,7 +126,7 @@ namespace Zunzun.Specs {
         }
 
         [TestClass]
-        public class when_retweeting : BehaviorOf<StatusPresenter>
+        public class when_retweeting : BehaviorOf<UpdateStatusPresenter>
         {
             [TestMethod]
             public void should_set_update_text_to_retweet_standards()
@@ -152,7 +152,7 @@ namespace Zunzun.Specs {
         }
 
         [TestClass]
-        public class when_direct_messaging : BehaviorOf<StatusPresenter>
+        public class when_direct_messaging : BehaviorOf<UpdateStatusPresenter>
         {
             [TestMethod]
             public void should_set_update_text_to_directmessage_standards()
