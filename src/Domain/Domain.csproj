@@ -47,6 +47,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\UrlShrinkerClass.cs" />
     <Compile Include="Classes\TweetClass.cs" />
     <Compile Include="Classes\TweetServiceClass.cs" />
     <Compile Include="Classes\TwitterAPI.cs" />
@@ -63,6 +64,12 @@
     <Compile Include="UrlShrinker.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserService.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Utils\Utils.csproj">
+      <Project>{E4F850ED-2C67-4DF5-B644-7663A9A9E283}</Project>
+      <Name>Utils</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
