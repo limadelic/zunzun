@@ -30,10 +30,12 @@ namespace Zunzun.Specs {
         public class an_UrlShrinker : BehaviorOf<UrlShrinkerClass> {
             
             [TestMethod]
-            public void should_request_a_shorter_url_with_tinyurl() {
-                const string UrlShortenRequest = "http://tinyurl.com/api-create.php?url={" + OriginalUrl + "}";
+            public void should_request_a_shorter_url() {
+                const string UrlShortenRequest = "url request to url shorten provider";
                 
+                Given.UrlShortenRequest.Is(UrlShortenRequest);
                 Given.WebRequest.GetResponse(UrlShortenRequest).Is(ShortenedUrl);
+
                 When.Shorten(OriginalUrl).ShouldBe(ShortenedUrl);
             }
         }

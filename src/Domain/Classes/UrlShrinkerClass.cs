@@ -13,7 +13,7 @@ namespace Zunzun.Domain.Classes {
             return WebRequest.GetResponse(UrlShortenRequest);
         }
 
-        string UrlShortenRequest { get { return
+        public virtual string UrlShortenRequest { get { return
             "http://tinyurl.com/api-create.php?url={" + Url + "}"
         ;}}
     }

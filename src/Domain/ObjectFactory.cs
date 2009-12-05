@@ -22,6 +22,9 @@ namespace Zunzun.Domain {
         public static TweetService NewTweetService { get { return new TweetServiceClass(); } }
 
         public static UserService NewUserService { get { return new UserServiceClass(); } }
+        public static UrlShrinker NewUrlShrinker { get { return new UrlShrinkerClass {
+            WebRequest = Utils.ObjectFactory.NewWebRequest
+        };}}
 
         public static User NewUser(TwitterUser User) { return new UserClass {
             Name = User.Name,

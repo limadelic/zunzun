@@ -38,6 +38,7 @@
     <Reference Include="System.Security" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\WebRequestClass.cs" />
     <Compile Include="KeyMaker.cs" />
     <Compile Include="Classes\KeyMakerClass.cs" />
     <Compile Include="ObjectFactory.cs" />

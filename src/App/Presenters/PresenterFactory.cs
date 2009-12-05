@@ -28,7 +28,8 @@ namespace Zunzun.App.Presenters {
         public static UpdateStatusPresenter NewStatusPresenter(UpdateStatusView View) {
             return new UpdateStatusPresenter {
                 View = View,
-                TweetService = Domain.ObjectFactory.NewTweetService
+                TweetService = Domain.ObjectFactory.NewTweetService,
+                UrlShrinker = Domain.ObjectFactory.NewUrlShrinker
             };
         }
 
