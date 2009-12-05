@@ -35,6 +35,14 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\tweetsharp\Dimebrain.TweetSharp.dll</HintPath>
     </Reference>
+    <Reference Include="fit, Version=1.4.3577.28741, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\fitnesse\dotnet\fit.dll</HintPath>
+    </Reference>
+    <Reference Include="fitSharp, Version=1.4.3577.28741, Culture=neutral, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>..\fitnesse\dotnet\fitSharp.dll</HintPath>
+    </Reference>
     <Reference Include="FluentSpec, Version=1.0.0.0, Culture=neutral, processorArchitecture=MSIL">
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\..\lib\fluentspec\FluentSpec.dll</HintPath>
@@ -59,6 +67,7 @@
     <Compile Include="Fixtures\FollowAndUnfollow.cs" />
     <Compile Include="Fixtures\ProvideHyperlinkForTweetContent .cs" />
     <Compile Include="Fixtures\RefreshingTweets.cs" />
+    <Compile Include="Fixtures\Scenarios.cs" />
     <Compile Include="Fixtures\SearchTweets.cs" />
     <Compile Include="Fixtures\ShorteningUrls.cs" />
     <Compile Include="Fixtures\ShowConversation.cs" />

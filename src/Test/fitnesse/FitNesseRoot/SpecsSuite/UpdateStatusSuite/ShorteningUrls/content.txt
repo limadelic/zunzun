@@ -12,12 +12,18 @@ I want to be able to shorten urls
 !*> vars
 
 !define LongUrl {http://www.twitter.com/zunzunapp}
+!define ShortUrl {http://tinyurl.com/ya9wfr4}
 
 *!
 
------- '''Scenario''' ''shortening a url'' ------
-|When|entering an Update containing a url|
-|Then|the url should be shortened        |
+|Scenario Outline|shortening a url                        |
+|When            |making a "status update" containing urls|
+|Then            |the urls should be "shrinked"           |
+
+|Scenarios              |only the urls are shortened|
+|status update          |shrinked                   |
+|${LongUrl}             |${ShortUrl}                |
+|look at this ${LongUrl}|look at this ${ShortUrl}   |
 
 !*< coming soon
 {{{

@@ -1,7 +1,6 @@
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
-using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -9,7 +8,6 @@ namespace Zunzun.Specs.Fixtures {
 
         readonly UpdateStatusPresenter UpdateStatusPresenter;
         readonly UpdateStatusView UpdateStatusView;
-        const string OriginalUrl = "http://www.twitter.com/zunzunapp";
         
         public ShorteningUrls() {
             UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
@@ -18,14 +16,14 @@ namespace Zunzun.Specs.Fixtures {
         
         protected override void SetUpSteps() {
 
-            When("entering an Update containing a url", () => {
-                UpdateStatusView.UpdateText = OriginalUrl;
+            When("making a {0} containing urls", Update => {
+                UpdateStatusView.UpdateText = Update;
                 UpdateStatusPresenter.UpdateTextChanged();
             });
 
-            Then("the url should be shortened", () => 
+            Then("the urls should be {0}", ShrinkedUpdate => 
                 UpdateStatusView.UpdateText.Length
-                    .ShouldBeLessThan(OriginalUrl.Length)
+                    .ShouldBe(ShrinkedUpdate)
             );
         }
     }

@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using fitnesse.fixtures;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -87,6 +88,9 @@ namespace Zunzun.Specs.Fixtures {
             }
         }
         
+        public void ScenarioOutline(string Name) { }
+        public TableFixture Scenarios(string Name) { return new Scenarios(); }
+
         protected void Pending() { Fail("Pending step implementation"); }
         
         protected void Fail(string Message) { throw new Exception(Message); }
