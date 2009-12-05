@@ -22,8 +22,7 @@ namespace Zunzun.Specs.Fixtures {
             });
 
             Then("the urls should be {0}", ShrinkedUpdate => 
-                UpdateStatusView.UpdateText.Length
-                    .ShouldBe(ShrinkedUpdate)
+                UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate)
             );
         }
     }

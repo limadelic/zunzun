@@ -14,7 +14,7 @@ namespace Zunzun.Domain.Classes {
         }
 
         public virtual string UrlShortenRequest { get { return
-            "http://tinyurl.com/api-create.php?url={" + Url + "}"
+            "http://tinyurl.com/api-create.php?url=" + Url
         ;}}
     }
 }

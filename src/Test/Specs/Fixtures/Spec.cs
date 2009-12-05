@@ -77,8 +77,11 @@ namespace Zunzun.Specs.Fixtures {
             SetupCurrentStepFrom(DesiredStep);
             
             try {
-
-                CurrentStep.Execute();
+            
+                if (OnScenarioOutline) 
+                    OutlineSteps.Add(new OutlineStep(CurrentStep));
+                else CurrentStep.Execute();
+                
                 return true;
                 
             } catch (Exception e) {
@@ -87,9 +90,17 @@ namespace Zunzun.Specs.Fixtures {
                 return false;
             }
         }
+
+        bool OnScenarioOutline;
+        List<OutlineStep> OutlineSteps;
         
-        public void ScenarioOutline(string Name) { }
-        public TableFixture Scenarios(string Name) { return new Scenarios(); }
+        public void ScenarioOutline(string Name) {
+            OnScenarioOutline = true;
+            OutlineSteps = new List<OutlineStep>();
+        }
+        public TableFixture Scenarios(string Name) {
+            return new Scenarios(OutlineSteps);
+        }
 
         protected void Pending() { Fail("Pending step implementation"); }
         
