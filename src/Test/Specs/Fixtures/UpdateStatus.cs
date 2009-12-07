@@ -1,4 +1,5 @@
 using System;
+using System.Diagnostics;
 using System.Linq;
 using FluentSpec;
 using Zunzun.App.Presenters;
@@ -54,9 +55,9 @@ namespace Zunzun.Specs.Fixtures {
             Then("Update text starts with {0}", Contents => 
                 UpdateStatusView.UpdateText.StartsWith(Contents).ShouldBeTrue());
 
-            Then("my tweet should be linked to tweet {0}", TweetId =>
+            Then("my Tweet should be linked to the original Tweet", () =>
             {
-                var SentTweet = TweetService.Tweets.Where(x => x.Author.UserName.Equals("kinobot")).First();
+                var SentTweet = TweetService.Tweets.Where(x => x.Author.UserName.Equals(Settings.UserName)).First();
                 SentTweet.ReplyTo.ShouldBe(origId);
             });
         }

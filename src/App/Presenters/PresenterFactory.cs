@@ -1,3 +1,4 @@
+using System;
 using Zunzun.App.Views;
 
 namespace Zunzun.App.Presenters {
@@ -46,6 +47,11 @@ namespace Zunzun.App.Presenters {
                 View = View, 
                 UserAuthenticator = ObjectFactory.NewUserAuthenticator
             };
+        }
+
+        public static ConversationPresenter NewConversationPresenter()
+        {
+            return new ConversationPresenter();
         }
     }
 }

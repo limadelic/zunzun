@@ -68,8 +68,6 @@ namespace Zunzun.Specs {
         [TestClass]
         public class when_replying_to_a_Tweet : BehaviorOf<UpdateStatusPresenter>
         {
-            const long AssociatedTweetId = 42;
-
             [TestMethod]
             public void should_set_update_text_to_the_User()
             {
@@ -103,26 +101,26 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_request_a_Reply_if_associated_Tweet_Exists()
             {
-                Given.AssociatedTweetId = AssociatedTweetId;
+                Given.AssociatedTweetId = 42;
                 var ReplyTweet = TestObjectFor<Tweet>();
 
                 When.Update(ReplyTweet);
 
-                ReplyTweet.ReplyTo.ShouldBe(AssociatedTweetId);
+                ReplyTweet.ReplyTo.ShouldBe(42L);
                 Then.TweetService.Should().SendReply(ReplyTweet);
             }
 
-//            [TestMethod]
-//            public void should_attach_to_original_Tweet()
-//            {
-//                var OrigTweet = Actors.TweetWithUserAndId;
-//                var ReplyTweet = ObjectFactory.NewTweet("@testuser ");
-//
-//                When.ReplyTo(OrigTweet);
-//                When.Update(ReplyTweet);
-//
-//                ReplyTweet.ReplyTo.ShouldBe(OrigTweet.Id);
-//            }
+            [TestMethod]
+            public void should_attach_to_original_Tweet()
+            {
+                var OrigTweet = Actors.TweetWithUserAndId;
+                var ReplyTweet = ObjectFactory.NewTweet("@testuser ");
+
+                When.ReplyTo(OrigTweet);
+                When.Update(ReplyTweet);
+
+                ReplyTweet.ReplyTo.ShouldBe(OrigTweet.Id);
+            }
         }
 
         [TestClass]

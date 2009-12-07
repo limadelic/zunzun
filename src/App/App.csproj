@@ -114,6 +114,7 @@
     <Compile Include="Events\UserEvent.cs" />
     <Compile Include="Model\Classes\UserAuthenticatorClass.cs" />
     <Compile Include="Model\UserAuthenticator.cs" />
+    <Compile Include="Presenters\ConversationPresenter.cs" />
     <Compile Include="Presenters\LoginPresenter.cs" />
     <Compile Include="Presenters\ZunzunPresenter.cs" />
     <Compile Include="Views\LoginView.cs" />

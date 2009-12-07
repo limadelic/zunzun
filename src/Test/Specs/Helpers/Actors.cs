@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using Dimebrain.TweetSharp.Fluent;
 using System.Collections.Generic;
 using FluentSpec;
@@ -80,6 +81,17 @@ namespace Zunzun.Specs.Helpers {
         public static ITwitterLeafNode ErrorSpec { get { return 
             SpecFrom(RawError)
         ;}}
+
+        public static IEnumerable ListOfTweetsWithTwoReplies { get { return 
+            new List<Tweet> 
+            {
+                 TweetWithUserAndId, 
+                 new TweetClass(), 
+                 new TweetClass { Content = "firstReply", ReplyTo = 42 }, 
+                 new TweetClass(), 
+                 new TweetClass { Content = "secondReply", ReplyTo = 42 }, 
+                 new TweetClass()
+            }; } }
 
         static ITwitterLeafNode SpecFrom(string Response) {
             var Spec = Create.TestObjectFor<ITwitterLeafNode>();

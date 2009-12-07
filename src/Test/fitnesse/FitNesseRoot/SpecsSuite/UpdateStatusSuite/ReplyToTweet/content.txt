@@ -16,7 +16,7 @@ I want to reply to Tweets
 |Then |Update text starts with "@zunzunapp"|
 
 ------ '''Scenario''' ''the Reply should be linked to the original Tweet'' ------
-|Given|a tweet by user "zunzunapp"           |
-|When |I reply to the Tweet                   |
-|And  |I submit my update                     |
-|Then |my tweet should be linked to tweet "42"|
+|Given|a tweet by user "zunzunapp"                    |
+|When |I reply to the Tweet                           |
+|And  |I submit my update                             |
+|Then |my Tweet should be linked to the original Tweet|
