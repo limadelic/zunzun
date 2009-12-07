@@ -44,8 +44,11 @@ namespace Zunzun.App.Presenters
         {
             var currentTweet = tweet;
             
-            while (currentTweet.ReplyTo > 0) 
-                currentTweet = tweets.Where(x => x.Id == currentTweet.ReplyTo).First();
+            while (currentTweet.ReplyTo > 0)
+            {
+                var tempTweet = currentTweet;
+                currentTweet = tweets.Where(x => x.Id == tempTweet.ReplyTo).First();
+            }
 
             return currentTweet;
         } 
