@@ -2,7 +2,6 @@ using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
-using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs
@@ -15,7 +14,7 @@ namespace Zunzun.Specs
         [TestMethod]
         public void should_contain_original_Tweet()
         {
-            var place = "";
+            Given.TweetService.Tweets.WillReturn(Actors.ListOfTweetsWithTwoReplies);
             When.GetConversation(origTweet).ShouldContain(origTweet);
         }
 
@@ -23,10 +22,21 @@ namespace Zunzun.Specs
         public void should_contain_replies_to_original_Tweet()
         {
             Given.TweetService.Tweets.WillReturn(Actors.ListOfTweetsWithTwoReplies);
-
             When.GetConversation(origTweet).Count.ShouldBe(3);
-            When.GetConversation(origTweet).ShouldContain(new TweetClass{Content = "firstReply"});
-            When.GetConversation(origTweet).ShouldContain(new TweetClass{Content = "secondReply"});
         }
+
+        [TestMethod]
+        public void should_have_Tweets_with_multiple_levels_of_reply()
+        {
+            Given.TweetService.Tweets.WillReturn(Actors.ListOfTweetsWithReplyHierarchy);
+            When.GetConversation(origTweet).Count.ShouldBe(6);
+        }
+
+//        [TestMethod]
+//        public void should_contain_the_Tweet_that_the_original_is_replying_to()
+//        {
+//            Given.TweetService.Tweets.WillReturn(Actors.ListOfTweetsWithTwoReplies);
+//            When.GetConversation(Actors.ReplyingTweet).ShouldContain(origTweet);
+//        }
     }
 }
