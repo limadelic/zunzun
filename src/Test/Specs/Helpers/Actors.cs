@@ -1,5 +1,4 @@
 using System;
-using System.Collections;
 using Dimebrain.TweetSharp.Fluent;
 using System.Collections.Generic;
 using FluentSpec;

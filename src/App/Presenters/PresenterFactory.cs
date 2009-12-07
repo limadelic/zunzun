@@ -1,4 +1,3 @@
-using System;
 using Zunzun.App.Views;
 
 namespace Zunzun.App.Presenters {
@@ -51,7 +50,7 @@ namespace Zunzun.App.Presenters {
 
         public static ConversationPresenter NewConversationPresenter()
         {
-            return new ConversationPresenter();
+            return new ConversationPresenter{ TweetService = Domain.ObjectFactory.NewTweetService };
         }
     }
 }

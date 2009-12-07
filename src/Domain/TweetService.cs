@@ -6,7 +6,7 @@ namespace Zunzun.Domain {
     
         List<Tweet> Tweets { get; }
         List<Tweet> TweetsSince(long Id);
-        List<Tweet> TweetsBy(User User);
+        List<Tweet> TweetsBy(User specificUser);
 
         void UpdateStatus(Tweet Tweet);
         void SendReply(Tweet tweet);

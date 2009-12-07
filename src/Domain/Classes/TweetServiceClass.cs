@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
@@ -13,8 +12,8 @@ namespace Zunzun.Domain.Classes {
             Request(TweetsSinceSpec(Id))
         ;}
 
-        public List<Tweet> TweetsBy(User User) { return 
-            Request(TweetsByUserNameSpec(User.UserName))
+        public List<Tweet> TweetsBy(User SpecificUser) { return 
+            Request(TweetsByUserNameSpec(SpecificUser.UserName))
         ;}
 
         public void UpdateStatus(Tweet Tweet) {
@@ -27,21 +26,21 @@ namespace Zunzun.Domain.Classes {
         }
 
 
-        ITwitterStatuses Statuses { get { return 
+        static ITwitterStatuses Statuses { get { return 
             FluentTwitter.CreateRequest()
             .AuthenticateAs(Settings.UserName, Settings.Password)
             .Statuses()
         ;}}
 
-        ITwitterHomeTimeline Home { get { return 
+        static ITwitterHomeTimeline Home { get { return 
             Statuses.OnHomeTimeline()
         ;}}
 
-        ITwitterUserTimeline User { get { return 
+        static ITwitterUserTimeline User { get { return 
             Statuses.OnUserTimeline()
         ;}}
 
-        List<Tweet> Request(ITwitterLeafNode Spec) {
+        static List<Tweet> Request(ITwitterLeafNode Spec) {
             return Spec.Request().ToTweets();
         }
 
@@ -67,13 +66,13 @@ namespace Zunzun.Domain.Classes {
                 ;
         }
 
-        ITwitterLeafNode UpdateStatusSpec(string Content) {
+        static ITwitterLeafNode UpdateStatusSpec(string Content) {
             return
                 Statuses.Update(Content).AsJson()
                 ;
         }
 
-        private ITwitterLeafNode ReplyStatusSpec(string content, long id)
+        private static ITwitterLeafNode ReplyStatusSpec(string content, long id)
         {
             return Statuses.Update(content).InReplyToStatus(id).AsJson();
         }

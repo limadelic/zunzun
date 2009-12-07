@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Zunzun.Domain;
@@ -9,13 +8,14 @@ namespace Zunzun.App.Presenters
     public class ConversationPresenter
     {
         private Tweet rootTweet;
+        private List<Tweet> tweets;
 
         public List<Tweet> GetConversation(Tweet tweet)
         {
+            tweets = TweetService.Tweets;
             rootTweet = tweet;
 
-            return
-                TweetService.Tweets.Where(postedTweet => ConversationIds.Contains(postedTweet.Id)).ToList(); 
+            return tweets.Where(postedTweet => ConversationIds.Contains(postedTweet.Id)).ToList(); 
         }
 
         protected List<long> ConversationIds { get {
@@ -26,7 +26,7 @@ namespace Zunzun.App.Presenters
 
         private void ConversationIdsHelper(Tweet currentTweet, ICollection<long> ids)
         {
-            var children = TweetService.Tweets.Where(tweet => tweet.ReplyTo == currentTweet.Id);
+            var children = tweets.Where(tweet => tweet.ReplyTo == currentTweet.Id);
 
             if(children.Count() == 0)
                 return;
