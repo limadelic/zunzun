@@ -10,10 +10,12 @@ namespace Zunzun.App.Presenters
         private Tweet rootTweet;
         private List<Tweet> tweets;
 
+        public TweetService TweetService { get; set; }
+
         public List<Tweet> GetConversation(Tweet tweet)
         {
             tweets = TweetService.Tweets;
-            rootTweet = tweet;
+            rootTweet = RootTweet(tweet);
 
             return tweets.Where(postedTweet => ConversationIds.Contains(postedTweet.Id)).ToList(); 
         }
@@ -38,13 +40,15 @@ namespace Zunzun.App.Presenters
             });
         }
 
-//        protected long RootId { get
-//        {
-//            var currentTweet = rootTweet;
-//            while(currentTweet.ReplyTo > 0)
-//                currentTweet = TweetService.TweetById()
-//        } }
+        protected Tweet RootTweet(Tweet tweet)
+        {
+            var currentTweet = tweet;
+            
+            while (currentTweet.ReplyTo > 0) 
+                currentTweet = tweets.Where(x => x.Id == currentTweet.ReplyTo).First();
 
-        public TweetService TweetService { get; set; }
+            return currentTweet;
+        } 
+
     }
 }

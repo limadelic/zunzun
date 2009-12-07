@@ -99,7 +99,7 @@ namespace Zunzun.Specs.Helpers {
                  new TweetClass()
             }; } }
 
-        public static IEnumerable<Tweet> ListOfTweetsWithReplyHierarchy { get {
+        public static List<Tweet> ListOfTweetsWithReplyHierarchy { get {
             var list = new List<Tweet>
                        {
                            ReplyingTweet(43, 45),

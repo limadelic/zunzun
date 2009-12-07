@@ -32,11 +32,12 @@ namespace Zunzun.Specs
             When.GetConversation(origTweet).Count.ShouldBe(6);
         }
 
-//        [TestMethod]
-//        public void should_contain_the_Tweet_that_the_original_is_replying_to()
-//        {
-//            Given.TweetService.Tweets.WillReturn(Actors.ListOfTweetsWithTwoReplies);
-//            When.GetConversation(Actors.ReplyingTweet).ShouldContain(origTweet);
-//        }
+        [TestMethod]
+        public void should_contain_all_the_Tweets_in_the_conversation_if_passed_nonroot_Tweet()
+        {
+            var list = Actors.ListOfTweetsWithReplyHierarchy;
+            Given.TweetService.Tweets.WillReturn(list);
+            When.GetConversation(list[5]).Count.ShouldBe(6);
+        }
     }
 }
