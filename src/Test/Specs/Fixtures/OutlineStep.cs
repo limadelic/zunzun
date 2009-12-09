@@ -4,15 +4,15 @@ namespace Zunzun.Specs.Fixtures {
 
     public class OutlineStep {
     
+        public List<string> OutlineArgs { get; private set; }
+        public List<int> OutlineCols { get; private set; }
+        
         readonly Step Core;
         
         public OutlineStep(Step Core) {
             this.Core = Core;
             OutlineArgs = new List<string>(Core.Args);
         }
-        
-        public List<string> OutlineArgs { get; private set; }
-        public List<int> OutlineCols { get; private set; }
         
         public void MapArgsTo(List<string> ScenarioCols) { 
             OutlineCols = new List<int>();

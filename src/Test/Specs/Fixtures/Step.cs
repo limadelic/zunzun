@@ -5,6 +5,9 @@ namespace Zunzun.Specs.Fixtures {
 
     public class Step {
     
+        public string Name = string.Empty;
+        public List<string> Args = new List<string>();
+
         public Step(string Prototype) {
 
             var NameArgs = Prototype.Split(new[] {'"', '{', '}'});
@@ -18,33 +21,20 @@ namespace Zunzun.Specs.Fixtures {
 
         public Step(string Prototype, Action<string> Action) : this(Prototype) { Action1 = Action; }
 
-        public Step(string prototype, Action<string, string> action) : this(prototype) { Action2 = action; }
+        public Step(string prototype, Action<string, string> Action) : this(prototype) { Action2 = Action; }
         
-        public string Name = string.Empty;
-        public List<string> Args = new List<string>();
-
         readonly Action Action;
         readonly Action<string> Action1;
-        private readonly Action<string, string> Action2;
+        readonly Action<string, string> Action2;
+
+        public void Execute() { switch (Args.Count) {
+            case 2: Action2(Args[0], Args[1]); return;
+            case 1: Action1(Args[0]); return;
+            default: Action(); return;
+        }}
 
         public override string ToString() { return 
             String.Format(Name, Args)
         ;}
-
-        public void Execute()
-        {
-            switch (Args.Count)
-            {
-                case 0:
-                    Action();
-                    break;
-                case 1:
-                    Action1(Args[0]);
-                    break;
-                default:
-                    Action2(Args[0], Args[1]);
-                    break;
-            }
-        }
     }
 }

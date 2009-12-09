@@ -40,7 +40,7 @@ namespace Zunzun.Specs.Fixtures {
                 OutlineStep.Execute();
                 Right(OutlineStep);
                 
-            } catch(Exception e) { Wrong(OutlineStep, e); }
+            } catch(Exception Exception) { Wrong(OutlineStep, Exception); }
         }
 
         void Right(OutlineStep Step) {
