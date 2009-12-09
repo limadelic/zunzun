@@ -1,5 +1,4 @@
 using Zunzun.Utils;
-using Zunzun.Domain.Helpers;
 
 namespace Zunzun.Domain.Classes {
 
@@ -20,12 +19,17 @@ namespace Zunzun.Domain.Classes {
         }
         
         void ShortenIfUrl(string StatusUpdateToken) { 
-            if (!StatusUpdateToken.IsUrl()) return;
+            if (!StatusUpdateToken.IsUrl()  
+                || AlreadyShortened(StatusUpdateToken)) return;
             
             var ShortenedUrl = WebRequest.GetResponse(RequestToShorten(StatusUpdateToken));
 
             StatusUpdate = StatusUpdate.Replace(StatusUpdateToken, ShortenedUrl);
         }
+
+        bool AlreadyShortened(string Url) { return
+            Url.StartsWith("http://tinyurl.com")
+        ;}
 
         public virtual string RequestToShorten(string Url) { return
             "http://tinyurl.com/api-create.php?url=" + Url

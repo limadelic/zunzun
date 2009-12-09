@@ -9,7 +9,7 @@ namespace Zunzun.Specs {
     public class when_shortening_urls {
     
         const string OriginalUrl = "http://www.longurl.com/verylongpath";
-        const string ShortenedUrl = "http://a.com";
+        const string ShortenedUrl = "http://tinyurl.com/abcd";
         
         [TestClass]
         public class an_UpdateStatusPresenter : BehaviorOf<UpdateStatusPresenter>{
@@ -53,6 +53,13 @@ namespace Zunzun.Specs {
                 
                 When.Shorten(OriginalStatusUpdate)
                     .ShouldBe(ShortenedStatusUpdate);
+            }
+            
+            [TestMethod]
+            public void should_not_shorten_an_url_already_shortened() {
+
+                When.Shorten(ShortenedUrl);
+                ShouldNot.RequestToShorten(ShortenedUrl);
             }
         }
     }
