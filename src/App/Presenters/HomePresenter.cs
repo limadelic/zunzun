@@ -1,7 +1,7 @@
 using Zunzun.App.Model;
 using Zunzun.App.Views;
 using Zunzun.Domain;
-using Zunzun.Domain.Helpers;
+using Zunzun.Utils;
 
 namespace Zunzun.App.Presenters {
     

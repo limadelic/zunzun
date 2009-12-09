@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
 using Zunzun.Domain.Helpers;
+using Zunzun.Utils;
 
 namespace Zunzun.App.Model.Classes {
 
@@ -34,12 +35,7 @@ namespace Zunzun.App.Model.Classes {
             Word.StartsWith(Domain.Settings.MentionPreffix)
         ;}}
 
-        bool IsLink { get { return
-            Uri.IsWellFormedUriString(Word, UriKind.Absolute)
-            && Domain.Settings.AcceptedProtocols.Contains(UriScheme)
-        ;}}
-
-        string UriScheme { get { return new Uri(Word).Scheme; } }
+        bool IsLink { get { return Word.IsUrl(); } }
 
         void TokenizeLiteral() { Literal += Word + " "; }
 

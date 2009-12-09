@@ -2,6 +2,7 @@ using System.Collections.Generic;
 using System.Linq;
 using Zunzun.Domain;
 using Zunzun.Domain.Helpers;
+using Zunzun.Utils;
 
 namespace Zunzun.App.Presenters
 {
@@ -33,8 +34,7 @@ namespace Zunzun.App.Presenters
             if(children.Count() == 0)
                 return;
 
-            children.ForEach(tweet =>
-            {
+            children.ForEach(tweet => {
                 ConversationIdsHelper(tweet, ids);
                 ids.Add(tweet.Id);
             });

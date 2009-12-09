@@ -1,4 +1,3 @@
-using System;
 using Zunzun.Utils;
 using Zunzun.Domain.Helpers;
 
@@ -13,7 +12,6 @@ namespace Zunzun.Domain.Classes {
 
         public string Shorten(string StatusUpdate) {
             this.StatusUpdate = StatusUpdate;
-            
 
             StatusUpdate.Split(BySpaces)
                 .ForEach(ShortenIfUrl);
@@ -22,19 +20,12 @@ namespace Zunzun.Domain.Classes {
         }
         
         void ShortenIfUrl(string StatusUpdateToken) { 
-            if (!IsUrl(StatusUpdateToken)) return;
+            if (!StatusUpdateToken.IsUrl()) return;
             
             var ShortenedUrl = WebRequest.GetResponse(RequestToShorten(StatusUpdateToken));
 
             StatusUpdate = StatusUpdate.Replace(StatusUpdateToken, ShortenedUrl);
         }
-
-        bool IsUrl(string Word) { return
-            Uri.IsWellFormedUriString(Word, UriKind.Absolute)
-            && Settings.AcceptedProtocols.Contains(UriScheme(Word))
-        ;}
-        
-        string UriScheme(string Word) { return new Uri(Word).Scheme; }
 
         public virtual string RequestToShorten(string Url) { return
             "http://tinyurl.com/api-create.php?url=" + Url

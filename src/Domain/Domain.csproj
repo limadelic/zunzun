@@ -53,7 +53,6 @@
     <Compile Include="Classes\TwitterAPI.cs" />
     <Compile Include="Classes\UserClass.cs" />
     <Compile Include="Classes\UserServiceClass.cs" />
-    <Compile Include="Helpers\Extensions.cs" />
     <Compile Include="Helpers\TweetConverters.cs" />
     <Compile Include="Helpers\UserConverters.cs" />
     <Compile Include="ObjectFactory.cs" />

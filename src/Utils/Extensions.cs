@@ -2,9 +2,19 @@ using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 
-namespace Zunzun.Domain.Helpers {
+namespace Zunzun.Utils {
+
     public static class Extensions {
         
+        static readonly List<string> AcceptedProtocols = new List<string> { "http", "https", "ftp" };
+        
+        public static bool IsUrl(this string Text) {return
+            Uri.IsWellFormedUriString(Text, UriKind.Absolute)
+            && AcceptedProtocols.Contains(UriScheme(Text))
+        ;}
+
+        static string UriScheme(string Text) { return new Uri(Text).Scheme; }
+
         public static void ForEach<T>(this IEnumerable<T> Items, Action<T> Action) {
             foreach (var Item in Items) Action(Item);
         }

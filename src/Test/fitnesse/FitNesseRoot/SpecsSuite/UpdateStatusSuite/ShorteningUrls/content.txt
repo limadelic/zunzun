@@ -18,14 +18,22 @@ I want to be able to shorten urls
 
 |Scenario Outline|shortening a url                        |
 |When            |making a "status update" containing urls|
-|Then            |the urls should be "shrinked"           |
+|Then            |the urls should be "shrunk"             |
 
 |Scenarios              |only the urls are shortened|
-|status update          |shrinked                   |
+|status update          |shrunk                     |
 |${LongUrl}             |${ShortUrl}                |
 |look at this ${LongUrl}|look at this ${ShortUrl}   |
 
+
+
+
+
+
 !*< coming soon
+
+
+
 {{{
 ------ '''Scenario''' ''Using tiny url'' ------
 |Given|an update with content that starts with "${LongUrl}"  |

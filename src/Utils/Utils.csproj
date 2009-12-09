@@ -36,9 +36,13 @@
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
     <Reference Include="System.Security" />
+    <Reference Include="WindowsBase">
+      <RequiredTargetFramework>3.0</RequiredTargetFramework>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Classes\WebRequestClass.cs" />
+    <Compile Include="Extensions.cs" />
     <Compile Include="KeyMaker.cs" />
     <Compile Include="Classes\KeyMakerClass.cs" />
     <Compile Include="ObjectFactory.cs" />
