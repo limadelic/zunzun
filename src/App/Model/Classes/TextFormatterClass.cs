@@ -2,7 +2,6 @@ using System;
 using System.Collections.Generic;
 using System.Text.RegularExpressions;
 using System.Windows.Documents;
-using Zunzun.Domain.Helpers;
 using Zunzun.Utils;
 
 namespace Zunzun.App.Model.Classes {

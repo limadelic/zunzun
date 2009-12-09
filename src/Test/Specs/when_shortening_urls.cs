@@ -61,6 +61,16 @@ namespace Zunzun.Specs {
                 When.Shorten(ShortenedUrl);
                 ShouldNot.RequestToShorten(ShortenedUrl);
             }
+
+            [TestMethod]
+            public void should_not_shorten_a_short_url() {
+                const string ShortUrl = "http://imdb.com";
+
+                Given.RequestToShorten(ShortUrl).Is(UrlShortenRequest);
+                Given.WebRequest.GetResponse(UrlShortenRequest).Is(ShortenedUrl);
+
+                When.Shorten(ShortUrl).ShouldBe(ShortUrl);
+            }
         }
     }
 }

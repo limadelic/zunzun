@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using System.Linq;
 using Zunzun.Domain;
-using Zunzun.Domain.Helpers;
 using Zunzun.Utils;
 
 namespace Zunzun.App.Presenters

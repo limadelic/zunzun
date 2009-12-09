@@ -23,6 +23,8 @@ namespace Zunzun.Domain.Classes {
                 || AlreadyShortened(StatusUpdateToken)) return;
             
             var ShortenedUrl = WebRequest.GetResponse(RequestToShorten(StatusUpdateToken));
+            
+            if (ShortenedUrl.Length >= StatusUpdateToken.Length) return;
 
             StatusUpdate = StatusUpdate.Replace(StatusUpdateToken, ShortenedUrl);
         }

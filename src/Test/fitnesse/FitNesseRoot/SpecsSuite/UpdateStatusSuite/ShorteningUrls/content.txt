@@ -11,23 +11,25 @@ I want to be able to shorten urls
 *!
 !*> vars
 
-!define LongUrl {http://www.twitter.com/zunzunapp}
-!define ShortUrl {http://tinyurl.com/ya9wfr4}
+!define Url {http://www.twitter.com/zunzunapp}
+!define ShortUrl {http://imdb.com}
+!define ShortenUrl {http://tinyurl.com/ya9wfr4}
 
 *!
 
 |Scenario Outline|shortening a url                        |
 |When            |making a "status update" containing urls|
-|Then            |the urls should be "shrunk"             |
+|Then            |the urls should be "shorten"            |
 
-|Scenarios              |only the urls are shortened|
-|status update          |shrunk                     |
-|${LongUrl}             |${ShortUrl}                |
-|look at this ${LongUrl}|look at this ${ShortUrl}   |
+|Scenarios          |only the urls are shortened|
+|status update      |shorten                    |
+|${Url}             |${ShortenUrl}              |
+|look at this ${Url}|look at this ${ShortenUrl} |
 
-|Scenarios    |should not shorten urls already shortened|
-|status update|shrunk                                   |
-|${ShortUrl}  |${ShortUrl}                              |
+|Scenarios    |should not shorten urls already shortened or too short|
+|status update|shrunk                                                |
+|${ShortUrl}  |${ShortUrl}                                           |
+|${ShortenUrl}|${ShortenUrl}                                         |
 
 
 
