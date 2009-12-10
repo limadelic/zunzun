@@ -35,6 +35,17 @@ namespace Zunzun.Specs {
                 Then.UrlShrinker.ShouldNot().Shorten(OriginalUrl);
                 Then.View.UpdateText.ShouldBe(OriginalUrl);
             }
+
+            [TestMethod]
+            public void should_shorten_url_automatically_on_paste() {
+                
+                Given.View.UpdateText = OriginalUrl;
+                Given.UrlShrinker.Shorten(OriginalUrl).Is(ShortenedUrl);
+                
+                When.UpdateTextPasted();
+                
+                Then.View.UpdateText.ShouldBe(ShortenedUrl);
+            }
         }
         
         [TestClass]

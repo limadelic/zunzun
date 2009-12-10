@@ -63,5 +63,9 @@ namespace Zunzun.App.Views.Xaml {
         void OnTextChanged(object Sender, TextChangedEventArgs Args) {
             Presenter.UpdateTextChanged();
         }
+
+        void OnTextPasted(object Sender, DataObjectPastingEventArgs Args) {
+            Presenter.UpdateTextPasted();
+        }
     }
 }

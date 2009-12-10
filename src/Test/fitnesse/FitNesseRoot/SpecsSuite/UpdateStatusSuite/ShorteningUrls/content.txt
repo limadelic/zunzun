@@ -26,7 +26,7 @@ I want to be able to shorten urls
 |${Url}             |${ShortenUrl}              |
 |look at this ${Url}|look at this ${ShortenUrl} |
 |(${Url})           |(${ShortenUrl})            |
-|[ ${Url} ]         |[ ${ShortenUrl} ]          |
+|[${Url}]           |[${ShortenUrl}]            |
 |{${Url}}           |{${ShortenUrl}}            |
 
 
@@ -34,3 +34,14 @@ I want to be able to shorten urls
 |status update|shorten                                               |
 |${ShortUrl}  |${ShortUrl}                                           |
 |${ShortenUrl}|${ShortenUrl}                                         |
+
+
+------ '''Scenario''' ''autoshorten after space or paste'' ------
+|When|entering the status update "${Url}" |
+|Then|the status update should be "${Url}"|
+
+|When|entering the status update "${Url} "        |
+|Then|the status update should be "${ShortenUrl} "|
+
+|When|pasting "${Url}" into the status update    |
+|Then|the status update should be "${ShortenUrl}"|

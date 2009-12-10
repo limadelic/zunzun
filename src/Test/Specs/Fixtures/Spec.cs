@@ -99,6 +99,7 @@ namespace Zunzun.Specs.Fixtures {
             OutlineSteps = new List<OutlineStep>();
         }
         public TableFixture Scenarios(string Name) {
+            OnScenarioOutline = false;
             return new Scenarios(OutlineSteps);
         }
 

@@ -17,12 +17,26 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
 
             When("making a {0} containing urls", Update => {
-                UpdateStatusView.UpdateText = Update + " ";
-                UpdateStatusPresenter.UpdateTextChanged();
+                UpdateStatusView.UpdateText = Update;
+                UpdateStatusPresenter.UpdateTextPasted();
             });
 
             Then("the urls should be {0}", ShrinkedUpdate => 
-                UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate + " ")
+                UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate)
+            );
+
+            When("entering the status update {0}", Update => {
+                UpdateStatusView.UpdateText = Update;
+                UpdateStatusPresenter.UpdateTextChanged();
+            });
+
+            When("pasting {0} into the status update", Update => {
+                UpdateStatusView.UpdateText = Update;
+                UpdateStatusPresenter.UpdateTextPasted();
+            });
+
+            Then("the status update should be {0}", ShrinkedUpdate => 
+                UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate)
             );
         }
     }

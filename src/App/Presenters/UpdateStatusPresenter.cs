@@ -1,3 +1,4 @@
+using System;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -71,8 +72,16 @@ namespace Zunzun.App.Presenters {
 
         public void UpdateTextChanged() {
             if (!View.UpdateText.EndsWith(" ")) return;
-            
+
+            ShortenUrls();
+        }
+
+        void ShortenUrls() {
             View.UpdateText = UrlShrinker.Shorten(View.UpdateText);
+        }
+
+        public void UpdateTextPasted() {
+            ShortenUrls();
         }
     }
 }
