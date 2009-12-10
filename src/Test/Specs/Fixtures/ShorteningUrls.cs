@@ -17,12 +17,12 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
 
             When("making a {0} containing urls", Update => {
-                UpdateStatusView.UpdateText = Update;
+                UpdateStatusView.UpdateText = Update + " ";
                 UpdateStatusPresenter.UpdateTextChanged();
             });
 
             Then("the urls should be {0}", ShrinkedUpdate => 
-                UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate)
+                UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate + " ")
             );
         }
     }

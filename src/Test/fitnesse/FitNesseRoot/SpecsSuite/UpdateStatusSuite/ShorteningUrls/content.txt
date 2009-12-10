@@ -26,24 +26,11 @@ I want to be able to shorten urls
 |${Url}             |${ShortenUrl}              |
 |look at this ${Url}|look at this ${ShortenUrl} |
 |(${Url})           |(${ShortenUrl})            |
-|[${Url}]           |[${ShortenUrl}]            |
+|[ ${Url} ]         |[ ${ShortenUrl} ]          |
 |{${Url}}           |{${ShortenUrl}}            |
 
 
 |Scenarios    |should not shorten urls already shortened or too short|
-|status update|shrunk                                                |
+|status update|shorten                                               |
 |${ShortUrl}  |${ShortUrl}                                           |
 |${ShortenUrl}|${ShortenUrl}                                         |
-
-!*< coming soon
-
-
-
-{{{
------- '''Scenario''' ''Using tiny url'' ------
-|Given|an update with content that starts with "${LongUrl}"  |
-|And  |the service used is "tiny url"                        |
-|When |the url is shortened                                  |
-|Then |the update content should be shorter than "${LongUrl}"|
-}}}
-*!

@@ -15,14 +15,25 @@ namespace Zunzun.Specs {
         public class an_UpdateStatusPresenter : BehaviorOf<UpdateStatusPresenter>{
             
             [TestMethod]
-            public void should_shorten_url_automatically() {
+            public void should_shorten_url_automatically_after_a_space() {
                 
-                Given.View.UpdateText = OriginalUrl;
-                Given.UrlShrinker.Shorten(OriginalUrl).Is(ShortenedUrl);
+                Given.View.UpdateText = OriginalUrl + " ";
+                Given.UrlShrinker.Shorten(OriginalUrl + " ").Is(ShortenedUrl + " ");
                 
                 When.UpdateTextChanged();
                 
-                Then.View.UpdateText.ShouldBe(ShortenedUrl);
+                Then.View.UpdateText.ShouldBe(ShortenedUrl + " ");
+            }
+
+            [TestMethod]
+            public void should_not_shorten_urls_too_soon() {
+                
+                Given.View.UpdateText = OriginalUrl;
+                
+                When.UpdateTextChanged();
+                
+                Then.UrlShrinker.ShouldNot().Shorten(OriginalUrl);
+                Then.View.UpdateText.ShouldBe(OriginalUrl);
             }
         }
         

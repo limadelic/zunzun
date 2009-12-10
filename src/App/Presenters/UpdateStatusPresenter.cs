@@ -70,6 +70,8 @@ namespace Zunzun.App.Presenters {
         }
 
         public void UpdateTextChanged() {
+            if (!View.UpdateText.EndsWith(" ")) return;
+            
             View.UpdateText = UrlShrinker.Shorten(View.UpdateText);
         }
     }

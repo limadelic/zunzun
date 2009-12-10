@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Controls;
 using Zunzun.App.Converters;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
@@ -57,6 +58,10 @@ namespace Zunzun.App.Views.Xaml {
         void ExecuteTweetEvent(Action<Tweet> Event, RoutedEventArgs Args) {
             var Tweet = (Args as TweetEvent.Args).Tweet;
             Event(Tweet);
+        }
+
+        void OnTextChanged(object Sender, TextChangedEventArgs Args) {
+            Presenter.UpdateTextChanged();
         }
     }
 }
