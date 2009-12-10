@@ -45,3 +45,7 @@ I want to be able to shorten urls
 
 |When|pasting "${Url}" into the status update    |
 |Then|the status update should be "${ShortenUrl}"|
+
+pending:
+ * paste is broken
+ * display tweet should format enclosed urls
