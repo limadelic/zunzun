@@ -4,7 +4,7 @@ namespace Zunzun.Domain.Classes {
 
     public class UrlShrinkerClass : UrlShrinker {
     
-        readonly char[] BySpaces = new[] {' '};
+        readonly char[] ByDelimiters = new[] {' ', '[', ']', '{', '}', '(', ')' };
         string StatusUpdate;
         
         public WebRequest WebRequest { get; set; }
@@ -12,7 +12,7 @@ namespace Zunzun.Domain.Classes {
         public string Shorten(string StatusUpdate) {
             this.StatusUpdate = StatusUpdate;
 
-            StatusUpdate.Split(BySpaces)
+            StatusUpdate.Split(ByDelimiters)
                 .ForEach(ShortenIfUrl);
 
             return this.StatusUpdate;

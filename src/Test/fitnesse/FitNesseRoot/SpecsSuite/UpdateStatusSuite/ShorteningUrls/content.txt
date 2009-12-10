@@ -25,13 +25,15 @@ I want to be able to shorten urls
 |status update      |shorten                    |
 |${Url}             |${ShortenUrl}              |
 |look at this ${Url}|look at this ${ShortenUrl} |
+|(${Url})           |(${ShortenUrl})            |
+|[${Url}]           |[${ShortenUrl}]            |
+|{${Url}}           |{${ShortenUrl}}            |
+
 
 |Scenarios    |should not shorten urls already shortened or too short|
 |status update|shrunk                                                |
 |${ShortUrl}  |${ShortUrl}                                           |
 |${ShortenUrl}|${ShortenUrl}                                         |
-
-
 
 !*< coming soon
 

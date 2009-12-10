@@ -71,6 +71,19 @@ namespace Zunzun.Specs {
 
                 When.Shorten(ShortUrl).ShouldBe(ShortUrl);
             }
+            
+            [TestMethod]
+            public void should_shorten_enclosed_urls() {
+                
+                When.Shorten("(" + OriginalUrl + ")")
+                    .ShouldBe("(" + ShortenedUrl + ")");
+                    
+                When.Shorten("[" + OriginalUrl + "]")
+                    .ShouldBe("[" + ShortenedUrl + "]");
+                    
+                When.Shorten("{" + OriginalUrl + "}")
+                    .ShouldBe("{" + ShortenedUrl + "}");
+            }
         }
     }
 }
