@@ -4,7 +4,8 @@ using Zunzun.Domain;
 namespace Zunzun.App.Presenters {
 
     public class UpdateStatusPresenter {
-    
+        bool OnPaste;
+
         private const string RetweetPrefix = "RT";
         private const string ReplyPrefix = "@";
         private const string DirectMessagePrefix = "D";
@@ -70,17 +71,22 @@ namespace Zunzun.App.Presenters {
         }
 
         public void UpdateTextChanged() {
-            if (!View.UpdateText.EndsWith(" ")) return;
 
-            ShortenUrls();
+            if (ShouldShortenUrls) ShortenUrls();
+
+            OnPaste = false;
         }
+
+        bool ShouldShortenUrls { get { return 
+            OnPaste || View.UpdateText.EndsWith(" ")
+        ;}}
 
         void ShortenUrls() {
             View.UpdateText = UrlShrinker.Shorten(View.UpdateText);
         }
 
         public void UpdateTextPasted() {
-            ShortenUrls();
+            OnPaste = true;
         }
     }
 }

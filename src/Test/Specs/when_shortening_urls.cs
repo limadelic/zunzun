@@ -43,6 +43,7 @@ namespace Zunzun.Specs {
                 Given.UrlShrinker.Shorten(OriginalUrl).Is(ShortenedUrl);
                 
                 When.UpdateTextPasted();
+                When.UpdateTextChanged();
                 
                 Then.View.UpdateText.ShouldBe(ShortenedUrl);
             }

@@ -29,7 +29,6 @@ I want to be able to shorten urls
 |[${Url}]           |[${ShortenUrl}]            |
 |{${Url}}           |{${ShortenUrl}}            |
 
-
 |Scenarios    |should not shorten urls already shortened or too short|
 |status update|shorten                                               |
 |${ShortUrl}  |${ShortUrl}                                           |
