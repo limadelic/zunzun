@@ -9,7 +9,7 @@ namespace Zunzun.Domain {
 
         public const int NumberOfTweetsPerRequest = 100;
 
-        public const string TwitterUrl = "http://twitter.com/";
+        public const string TwitterUrl = "http://www.twitter.com/";
 
         public const string MentionPreffix = "@";
 

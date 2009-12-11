@@ -1,0 +1,6 @@
+
+!define KinobotUserName {kinobot}
+!define KinobotPassword {kashmir}
+
+!define ZunzunApp {zunzunapp}
+!define ZunzunAppUrl {http://www.twitter.com/zunzunapp}

@@ -14,8 +14,9 @@ namespace Zunzun.App.Model.Classes {
     
         public List<Inline> TokensFrom(string Text) {
             Tokens = new List<Inline>();
+            const string Pattern = @"( )|(\()|(\))|(\[)|(\])|({)|(})";
 
-            var Words = Text.Split(new[] {' '});
+            var Words = Regex.Split(Text, Pattern);
 
             Words.ForEach(Tokenize);
             AddRemainingLiteral();
@@ -36,7 +37,7 @@ namespace Zunzun.App.Model.Classes {
 
         bool IsLink { get { return Word.IsUrl(); } }
 
-        void TokenizeLiteral() { Literal += Word + " "; }
+        void TokenizeLiteral() { Literal += Word; }
 
         void TokenizeLink() {
             AddLiteralToken();
@@ -74,17 +75,16 @@ namespace Zunzun.App.Model.Classes {
             var Mention = Regex.Match(Word, @"(\w+)(?<Suffix>.*)");
 
             Word = Mention.Groups[1].Value;
-            Literal = Mention.Groups["Suffix"].Value + " ";
+            Literal = Mention.Groups["Suffix"].Value;
         }
 
         void SeparateFromNextLiteral() {
-            Literal = " ";
+            Literal = string.Empty;
         }
 
         void AddRemainingLiteral() {
             if (String.IsNullOrEmpty(Literal)) return;
             
-            Literal = Literal.Remove(Literal.Length - 1);
             AddLiteralToken();
         }
     }

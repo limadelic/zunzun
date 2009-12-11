@@ -13,18 +13,18 @@ I want to be able to see the User details and Tweets
 ------ '''Scenario''' ''show User details'' ------
 !*> define details
 
-!|define|Then the User Details should be displayed                |
-|And    |should be named "zunzun"                                 |
-|And    |should have a picture                                    |
-|And    |the bio should be "snappy & concise twitter app"         |
-|And    |should be Following other users                          |
-|And    |should have Followers                                    |
-|And    |should have total of updates                             |
-|And    |the website should be "http://zunzun.us"                 |
-|And    |the Twitter Home should be "http://twitter.com/zunzunapp"|
-|And    |should have joined on "11/6/2009 1:38:13 AM"             |
-|And    |the location should be "Miami, FL"                       |
-|And    |the time zone should be "Eastern Time (US & Canada)"     |
+!|define|Then the User Details should be displayed                    |
+|And    |should be named "zunzun"                                     |
+|And    |should have a picture                                        |
+|And    |the bio should be "snappy & concise twitter app"             |
+|And    |should be Following other users                              |
+|And    |should have Followers                                        |
+|And    |should have total of updates                                 |
+|And    |the website should be "http://zunzun.us"                     |
+|And    |the Twitter Home should be "http://www.twitter.com/zunzunapp"|
+|And    |should have joined on "11/6/2009 1:38:13 AM"                 |
+|And    |the location should be "Miami, FL"                           |
+|And    |the time zone should be "Eastern Time (US & Canada)"         |
 
 *!
 

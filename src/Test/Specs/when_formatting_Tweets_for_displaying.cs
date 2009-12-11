@@ -1,6 +1,7 @@
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
+using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs {
@@ -54,15 +55,15 @@ namespace Zunzun.Specs {
             var Tokens = The.TokensFrom("@zunzun");
 
             Tokens[0].ShouldBeALiteralWith("@");
-            Tokens[1].ShouldBeALinkTo("http://twitter.com/zunzun");
+            Tokens[1].ShouldBeALinkTo(Settings.TwitterUrl + "zunzun");
         }
-        
+
         [TestMethod]
         public void a_Mention_with_a_suffix_should_not_include_it_in_the_link() {
 
             var Tokens = The.TokensFrom("@zunzun:");
 
-            Tokens[1].ShouldBeALinkTo("http://twitter.com/zunzun");
+            Tokens[1].ShouldBeALinkTo(Settings.TwitterUrl + "zunzun");
             Tokens[2].ShouldBeALiteralWith(":");
         }
         
@@ -74,6 +75,19 @@ namespace Zunzun.Specs {
             Tokens[0].ShouldBeALiteralWith("check this out ");
             Tokens[1].ShouldBeALinkTo("http://www.zunzun.com/");
             Tokens[2].ShouldBeALiteralWith(" ... very nice");
+        }
+        
+        [TestMethod]
+        public void should_find_enclosed_url_and_Mentions() {
+        
+            The.TokensFrom("[http://www.zunzun.com]")[1]
+                .ShouldBeALinkTo("http://www.zunzun.com/");
+
+            The.TokensFrom("(@zunzun)")[1]
+                .ShouldBeALinkTo(Settings.TwitterUrl + "zunzun");
+
+            The.TokensFrom("{http://www.zunzun.com}")[1]
+                .ShouldBeALinkTo("http://www.zunzun.com/");
         }
     }
 }

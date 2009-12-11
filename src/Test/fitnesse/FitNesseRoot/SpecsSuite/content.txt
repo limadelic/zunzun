@@ -1,9 +1,3 @@
-!*> define
-
-!define ZunzunApp {zunzunapp}
-!define KinobotUserName {kinobot}
-!define KinobotPassword {kashmir}
-
-*!
+!include -c >GlobalVars
 
 !contents -R2 -g -p -f -h

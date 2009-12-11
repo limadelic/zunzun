@@ -11,7 +11,7 @@ I want to be able to shorten urls
 *!
 !*> vars
 
-!define Url {http://www.twitter.com/zunzunapp}
+!define Url (${ZunzunAppUrl})
 !define ShortUrl {http://imdb.com}
 !define ShortenUrl {http://tinyurl.com/ya9wfr4}
 
@@ -44,7 +44,3 @@ I want to be able to shorten urls
 
 |When|pasting "${Url}" into the status update    |
 |Then|the status update should be "${ShortenUrl}"|
-
-pending:
- * paste is broken
- * display tweet should format enclosed urls

@@ -16,12 +16,16 @@ I want to be able to follow links to sites and users
 |Then |it should not contain any links|
 
 
------- '''Scenario''' ''Tweet with a Link'' ------
-|Given|the Tweet "check this cool app http://www.zunzun.com"|
-|When |it is formatted for displaying                       |
-|Then |it should contain a link to "http://www.zunzun.com"  |
+|Scenario Outline|Tweet with Links                 |
+|Given           |the Tweet "Content"              |
+|When            |it is formatted for displaying   |
+|Then            |it should contain a link to "Url"|
 
------- '''Scenario''' ''Tweet with a Mention'' ------
-|Given|the Tweet "follow me @zunzun"                          |
-|When |it is formatted for displaying                         |
-|Then |it should contain a link to "http://twitter.com/zunzun"|
+|Scenarios                          |               |
+|Content                            |Url            |
+|check this cool app ${ZunzunAppUrl}|${ZunzunAppUrl}|
+|follow me @${ZunzunApp}            |${ZunzunAppUrl}|
+|[${ZunzunAppUrl}]                  |${ZunzunAppUrl}|
+|(@${ZunzunApp})                    |${ZunzunAppUrl}|
+|{@${ZunzunApp}}                    |${ZunzunAppUrl}|
+

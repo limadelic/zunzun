@@ -19,6 +19,7 @@ namespace Zunzun.Specs.Fixtures {
             When("making a {0} containing urls", Update => {
                 UpdateStatusView.UpdateText = Update;
                 UpdateStatusPresenter.UpdateTextPasted();
+                UpdateStatusPresenter.UpdateTextChanged();
             });
 
             Then("the urls should be {0}", ShrinkedUpdate => 
@@ -33,6 +34,7 @@ namespace Zunzun.Specs.Fixtures {
             When("pasting {0} into the status update", Update => {
                 UpdateStatusView.UpdateText = Update;
                 UpdateStatusPresenter.UpdateTextPasted();
+                UpdateStatusPresenter.UpdateTextChanged();
             });
 
             Then("the status update should be {0}", ShrinkedUpdate => 
