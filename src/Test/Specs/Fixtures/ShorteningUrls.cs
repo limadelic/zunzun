@@ -16,11 +16,10 @@ namespace Zunzun.Specs.Fixtures {
         
         protected override void SetUpSteps() {
 
-            When("making a {0} containing urls", Update => {
-                UpdateStatusView.UpdateText = Update;
-                UpdateStatusPresenter.UpdateTextPasted();
-                UpdateStatusPresenter.UpdateTextChanged();
-            });
+            Given("the url will be shorten with {0}", Service => 
+                App.Settings.CurrentUrlShrinker = Service);
+
+            When("making a {0} containing urls", PasteText);
 
             Then("the urls should be {0}", ShrinkedUpdate => 
                 UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate)
@@ -31,15 +30,17 @@ namespace Zunzun.Specs.Fixtures {
                 UpdateStatusPresenter.UpdateTextChanged();
             });
 
-            When("pasting {0} into the status update", Update => {
-                UpdateStatusView.UpdateText = Update;
-                UpdateStatusPresenter.UpdateTextPasted();
-                UpdateStatusPresenter.UpdateTextChanged();
-            });
+            When("pasting {0} into the status update", PasteText);
 
             Then("the status update should be {0}", ShrinkedUpdate => 
                 UpdateStatusView.UpdateText.ShouldBe(ShrinkedUpdate)
             );
+        }
+
+        void PasteText(string Update) {
+            UpdateStatusView.UpdateText = Update;
+            UpdateStatusPresenter.UpdateTextPasted();
+            UpdateStatusPresenter.UpdateTextChanged();
         }
     }
 }

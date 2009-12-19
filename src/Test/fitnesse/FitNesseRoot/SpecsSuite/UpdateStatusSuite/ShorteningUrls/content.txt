@@ -34,6 +34,14 @@ I want to be able to shorten urls
 |${ShortUrl}  |${ShortUrl}                                           |
 |${ShortenUrl}|${ShortenUrl}                                         |
 
+|Scenario Outline|shortening a url                        |
+|Given           |the url will be shorten with "service"  |
+|When            |making a "status update" containing urls|
+|Then            |the urls should be "shorten"            |
+
+|Scenarios|should support multiple url shortening providers|
+|service  |status update        |shorten                   |
+|is.gd    |${Url}               |http://is.gd/5t6cT        |
 
 ------ '''Scenario''' ''autoshorten after space or paste'' ------
 |When|entering the status update "${Url}" |
