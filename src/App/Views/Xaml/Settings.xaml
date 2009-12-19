@@ -7,7 +7,7 @@
     x:Class="Zunzun.App.Views.Xaml.Settings"
     Title="Settings" AllowsTransparency="True" 
     WindowStartupLocation="CenterOwner" 
-    WindowStyle="None" Background="{x:Null}" Width="250" Height="200">
+    WindowStyle="None" Background="{x:Null}" Width="300" Height="150">
 	<Border Background="{DynamicResource Background}" BorderBrush="{DynamicResource InfoBrush}" BorderThickness="{DynamicResource WindowsBorderThickness}" CornerRadius="10">
 		<Grid Margin="10">
 			<Grid.RowDefinitions>
@@ -16,8 +16,8 @@
 			</Grid.RowDefinitions>
 			<TabControl Style="{DynamicResource UserHomeTabControlStyle}" Foreground="{x:Null}" Padding="{DynamicResource NoThickness}" d:LayoutOverrides="GridBox" BorderBrush="{x:Null}" Background="{x:Null}">
 				<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="#FFDD3D3D" Foreground="{DynamicResource ContentBrush}" Header="Account">
-					<Border Margin="0" BorderThickness="1" BorderBrush="{DynamicResource InfoBrush}" CornerRadius="0,5,5,5">
-						<Grid Margin="10" VerticalAlignment="Center">
+					<Border Margin="0" BorderThickness="1" BorderBrush="{DynamicResource InfoBrush}" CornerRadius="0,5,5,5" Background="{DynamicResource Background}">
+						<Grid Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
         
 							<Grid.RowDefinitions>
 								<RowDefinition Height="Auto"/>
@@ -30,15 +30,33 @@
 						
 							<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="User Name" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}"/>
 							<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Password" Foreground="{DynamicResource ContentBrush}" Grid.Row="1" Padding="{DynamicResource NoThickness}"/>
-							<TextBox x:Name="UserNameTXT" TextWrapping="Wrap" Grid.Column="1" Width="150" Margin="10,0,7.23,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" TextChanged="HideError"/>
+							<TextBox x:Name="UserNameTXT" TextWrapping="Wrap" Grid.Column="1" Width="{DynamicResource InputWidth}" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" TextChanged="HideError" HorizontalAlignment="Left"/>
 							<PasswordBox x:Name="PasswordTXT" HorizontalAlignment="Left" d:LayoutOverrides="Height" Width="150" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" PasswordChanged="HideError"/>
-							<Label x:Name="ErrorTXT" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Invalid credentials. Please try again." Foreground="#FFBC5F5F" Padding="{DynamicResource NoThickness}" Grid.Row="2" FontStyle="Italic" FontSize="{DynamicResource InfoFontSize}" Grid.ColumnSpan="2" Margin="0,-6,0,0" Visibility="Hidden" d:LayoutOverrides="GridBox"/>
+							<Label x:Name="ErrorTXT" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Invalid credentials. Please try again." Foreground="#FFBC5F5F" Padding="{DynamicResource NoThickness}" Grid.Row="1" FontStyle="Italic" FontSize="{DynamicResource InfoFontSize}" Grid.ColumnSpan="2" Margin="0,-6,0,0" Visibility="Hidden" d:LayoutOverrides="GridBox"/>
         
 						</Grid>
 					</Border>
 				</TabItem>
 				<TabItem Style="{DynamicResource UserHomeTabItemStyle}" Background="{DynamicResource Background}" BorderBrush="{DynamicResource DefaultedBorderBrush}" Foreground="{DynamicResource ContentBrush}" Header="Services">
-					<Grid/>
+					<Border Margin="0" Background="{DynamicResource Background}" BorderBrush="{DynamicResource InfoBrush}" BorderThickness="1" CornerRadius="0,5,5,5">
+						<Grid Margin="10" VerticalAlignment="Center" HorizontalAlignment="Center">
+        
+							<Grid.RowDefinitions>
+								<RowDefinition Height="Auto"/>
+								<RowDefinition Height="Auto"/>
+							</Grid.RowDefinitions>
+							<Grid.ColumnDefinitions>
+								<ColumnDefinition Width="Auto"/>
+								<ColumnDefinition Width="Auto" MinWidth="167.23"/>
+							</Grid.ColumnDefinitions>
+						
+							<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Shorten urls with" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}"/>
+							<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Upload pics with" Foreground="{DynamicResource ContentBrush}" Grid.Row="1" Padding="{DynamicResource NoThickness}"/>
+							<ComboBox d:LayoutOverrides="Height" Grid.Column="1" Margin="0,0,0,10" Width="{DynamicResource InputWidth}"/>
+							<ComboBox d:LayoutOverrides="Height" Grid.Row="1" Grid.Column="1" Width="{DynamicResource InputWidth}"/>
+        
+						</Grid>
+					</Border>
 				</TabItem>
 			</TabControl>
 			<StackPanel Orientation="Horizontal" Grid.Row="1" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0,10,0,0">

@@ -460,4 +460,5 @@
 	</Style>
 	<CornerRadius x:Key="RoundWindowsBorder">10,10,0,10</CornerRadius>
 	<Thickness x:Key="WindowsBorderThickness">2</Thickness>
+	<System:Double x:Key="InputWidth">150</System:Double>
 </ResourceDictionary>
