@@ -4,9 +4,9 @@ namespace Zunzun.App.Views {
 
     public interface SettingsView {
     
-        string UserName { get; }
-        string Password { get; }
-        
+        string UserName { get; set; }
+        string Password { get; set; }
+
         List<string> UrlShrinkers { set; }
         string UrlShrinker { get; set; }
 

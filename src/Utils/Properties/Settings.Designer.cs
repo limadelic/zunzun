@@ -46,5 +46,17 @@ namespace Zunzun.Utils.Properties {
                 this["Password"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        public string UrlShrinker {
+            get {
+                return ((string)(this["UrlShrinker"]));
+            }
+            set {
+                this["UrlShrinker"] = value;
+            }
+        }
     }
 }

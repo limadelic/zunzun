@@ -24,6 +24,40 @@ namespace Zunzun.Specs {
                 The.View.UrlShrinker.ShouldBe(
                     Domain.Settings.UrlShrinker);
             }
+            
+            [TestMethod]
+            public void should_load_current_credentials() {
+                
+                The.View.UserName.ShouldBe(
+                    Domain.Settings.UserName);
+                The.View.Password.ShouldBe(
+                    Domain.Settings.Password);
+            }
+        }
+        
+        [TestClass]
+        public class are_applied : BehaviorOf<SettingsPresenter> {
+        
+            const string UrlShrinker = "Url Shrinker";
+            
+            [TestMethod]
+            public void should_be_saved() {
+                
+                When.Apply();
+                Should.Save();
+            }
+
+            [TestMethod]
+            public void should_set_the_UrlShrinker() {
+
+                Given.View.UrlShrinker = UrlShrinker;
+
+                When.ApplyServicesSettings();
+                
+                Domain.Settings.UrlShrinker.ShouldBe(UrlShrinker);
+                Utils.Properties.Settings.Default.UrlShrinker
+                    .ShouldBe(UrlShrinker);
+            }
         }
     }
 }
