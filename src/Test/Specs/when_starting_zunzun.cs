@@ -5,8 +5,9 @@ using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Model.Classes;
 using Zunzun.App.Presenters;
 using Zunzun.Domain.Classes;
+using Zunzun.Specs.Helpers;
 
-namespace Zunzun.Specs.Helpers {
+namespace Zunzun.Specs {
 
     public class when_starting_zunzun {
 
@@ -21,7 +22,9 @@ namespace Zunzun.Specs.Helpers {
             public void should_use_credentials_if_present() {
 
                 Given.UserAuthenticator.HasCredentials.Is(true);
+                
                 When.Load();
+                
                 Then.View.ShouldNot().RequestLogin();
                 Then.UserAuthenticator.Should().UseCredentials();
             }
@@ -151,7 +154,7 @@ namespace Zunzun.Specs.Helpers {
                 Given.View.Password.Is(Password);
                 
                 Given.UserAuthenticator.Authenticate(UserName, Password); 
-                    WillThrow(new Exception());
+                WillThrow(new Exception());
                 
                 When.Login();
                 

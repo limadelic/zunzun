@@ -16,5 +16,9 @@ namespace Zunzun.App.Presenters {
 
             } catch { View.ShowError(); }
         }
+
+        public void Load() {
+            View.UrlShrinkers = Domain.Settings.UrlShrinkers;
+        }
     }
 }

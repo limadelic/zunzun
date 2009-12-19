@@ -1,4 +1,6 @@
 using System.Collections.Generic;
+using System.Linq;
+using Zunzun.Domain.Classes;
 
 namespace Zunzun.Domain {
 
@@ -6,7 +8,10 @@ namespace Zunzun.Domain {
     
         public static string UserName { get; set; }
         public static string Password { get; set; }
+
         public static string UrlShrinker = "u.nu";
+        public static readonly List<string> UrlShrinkers = 
+            UrlShrinkerClass.Services.Keys.ToList();
 
         public const int NumberOfTweetsPerRequest = 100;
 
