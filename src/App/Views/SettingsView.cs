@@ -1,6 +1,6 @@
 namespace Zunzun.App.Views {
 
-    public interface LoginView {
+    public interface SettingsView {
     
         string UserName { get; }
         string Password { get; }

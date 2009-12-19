@@ -3,12 +3,12 @@ using Zunzun.App.Presenters;
 
 namespace Zunzun.App.Views.Xaml {
     
-    public partial class Login : LoginView {
+    public partial class Settings : SettingsView {
     
-        LoginPresenter Presenter { get; set;}
+        SettingsPresenter Presenter { get; set;}
     
-        public Login() {
-            Presenter = PresenterFactory.NewLoginPresenter(this);
+        public Settings() {
+            Presenter = PresenterFactory.NewSettingsPresenter(this);
             InitializeComponent();
         }
 

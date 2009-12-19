@@ -13,8 +13,8 @@ namespace Zunzun.Specs.Fixtures {
         ZunzunView ZunzunView;
         ZunzunPresenter ZunzunPresenter;
         
-        LoginView LoginView;
-        LoginPresenter LoginPresenter;
+        SettingsView SettingsView;
+        SettingsPresenter SettingsPresenter;
 
         KeyMaker KeyMaker = Utils.ObjectFactory.NewKeyMaker;
         
@@ -27,8 +27,8 @@ namespace Zunzun.Specs.Fixtures {
                 Helpers.Given.Credentials(UserName, Actors.KinobotEncryptedPassword));
                 
             Given("the user is requested to login", () => {
-                LoginView = Create.TestObjectFor<LoginView>();
-                LoginPresenter = PresenterFactory.NewLoginPresenter(LoginView);
+                SettingsView = Create.TestObjectFor<SettingsView>();
+                SettingsPresenter = PresenterFactory.NewSettingsPresenter(SettingsView);
             });
             
             When("the program is launched", () => {
@@ -38,15 +38,15 @@ namespace Zunzun.Specs.Fixtures {
             });
             
             When("invalid credentials are supplied", () => {
-                LoginView.Given().UserName.Is(Actors.KinobotUserName);
-                LoginView.Given().Password.Is("invalid pass");
-                LoginPresenter.Login();
+                SettingsView.Given().UserName.Is(Actors.KinobotUserName);
+                SettingsView.Given().Password.Is("invalid pass");
+                SettingsPresenter.Login();
             });
             
             When("the correct credentials are supplied", () => {
-                LoginView.Given().UserName.Is(Actors.KinobotUserName);
-                LoginView.Given().Password.Is(Actors.KinobotPassword);
-                LoginPresenter.Login();
+                SettingsView.Given().UserName.Is(Actors.KinobotUserName);
+                SettingsView.Given().Password.Is(Actors.KinobotPassword);
+                SettingsPresenter.Login();
             });
             
             Then("the user should be requested to login", () => 
@@ -61,7 +61,7 @@ namespace Zunzun.Specs.Fixtures {
             });
 
             Then("an error message should be displayed", () => 
-                LoginView.Should().ShowError());
+                SettingsView.Should().ShowError());
 
             And("the password should be encrypted", () =>
                 KeyMaker.Decrypt(Utils.Properties.Settings.Default.Password)

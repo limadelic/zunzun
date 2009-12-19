@@ -41,8 +41,8 @@ namespace Zunzun.App.Presenters {
             };
         }
 
-        public static LoginPresenter NewLoginPresenter(LoginView View) {
-            return new LoginPresenter {
+        public static SettingsPresenter NewSettingsPresenter(SettingsView View) {
+            return new SettingsPresenter {
                 View = View, 
                 UserAuthenticator = ObjectFactory.NewUserAuthenticator
             };

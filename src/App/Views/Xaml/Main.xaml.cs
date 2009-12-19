@@ -39,7 +39,7 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         public void RequestLogin() {
-            var Login = new Login { Owner = this };
+            var Login = new Settings { Owner = this };
             Login.ShowDialog();
         }
 

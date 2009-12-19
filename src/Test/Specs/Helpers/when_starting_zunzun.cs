@@ -123,7 +123,7 @@ namespace Zunzun.Specs.Helpers {
         }
         
         [TestClass]
-        public class a_LoginPresenter : BehaviorOf<LoginPresenter> {
+        public class a_SettingsPresenter : BehaviorOf<SettingsPresenter> {
 
             [TestMethod]
             public void should_authenticate_credentials() {

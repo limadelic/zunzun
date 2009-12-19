@@ -3,8 +3,8 @@
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
-    x:Class="Zunzun.App.Views.Xaml.Login"
-    Title="Login" AllowsTransparency="True" 
+    x:Class="Zunzun.App.Views.Xaml.Settings"
+    Title="Settings" AllowsTransparency="True" 
     WindowStartupLocation="CenterOwner" 
     WindowStyle="None" Background="{x:Null}" mc:Ignorable="d" Width="250" Height="125">
 	<Border Background="{DynamicResource Background}" BorderBrush="{DynamicResource InfoBrush}" BorderThickness="{DynamicResource WindowsBorderThickness}" CornerRadius="10">

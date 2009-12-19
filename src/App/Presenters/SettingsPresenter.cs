@@ -3,9 +3,9 @@ using Zunzun.App.Views;
 
 namespace Zunzun.App.Presenters {
 
-    public class LoginPresenter {
+    public class SettingsPresenter {
     
-        public LoginView View { get; set; }
+        public SettingsView View { get; set; }
         public UserAuthenticator UserAuthenticator { get; set; }
         
         public void Login() {

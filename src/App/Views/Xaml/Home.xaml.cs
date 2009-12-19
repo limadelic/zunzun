@@ -21,7 +21,7 @@ namespace Zunzun.App.Views.Xaml {
         }
 
         void OnLoad(object Sender, RoutedEventArgs Args) {
-            if (Settings.IsInDesignMode) return;
+            if (Zunzun.App.Settings.IsInDesignMode) return;
             
             Presenter.Load();
         }

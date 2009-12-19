@@ -73,7 +73,7 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
-    <Page Include="Views\Xaml\Login.xaml">
+    <Page Include="Views\Xaml\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -115,15 +115,15 @@
     <Compile Include="Model\Classes\UserAuthenticatorClass.cs" />
     <Compile Include="Model\UserAuthenticator.cs" />
     <Compile Include="Presenters\ConversationPresenter.cs" />
-    <Compile Include="Presenters\LoginPresenter.cs" />
+    <Compile Include="Presenters\SettingsPresenter.cs" />
     <Compile Include="Presenters\ZunzunPresenter.cs" />
-    <Compile Include="Views\LoginView.cs" />
+    <Compile Include="Views\SettingsView.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RichTextBlock.cs" />
-    <Compile Include="Views\Xaml\Login.xaml.cs">
-      <DependentUpon>Login.xaml</DependentUpon>
+    <Compile Include="Views\Xaml\Settings.xaml.cs">
+      <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Xaml\Resources.xaml.cs" />
     <Compile Include="Views\Xaml\UpdateStatus.xaml.cs">
