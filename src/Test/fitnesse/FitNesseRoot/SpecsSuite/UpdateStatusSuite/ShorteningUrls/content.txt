@@ -13,10 +13,11 @@ I want to be able to shorten urls
 
 !define Url (${ZunzunAppUrl})
 !define ShortUrl {http://imdb.com}
-!define ShortenUrl {http://tinyurl.com/ya9wfr4}
+!define ShortenUrl {http://u.nu/4kea4}
 
 *!
 
+------ '''Scenario''' ''shortening a url'' ------
 |Scenario Outline|shortening a url                        |
 |When            |making a "status update" containing urls|
 |Then            |the urls should be "shorten"            |
@@ -34,20 +35,24 @@ I want to be able to shorten urls
 |${ShortUrl}  |${ShortUrl}                                           |
 |${ShortenUrl}|${ShortenUrl}                                         |
 
+------ '''Scenario''' ''support multiple url shortening providers'' ------
 !*> Set Up
 
 |Backup Url Shrinker|
 
 *!
 
-|Scenario Outline|shortening a url                        |
+|Scenario Outline|                                        |
 |Given           |the url will be shorten with "service"  |
 |When            |making a "status update" containing urls|
 |Then            |the urls should be "shorten"            |
 
-|Scenarios|should support multiple url shortening providers|
-|service  |status update        |shorten                   |
-|is.gd    |${Url}               |http://is.gd/5t6cT        |
+|Scenarios|                                        |
+|service  |status update|shorten                   |
+|u.nu     |${Url}       |http://u.nu/4kea4         |
+|is.gd    |${Url}       |http://is.gd/5t6cT        |
+|bit.ly   |${Url}       |http://bit.ly/5y7pgg      |
+|tinyurl  |${Url}       |http://tinyurl.com/ya9wfr4|
 
 !*> Tear Down
 

@@ -9,7 +9,7 @@ namespace Zunzun.Specs {
     public class when_shortening_urls {
     
         const string OriginalUrl = "http://www.longurl.com/verylongpath";
-        const string ShortenedUrl = "http://tinyurl.com/abcd";
+        const string ShortenedUrl = "http://u.nu/abcd";
         
         [TestClass]
         public class an_UpdateStatusPresenter : BehaviorOf<UpdateStatusPresenter>{

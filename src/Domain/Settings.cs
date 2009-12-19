@@ -6,7 +6,7 @@ namespace Zunzun.Domain {
     
         public static string UserName { get; set; }
         public static string Password { get; set; }
-        public static string UrlShrinker = "tinyurl";
+        public static string UrlShrinker = "u.nu";
 
         public const int NumberOfTweetsPerRequest = 100;
 
