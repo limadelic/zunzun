@@ -6,7 +6,9 @@ namespace Zunzun.App.Views {
     
         string UserName { get; }
         string Password { get; }
+        
         List<string> UrlShrinkers { set; }
+        string UrlShrinker { get; set; }
 
         void Close();
         void ShowError();

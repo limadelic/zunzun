@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using Zunzun.App.Controls;
 using Zunzun.App.Presenters;
 
@@ -17,7 +18,12 @@ namespace Zunzun.App.Views.Xaml {
         
         public string Password { get { return PasswordTXT.Password; } }
 
-        public List<string> UrlShrinkers { set { UrlShrinkersCBX.ItemsSource = value; } } 
+        public List<string> UrlShrinkers { set { UrlShrinkersCBX.ItemsSource = value; } }
+        
+        public string UrlShrinker { 
+            get { return UrlShrinkersCBX.SelectedItem.ToString(); }
+            set { UrlShrinkersCBX.SelectedItem = value; } 
+        }
 
         public void ShowError() {
             ErrorTXT.Show();

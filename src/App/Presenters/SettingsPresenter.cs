@@ -19,6 +19,7 @@ namespace Zunzun.App.Presenters {
 
         public void Load() {
             View.UrlShrinkers = Domain.Settings.UrlShrinkers;
+            View.UrlShrinker = Domain.Settings.UrlShrinker;
         }
     }
 }
