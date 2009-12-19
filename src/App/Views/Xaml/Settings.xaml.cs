@@ -20,12 +20,12 @@ namespace Zunzun.App.Views.Xaml {
             ErrorTXT.Show();
         }
 
-        void OnLogin(object Sender, System.Windows.RoutedEventArgs Args) {
-            Presenter.Login();
-        }
-
         void HideError(object Sender, System.Windows.RoutedEventArgs Args) {
             ErrorTXT.Hide();
+        }
+
+        private void OnOK(object sender, System.Windows.RoutedEventArgs e) {
+            Presenter.Login();
         }
     }
 }
