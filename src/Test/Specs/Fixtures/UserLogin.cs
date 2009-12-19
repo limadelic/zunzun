@@ -40,13 +40,13 @@ namespace Zunzun.Specs.Fixtures {
             When("invalid credentials are supplied", () => {
                 SettingsView.Given().UserName.Is(Actors.KinobotUserName);
                 SettingsView.Given().Password.Is("invalid pass");
-                SettingsPresenter.Apply();
+                SettingsPresenter.Login();
             });
             
             When("the correct credentials are supplied", () => {
                 SettingsView.Given().UserName.Is(Actors.KinobotUserName);
                 SettingsView.Given().Password.Is(Actors.KinobotPassword);
-                SettingsPresenter.Apply();
+                SettingsPresenter.Login();
             });
             
             Then("the user should be requested to login", () => 

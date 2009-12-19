@@ -56,6 +56,7 @@ namespace Zunzun.Specs {
             
             [TestInitialize]
             public void SetUp() {
+                Domain.Settings.UrlShrinker = "u.nu";
                 Given.RequestToShorten(OriginalUrl).Is(UrlShortenRequest);
                 Given.WebRequest.GetResponse(UrlShortenRequest).Is(ShortenedUrl);
             }
@@ -80,7 +81,7 @@ namespace Zunzun.Specs {
             
             [TestMethod]
             public void should_not_shorten_an_url_already_shortened() {
-
+                
                 When.Shorten(ShortenedUrl);
                 ShouldNot.RequestToShorten(ShortenedUrl);
             }
