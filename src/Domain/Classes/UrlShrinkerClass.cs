@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Zunzun.Utils;
 
 namespace Zunzun.Domain.Classes {
@@ -29,12 +30,17 @@ namespace Zunzun.Domain.Classes {
             StatusUpdate = StatusUpdate.Replace(StatusUpdateToken, ShortenedUrl);
         }
 
+        public static readonly Dictionary<string, string> Services = new Dictionary<string, string> {
+            { "tinyurl", "http://tinyurl.com/api-create.php?url={0}" },
+            { "is.gd", "http://is.gd/api.php?longurl={0}" },
+        };
+
         bool AlreadyShortened(string Url) { return
-            Url.StartsWith("http://tinyurl.com")
+            Url.StartsWith("http://" + Settings.UrlShrinker)
         ;}
 
         public virtual string RequestToShorten(string Url) { return
-            "http://tinyurl.com/api-create.php?url=" + Url
+            string.Format(Services[Settings.UrlShrinker], Url)
         ;}
     }
 }

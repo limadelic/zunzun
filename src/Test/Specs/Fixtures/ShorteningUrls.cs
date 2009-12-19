@@ -17,7 +17,7 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
 
             Given("the url will be shorten with {0}", Service => 
-                App.Settings.CurrentUrlShrinker = Service);
+                Domain.Settings.UrlShrinker = Service);
 
             When("making a {0} containing urls", PasteText);
 
@@ -41,6 +41,16 @@ namespace Zunzun.Specs.Fixtures {
             UpdateStatusView.UpdateText = Update;
             UpdateStatusPresenter.UpdateTextPasted();
             UpdateStatusPresenter.UpdateTextChanged();
+        }
+
+        string UrlShrinker;
+        
+        public void BackupUrlShrinker() {
+            UrlShrinker = Domain.Settings.UrlShrinker;
+        }
+
+        public void RestoreUrlShrinker() {
+            Domain.Settings.UrlShrinker = UrlShrinker;
         }
     }
 }

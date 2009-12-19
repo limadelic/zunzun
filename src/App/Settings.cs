@@ -23,6 +23,9 @@ namespace Zunzun.App {
         public static readonly bool IsInDesignMode = 
             DesignerProperties.GetIsInDesignMode(new DependencyObject());
 
-        public static string CurrentUrlShrinker = "tinyurl";
+        public static string UrlShrinker {
+            get { return Domain.Settings.UrlShrinker;  }
+            set { Domain.Settings.UrlShrinker = value; }
+        }
     }
 }
