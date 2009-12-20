@@ -52,8 +52,8 @@
 						
 							<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Shorten urls with" Foreground="{DynamicResource ContentBrush}" Padding="{DynamicResource NoThickness}"/>
 							<Label HorizontalAlignment="Right" VerticalAlignment="Top" Content="Upload pics with" Foreground="{DynamicResource ContentBrush}" Grid.Row="1" Padding="{DynamicResource NoThickness}"/>
-							<ComboBox x:Name="UrlShrinkersCBX" d:LayoutOverrides="Height" Grid.Column="1" Margin="10,0,0,10" Width="{DynamicResource InputWidth}"/>
-							<ComboBox d:LayoutOverrides="Height" Grid.Row="1" Grid.Column="1" Width="{DynamicResource InputWidth}" Margin="10,0,0,0"/>
+							<ComboBox x:Name="UrlShrinkersCBX" d:LayoutOverrides="Height" Grid.Column="1" Margin="10,0,0,10" Width="{DynamicResource InputWidth}" Style="{DynamicResource DefautComboBox}" Foreground="#FFC9C9C9" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" ItemContainerStyle="{DynamicResource DefaultComboBoxItemStyle}"/>
+							<ComboBox Grid.Column="1" Width="{DynamicResource InputWidth}" Style="{DynamicResource DefautComboBox}" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="#FFC9C9C9" ItemContainerStyle="{DynamicResource DefaultComboBoxItemStyle}" d:LayoutOverrides="Height" Grid.Row="1" Margin="10,0,0,0"/>
         
 						</Grid>
 					</Border>
