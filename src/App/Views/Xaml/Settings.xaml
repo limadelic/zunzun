@@ -7,7 +7,7 @@
     x:Class="Zunzun.App.Views.Xaml.Settings"
     Title="Settings" AllowsTransparency="True" 
     WindowStartupLocation="CenterOwner" 
-    WindowStyle="None" Background="{x:Null}" Width="250" Height="150" Loaded="OnLoad">
+    WindowStyle="None" Background="{x:Null}" Width="250" Height="175" Loaded="OnLoad">
 	<Border Background="{DynamicResource Background}" BorderBrush="{DynamicResource InfoBrush}" BorderThickness="{DynamicResource WindowsBorderThickness}" CornerRadius="10">
 		<Grid Margin="10">
 			<Grid.RowDefinitions>
@@ -32,7 +32,7 @@
 							<Label VerticalAlignment="Top" Content="Password" Foreground="{DynamicResource ContentBrush}" Grid.Row="1" Padding="{DynamicResource NoThickness}" HorizontalContentAlignment="Right"/>
 							<TextBox x:Name="UserNameTXT" TextWrapping="Wrap" Grid.Column="1" Width="{DynamicResource InputWidth}" Margin="10,0,0,10" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" TextChanged="HideError" HorizontalAlignment="Left"/>
 							<PasswordBox x:Name="PasswordTXT" HorizontalAlignment="Left" d:LayoutOverrides="Height" Width="{DynamicResource InputWidth}" Grid.Column="1" Grid.Row="1" Margin="10,0,0,0" Background="{DynamicResource ContentBrush}" BorderBrush="{DynamicResource InfoBrush}" PasswordChanged="HideError"/>
-							<Label x:Name="ErrorTXT" HorizontalAlignment="Center" VerticalAlignment="Top" Content="Invalid credentials. Please try again." Foreground="#FFBC5F5F" Padding="{DynamicResource NoThickness}" Grid.Row="1" FontStyle="Italic" FontSize="{DynamicResource InfoFontSize}" Grid.ColumnSpan="2" Margin="0,-6,0,0" d:LayoutOverrides="GridBox" Visibility="Hidden"/>
+							<Label x:Name="ErrorTXT" HorizontalAlignment="Right" VerticalAlignment="Bottom" Content="Invalid credentials. Please try again." Foreground="#FFBC5F5F" Padding="{DynamicResource NoThickness}" Grid.Row="1" FontStyle="Italic" FontSize="{DynamicResource InfoFontSize}" Grid.ColumnSpan="2" Margin="0,0,0,-20" d:LayoutOverrides="GridBox" Visibility="Hidden"/>
         
 						</Grid>
 					</Border>
