@@ -1,23 +1,20 @@
 using System.Collections.Generic;
 using System.Linq;
 using Zunzun.Domain.Classes;
+using Zunzun.Utils.Aspects;
 using UtilsSettings = Zunzun.Utils.Properties.Settings;
 
 namespace Zunzun.Domain {
 
     public static class Settings {
     
-        static Settings() {
-        
-            UserName = UtilsSettings.Default.UserName;    
-            Password = UtilsSettings.Default.Password;
-                
-            UrlShrinker = !string.IsNullOrEmpty(UtilsSettings.Default.UrlShrinker) ?
-                UtilsSettings.Default.UrlShrinker : "u.nu";    
-        }
-
+        [UserSetting]
         public static string UserName { get; set; }
+        
+        [UserSetting, Encrypted]
         public static string Password { get; set; }
+        
+        [UserSetting]
         public static string UrlShrinker { get; set; }
         
         public static readonly List<string> UrlShrinkers = 

@@ -4,6 +4,5 @@ namespace Zunzun.App.Model {
     
         bool HasCredentials { get; }
         void Authenticate(string UserName, string Password);
-        void UseCredentials();
     }
 }

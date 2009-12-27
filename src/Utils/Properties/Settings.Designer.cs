@@ -49,7 +49,7 @@ namespace Zunzun.Utils.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
+        [global::System.Configuration.DefaultSettingValueAttribute("u.nu")]
         public string UrlShrinker {
             get {
                 return ((string)(this["UrlShrinker"]));

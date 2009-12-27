@@ -52,12 +52,10 @@ namespace Zunzun.App.Presenters {
         public void Load() { EnsureUserCredentials(); }
         
         void EnsureUserCredentials() {
-            if (UserAuthenticator.HasCredentials) 
-                UserAuthenticator.UseCredentials();
-            else {
-                View.RequestLogin();
-                if (!UserAuthenticator.HasCredentials) View.Close();
-            }
+            if (UserAuthenticator.HasCredentials) return;
+
+            View.RequestLogin();
+            if (!UserAuthenticator.HasCredentials) View.Close();
         }
 
         public void ShowSettings() {

@@ -5,16 +5,6 @@ namespace Zunzun.App {
 
     public static class Settings {
 
-        public static string UserName {
-            get { return Domain.Settings.UserName;  }
-            set { Domain.Settings.UserName = value; }
-        }
-        
-        public static string Password {
-            get { return Domain.Settings.Password;  }
-            set { Domain.Settings.Password = value; }
-        }
-        
         public const string InfoBrush = "InfoBrush";
         public const string ContentBrush = "ContentBrush";
         
@@ -22,10 +12,5 @@ namespace Zunzun.App {
 
         public static readonly bool IsInDesignMode = 
             DesignerProperties.GetIsInDesignMode(new DependencyObject());
-
-        public static string UrlShrinker {
-            get { return Domain.Settings.UrlShrinker;  }
-            set { Domain.Settings.UrlShrinker = value; }
-        }
     }
 }

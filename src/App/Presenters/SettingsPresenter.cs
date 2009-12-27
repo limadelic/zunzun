@@ -18,7 +18,6 @@ namespace Zunzun.App.Presenters {
         public void Apply() {
             ApplyServicesSettings();
             Login();
-            Save();             
         }
 
         public virtual void Login() {
@@ -31,13 +30,7 @@ namespace Zunzun.App.Presenters {
         }
 
         public virtual void ApplyServicesSettings() {
-        
             Domain.Settings.UrlShrinker = View.UrlShrinker;
-            Utils.Properties.Settings.Default.UrlShrinker = View.UrlShrinker;
-        }
-
-        public virtual void Save() {
-            Utils.Properties.Settings.Default.Save();
         }
     }
 }

@@ -19,14 +19,11 @@ namespace Zunzun.Specs {
         public class the_ZunzunPresenter : BehaviorOfZunzunPresenter {
 
             [TestMethod]
-            public void should_use_credentials_if_present() {
+            public void should_request_to_login_if_credentials_are_present() {
 
                 Given.UserAuthenticator.HasCredentials.Is(true);
-                
                 When.Load();
-                
                 Then.View.ShouldNot().RequestLogin();
-                Then.UserAuthenticator.Should().UseCredentials();
             }
 
             [TestMethod]
@@ -49,35 +46,30 @@ namespace Zunzun.Specs {
         [TestClass]
         public class a_UserAuthenticator_checking_the_credentials : BehaviorOf<UserAuthenticatorClass> {
         
+            [TestInitialize]
+            public void SetUp() {
+                Given.UserName = UserName;
+                Given.Password = EncryptedPassword;
+            }
+
             [TestMethod]
             public void should_have_credentials_if_username_and_password_are_present() {
-            
-                Helpers.Given.Credentials(UserName, EncryptedPassword);
+
                 When.HasCredentials.ShouldBeTrue();
             }
 
             [TestMethod]
             public void should_not_have_credentials_if_missing_username() {
                 
-                Helpers.Given.Credentials(null, Password);
+                Given.UserName = null;
                 When.HasCredentials.ShouldBeFalse();
             }
             
             [TestMethod]
             public void should_not_have_credentials_if_missing_password() {
                 
-                Helpers.Given.Credentials(UserName, string.Empty);
+                Given.Password = string.Empty;
                 When.HasCredentials.ShouldBeFalse();
-            }
-            
-            [TestMethod]
-            public void should_decrypt_the_password() {
-                
-                Helpers.Given.Credentials(UserName, EncryptedPassword);
-                Given.KeyMaker.Decrypt(EncryptedPassword).WillReturn(Password);
-
-                When.UseCredentials();
-                Domain.Settings.Password.ShouldBe(Password);
             }
         }
         
@@ -98,30 +90,8 @@ namespace Zunzun.Specs {
                 
                 When.Authenticate(UserName, Password);
                 
-                Domain.Settings.UserName.ShouldBe(UserName);
-                Domain.Settings.Password.ShouldBe(Password);
-            }
-            
-            [TestMethod]
-            public void should_store_plain_username_and_encrypted_password() {
-
-                Given.UserService.AreValid(UserName, Password).Is(true);
-                Given.KeyMaker.Encrypt(Password).Is(EncryptedPassword);
-                
-                When.Authenticate(UserName, Password);
-                
-                Utils.Properties.Settings.Default.UserName
-                    .ShouldBe(UserName);
-                Utils.Properties.Settings.Default.Password
-                    .ShouldBe(EncryptedPassword);
-            }
-            
-            [TestMethod]
-            public void should_save_the_credentials_to_storage_device() {
-                
-                Given.UserService.AreValid(UserName, Password).Is(true);
-                When.Authenticate(UserName, Password);
-                Should.SaveCredentials();
+                Should.UserName = UserName;
+                Should.Password = Password;
             }
         }
         

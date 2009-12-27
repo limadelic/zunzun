@@ -16,7 +16,7 @@ namespace Zunzun.Specs.Fixtures {
         SettingsView SettingsView;
         SettingsPresenter SettingsPresenter;
 
-        KeyMaker KeyMaker = Utils.ObjectFactory.NewKeyMaker;
+        readonly KeyMaker KeyMaker = Utils.ObjectFactory.NewKeyMaker;
         
         protected override void SetUpSteps() {
         
@@ -72,23 +72,17 @@ namespace Zunzun.Specs.Fixtures {
         
         string BackupUserName;
         string BackupPassword;
-        string BackupEncryptedPassword;
 
         public void BackupCredentials() {
 
             BackupUserName = Domain.Settings.UserName;
             BackupPassword = Domain.Settings.Password;
-            BackupEncryptedPassword = Utils.Properties.Settings.Default.Password;
         }
 
         public void RestoreCredentials() {
 
             Domain.Settings.UserName = BackupUserName;
             Domain.Settings.Password = BackupPassword;
-
-            Utils.Properties.Settings.Default.UserName = BackupUserName;
-            Utils.Properties.Settings.Default.Password = BackupEncryptedPassword;
-            Utils.Properties.Settings.Default.Save();
         }
 
         #endregion
