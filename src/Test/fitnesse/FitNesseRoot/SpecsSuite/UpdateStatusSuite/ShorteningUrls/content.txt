@@ -11,7 +11,7 @@ I want to be able to shorten urls
 *!
 !*> vars
 
-!define Url (${ZunzunAppUrl})
+!define Url {http://www.twitter.com/zunzunapp}
 !define ShortUrl {http://imdb.com}
 !define ShortenUrl {http://u.nu/4kea4}
 
