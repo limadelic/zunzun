@@ -130,7 +130,7 @@ textarea.pageContent {
   font-family: Consolas, 'Lucida Sans Typewriter';
   font-size: 16px;
   height: 100%;
-  rows: 40;
+  width: 100%; rows: 40;
   columns: 70;
   background-color: #C8C8CE;
 }
