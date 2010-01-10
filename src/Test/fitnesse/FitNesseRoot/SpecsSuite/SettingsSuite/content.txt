@@ -1,1 +1,8 @@
+!* Story
+
+In order to adjust zunzun to my preferences
+I want to have settings available
+
+*!
+
 !contents

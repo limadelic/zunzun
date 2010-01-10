@@ -1,0 +1,21 @@
+!* Story
+
+In order to allow selecting the desired services
+I want to have them available as user settings
+
+*!
+!*> Setup
+
+|Services Config|
+
+*!
+
+------ '''Scenario''' ''Url Shorteners'' ------
+|When|the service settings are shown|
+|Then|the Url Shorteners should be: |
+|Provider Name                      |
+|u.nu                               |
+|is.gd                              |
+|bit.ly                             |
+|tinyurl                            |
+
