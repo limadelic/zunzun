@@ -20,6 +20,9 @@ namespace Zunzun.Domain {
         public static readonly List<string> UrlShrinkers = 
             UrlShrinkerClass.Services.Keys.ToList();
 
+        public static readonly List<string> ImageUploaders =
+            new List<string>();
+
         public const int NumberOfTweetsPerRequest = 100;
 
         public const string TwitterUrl = "http://www.twitter.com/";

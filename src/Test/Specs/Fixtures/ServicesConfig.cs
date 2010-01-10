@@ -34,6 +34,10 @@ namespace Zunzun.Specs.Fixtures {
             return SettingsView.UrlShrinker == "tinyurl";
         }
         
+        public List<string> The_Image_Uploaders_should_be() {
+            return SettingsView.ImageUploaders;
+        }
+
         public void TearDown() {
             Domain.Settings.UrlShrinker = UrlShrinkerBackup;
         }

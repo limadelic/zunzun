@@ -9,6 +9,8 @@ namespace Zunzun.App.Views {
 
         List<string> UrlShrinkers { get; set; }
         string UrlShrinker { get; set; }
+        
+        List<string> ImageUploaders { get; set; }
 
         void Close();
         void ShowError();

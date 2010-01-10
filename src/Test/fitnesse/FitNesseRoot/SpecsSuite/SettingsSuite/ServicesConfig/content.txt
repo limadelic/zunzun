@@ -19,4 +19,11 @@ I want to have them available as user settings
 
 |The selected Url Shortener should be saved|
 
+!|The Image Uploaders should be|
+|to string                    |
+{{{|TweetPhoto                   |
+|TwitPic                      |
+|YFrog                        |}}}
+
+
 |Tear Down|

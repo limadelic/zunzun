@@ -11,6 +11,7 @@ namespace Zunzun.App.Presenters {
         public void Load() {
             View.UrlShrinkers = Domain.Settings.UrlShrinkers;
             View.UrlShrinker = Domain.Settings.UrlShrinker;
+            View.ImageUploaders = Domain.Settings.ImageUploaders;
             View.UserName = Domain.Settings.UserName;
             View.Password = Domain.Settings.Password;
         }

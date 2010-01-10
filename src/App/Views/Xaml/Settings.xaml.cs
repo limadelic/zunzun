@@ -33,6 +33,8 @@ namespace Zunzun.App.Views.Xaml {
             set { UrlShrinkersCBX.SelectedItem = value; } 
         }
 
+        public List<string> ImageUploaders { get; set; }
+
         public void ShowError() {
             ErrorTXT.Show();
         }
