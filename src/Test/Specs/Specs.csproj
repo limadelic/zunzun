@@ -73,6 +73,7 @@
     <Compile Include="Fixtures\RefreshingTweets.cs" />
     <Compile Include="Fixtures\Scenarios.cs" />
     <Compile Include="Fixtures\SearchTweets.cs" />
+    <Compile Include="Fixtures\ServicesConfig.cs" />
     <Compile Include="Fixtures\ShorteningUrls.cs" />
     <Compile Include="Fixtures\ShowConversation.cs" />
     <Compile Include="Fixtures\ShowHome.cs" />
@@ -92,7 +93,6 @@
     <Compile Include="Helpers\TokensAssertions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="when_encrypting_values.cs" />
-    <Compile Include="when_settings.cs" />
     <Compile Include="when_following_and_unfollowing_a_User.cs" />
     <Compile Include="when_formatting_Tweets_for_displaying.cs" />
     <Compile Include="when_shortening_urls.cs" />

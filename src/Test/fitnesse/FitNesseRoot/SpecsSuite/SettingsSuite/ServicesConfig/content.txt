@@ -10,12 +10,13 @@ I want to have them available as user settings
 
 *!
 
------- '''Scenario''' ''Url Shorteners'' ------
-|When|the service settings are shown|
-|Then|the Url Shorteners should be: |
-|Provider Name                      |
-|u.nu                               |
-|is.gd                              |
-|bit.ly                             |
-|tinyurl                            |
+|The Url Shorteners should be|
+|to string                   |
+|u.nu                        |
+|is.gd                       |
+|bit.ly                      |
+|tinyurl                     |
 
+|The selected Url Shortener should be saved|
+
+|Tear Down|

@@ -89,24 +89,22 @@ namespace Zunzun.Specs.Helpers {
             SpecFrom(RawError)
         ;}}
 
-        public static IEnumerable<Tweet> ListOfTweetsWithTwoReplies { get { return 
-            new List<Tweet> 
-            {
-                 TweetWithUserAndId, 
-                 new TweetClass(), 
-                 ReplyingTweet(42, 43), 
-                 new TweetClass(), 
-                 ReplyingTweet(42, 44), 
-                 new TweetClass()
-            }; } }
+        public static IEnumerable<Tweet> ListOfTweetsWithTwoReplies { get { return new List<Tweet>  {
+            TweetWithUserAndId, 
+            new TweetClass(), 
+            ReplyingTweet(42, 43), 
+            new TweetClass(), 
+            ReplyingTweet(42, 44), 
+            new TweetClass()
+        };}}
 
         public static List<Tweet> ListOfTweetsWithReplyHierarchy { get {
-            var list = new List<Tweet>
-                       {
-                           ReplyingTweet(43, 45),
-                           ReplyingTweet(44, 46),
-                           ReplyingTweet(45, 47),
-                       };
+            var list = new List<Tweet> {
+                ReplyingTweet(43, 45),
+                ReplyingTweet(44, 46),
+                ReplyingTweet(45, 47),
+            };
+
             list.AddRange(ListOfTweetsWithTwoReplies);
             return list;
         }}

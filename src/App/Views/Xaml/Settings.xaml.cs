@@ -23,7 +23,10 @@ namespace Zunzun.App.Views.Xaml {
             set { PasswordTXT.Password = value; }
         }
 
-        public List<string> UrlShrinkers { set { UrlShrinkersCBX.ItemsSource = value; } }
+        public List<string> UrlShrinkers {
+            get { return UrlShrinkersCBX.ItemsSource as List<string>; }
+            set { UrlShrinkersCBX.ItemsSource = value; }
+        }
         
         public string UrlShrinker { 
             get { return UrlShrinkersCBX.SelectedItem.ToString(); }
