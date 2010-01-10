@@ -1,12 +1,15 @@
+using Dimebrain.TweetSharp.Model;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
+using Zunzun.Domain.Helpers;
 
 namespace Zunzun.Specs {
 
+    [TestClass]
     public class when_settings {
-        
-//        [TestClass]
+
+//                [TestClass]
 //        public class are_shown : BehaviorOf<SettingsPresenter> {
 //        
 //            [TestInitialize]

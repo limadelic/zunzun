@@ -17,14 +17,12 @@ namespace Zunzun.Domain.Classes {
         ;}
 
         public void UpdateStatus(Tweet Tweet) {
-            UpdateStatusSpec(Tweet.Content).Request();
-        }
+            UpdateStatusSpec(Tweet.Content).Request()
+        ;}
 
-        public void SendReply(Tweet tweet)
-        {
-            ReplyStatusSpec(tweet.Content, tweet.ReplyTo).Request();
-        }
-
+        public void SendReply(Tweet Tweet) {
+            ReplyStatusSpec(Tweet.Content, Tweet.ReplyTo).Request()
+        ;}
 
         static ITwitterStatuses Statuses { get { return 
             FluentTwitter.CreateRequest()
@@ -40,42 +38,31 @@ namespace Zunzun.Domain.Classes {
             Statuses.OnUserTimeline()
         ;}}
 
-        static List<Tweet> Request(ITwitterLeafNode Spec) {
-            return Spec.Request().ToTweets();
-        }
+        static List<Tweet> Request(ITwitterLeafNode Spec) { return 
+            Spec.Request().ToTweets()
+        ;}
 
         #region Specs
         
-        public virtual ITwitterLeafNode HomeSpec {
-            get {
-                return
-                    Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
-                    ;
-            }
-        }
+        public virtual ITwitterLeafNode HomeSpec { get { return
+            Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
+        ;}}
 
-        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) {
-            return
-                Home.Since(Id).AsJson()
-                ;
-        }
+        public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return
+            Home.Since(Id).AsJson()
+        ;}
 
-        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) {
-            return
-                User.For(UserName).AsJson()
-                ;
-        }
+        public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) { return
+            User.For(UserName).AsJson()
+        ;}
 
-        static ITwitterLeafNode UpdateStatusSpec(string Content) {
-            return
-                Statuses.Update(Content).AsJson()
-                ;
-        }
+        static ITwitterLeafNode UpdateStatusSpec(string Content) { return
+            Statuses.Update(Content).AsJson()
+        ;}
 
-        private static ITwitterLeafNode ReplyStatusSpec(string content, long id)
-        {
-            return Statuses.Update(content).InReplyToStatus(id).AsJson();
-        }
+        static ITwitterLeafNode ReplyStatusSpec(string Content, long Id) { return 
+            Statuses.Update(Content).InReplyToStatus(Id).AsJson()
+        ;}
 
         #endregion
     }

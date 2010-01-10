@@ -1,6 +1,7 @@
 using System;
 using Dimebrain.TweetSharp.Fluent;
 using System.Collections.Generic;
+using Dimebrain.TweetSharp.Model;
 using FluentSpec;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
@@ -112,7 +113,9 @@ namespace Zunzun.Specs.Helpers {
 
         static ITwitterLeafNode SpecFrom(string Response) {
             var Spec = Create.TestObjectFor<ITwitterLeafNode>();
-            Spec.Given().Request().WillReturn(Response);
+            var Result = Create.TestObjectFor<TwitterResult>();
+            Result.Response = Response;
+            Spec.Given().Request().WillReturn(Result);
             return Spec;
         }
     }

@@ -6,7 +6,7 @@ namespace Zunzun.Domain.Helpers {
 
     public static class TweetConverters {
         
-        public static List<Tweet> ToTweets(this string Response) {
+        public static List<Tweet> ToTweets(this TwitterResult Response) {
             var Results = new List<Tweet>();
 
             // TODO: deal with errors

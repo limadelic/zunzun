@@ -10,7 +10,7 @@ namespace Zunzun.Domain.Helpers {
             return ObjectFactory.NewUser(User);
         }
  
-        public static IEnumerable<User> ToUsers(this string Request) {
+        public static IEnumerable<User> ToUsers(this TwitterResult Request) {
             foreach (var User in Request.AsUsers()) 
                 yield return User.ToUser();
         }

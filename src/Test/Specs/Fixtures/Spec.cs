@@ -61,7 +61,7 @@ namespace Zunzun.Specs.Fixtures {
             SetupStep(new Step(Step, Action));
         }
 
-        public bool Then(string Step) { return Do(Step); }
+        public object Then(string Step) { return Do(Step); }
         protected void Then(string Step, Action Action) {
             SetupStep(new Step(Step, Action));
         }
