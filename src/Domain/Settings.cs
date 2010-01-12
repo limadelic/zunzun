@@ -17,6 +17,8 @@ namespace Zunzun.Domain {
         [UserSetting]
         public static string UrlShrinker { get; set; }
         
+        public static string ImageUploader { get; set; }
+        
         public static readonly List<string> UrlShrinkers = 
             UrlShrinkerClass.Services.Keys.ToList();
 

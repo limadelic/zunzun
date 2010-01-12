@@ -1,0 +1,17 @@
+!3 Story: Allow to Tweet Photos
+![
+Tweeting Photos
+]!
+
+![
+The Photo should be uploaded into a Photo WebSite
+and the url should be included in the Tweet
+]!
+
+!*< pending:
+
+The url should not be shortened 
+and should be inserted at cursor position  
+
+*!
+

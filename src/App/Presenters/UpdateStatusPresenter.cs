@@ -13,6 +13,7 @@ namespace Zunzun.App.Presenters {
         public UpdateStatusView View { get; set; }
         public TweetService TweetService { get; set; }
         public UrlShrinker UrlShrinker { get; set; }
+        public PhotoWebService PhotoWebService { get; set; }
 
         public long AssociatedTweetId { get; set; }
 
@@ -87,6 +88,10 @@ namespace Zunzun.App.Presenters {
 
         public void UpdateTextPasted() {
             OnPaste = true;
+        }
+
+        public void UploadPhoto(string Photo) {
+            View.UpdateText = PhotoWebService.Upload(Photo);
         }
     }
 }

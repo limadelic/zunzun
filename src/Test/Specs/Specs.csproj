@@ -82,6 +82,7 @@
     <Compile Include="Fixtures\Step.cs" />
     <Compile Include="Fixtures\SuiteSetUpFixture.cs" />
     <Compile Include="Fixtures\UpdateStatus.cs" />
+    <Compile Include="Fixtures\TweetingPhotos.cs" />
     <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="given_a_setting_is_user_configurable.cs" />
     <Compile Include="Helpers\Actors.cs" />
@@ -102,6 +103,7 @@
     <Compile Include="given_a_status_presenter.cs" />
     <Compile Include="when_showing_UserHome.cs" />
     <Compile Include="when_starting_zunzun.cs" />
+    <Compile Include="when_Tweeting_Photos.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="..\fitnesse\dotnet\fitnesse.config">
