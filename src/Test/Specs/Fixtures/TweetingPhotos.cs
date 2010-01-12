@@ -15,7 +15,7 @@ namespace Zunzun.Specs.Fixtures {
             UpdateStatusPresenter = PresenterFactory.NewStatusPresenter(UpdateStatusView);
         }
         
-        public bool The_Photo_should_be_uploaded_into_a_Photo_WebSite() { return this.Worked(() => 
+        public bool The_photo_should_be_uploaded_into_a_website_that_stores_photos() { return this.Worked(() => 
             UpdateStatusPresenter.UploadPhoto("logo.png")
         );}
         
