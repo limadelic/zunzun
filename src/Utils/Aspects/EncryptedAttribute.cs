@@ -15,13 +15,13 @@ namespace Zunzun.Utils.Aspects {
             
             GetValue();
 
-            if (Value != null) Value = KeyMaker.Decrypt(Value.ToString());
+            if (HasAValue) Value = KeyMaker.Decrypt(Value.ToString());
         }
-        
+
         public override void OnSetValue(LocationInterceptionArgs Args) {
             this.Args = Args;
 
-            if (Value != null) Value = KeyMaker.Encrypt(Value.ToString());
+            if (HasAValue) Value = KeyMaker.Encrypt(Value.ToString());
             
             SetValue();
         }

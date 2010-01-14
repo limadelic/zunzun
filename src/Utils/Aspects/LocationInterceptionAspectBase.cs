@@ -14,6 +14,11 @@ namespace Zunzun.Utils.Aspects {
             set { Args.Value = value;}
         }
         
+        protected bool HasAValue { get { return 
+            Value != null 
+            && Value.ToString() != string.Empty
+        ;}}
+        
         public virtual void GetValue() { base.OnGetValue(Args); }
 
         public virtual void SetValue() { base.OnSetValue(Args); }
