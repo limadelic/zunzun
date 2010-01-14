@@ -1,5 +1,6 @@
 using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Classes;
+using Zunzun.Domain.PhotoWebServices;
 
 namespace Zunzun.Domain {
 
@@ -25,6 +26,8 @@ namespace Zunzun.Domain {
         public static UrlShrinker NewUrlShrinker { get { return new UrlShrinkerClass {
             WebRequest = Utils.ObjectFactory.NewWebRequest
         };}}
+
+        public static PhotoWebService NewTwitPic { get { return new TwitPic(); } }
 
         public static User NewUser(TwitterUser User) { return new UserClass {
             Name = User.Name,
