@@ -109,6 +109,9 @@ namespace Zunzun.Specs.Helpers {
             return list;
         }}
 
+        public static string Boundary { get { return Guid.NewGuid().ToString(); } }
+        public static byte[] ContentData { get { return new byte[] {1, 2, 42}; } }
+
         static ITwitterLeafNode SpecFrom(string Response) {
             var Spec = Create.TestObjectFor<ITwitterLeafNode>();
             var Result = Create.TestObjectFor<TwitterResult>();

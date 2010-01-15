@@ -16,10 +16,15 @@ namespace Zunzun.Domain.PhotoWebServices {
 
         public string Boundary { get; set; }
         
-        string Header { get { return string.Format("--{0}", Boundary); } }
-        string Footer { get { return string.Format("--{0}--", Boundary); } }
+        public string Header { get { return string.Format("--{0}", Boundary); } }
+        public string Footer { get { return string.Format("--{0}--", Boundary); } }
         
         public StringBuilder Content { get; set; }
+        
+        public virtual byte[] ContentData { get { return 
+            System.Text.Encoding.GetEncoding(Encoding)
+            .GetBytes(Content.ToString())
+        ;}}
 
         public string Upload(string Photo) {
             this.Photo = Photo;
@@ -69,29 +74,24 @@ namespace Zunzun.Domain.PhotoWebServices {
             Request.AllowWriteStreamBuffering = true;
             Request.ContentType = string.Format("multipart/form-data; boundary={0}", Boundary);
             Request.Method = "POST";
+            Request.ContentLength = ContentData.Length;
             
             return Request;
         }}
 
-        public virtual string SendRequest() { return string.Empty; }
+        public virtual string SendRequest() {
+            var Request = NewRequest;
 
-        const string RequestUrl = "http://twitpic.com/api/upload";
+            using (var RequestStream = Request.GetRequestStream()) {
+                RequestStream.Write(ContentData, 0, ContentData.Length);
 
-        public string UploadPhoto() {
-
-            var bytes = System.Text.Encoding.GetEncoding(Encoding).GetBytes(Content.ToString());
-
-            var request = NewRequest;
-            request.ContentLength = bytes.Length;
-
-            using (var requestStream = request.GetRequestStream()) {
-                requestStream.Write(bytes, 0, bytes.Length);
-
-                using (var response = (HttpWebResponse) request.GetResponse()) 
-                    using (var reader = new StreamReader(response.GetResponseStream())) 
-                        return PhotoUrl(reader.ReadToEnd());
+                using (var Response = (HttpWebResponse) Request.GetResponse()) 
+                    using (var Reader = new StreamReader(Response.GetResponseStream())) 
+                        return PhotoUrlFrom(Reader.ReadToEnd());
             }
         }
+
+        const string RequestUrl = "http://twitpic.com/api/upload";
 
         void AppendContent(string header, string Field, string Value) {
             Append(header, String.Format("Content-Disposition: form-data; name=\"{0}\"", Field), Value);
@@ -108,7 +108,7 @@ namespace Zunzun.Domain.PhotoWebServices {
             Content.AppendLine(Value);
         }
 
-        public string PhotoUrl(string Response) { return
+        public string PhotoUrlFrom(string Response) { return
             XDocument.Parse(Response)
             .Element("rsp").Element("mediaurl").Value
         ;}
