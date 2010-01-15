@@ -36,10 +36,12 @@ namespace Zunzun.Specs {
             }
             
             [TestMethod]
-            public void should_setup_a_boundary() {
+            public void should_setup_boundary_and_content() {
                 
                 When.SetUpRequest();
+                
                 The.Boundary.ShouldNotBeNull();
+                Should.SetUpContent();
             }
 
             [TestMethod]

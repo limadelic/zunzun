@@ -34,9 +34,10 @@ namespace Zunzun.Domain.PhotoWebServices {
 
         public virtual void SetUpRequest() {
             Boundary = Guid.NewGuid().ToString();
+            SetUpContent();
         }
         
-        public void SetUpContent() {
+        public virtual void SetUpContent() {
 
             Content = new StringBuilder();
 

@@ -16,7 +16,7 @@ namespace Zunzun.Specs.Fixtures {
         }
         
         public bool The_photo_should_be_uploaded_into_a_website_that_stores_photos() { return this.Worked(() => 
-            UpdateStatusPresenter.UploadPhoto("logo.png")
+            UpdateStatusPresenter.UploadPhoto(@"dotnet\images\screenshot.png")
         );}
         
         public bool and_the_url_should_be_included_in_the_Tweet() {
