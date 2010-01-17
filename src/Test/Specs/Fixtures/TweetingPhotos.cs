@@ -11,6 +11,7 @@ namespace Zunzun.Specs.Fixtures {
         readonly UpdateStatusView UpdateStatusView;
         
         public TweetingPhotos() {
+            Domain.Settings.ImageUploader = "twitpic";
             UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
             UpdateStatusPresenter = PresenterFactory.NewStatusPresenter(UpdateStatusView);
         }
@@ -20,6 +21,12 @@ namespace Zunzun.Specs.Fixtures {
         );}
         
         public bool and_the_url_should_be_included_in_the_Tweet() {
+            return UpdateStatusView.UpdateText.StartsWith("http://" + Domain.Settings.ImageUploader);
+        }
+        
+        public bool The_url_should_not_be_shortened() {
+            UpdateStatusView.UpdateText += " ";
+            UpdateStatusPresenter.UpdateTextChanged();
             return UpdateStatusView.UpdateText.StartsWith("http://" + Domain.Settings.ImageUploader);
         }
     }

@@ -3,6 +3,7 @@ using System.Text;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
+using Zunzun.Domain.Classes;
 using Zunzun.Domain.PhotoWebServices;
 using Zunzun.Specs.Helpers;
 
@@ -103,6 +104,20 @@ namespace Zunzun.Specs {
                 const string Response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rsp status=\"ok\"><statusid>7695597420</statusid><userid>81659009</userid><mediaid>xvjq8</mediaid><mediaurl>http://twitpic.com/xvjq8</mediaurl></rsp>";
                 
                 The.PhotoUrlFrom(Response).ShouldBe("http://twitpic.com/xvjq8");
+            }
+        }
+        
+        [TestClass]
+        public class the_UrlShrinker : BehaviorOf<UrlShrinkerClass> {
+        
+            [TestMethod]    
+            public void should_not_shorten_the_url() {
+                const string Url = "http://twitpic.com/123456";
+
+                Given.WebRequest.IgnoringArgs()
+                    .GetResponse(null).WillReturn(Actors.ShortenedUrl);
+                    
+                When.Shorten(Url).ShouldBe(Url);
             }
         }
     }

@@ -1,4 +1,6 @@
+using System;
 using System.Collections.Generic;
+using Zunzun.Domain.PhotoWebServices;
 using Zunzun.Utils;
 
 namespace Zunzun.Domain.Classes {
@@ -19,16 +21,25 @@ namespace Zunzun.Domain.Classes {
             return this.StatusUpdate;
         }
         
-        void ShortenIfUrl(string StatusUpdateToken) { 
-            if (!StatusUpdateToken.IsUrl()  
-                || AlreadyShortened(StatusUpdateToken)) return;
-            
-            var ShortenedUrl = WebRequest.GetResponse(RequestToShorten(StatusUpdateToken)).Trim();
-            
-            if (ShortenedUrl.Length >= StatusUpdateToken.Length) return;
+        string Url { get; set; }
 
-            StatusUpdate = StatusUpdate.Replace(StatusUpdateToken, ShortenedUrl);
+        void ShortenIfUrl(string StatusUpdateToken) { Url = StatusUpdateToken;
+            if (UrlShouldNotShorten) return;
+            
+            var ShortenedUrl = WebRequest.GetResponse(RequestToShortenUrl).Trim();
+            
+            if (ShortenedUrl.Length >= Url.Length) return;
+
+            StatusUpdate = StatusUpdate.Replace(Url, ShortenedUrl);
         }
+
+        bool UrlShouldNotShorten { get { return 
+            ! Url.IsUrl()  
+            || UrlIsAlreadyShortened
+            || IsAPhotoUrl
+        ;}}
+
+        bool IsAPhotoUrl { get { return Url.StartsWith("http://twitpic.com");} }
 
         public static readonly Dictionary<string, string> Services = new Dictionary<string, string> {
             { "u.nu", "http://u.nu/unu-api-simple?url={0}"},
@@ -37,12 +48,12 @@ namespace Zunzun.Domain.Classes {
             { "tinyurl", "http://tinyurl.com/api-create.php?url={0}" },
         };
 
-        bool AlreadyShortened(string Url) { return
+        bool UrlIsAlreadyShortened { get { return
             Url.StartsWith("http://" + Settings.UrlShrinker)
-        ;}
+        ;}}
 
-        public virtual string RequestToShorten(string Url) { return
+        string RequestToShortenUrl { get { return
             string.Format(Services[Settings.UrlShrinker], Url)
-        ;}
+        ;}}
     }
 }

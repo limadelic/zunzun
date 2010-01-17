@@ -2,6 +2,7 @@ using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
 using Zunzun.Domain.Classes;
+using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs {
 
@@ -9,7 +10,7 @@ namespace Zunzun.Specs {
     public class when_shortening_urls {
     
         const string OriginalUrl = "http://www.longurl.com/verylongpath";
-        const string ShortenedUrl = "http://u.nu/abcd";
+        const string ShortenedUrl = Actors.ShortenedUrl;
         
         [TestClass]
         public class an_UpdateStatusPresenter : BehaviorOf<UpdateStatusPresenter>{
@@ -52,13 +53,10 @@ namespace Zunzun.Specs {
         [TestClass]
         public class an_UrlShrinker : BehaviorOf<UrlShrinkerClass> {
             
-            const string UrlShortenRequest = "url request to url shorten provider";
-            
             [TestInitialize]
             public void SetUp() {
-                Domain.Settings.UrlShrinker = "u.nu";
-                Given.RequestToShorten(OriginalUrl).Is(UrlShortenRequest);
-                Given.WebRequest.GetResponse(UrlShortenRequest).Is(ShortenedUrl);
+                Given.WebRequest.IgnoringArgs()
+                    .GetResponse(null).WillReturn(ShortenedUrl);
             }
 
             [TestMethod]
@@ -82,16 +80,12 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_not_shorten_an_url_already_shortened() {
                 
-                When.Shorten(ShortenedUrl);
-                ShouldNot.RequestToShorten(ShortenedUrl);
+                When.Shorten(ShortenedUrl).ShouldBe(ShortenedUrl);
             }
 
             [TestMethod]
             public void should_not_shorten_a_short_url() {
                 const string ShortUrl = "http://imdb.com";
-
-                Given.RequestToShorten(ShortUrl).Is(UrlShortenRequest);
-                Given.WebRequest.GetResponse(UrlShortenRequest).Is(ShortenedUrl);
 
                 When.Shorten(ShortUrl).ShouldBe(ShortUrl);
             }

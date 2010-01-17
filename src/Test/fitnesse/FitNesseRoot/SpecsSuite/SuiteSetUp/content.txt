@@ -1,15 +1,12 @@
-|Suite Set Up|
+!*< setup credentials
 
-!*> setup credentials
+|Suite Set Up|
 
 |User Name|${KinobotUserName}|
 |Password |${KinobotPassword}|
 
-*!
-
-!*< this is just to get it green
+*!!*< this is just to get it green
 
 |reject|crap| 
 
 *!
-
