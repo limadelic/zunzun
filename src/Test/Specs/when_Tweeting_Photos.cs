@@ -16,11 +16,28 @@ namespace Zunzun.Specs {
         
             [TestMethod]
             public void should_upload_the_Photo_and_add_the_url_to_the_Tweet() {
-            
+
+                Given.View.UpdateText = string.Empty;
                 Given.PhotoWebService.Upload("Photo").WillReturn("Url");
+                
                 When.UploadPhoto("Photo");
-                The.View.UpdateText.ShouldContain("Url");
+                
+                Then.View.UpdateText.ShouldContain("Url");
             }
+
+            [TestMethod]
+            public void the_url_should_be_inserted_at_cursor_pos() {
+
+                Given.View.UpdateText = "prefix  suffix";
+                Given.View.CursorPos.Is("prefix ".Length);
+                
+                Given.PhotoWebService.Upload("Photo").WillReturn("Url");
+                
+                When.UploadPhoto("Photo");
+                
+                Then.View.UpdateText.ShouldBe("prefix Url suffix");
+            }
+
         }
         
         [TestClass]

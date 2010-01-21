@@ -91,7 +91,9 @@ namespace Zunzun.App.Presenters {
         }
 
         public void UploadPhoto(string Photo) {
-            View.UpdateText = PhotoWebService.Upload(Photo);
+            View.UpdateText = View.UpdateText.Insert(
+                View.CursorPos, PhotoWebService.Upload(Photo)
+            );
         }
     }
 }

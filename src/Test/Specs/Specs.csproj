@@ -86,6 +86,7 @@
     <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="given_a_setting_is_user_configurable.cs" />
     <Compile Include="Helpers\Actors.cs" />
+    <Compile Include="Helpers\Verify.cs" />
     <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
     <Compile Include="Helpers\FitnesseExtensions.cs" />
     <Compile Include="Helpers\Given.cs" />

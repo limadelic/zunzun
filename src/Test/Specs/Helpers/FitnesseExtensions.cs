@@ -10,15 +10,5 @@ namespace Zunzun.Specs.Helpers {
                 Process(each);
             return Parse;
         }
-        
-        public static bool Worked(this object obj, Action Action) {
-            try {
-                Action();
-                return true;
-            }  catch (Exception e) {
-                Console.WriteLine(e.ToString());
-                return false;
-            }
-        }
     }
 }

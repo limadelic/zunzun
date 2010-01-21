@@ -6,11 +6,6 @@ and the url should be included in the Tweet
 
 ![
 The url should not be shortened 
+and should be inserted at cursor position
 ]!
-
-!*< pending:
-
-and should be inserted at cursor position  
-
-*!
 

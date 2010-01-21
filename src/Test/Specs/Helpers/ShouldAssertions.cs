@@ -17,6 +17,16 @@ namespace Zunzun.Specs.Helpers {
             Whole.Contains(Part).ShouldBeTrue();
         }
         
+        public static void ShouldStartWith(this string Whole, string Start) {
+            
+            Whole.StartsWith(Start).ShouldBeTrue();
+        }
+        
+        public static void ShouldEndWith(this string Whole, string End) {
+            
+            Whole.EndsWith(End).ShouldBeTrue();
+        }
+        
         public static void ShouldContain<T>(this List<T> Items, T Item) {
             
             Assert.IsTrue(Items.Contains(Item), "Item is not in List");

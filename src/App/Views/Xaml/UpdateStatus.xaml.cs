@@ -28,12 +28,13 @@ namespace Zunzun.App.Views.Xaml {
 
         public string UpdateText {
             get { return TweetContent.Text; } 
-            set
-            {
+            set {
 				TweetContent.Text = value;
                 TweetContent.SelectionStart = value.Length;
             }
         }
+
+        public int CursorPos { get { return TweetContent.CaretIndex; } }
 
         void OnSend(object Sender, RoutedEventArgs Args) {
         	Presenter.Update();
