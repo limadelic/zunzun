@@ -1,6 +1,4 @@
-using System;
 using System.Collections.Generic;
-using Zunzun.Domain.PhotoWebServices;
 using Zunzun.Utils;
 
 namespace Zunzun.Domain.Classes {
