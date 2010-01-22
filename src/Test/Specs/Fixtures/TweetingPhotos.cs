@@ -22,11 +22,15 @@ namespace Zunzun.Specs.Fixtures {
             UpdateStatusPresenter = PresenterFactory.NewStatusPresenter(UpdateStatusView);
         }
         
-        public bool The_photo_should_be_uploaded_into_a_website_that_stores_photos() { return Verify.That(() => 
-            UpdateStatusPresenter.UploadPhoto(@"dotnet\images\screenshot.png")
+        public bool Zunzun_should_allow_to_browse_for_the_photo() { return Verify.That(() => 
+            Given.That(UpdateStatusView).RequestedPhoto.Is(@"dotnet\images\screenshot.png")
+        );}
+
+        public bool upload_it_into_a_website_that_stores_photos() { return Verify.That(() => 
+            UpdateStatusPresenter.UploadPhoto()
         );}
         
-        public bool and_the_url_should_be_included_in_the_Tweet() { return Verify.That(() => 
+        public bool and_paste_the_url_in_the_Tweet() { return Verify.That(() => 
             UpdateStatusView.UpdateText.ShouldContain("http://" + Domain.Settings.ImageUploader)
         );}
         
@@ -36,7 +40,7 @@ namespace Zunzun.Specs.Fixtures {
             UpdateStatusView.UpdateText.ShouldContain("http://" + Domain.Settings.ImageUploader);
         });}
         
-        public bool and_should_be_inserted_at_cursor_position() { return Verify.That(() => {
+        public bool and_should_be_pasted_at_cursor_position() { return Verify.That(() => {
             UpdateStatusView.UpdateText.ShouldStartWith("prefix ");
             UpdateStatusView.UpdateText.ShouldEndWith(" suffix ");
         });}

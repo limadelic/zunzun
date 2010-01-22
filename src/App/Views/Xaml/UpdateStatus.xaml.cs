@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Win32;
 using Zunzun.App.Converters;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
@@ -21,6 +22,15 @@ namespace Zunzun.App.Views.Xaml {
             get { return base.IsVisible; } 
             set { this.IsVisibleIf(value); } 
         }
+
+        public string RequestedPhoto { get {
+
+            var OpenFileDialog = new OpenFileDialog {
+                Filter = "Images (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif"
+            };
+
+            return OpenFileDialog.ShowDialog().Value ? OpenFileDialog.FileName : "";
+        }}
 
         public void FocusOnUpdate() {
             TweetContent.Focus();
@@ -67,6 +77,10 @@ namespace Zunzun.App.Views.Xaml {
 
         void OnTextPasted(object Sender, DataObjectPastingEventArgs Args) {
             Presenter.UpdateTextPasted();
+        }
+
+        private void OnUploadPhoto(object sender, RoutedEventArgs e) {
+            Presenter.UploadPhoto();
         }
     }
 }

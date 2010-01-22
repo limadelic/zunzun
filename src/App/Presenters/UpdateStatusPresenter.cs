@@ -89,10 +89,11 @@ namespace Zunzun.App.Presenters {
         public void UpdateTextPasted() {
             OnPaste = true;
         }
-
-        public void UploadPhoto(string Photo) {
+        
+        public void UploadPhoto() {
             View.UpdateText = View.UpdateText.Insert(
-                View.CursorPos, PhotoWebService.Upload(Photo)
+                View.CursorPos, 
+                PhotoWebService.Upload(View.RequestedPhoto)
             );
         }
     }

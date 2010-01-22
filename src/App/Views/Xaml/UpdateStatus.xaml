@@ -11,6 +11,9 @@
 			<ColumnDefinition Width="Auto"/>
 		</Grid.ColumnDefinitions>
 		<TextBox x:Name="TweetContent" TextWrapping="Wrap" SpellCheck.IsEnabled="True" d:LayoutOverrides="Height, GridBox" MinLines="3" MaxLines="3" Margin="3,0,0,0" BorderBrush="{DynamicResource InfoBrush}" Background="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" TextChanged="OnTextChanged" DataObject.Pasting="OnTextPasted" />
-		<Button HorizontalAlignment="Right" VerticalAlignment="Bottom" x:Name="Send" Click="OnSend" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" d:LayoutOverrides="GridBox" Grid.Column="1"/>
+		<StackPanel VerticalAlignment="Bottom" Grid.Column="1" Orientation="Vertical">
+			<Button HorizontalAlignment="Right" x:Name="UploadPhoto" Click="OnUploadPhoto" Content="[o]" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" IsDefault="True" d:LayoutOverrides="GridBox" FontSize="9.333"/>
+			<Button HorizontalAlignment="Right" x:Name="Send" Click="OnSend" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" d:LayoutOverrides="GridBox"/>
+		</StackPanel>
 	</Grid>
 </UserControl>

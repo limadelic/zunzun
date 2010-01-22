@@ -15,25 +15,15 @@ namespace Zunzun.Specs {
         public class the_Presenter : BehaviorOf<UpdateStatusPresenter> {
         
             [TestMethod]
-            public void should_upload_the_Photo_and_add_the_url_to_the_Tweet() {
-
-                Given.View.UpdateText = string.Empty;
-                Given.PhotoWebService.Upload("Photo").WillReturn("Url");
-                
-                When.UploadPhoto("Photo");
-                
-                Then.View.UpdateText.ShouldContain("Url");
-            }
-
-            [TestMethod]
-            public void the_url_should_be_inserted_at_cursor_pos() {
+            public void should_request_and_upload_the_Photo_and_add_the_url_to_the_Tweet_at_cursor_pos() {
 
                 Given.View.UpdateText = "prefix  suffix";
                 Given.View.CursorPos.Is("prefix ".Length);
+                Given.View.RequestedPhoto.Is("Photo");
                 
                 Given.PhotoWebService.Upload("Photo").WillReturn("Url");
                 
-                When.UploadPhoto("Photo");
+                When.UploadPhoto();
                 
                 Then.View.UpdateText.ShouldBe("prefix Url suffix");
             }
@@ -44,7 +34,13 @@ namespace Zunzun.Specs {
         public class with_TwitPic : BehaviorOf<TwitPic> {
 
             readonly byte[] ContentData = Actors.ContentData;
-        
+            
+            [TestMethod]
+            public void should_return_empty_if_the_Photo_is_not_provided() {
+                
+                When.Upload("").ShouldBe("");
+            }
+
             [TestMethod]
             public void should_upload_the_photo_and_return_the_url() {
 

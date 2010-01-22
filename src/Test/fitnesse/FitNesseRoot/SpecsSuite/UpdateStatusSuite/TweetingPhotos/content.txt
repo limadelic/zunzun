@@ -1,11 +1,12 @@
 !3 Story: Allow to Tweet Photos
 ![ Tweeting Photos
-The photo should be uploaded into a website that stores photos
-and the url should be included in the Tweet
+Zunzun should allow to browse for the photo
+upload it into a website that stores photos
+and paste the url in the Tweet
 ]!
 
 ![
 The url should not be shortened 
-and should be inserted at cursor position
+and should be pasted at cursor position
 ]!
 
