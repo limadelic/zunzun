@@ -24,7 +24,7 @@ namespace Zunzun.Domain.Classes {
         void ShortenIfUrl(string StatusUpdateToken) { Url = StatusUpdateToken;
             if (UrlShouldNotBeShorten) return;
             
-            var ShortenedUrl = WebRequest.GetResponse(RequestToShortenUrl).Trim();
+            var ShortenedUrl = WebRequest.Get(RequestToShortenUrl).Trim();
             
             if (ShortenedUrl.Length >= Url.Length) return;
 

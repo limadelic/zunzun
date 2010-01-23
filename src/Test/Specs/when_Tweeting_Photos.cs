@@ -6,12 +6,15 @@ using Zunzun.App.Presenters;
 using Zunzun.Domain.Classes;
 using Zunzun.Domain.PhotoWebServices;
 using Zunzun.Specs.Helpers;
+using Zunzun.Utils;
+using Zunzun.Utils.Classes;
 
 namespace Zunzun.Specs {
 
     public class when_Tweeting_Photos {
 
         static readonly byte[] ContentData = Actors.ContentData;
+        static readonly string Boundary = Actors.Boundary;
                 
         [TestClass]
         public class the_Presenter : BehaviorOf<UpdateStatusPresenter> {
@@ -43,24 +46,28 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_upload_the_photo_and_return_the_url() {
 
-                Given.SendRequest().WillReturn("Url");
+                Given.Response.Is("Response");
+                Given.PhotoUrlFrom("Response").Is("Url");
+                
                 When.Upload("Photo").ShouldBe("Url");
-                Should.SetUpRequest();
-            }
-            
-            [TestMethod]
-            public void should_setup_boundary_and_content() {
                 
-                When.SetUpRequest();
-                
-                The.Boundary.ShouldNotBeNull();
                 Should.SetUpContent();
             }
             
             [TestMethod]
+            public void should_make_a_request() {
+//                var Request = TestObjectFor<WebRequest>();
+//
+//                Given.RequestUrl.Is(Actors.ZunzunUrl);
+//                
+//                Request.Given().Post(Actors.ZunzunUrl, ContentData, Boundary)
+//                    .WillReturn("Response");
+//                
+//                The.Response.ShouldBe("Response");
+            }
+
+            [TestMethod]
             public void should_add_header_and_footer() {
-                
-                Given.Boundary = Actors.Boundary;
                 
                 When.SetUpContent();
                 
@@ -95,20 +102,20 @@ namespace Zunzun.Specs {
                 Then.Content.ToString().ShouldContain("username");
                 Then.Content.ToString().ShouldContain("password");
             }            
+        }
+        
+        [TestClass]
+        public class a_WebRequest : BehaviorOf<WebRequestClass> {
             
             [TestMethod]
-            public void should_create_a_request() {
+            public void should_setup_a_post_request() {
             
-                Given.Boundary = Actors.Boundary;
-                Given.ContentData.Is(ContentData);
-                Given.RequestUrl.Is(Actors.ZunzunUrl);
-
-                var Request = The.NewRequest;
+                var Request = The.NewRequest(Actors.ZunzunUrl,ContentData,Boundary);
                 
+                Request.Method.ShouldBe("POST");
                 Request.PreAuthenticate.ShouldBeTrue();
                 Request.AllowWriteStreamBuffering.ShouldBeTrue();
-                Request.ContentType.ShouldContain(The.Boundary);
-                Request.Method.ShouldBe("POST");
+                Request.ContentType.ShouldContain(Boundary);
                 Request.ContentLength.ShouldBe((long) ContentData.Length);
             }            
         }
@@ -143,7 +150,7 @@ namespace Zunzun.Specs {
                 const string Url = "http://twitpic.com/123456 http://yfrog.com/123456";
 
                 Given.WebRequest.IgnoringArgs()
-                    .GetResponse(null).WillReturn(Actors.ShortenedUrl);
+                    .Get(null).WillReturn(Actors.ShortenedUrl);
                     
                 When.Shorten(Url).ShouldBe(Url);
             }

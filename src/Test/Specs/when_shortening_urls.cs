@@ -56,7 +56,7 @@ namespace Zunzun.Specs {
             [TestInitialize]
             public void SetUp() {
                 Given.WebRequest.IgnoringArgs()
-                    .GetResponse(null).WillReturn(ShortenedUrl);
+                    .Get(null).WillReturn(ShortenedUrl);
             }
 
             [TestMethod]
