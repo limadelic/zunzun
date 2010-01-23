@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Controls;
-using Microsoft.Win32;
+using Microsoft.WindowsAPICodePack.Dialogs;
 using Zunzun.App.Converters;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
@@ -25,12 +25,23 @@ namespace Zunzun.App.Views.Xaml {
 
         public string RequestedPhoto { get {
 
-            var OpenFileDialog = new OpenFileDialog {
-                Filter = "Images (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif"
+            var OpenFileDialog = new CommonOpenFileDialog {
+                Filters = { new CommonFileDialogFilter("Images", "jpg,jpeg,png,gif") }
             };
+            
+            return OpenFileDialog.ShowDialog() == CommonFileDialogResult.OK?
+                OpenFileDialog.FileName : null;
+                
+            #region might b needed for xp
 
-            return OpenFileDialog.ShowDialog().Value ? OpenFileDialog.FileName : "";
-        }}
+//            var OpenFileDialog = new OpenFileDialog {
+//                Filter = "Images (*.jpg, *.jpeg, *.png, *.gif)|*.jpg;*.jpeg;*.png;*.gif"
+//            };
+//
+//            return OpenFileDialog.ShowDialog().Value ? OpenFileDialog.FileName : "";
+ 
+	        #endregion        
+	    }}
 
         public void FocusOnUpdate() {
             TweetContent.Focus();

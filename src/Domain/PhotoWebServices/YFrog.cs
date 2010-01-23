@@ -26,7 +26,7 @@ namespace Zunzun.Domain.PhotoWebServices {
         ;}}
 
         public string Upload(string Photo) {
-            if (Photo == "") return "";
+            if (string.IsNullOrEmpty(Photo)) return "";
             this.Photo = Photo;
 
             SetUpRequest();
@@ -110,13 +110,12 @@ namespace Zunzun.Domain.PhotoWebServices {
         }
 
         public string PhotoUrlFrom(string Response) {
-            var Xml = new XmlDocument();
-            Xml.LoadXml(Response);
+            const string Xmlns = "xmlns=\"http://ns.imageshack.us/imginfo/7/\"";
 
-            var Xnm = new XmlNamespaceManager(Xml.NameTable); 
-            Xnm.AddNamespace("is", "http://ns.imageshack.us/imginfo/7/");
+            var Xml =  XDocument.Parse(Response.Replace(Xmlns, ""));
 
-            return Xml.SelectSingleNode("/is:imginfo/is:links/is:yfrog_link", Xnm).InnerText;
+            return Xml.Element("imginfo").Element("links")
+                .Element("yfrog_link").Value;
         }
     }
 }

@@ -22,7 +22,7 @@ namespace Zunzun.Domain.Classes {
         string Url { get; set; }
 
         void ShortenIfUrl(string StatusUpdateToken) { Url = StatusUpdateToken;
-            if (UrlShouldNotShorten) return;
+            if (UrlShouldNotBeShorten) return;
             
             var ShortenedUrl = WebRequest.GetResponse(RequestToShortenUrl).Trim();
             
@@ -31,7 +31,7 @@ namespace Zunzun.Domain.Classes {
             StatusUpdate = StatusUpdate.Replace(Url, ShortenedUrl);
         }
 
-        bool UrlShouldNotShorten { get { return 
+        bool UrlShouldNotBeShorten { get { return 
             ! Url.IsUrl()  
             || UrlIsAlreadyShortened
             || IsAPhotoUrl

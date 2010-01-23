@@ -38,7 +38,7 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_return_empty_if_the_Photo_is_not_provided() {
                 
-                When.Upload("").ShouldBe("");
+                When.Upload(null).ShouldBe("");
             }
 
             [TestMethod]

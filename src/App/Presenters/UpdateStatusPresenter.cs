@@ -17,15 +17,15 @@ namespace Zunzun.App.Presenters {
 
         public long AssociatedTweetId { get; set; }
 
-        public void Update(Tweet tweet)
+        public void Update(Tweet Tweet)
         {
             if (HasAssociatedTweet)
             {
-                tweet.ReplyTo = AssociatedTweetId;
-                TweetService.SendReply(tweet);
+                Tweet.ReplyTo = AssociatedTweetId;
+                TweetService.SendReply(Tweet);
             }
             else
-                TweetService.UpdateStatus(tweet);
+                TweetService.UpdateStatus(Tweet);
         }
 
         protected bool HasAssociatedTweet { get { return AssociatedTweetId > 0; } }
@@ -33,9 +33,9 @@ namespace Zunzun.App.Presenters {
         public void Update() {
             if (string.IsNullOrEmpty(View.UpdateText)) return;
 
-            var tweet = Domain.ObjectFactory.NewTweet(View.UpdateText);
+            var Tweet = Domain.ObjectFactory.NewTweet(View.UpdateText);
 
-            Update(tweet);
+            Update(Tweet);
             
             ClearUpdateText();
         }
@@ -46,11 +46,11 @@ namespace Zunzun.App.Presenters {
             View.IsVisible = !View.IsVisible;
         }
 
-        public void ReplyTo(Tweet tweet)
+        public void ReplyTo(Tweet Tweet)
         {
-            AssociatedTweetId = tweet.Id;
+            AssociatedTweetId = Tweet.Id;
             FocusOnUpdate();
-            View.UpdateText = ReplyPrefix + tweet.Author.UserName + " ";
+            View.UpdateText = ReplyPrefix + Tweet.Author.UserName + " ";
         }
 
         void FocusOnUpdate()
@@ -59,16 +59,16 @@ namespace Zunzun.App.Presenters {
             View.FocusOnUpdate();
         }
 
-        public void Retweet(Tweet tweet)
+        public void Retweet(Tweet Tweet)
         {
             FocusOnUpdate();
-            View.UpdateText = RetweetPrefix + " " + ReplyPrefix + tweet.Author.UserName + " " + tweet.Content + " ";
+            View.UpdateText = RetweetPrefix + " " + ReplyPrefix + Tweet.Author.UserName + " " + Tweet.Content + " ";
         }
 
-        public void DirectMessage(Tweet tweet)
+        public void DirectMessage(Tweet Tweet)
         {
             FocusOnUpdate();
-            View.UpdateText = DirectMessagePrefix + " " + tweet.Author.UserName + " ";
+            View.UpdateText = DirectMessagePrefix + " " + Tweet.Author.UserName + " ";
         }
 
         public void UpdateTextChanged() {

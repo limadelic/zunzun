@@ -27,7 +27,7 @@ namespace Zunzun.Domain.PhotoWebServices {
         ;}}
 
         public string Upload(string Photo) {
-            if (Photo == "") return "";
+            if (string.IsNullOrEmpty(Photo)) return "";
             this.Photo = Photo;
 
             SetUpRequest();
