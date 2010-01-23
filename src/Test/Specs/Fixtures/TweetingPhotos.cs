@@ -13,7 +13,7 @@ namespace Zunzun.Specs.Fixtures {
         
         public TweetingPhotos() {
             
-            Domain.Settings.ImageUploader = "twitpic";
+            Domain.Settings.ImageUploader = "yfrog";
             
             UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
             UpdateStatusView.UpdateText = "prefix  suffix";

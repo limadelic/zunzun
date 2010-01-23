@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.Diagnostics;
 
 namespace Zunzun.Utils {
 
@@ -23,5 +24,7 @@ namespace Zunzun.Utils {
             for (var i = NewItems.Count - 1; i >= 0; i--) 
                 Items.Insert(0, NewItems[i]);
         }
+        
+        public static void Debug(this object obj) { Debugger.Launch(); }
     }
 }

@@ -37,7 +37,10 @@ namespace Zunzun.Domain.Classes {
             || IsAPhotoUrl
         ;}}
 
-        bool IsAPhotoUrl { get { return Url.StartsWith("http://twitpic.com");} }
+        bool IsAPhotoUrl { get { return 
+            Url.StartsWith("http://twitpic.com")
+            || Url.StartsWith("http://yfrog.com")
+        ;}}
 
         public static readonly Dictionary<string, string> Services = new Dictionary<string, string> {
             { "u.nu", "http://u.nu/unu-api-simple?url={0}"},
