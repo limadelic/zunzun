@@ -14,7 +14,8 @@ namespace Zunzun.Specs.Fixtures {
         public TweetingPhotos() {
             
             Domain.Settings.ImageUploader = "yfrog";
-            
+            Domain.Settings.ImageUploader = "twitpic";
+
             UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
             UpdateStatusView.UpdateText = "prefix  suffix";
             Given.That(UpdateStatusView).CursorPos.Is("prefix ".Length);

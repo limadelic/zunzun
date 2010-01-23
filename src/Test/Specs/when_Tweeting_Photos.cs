@@ -10,7 +10,9 @@ using Zunzun.Specs.Helpers;
 namespace Zunzun.Specs {
 
     public class when_Tweeting_Photos {
-    
+
+        static readonly byte[] ContentData = Actors.ContentData;
+                
         [TestClass]
         public class the_Presenter : BehaviorOf<UpdateStatusPresenter> {
         
@@ -27,14 +29,11 @@ namespace Zunzun.Specs {
                 
                 Then.View.UpdateText.ShouldBe("prefix Url suffix");
             }
-
         }
         
         [TestClass]
-        public class with_TwitPic : BehaviorOf<TwitPic> {
-
-            readonly byte[] ContentData = Actors.ContentData;
-            
+        public class a_PhotoWebService : BehaviorOf<PhotoWebServiceBase> {
+           
             [TestMethod]
             public void should_return_empty_if_the_Photo_is_not_provided() {
                 
@@ -57,27 +56,26 @@ namespace Zunzun.Specs {
                 The.Boundary.ShouldNotBeNull();
                 Should.SetUpContent();
             }
-
-            [TestMethod]
-            public void should_create_a_request() {
             
-                Given.Boundary = Actors.Boundary;
-                Given.ContentData.Is(ContentData);
-
-                var Request = The.NewRequest;
+            [TestMethod]
+            public void should_add_header_and_footer() {
                 
-                Request.PreAuthenticate.ShouldBeTrue();
-                Request.AllowWriteStreamBuffering.ShouldBeTrue();
-                Request.ContentType.ShouldContain(The.Boundary);
-                Request.Method.ShouldBe("POST");
-                Request.ContentLength.ShouldBe((long) ContentData.Length);
+                Given.Boundary = Actors.Boundary;
+                
+                When.SetUpContent();
+                
+                Then.Content.ToString()
+                    .ShouldContain(The.Header + Environment.NewLine);
+                    
+                Then.Content.ToString()
+                    .ShouldContain(The.Footer + Environment.NewLine);
             }
             
             [TestMethod]
             public void should_read_photo_from_file() {
 
                 var PhotoData = ContentData;
-                var PhotoDataAsString = Encoding.GetEncoding(TwitPic.Encoding).GetString(PhotoData);
+                var PhotoDataAsString = Encoding.GetEncoding(PhotoWebServiceBase.Encoding).GetString(PhotoData);
 
                 Given.PhotoData.Is(PhotoData);
                 Given.Content = new StringBuilder();
@@ -96,22 +94,28 @@ namespace Zunzun.Specs {
                 
                 Then.Content.ToString().ShouldContain("username");
                 Then.Content.ToString().ShouldContain("password");
-            }
+            }            
             
             [TestMethod]
-            public void should_add_header_and_footer() {
-                
+            public void should_create_a_request() {
+            
                 Given.Boundary = Actors.Boundary;
-                
-                When.SetUpContent();
-                
-                Then.Content.ToString()
-                    .ShouldContain(The.Header + Environment.NewLine);
-                    
-                Then.Content.ToString()
-                    .ShouldContain(The.Footer + Environment.NewLine);
-            }
+                Given.ContentData.Is(ContentData);
+                Given.RequestUrl.Is(Actors.ZunzunUrl);
 
+                var Request = The.NewRequest;
+                
+                Request.PreAuthenticate.ShouldBeTrue();
+                Request.AllowWriteStreamBuffering.ShouldBeTrue();
+                Request.ContentType.ShouldContain(The.Boundary);
+                Request.Method.ShouldBe("POST");
+                Request.ContentLength.ShouldBe((long) ContentData.Length);
+            }            
+        }
+        
+        [TestClass]
+        public class with_TwitPic : BehaviorOf<TwitPic> {
+            
             [TestMethod]
             public void should_extract_the_photo_url_from_response() {
                 const string Response = "<?xml version=\"1.0\" encoding=\"UTF-8\"?><rsp status=\"ok\"><statusid>7695597420</statusid><userid>81659009</userid><mediaid>xvjq8</mediaid><mediaurl>http://twitpic.com/xvjq8</mediaurl></rsp>";

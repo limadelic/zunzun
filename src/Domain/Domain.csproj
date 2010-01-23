@@ -64,6 +64,7 @@
     <Compile Include="Helpers\UserConverters.cs" />
     <Compile Include="ObjectFactory.cs" />
     <Compile Include="PhotoWebService.cs" />
+    <Compile Include="PhotoWebServices\PhotoWebServiceBase.cs" />
     <Compile Include="PhotoWebServices\YFrog.cs" />
     <Compile Include="PhotoWebServices\TwitPic.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
