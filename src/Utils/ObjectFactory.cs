@@ -6,5 +6,6 @@ namespace Zunzun.Utils {
     
         public static KeyMaker NewKeyMaker { get { return new KeyMakerClass(); } }
         public static WebRequest NewWebRequest { get { return new WebRequestClass(); } }
+        public static WebRequestContent NewWebRequestContent { get { return new WebRequestContentClass(); } }
     }
 }

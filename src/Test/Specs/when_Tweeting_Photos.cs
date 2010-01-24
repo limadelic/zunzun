@@ -1,8 +1,8 @@
-using System;
 using System.Text;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
+using Zunzun.Domain;
 using Zunzun.Domain.Classes;
 using Zunzun.Domain.PhotoWebServices;
 using Zunzun.Specs.Helpers;
@@ -70,38 +70,69 @@ namespace Zunzun.Specs {
             public void should_add_header_and_footer() {
                 
                 When.SetUpContent();
-                
-                Then.Content.ToString()
-                    .ShouldContain(The.Header + Environment.NewLine);
-                    
-                Then.Content.ToString()
-                    .ShouldContain(The.Footer + Environment.NewLine);
+
+                Then.Content.Should().AppendHeader();
+                Then.Content.Should().AppendFooter();
             }
             
             [TestMethod]
             public void should_read_photo_from_file() {
-
                 var PhotoData = ContentData;
-                var PhotoDataAsString = Encoding.GetEncoding(PhotoWebServiceBase.Encoding).GetString(PhotoData);
+                const string PhotoMetaData = "photo metadata";
 
                 Given.PhotoData.Is(PhotoData);
-                Given.Content = new StringBuilder();
+                Given.PhotoMetaData.Is(PhotoMetaData);
                 
                 When.AddPhoto();
                 
-                Then.Content.ToString().ShouldContain(PhotoDataAsString);
+                Then.Content.Should().AppendData(PhotoMetaData, "image/jpeg", PhotoData);
             }
             
             [TestMethod]
             public void should_include_credentials_in_request() {
             
-                Given.Content = new StringBuilder();
-                
                 When.AddCredentials();
                 
-                Then.Content.ToString().ShouldContain("username");
-                Then.Content.ToString().ShouldContain("password");
+                Then.Content.Should().Append("username", Settings.UserName);
+                Then.Content.Should().Append("password", Settings.Password);
             }            
+        }
+        
+        [TestClass]
+        public class a_WebRequestContent : BehaviorOf<WebRequestContentClass> {
+        
+            [TestInitialize]
+            public void SetUp() { Given.Content = new StringBuilder(); }
+
+            [TestMethod]
+            public void should_init_boundary_and_content_upon_new_header() {
+                
+                When.AppendHeader();
+                
+                Then.Boundary.ShouldNotBeEmpty();
+                Then.Content.ToString().ShouldContain(The.Header);
+            }
+
+            [TestMethod]
+            public void should_add_footer() {
+
+                When.AppendFooter();
+                Then.Content.ToString().ShouldContain(The.Footer);
+            }
+            
+            [TestMethod]
+            public void should_append_content() {
+                
+                When.Append("lots", "stuff");
+                Then.Content.ToString().ShouldContain("stuff");
+            }
+
+            [TestMethod]
+            public void should_append_data() {
+                
+                When.AppendData("lots", "data stuff", ContentData);
+                Then.Content.ToString().ShouldContain("data stuff");
+            }
         }
         
         [TestClass]
@@ -109,14 +140,17 @@ namespace Zunzun.Specs {
             
             [TestMethod]
             public void should_setup_a_post_request() {
+                var Content = TestObjectFor<WebRequestContent>();
+                Content.Given().Boundary.Is(Boundary);
+                Content.Given().Length.Is(42);
             
-                var Request = The.NewRequest(Actors.ZunzunUrl,ContentData,Boundary);
+                var Request = The.NewRequest(Actors.ZunzunUrl,Content);
                 
                 Request.Method.ShouldBe("POST");
                 Request.PreAuthenticate.ShouldBeTrue();
                 Request.AllowWriteStreamBuffering.ShouldBeTrue();
                 Request.ContentType.ShouldContain(Boundary);
-                Request.ContentLength.ShouldBe((long) ContentData.Length);
+                Request.ContentLength.ShouldBe((long) 42);
             }            
         }
         

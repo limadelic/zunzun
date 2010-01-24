@@ -13,24 +13,24 @@ namespace Zunzun.Utils.Classes {
                 return new StreamReader(Response, Encoding.ASCII).ReadToEnd();
         }
 
-        public HttpWebRequest NewRequest(string Url, byte[] Content, string Boundary) { 
+        public HttpWebRequest NewRequest(string Url, WebRequestContent Content) { 
         
             var Request = (HttpWebRequest) System.Net.WebRequest.Create(Url);
             
             Request.PreAuthenticate = true;
             Request.AllowWriteStreamBuffering = true;
-            Request.ContentType = string.Format("multipart/form-data; boundary={0}", Boundary);
+            Request.ContentType = string.Format("multipart/form-data; boundary={0}", Content.Boundary);
             Request.Method = "POST";
             Request.ContentLength = Content.Length;
             
             return Request;
         }
     
-        public string Post(string Url, byte[] Content, string Boundary) {
-            var Request = NewRequest(Url, Content, Boundary);
+        public string Post(string Url, WebRequestContent Content) {
+            var Request = NewRequest(Url, Content);
 
             using (var RequestStream = Request.GetRequestStream()) {
-                RequestStream.Write(Content, 0, Content.Length);
+                RequestStream.Write(Content.Data, 0, Content.Length);
 
                 using (var Response = Request.GetResponse()) 
                     using (var Reader = new StreamReader(Response.GetResponseStream())) 

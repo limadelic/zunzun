@@ -27,7 +27,10 @@ namespace Zunzun.Domain {
             WebRequest = Utils.ObjectFactory.NewWebRequest
         };}}
 
-        public static PhotoWebService NewPhotoWebService { get { return new TwitPic(); } }
+        public static PhotoWebService NewPhotoWebService { get { return new TwitPic {
+            Request = Utils.ObjectFactory.NewWebRequest,
+            Content = Utils.ObjectFactory.NewWebRequestContent
+        };}}
         public static PhotoWebService NewTwitPic { get { return new TwitPic(); } }
 
         public static User NewUser(TwitterUser User) { return new UserClass {
