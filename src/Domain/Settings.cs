@@ -17,13 +17,12 @@ namespace Zunzun.Domain {
         [UserSetting]
         public static string UrlShrinker { get; set; }
         
-        public static string ImageUploader { get; set; }
+        [UserSetting]
+        public static string PhotoService { get; set; }
         
-        public static readonly List<string> UrlShrinkers = 
-            UrlShrinkerClass.Services.Keys.ToList();
-
-        public static readonly List<string> ImageUploaders =
-            new List<string>();
+        public static readonly List<string> PhotoServices = new List<string> {"twitpic", "yfrog"};
+        
+        public static readonly List<string> UrlShrinkers = UrlShrinkerClass.Services.Keys.ToList();
 
         public const int NumberOfTweetsPerRequest = 100;
 

@@ -1,29 +1,28 @@
-!* Story
+!3 Story: Allow to configure services
+![ Services Config
+The Url Shorteners should be
+to string                   
+u.nu                        
+is.gd                       
+bit.ly                      
+tinyurl                     
+]!
 
-In order to allow selecting the desired services
-I want to have them available as user settings
+![
+The selected Url Shortener should be saved
+]!
 
-*!
-!*> Setup
+![
+The Photo Services should be
+to string                    
+twitpic                      
+yfrog                        
+]!
 
-|Services Config|
+![
+The selected Photo Service should be saved
+]!
 
-*!
-
-|The Url Shorteners should be|
-|to string                   |
-|u.nu                        |
-|is.gd                       |
-|bit.ly                      |
-|tinyurl                     |
-
-|The selected Url Shortener should be saved|
-
-!|The Image Uploaders should be|
-|to string                    |
-{{{|TweetPhoto                   |
-|TwitPic                      |
-|YFrog                        |}}}
-
-
+!*< tear down
 |Tear Down|
+*!

@@ -83,6 +83,7 @@
     <Compile Include="Fixtures\SuiteSetUpFixture.cs" />
     <Compile Include="Fixtures\UpdateStatus.cs" />
     <Compile Include="Fixtures\TweetingPhotos.cs" />
+    <Compile Include="Fixtures\UploadingPhotosWithMultipleServices.cs" />
     <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="given_a_setting_is_user_configurable.cs" />
     <Compile Include="Helpers\Actors.cs" />

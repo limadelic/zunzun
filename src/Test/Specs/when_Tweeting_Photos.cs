@@ -25,8 +25,10 @@ namespace Zunzun.Specs {
                 Given.View.UpdateText = "prefix  suffix";
                 Given.View.CursorPos.Is("prefix ".Length);
                 Given.View.RequestedPhoto.Is("Photo");
-                
-                Given.PhotoWebService.Upload("Photo").WillReturn("Url");
+
+                var PhotoWebService = TestObjectFor<PhotoWebService>();
+                Given.NewPhotoWebService.Is(PhotoWebService);
+                PhotoWebService.Given().Upload("Photo").WillReturn("Url");
                 
                 When.UploadPhoto();
                 

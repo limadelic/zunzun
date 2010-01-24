@@ -23,17 +23,25 @@ namespace Zunzun.App.Views.Xaml {
             set { PasswordTXT.Password = value; }
         }
 
-        public List<string> UrlShrinkers {
-            get { return UrlShrinkersCBX.ItemsSource as List<string>; }
-            set { UrlShrinkersCBX.ItemsSource = value; }
-        }
-        
         public string UrlShrinker { 
             get { return UrlShrinkersCBX.SelectedItem.ToString(); }
             set { UrlShrinkersCBX.SelectedItem = value; } 
         }
 
-        public List<string> ImageUploaders { get; set; }
+        public List<string> UrlShrinkers {
+            get { return UrlShrinkersCBX.ItemsSource as List<string>; }
+            set { UrlShrinkersCBX.ItemsSource = value; }
+        }
+        
+        public string PhotoService {
+            get { return PhotoServicesCBX.SelectedItem.ToString(); }
+            set { PhotoServicesCBX.SelectedItem = value; }
+        }
+
+        public List<string> PhotoServices {
+            get { return PhotoServicesCBX.ItemsSource as List<string>; }
+            set { PhotoServicesCBX.ItemsSource = value; }
+        }
 
         public void ShowError() {
             ErrorTXT.Show();

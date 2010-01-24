@@ -58,5 +58,17 @@ namespace Zunzun.Utils.Properties {
                 this["UrlShrinker"] = value;
             }
         }
+        
+        [global::System.Configuration.UserScopedSettingAttribute()]
+        [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+        [global::System.Configuration.DefaultSettingValueAttribute("twitpic")]
+        public string PhotoService {
+            get {
+                return ((string)(this["PhotoService"]));
+            }
+            set {
+                this["PhotoService"] = value;
+            }
+        }
     }
 }

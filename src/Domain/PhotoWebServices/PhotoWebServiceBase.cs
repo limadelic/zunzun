@@ -6,8 +6,17 @@ namespace Zunzun.Domain.PhotoWebServices {
 
     public abstract class PhotoWebServiceBase : PhotoWebService {
 
+        public WebRequest Request { get; set; }
+        public WebRequestContent Content { get; set; }
+        
+        public abstract string RequestUrl { get; }
+        
+        public abstract string PhotoUrlFrom(string Response);
+
         protected string Photo;
+        public abstract string PhotoNameKey { get; }
         public virtual byte[] PhotoData { get { return File.ReadAllBytes(Photo); } }
+        public virtual string PhotoMetaData { get { return String.Format("Content-Disposition: file; name=\"{0}\"; filename=\"{1}\"", PhotoNameKey, PhotoFileName);} }
         public virtual string PhotoFileName { get { return Path.GetFileName(Photo); } }
         
         public string Upload(string Photo) {
@@ -18,14 +27,7 @@ namespace Zunzun.Domain.PhotoWebServices {
             return PhotoUrlFrom(Response);
         }
 
-        public WebRequest Request { get; set; }
-        public WebRequestContent Content { get; set; }
-        
         public virtual string Response { get { return Request.Post(RequestUrl, Content); } }
-
-        public abstract string RequestUrl { get; }
-        
-        public abstract string PhotoUrlFrom(string Response);
 
         public virtual void SetUpContent() {
 
@@ -36,14 +38,10 @@ namespace Zunzun.Domain.PhotoWebServices {
             
             Content.AppendFooter();
         }
-
-        public abstract string PhotoNameKey { get; }
         
         public virtual void AddPhoto() {
             Content.AppendData(PhotoMetaData, "image/jpeg", PhotoData);
         }
-
-        public virtual string PhotoMetaData { get { return String.Format("Content-Disposition: file; name=\"{0}\"; filename=\"{1}\"", PhotoNameKey, PhotoFileName);} }
 
         public virtual void AddCredentials() {
             Content.Append("username", Settings.UserName);

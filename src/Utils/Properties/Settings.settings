@@ -11,5 +11,8 @@
     <Setting Name="UrlShrinker" Type="System.String" Scope="User">
       <Value Profile="(Default)">u.nu</Value>
     </Setting>
+    <Setting Name="PhotoService" Type="System.String" Scope="User">
+      <Value Profile="(Default)">twitpic</Value>
+    </Setting>
   </Settings>
 </SettingsFile>

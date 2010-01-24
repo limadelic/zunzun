@@ -7,10 +7,11 @@ namespace Zunzun.App.Views {
         string UserName { get; set; }
         string Password { get; set; }
 
-        List<string> UrlShrinkers { get; set; }
         string UrlShrinker { get; set; }
+        List<string> UrlShrinkers { get; set; }
         
-        List<string> ImageUploaders { get; set; }
+        string PhotoService { get; set; }
+        List<string> PhotoServices { get; set; }
 
         void Close();
         void ShowError();

@@ -11,7 +11,8 @@ namespace Zunzun.App.Presenters {
         public void Load() {
             View.UrlShrinkers = Domain.Settings.UrlShrinkers;
             View.UrlShrinker = Domain.Settings.UrlShrinker;
-            View.ImageUploaders = Domain.Settings.ImageUploaders;
+            View.PhotoService = Domain.Settings.PhotoService;
+            View.PhotoServices = Domain.Settings.PhotoServices;
             View.UserName = Domain.Settings.UserName;
             View.Password = Domain.Settings.Password;
         }
@@ -32,6 +33,7 @@ namespace Zunzun.App.Presenters {
 
         public virtual void ApplyServicesSettings() {
             Domain.Settings.UrlShrinker = View.UrlShrinker;
+            Domain.Settings.PhotoService = View.PhotoService;
         }
     }
 }

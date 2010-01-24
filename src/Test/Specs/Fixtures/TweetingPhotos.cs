@@ -13,8 +13,8 @@ namespace Zunzun.Specs.Fixtures {
         
         public TweetingPhotos() {
             
-            Domain.Settings.ImageUploader = "yfrog";
-            Domain.Settings.ImageUploader = "twitpic";
+            Domain.Settings.PhotoService = "yfrog";
+            Domain.Settings.PhotoService = "twitpic";
 
             UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
             UpdateStatusView.UpdateText = "prefix  suffix";
@@ -32,13 +32,13 @@ namespace Zunzun.Specs.Fixtures {
         );}
         
         public bool and_paste_the_url_in_the_Tweet() { return Verify.That(() => 
-            UpdateStatusView.UpdateText.ShouldContain("http://" + Domain.Settings.ImageUploader)
+            UpdateStatusView.UpdateText.ShouldContain("http://" + Domain.Settings.PhotoService)
         );}
         
         public bool The_url_should_not_be_shortened() { return Verify.That(() => {
             UpdateStatusView.UpdateText += " ";
             UpdateStatusPresenter.UpdateTextChanged();
-            UpdateStatusView.UpdateText.ShouldContain("http://" + Domain.Settings.ImageUploader);
+            UpdateStatusView.UpdateText.ShouldContain("http://" + Domain.Settings.PhotoService);
         });}
         
         public bool and_should_be_pasted_at_cursor_position() { return Verify.That(() => {

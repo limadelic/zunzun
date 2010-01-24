@@ -10,6 +10,7 @@ namespace Zunzun.Specs.Fixtures {
         readonly UpdateStatusView UpdateStatusView;
         
         public ShorteningUrls() {
+            Domain.Settings.UrlShrinker = "u.nu";
             UpdateStatusView = Create.TestObjectFor<UpdateStatusView>();
             UpdateStatusPresenter = PresenterFactory.NewStatusPresenter(UpdateStatusView);
         }

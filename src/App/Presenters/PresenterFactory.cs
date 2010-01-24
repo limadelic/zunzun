@@ -30,7 +30,6 @@ namespace Zunzun.App.Presenters {
                 View = View,
                 TweetService = Domain.ObjectFactory.NewTweetService,
                 UrlShrinker = Domain.ObjectFactory.NewUrlShrinker,
-                PhotoWebService = Domain.ObjectFactory.NewPhotoWebService
             };
         }
 
