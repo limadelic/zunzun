@@ -12,7 +12,7 @@ namespace Zunzun.Domain.Classes {
             Request(UserByUserNameSpec(UserName))
         ;}
 
-        User Request(ITwitterLeafNode Spec) { return 
+        static User Request(ITwitterLeafNode Spec) { return 
             Spec.Request().AsUser().ToUser()
         ;}
 

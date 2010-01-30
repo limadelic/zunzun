@@ -1,24 +1,72 @@
 using System.Collections.Generic;
 using System.Linq;
 using Zunzun.Domain.Classes;
-using Zunzun.Utils.Aspects;
+using Zunzun.Utils;
 using UtilsSettings = Zunzun.Utils.Properties.Settings;
 
 namespace Zunzun.Domain {
 
     public static class Settings {
-    
-        [UserSetting]
-        public static string UserName { get; set; }
+
+        static KeyMaker KeyMaker { get { return Utils.ObjectFactory.NewKeyMaker; } }
+
+        public static string UserName
+        {
+            get
+            {
+                return UtilsSettings.Default.UserName;
+            }
+            set
+            {
+                UtilsSettings.Default.UserName = value;
+                Save();
+            }
+        }
+
+        private static void Save()
+        {
+            UtilsSettings.Default.Save();
+        }
+
+        public static string Password
+        {
+            get
+            {
+                return string.IsNullOrEmpty(UtilsSettings.Default.Password) ? string.Empty : KeyMaker.Decrypt(UtilsSettings.Default.Password);
+            }
+            set
+            {
+                UtilsSettings.Default.Password = string.IsNullOrEmpty(value) ? string.Empty : KeyMaker.Encrypt(value);
+                Save();
+            }
+            
+        }
         
-        [UserSetting, Encrypted]
-        public static string Password { get; set; }
+        public static string UrlShrinker
+        {
+            get
+            {
+                return UtilsSettings.Default.UrlShrinker;
+            }
+            set
+            {
+                UtilsSettings.Default.UrlShrinker = value;
+                Save();
+            }
+        }
         
-        [UserSetting]
-        public static string UrlShrinker { get; set; }
-        
-        [UserSetting]
-        public static string PhotoService { get; set; }
+        public static string PhotoService
+        {
+            get
+            {
+                return UtilsSettings.Default.PhotoService;
+            }
+            set
+            {
+                UtilsSettings.Default.PhotoService = value;
+                Save();
+            }
+        }
         
         public static readonly List<string> PhotoServices = new List<string> {"twitpic", "yfrog"};
         

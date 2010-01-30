@@ -85,7 +85,6 @@
     <Compile Include="Fixtures\TweetingPhotos.cs" />
     <Compile Include="Fixtures\UploadingPhotosWithMultipleServices.cs" />
     <Compile Include="Fixtures\UserLogin.cs" />
-    <Compile Include="given_a_setting_is_user_configurable.cs" />
     <Compile Include="Helpers\Actors.cs" />
     <Compile Include="Helpers\Verify.cs" />
     <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
@@ -95,7 +94,6 @@
     <Compile Include="Helpers\TestTimer.cs" />
     <Compile Include="Helpers\TokensAssertions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="when_encrypting_values.cs" />
     <Compile Include="when_following_and_unfollowing_a_User.cs" />
     <Compile Include="when_formatting_Tweets_for_displaying.cs" />
     <Compile Include="when_shortening_urls.cs" />

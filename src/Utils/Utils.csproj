@@ -44,8 +44,6 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Aspects\EncryptedAttribute.cs" />
-    <Compile Include="Aspects\LocationInterceptionAspectBase.cs" />
     <Compile Include="Classes\WebRequestClass.cs" />
     <Compile Include="Classes\WebRequestContentClass.cs" />
     <Compile Include="Extensions.cs" />
@@ -58,7 +56,6 @@
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
       <DependentUpon>Settings.settings</DependentUpon>
     </Compile>
-    <Compile Include="Aspects\UserSettingAttribute.cs" />
     <Compile Include="WebRequest.cs" />
     <Compile Include="WebRequestContent.cs" />
   </ItemGroup>
