@@ -55,6 +55,7 @@ namespace Zunzun.Specs {
             
             [TestInitialize]
             public void SetUp() {
+                Domain.Settings.UrlShrinker = Actors.UrlShrinker;
                 Given.WebRequest.IgnoringArgs()
                     .Get(null).WillReturn(ShortenedUrl);
             }

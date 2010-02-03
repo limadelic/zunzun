@@ -1,3 +1,4 @@
+using System;
 using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Classes;
 using Zunzun.Domain.PhotoWebServices;
@@ -41,6 +42,10 @@ namespace Zunzun.Domain {
             return NewObject;
         }}
         public static PhotoWebService NewTwitPic { get { return new TwitPic(); } }
+
+        public static UserSettings NewUserSettings { get { return new UserSettingsClass {
+            KeyMaker = Utils.ObjectFactory.NewKeyMaker
+        };}}
 
         public static User NewUser(TwitterUser User) { return new UserClass {
             Name = User.Name,

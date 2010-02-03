@@ -11,6 +11,7 @@ namespace Zunzun.Specs.Helpers {
     
     public static class Actors {
     
+        public const string UrlShrinker = "u.nu";
         public const string ShortenedUrl = "http://u.nu/abcd";
 
         public static string FiveRawTweets { get { return

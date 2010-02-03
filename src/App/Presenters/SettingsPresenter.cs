@@ -1,5 +1,6 @@
 using Zunzun.App.Model;
 using Zunzun.App.Views;
+using Zunzun.Domain;
 
 namespace Zunzun.App.Presenters {
 
@@ -7,7 +8,8 @@ namespace Zunzun.App.Presenters {
     
         public SettingsView View { get; set; }
         public UserAuthenticator UserAuthenticator { get; set; }
-        
+        public UserSettings UserSettings { get; set; }
+
         public void Load() {
             View.UrlShrinkers = Domain.Settings.UrlShrinkers;
             View.UrlShrinker = Domain.Settings.UrlShrinker;
@@ -20,6 +22,7 @@ namespace Zunzun.App.Presenters {
         public void Apply() {
             ApplyServicesSettings();
             Login();
+            UserSettings.Save();
         }
 
         public virtual void Login() {

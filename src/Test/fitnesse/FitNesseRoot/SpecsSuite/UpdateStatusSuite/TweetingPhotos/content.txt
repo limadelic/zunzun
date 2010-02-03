@@ -1,4 +1,5 @@
 !3 Story: Allow to Tweet Photos
+{{{
 ![ Tweeting Photos
 Zunzun should allow to browse for the photo
 upload it into a website that stores photos
@@ -9,8 +10,9 @@ and paste the url in the Tweet
 The url should not be shortened 
 and should be pasted at cursor position
 ]!
-
+}}}
 !3 Story: Allow to upload Photos with multiple Services
 ![: Uploading Photos with multiple Services
 It should work with : yfrog : & : twitpic
 ]!
+
