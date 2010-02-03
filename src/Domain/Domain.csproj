@@ -57,6 +57,7 @@
     <Compile Include="Classes\TwitterAPI.cs" />
     <Compile Include="Classes\UserClass.cs" />
     <Compile Include="Classes\UserServiceClass.cs" />
+    <Compile Include="Classes\UserSettingsClass.cs" />
     <Compile Include="Helpers\TweetConverters.cs" />
     <Compile Include="Helpers\UserConverters.cs" />
     <Compile Include="ObjectFactory.cs" />
@@ -71,6 +72,7 @@
     <Compile Include="UrlShrinker.cs" />
     <Compile Include="User.cs" />
     <Compile Include="UserService.cs" />
+    <Compile Include="UserSettings.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Utils\Utils.csproj">
