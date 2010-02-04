@@ -44,7 +44,8 @@ namespace Zunzun.App.Presenters {
         public static SettingsPresenter NewSettingsPresenter(SettingsView View) {
             return new SettingsPresenter {
                 View = View, 
-                UserAuthenticator = ObjectFactory.NewUserAuthenticator
+                UserAuthenticator = ObjectFactory.NewUserAuthenticator,
+                UserSettings = Domain.ObjectFactory.NewUserSettings
             };
         }
 
