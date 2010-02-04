@@ -12,6 +12,8 @@ namespace Zunzun.App.Presenters {
     
         public UserService UserService { get; set; }
         public UserAuthenticator UserAuthenticator { get; set; }
+        public UserSettings UserSettings { get; set; }
+        
         public ZunzunView View { get; set; }
         
         public void RegisterEvents() {
@@ -49,7 +51,10 @@ namespace Zunzun.App.Presenters {
 
         public virtual UserHome NewUserHome { get { return new UserHome(); }}
 
-        public void Load() { EnsureUserCredentials(); }
+        public void Load() {
+            UserSettings.Load();
+            EnsureUserCredentials();
+        }
         
         void EnsureUserCredentials() {
             if (UserAuthenticator.HasCredentials) return;

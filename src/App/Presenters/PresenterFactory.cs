@@ -9,7 +9,8 @@ namespace Zunzun.App.Presenters {
             var Presenter = new ZunzunPresenter {
                 View = View,
                 UserService = Domain.ObjectFactory.NewUserService,
-                UserAuthenticator = ObjectFactory.NewUserAuthenticator
+                UserAuthenticator = ObjectFactory.NewUserAuthenticator,
+                UserSettings = Domain.ObjectFactory.NewUserSettings
             };
             
             Presenter.RegisterEvents();

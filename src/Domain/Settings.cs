@@ -6,8 +6,6 @@ namespace Zunzun.Domain {
 
     public static class Settings {
     
-        static Settings() { ObjectFactory.NewUserSettings.Load(); }
-
         public static string UserName { get; set; }
 
         public static string Password { get; set; }

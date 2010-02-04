@@ -41,6 +41,13 @@ namespace Zunzun.Specs {
                 When.Load();
                 Then.View.Should().Close();
             }
+            
+            [TestMethod]
+            public void should_load_user_settings() {
+
+                When.Load();
+                Then.UserSettings.Should().Load();
+            }
         }
         
         [TestClass]
@@ -48,8 +55,8 @@ namespace Zunzun.Specs {
         
             [TestInitialize]
             public void SetUp() {
-                Given.UserName = UserName;
-                Given.Password = EncryptedPassword;
+                Domain.Settings.UserName = UserName;
+                Domain.Settings.Password = EncryptedPassword;
             }
 
             [TestMethod]
@@ -61,14 +68,14 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_not_have_credentials_if_missing_username() {
                 
-                Given.UserName = null;
+                Domain.Settings.UserName = null;
                 When.HasCredentials.ShouldBeFalse();
             }
             
             [TestMethod]
             public void should_not_have_credentials_if_missing_password() {
                 
-                Given.Password = string.Empty;
+                Domain.Settings.Password = string.Empty;
                 When.HasCredentials.ShouldBeFalse();
             }
         }
@@ -90,8 +97,8 @@ namespace Zunzun.Specs {
                 
                 When.Authenticate(UserName, Password);
                 
-                Should.UserName = UserName;
-                Should.Password = Password;
+                Domain.Settings.UserName.ShouldBe(UserName);
+                Domain.Settings.Password.ShouldBe(Password);
             }
         }
         
