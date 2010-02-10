@@ -1,40 +1,14 @@
-!* Story
+!3 Story: Allow to store user credentials
 
-In order to simplify the access to twitter
-I want to have my credentials stored in zunzun
+![ User Login
+The user credentials should be requested on the first run of zunzun
+The credentials should be stored with encrypted password
+]!
 
-*!
-!*> Setup
+![
+Once recorded, the credentials should not be requested
+An error message should be shown if the credentials are invalid
+]!
 
-|User Login        |
-|Backup Credentials|
 
-*!
-
------- '''Scenario''' ''first time'' ------
-|Given|the are no credentials recorded      |
-|When |the program is launched              |
-|Then |the user should be requested to login|
-
------- '''Scenario''' ''unsuccessful login'' ------
-|Given|the user is requested to login      |
-|When |invalid credentials are supplied    |
-|Then |an error message should be displayed|
-
------- '''Scenario''' ''successful login'' ------
-|Given|the user is requested to login      |
-|When |the correct credentials are supplied|
-|Then |the credentials should be recorded  |
-|And  |the password should be encrypted    |
-
------- '''Scenario''' ''existing credentials'' ------
-|Given|the credentials have been recorded       |
-|When |the program is launched                  |
-|Then |the user should not be requested to login|
-
-!*> Teardown
-
-|Restore Credentials|
-
-*!
 

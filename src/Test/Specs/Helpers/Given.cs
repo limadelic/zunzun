@@ -1,5 +1,3 @@
-using UtilsSettings = Zunzun.Utils.Properties.Settings;
-
 namespace Zunzun.Specs.Helpers {
 
     public static class Given {

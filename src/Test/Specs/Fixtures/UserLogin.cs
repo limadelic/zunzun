@@ -3,13 +3,12 @@ using Zunzun.App.Presenters;
 using Zunzun.App.Views;
 using Zunzun.Specs.Helpers;
 using Zunzun.Utils;
+using UtilsSettings = Zunzun.Utils.Properties.Settings;
 
 namespace Zunzun.Specs.Fixtures {
 
-    public class UserLogin : Spec {
+    public class UserLogin {
     
-        const string UserName = "username";
-
         ZunzunView ZunzunView;
         ZunzunPresenter ZunzunPresenter;
         
@@ -17,74 +16,60 @@ namespace Zunzun.Specs.Fixtures {
         SettingsPresenter SettingsPresenter;
 
         readonly KeyMaker KeyMaker = Utils.ObjectFactory.NewKeyMaker;
-        
-        protected override void SetUpSteps() {
-        
-            Given("the are no credentials recorded", () =>
-                Helpers.Given.Credentials(null, null));
 
-            Given("the credentials have been recorded", () => 
-                Helpers.Given.Credentials(UserName, Actors.KinobotEncryptedPassword));
-                
-            Given("the user is requested to login", () => {
-                SettingsView = Create.TestObjectFor<SettingsView>();
-                SettingsPresenter = PresenterFactory.NewSettingsPresenter(SettingsView);
-            });
-            
-            When("the program is launched", () => {
-                ZunzunView = Create.TestObjectFor<ZunzunView>();
-                ZunzunPresenter = PresenterFactory.NewZunzunPresenter(ZunzunView);
-                ZunzunPresenter.Load();
-            });
-            
-            When("invalid credentials are supplied", () => {
-                SettingsView.Given().UserName.Is(Actors.KinobotUserName);
-                SettingsView.Given().Password.Is("invalid pass");
-                SettingsPresenter.Login();
-            });
-            
-            When("the correct credentials are supplied", () => {
-                SettingsView.Given().UserName.Is(Actors.KinobotUserName);
-                SettingsView.Given().Password.Is(Actors.KinobotPassword);
-                SettingsPresenter.Login();
-            });
-            
-            Then("the user should be requested to login", () => 
-                ZunzunView.Should().RequestLogin());
-                
-            Then("the user should not be requested to login", () => 
-                ZunzunView.ShouldNot().RequestLogin());
+        void LoadZunzun() {
 
-            Then("the credentials should be recorded", () => {
-                Utils.Properties.Settings.Default.UserName.ShouldBe(Actors.KinobotUserName);
-                Utils.Properties.Settings.Default.Password.ShouldNotBeEmpty();
-            });
+            ZunzunView = Create.TestObjectFor<ZunzunView>();
+            ZunzunPresenter = PresenterFactory.NewZunzunPresenter(ZunzunView);
 
-            Then("an error message should be displayed", () => 
-                SettingsView.Should().ShowError());
-
-            And("the password should be encrypted", () =>
-                KeyMaker.Decrypt(Utils.Properties.Settings.Default.Password)
-                    .ShouldBe(Actors.KinobotPassword));
+            ZunzunPresenter.Load();
         }
 
-        #region backup/restore
+        void SetUpSetings() {
+            SettingsView = Create.TestObjectFor<SettingsView>();
+            SettingsPresenter = PresenterFactory.NewSettingsPresenter(SettingsView);
+        }
+
+        public bool The_user_credentials_should_be_requested_on_the_first_run_of_zunzun() { return Verify.That(() => {
+            UtilsSettings.Default.UserName = null;
+
+            LoadZunzun();
+
+            ZunzunView.Should().RequestLogin();            
+        });}
+
+        public bool The_credentials_should_be_stored_with_encrypted_password() { return Verify.That(() => {
+            UtilsSettings.Default.UserName = null;
+            UtilsSettings.Default.Password = null;
+
+            SetUpSetings();
+
+            SettingsView.Given().UserName.Is(Actors.KinobotUserName);
+            SettingsView.Given().Password.Is(Actors.KinobotPassword);
+            
+            SettingsPresenter.Apply();
+            
+            UtilsSettings.Default.UserName.ShouldBe(Actors.KinobotUserName);
+            UtilsSettings.Default.Password.ShouldNotBeEmpty();
+            KeyMaker.Decrypt(Utils.Properties.Settings.Default.Password)
+                .ShouldBe(Actors.KinobotPassword);
+        });}
+
+        public bool Once_recorded_the_credentials_should_not_be_requested() { return Verify.That(() => {
+            LoadZunzun();
+            ZunzunView.ShouldNot().RequestLogin();
+        });}
         
-        string BackupUserName;
-        string BackupPassword;
+        public bool An_error_message_should_be_shown_if_the_credentials_are_invalid() { return Verify.That(() => {
 
-        public void BackupCredentials() {
+            SetUpSetings();
 
-            BackupUserName = Domain.Settings.UserName;
-            BackupPassword = Domain.Settings.Password;
-        }
+            SettingsView.Given().UserName.Is(Actors.KinobotUserName);
+            SettingsView.Given().Password.Is("invalid pass");
 
-        public void RestoreCredentials() {
+            SettingsPresenter.Login();
 
-            Domain.Settings.UserName = BackupUserName;
-            Domain.Settings.Password = BackupPassword;
-        }
-
-        #endregion
+            SettingsView.Should().ShowError();
+        });}
     }
 }
