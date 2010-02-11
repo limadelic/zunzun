@@ -24,7 +24,7 @@ namespace Zunzun.Specs.Fixtures {
         }
         
         public bool Zunzun_should_allow_to_browse_for_the_photo() { return Verify.That(() => 
-            Given.That(UpdateStatusView).RequestedPhoto.Is(@"dotnet\images\screenshot.png")
+            Given.That(UpdateStatusView).RequestedPhoto.Is(Actors.Photo)
         );}
 
         public bool upload_it_into_a_website_that_stores_photos() { return Verify.That(() => 

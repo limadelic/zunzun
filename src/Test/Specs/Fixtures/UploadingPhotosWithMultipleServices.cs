@@ -1,12 +1,16 @@
-using fitnesse.fixtures;
+using fitlibrary;
+using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
 
-    public class UploadingPhotosWithMultipleServices : TableFixture {
+    public class UploadingPhotosWithMultipleServices : ConstraintFixture {
     
-        protected override void DoStaticTable(int rows) {
-            Right(1, 1);
-            Right(1, 3);
-        }
+        public bool It_should_work_with_these_services(string ServiceName) { return Verify.That(()=> {
+            
+            Domain.Settings.PhotoService = ServiceName;
+            
+            Domain.ObjectFactory.NewPhotoWebService.Upload(Actors.Photo)
+                .ShouldStartWith("http://" + ServiceName);
+        });}
     }
 }
