@@ -34,9 +34,8 @@ namespace Zunzun.Domain.Classes {
             Spec.Request().AsStatuses().ToTweets()
         ;}
 
-        static List<Tweet> Search(ITwitterLeafNode Spec) {
-            var aa = Spec.Request();
-            return aa.AsSearchResult().ToTweets()
+        static List<Tweet> Search(ITwitterLeafNode Spec) { return
+            Spec.Request().AsSearchResult().ToTweets()
         ;}
 
         #region Specs

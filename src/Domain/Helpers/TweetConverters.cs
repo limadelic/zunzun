@@ -1,36 +1,34 @@
 using System.Collections.Generic;
+using System.Linq;
 using Dimebrain.TweetSharp.Model;
 
 namespace Zunzun.Domain.Helpers {
 
     public static class TweetConverters {
         
-        public static List<Tweet> ToTweets(this IEnumerable<TwitterStatus> Statuses) {
-            var Results = new List<Tweet>();
+        public static List<Tweet> ToTweets(this IEnumerable<TwitterStatus> Statuses) { return 
+            TweetsFrom(Statuses)
+        ;}
 
+        public static List<Tweet> ToTweets(this TwitterSearchResult SearchResult) { return 
+            TweetsFrom(CastToStatuses(SearchResult.Statuses))
+        ;}
+        
+        // Needed to let us handle both args to toTweets with the same function. Note that 
+        // we traverse the list an extra time when this is called.
+        static IEnumerable<TwitterStatus> CastToStatuses(IEnumerable<TwitterSearchStatus> SearchStatuses) { return
+            from Status in SearchStatuses select (TwitterStatus)Status
+        ;}
+
+        static List<Tweet> TweetsFrom(IEnumerable<TwitterStatus> Statuses) {
             // TODO: deal with errors
-            if (Statuses == null) return Results;
-            
-            foreach (var Status in Statuses)
-                Results.Add(ToTweet(Status));
+            if (Statuses == null) return new List<Tweet>();
 
-            return Results;
+            return (from Status in Statuses select TweetFrom(Status)).ToList();
         }
 
-        public static List<Tweet> ToTweets(this TwitterSearchResult SearchResult) {
-            var Results = new List<Tweet>();
-
-            // TODO: deal with errors
-            if (SearchResult == null) return Results;
-            
-            foreach (var Status in SearchResult.Statuses)
-                Results.Add(ToTweet(Status));
-
-            return Results;
-        }
-
-        static Tweet ToTweet(this TwitterStatus Status) { 
-            return ObjectFactory.NewTweet(Status);
-        }
+        static Tweet TweetFrom(this TwitterStatus Status) { return 
+            ObjectFactory.NewTweet(Status)
+        ;}
     }
 }
