@@ -123,8 +123,10 @@
     <Compile Include="Model\Classes\UserAuthenticatorClass.cs" />
     <Compile Include="Model\UserAuthenticator.cs" />
     <Compile Include="Presenters\ConversationPresenter.cs" />
+    <Compile Include="Presenters\SearchPresenter.cs" />
     <Compile Include="Presenters\SettingsPresenter.cs" />
     <Compile Include="Presenters\ZunzunPresenter.cs" />
+    <Compile Include="Views\SearchView.cs" />
     <Compile Include="Views\SettingsView.cs" />
     <Compile Include="Views\Xaml\Home.xaml.cs">
       <DependentUpon>Home.xaml</DependentUpon>

@@ -40,7 +40,6 @@ namespace Zunzun.Domain {
               
             return NewObject;
         }}
-        public static PhotoWebService NewTwitPic { get { return new TwitPic(); } }
 
         public static UserSettings NewUserSettings { get { return new UserSettingsClass {
             KeyMaker = Utils.ObjectFactory.NewKeyMaker

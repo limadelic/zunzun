@@ -1,5 +1,7 @@
 using System.Collections.Generic;
+using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Fluent;
+using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Helpers;
 
 namespace Zunzun.Domain.Classes {
@@ -16,6 +18,10 @@ namespace Zunzun.Domain.Classes {
             Request(TweetsByUserNameSpec(SpecificUser.UserName))
         ;}
 
+        public List<Tweet> TweetsContaining(string SearchText) { return 
+            Search(TweetsContainingSpec(SearchText))
+        ;}
+
         public void UpdateStatus(Tweet Tweet) {
             UpdateStatusSpec(Tweet.Content).Request()
         ;}
@@ -24,44 +30,43 @@ namespace Zunzun.Domain.Classes {
             ReplyStatusSpec(Tweet.Content, Tweet.ReplyTo).Request()
         ;}
 
-        static ITwitterStatuses Statuses { get { return 
-            FluentTwitter.CreateRequest()
-            .AuthenticateAs(Settings.UserName, Settings.Password)
-            .Statuses()
-        ;}}
-
-        static ITwitterHomeTimeline Home { get { return 
-            Statuses.OnHomeTimeline()
-        ;}}
-
-        static ITwitterUserTimeline User { get { return 
-            Statuses.OnUserTimeline()
-        ;}}
-
         static List<Tweet> Request(ITwitterLeafNode Spec) { return 
-            Spec.Request().ToTweets()
+            Spec.Request().AsStatuses().ToTweets()
+        ;}
+
+        static List<Tweet> Search(ITwitterLeafNode Spec) {
+            var aa = Spec.Request();
+            return aa.AsSearchResult().ToTweets()
         ;}
 
         #region Specs
         
         public virtual ITwitterLeafNode HomeSpec { get { return
-            Home.Take(Settings.NumberOfTweetsPerRequest).AsJson()
+            TwitterAPI.HomeStatuses.Take(Settings.NumberOfTweetsPerRequest).AsJson()
         ;}}
 
         public virtual ITwitterLeafNode TweetsSinceSpec(long Id) { return
-            Home.Since(Id).AsJson()
+            TwitterAPI.HomeStatuses.Since(Id).AsJson()
         ;}
 
         public virtual ITwitterLeafNode TweetsByUserNameSpec(string UserName) { return
-            User.For(UserName).AsJson()
+            TwitterAPI.UserStatuses.For(UserName).AsJson()
+        ;}
+
+        public virtual ITwitterLeafNode TweetsContainingSpec(string SearchText) { return
+            TwitterAPI.Request.Search().Query().Containing(SearchText).AsJson()            
+        ;}
+
+        public virtual TwitterSearchResult TweetsFoundFor(string SearchText) { return
+            TweetsContainingSpec(SearchText).Request().AsSearchResult()            
         ;}
 
         static ITwitterLeafNode UpdateStatusSpec(string Content) { return
-            Statuses.Update(Content).AsJson()
+            TwitterAPI.Statuses.Update(Content).AsJson()
         ;}
 
         static ITwitterLeafNode ReplyStatusSpec(string Content, long Id) { return 
-            Statuses.Update(Content).InReplyToStatus(Id).AsJson()
+            TwitterAPI.Statuses.Update(Content).InReplyToStatus(Id).AsJson()
         ;}
 
         #endregion

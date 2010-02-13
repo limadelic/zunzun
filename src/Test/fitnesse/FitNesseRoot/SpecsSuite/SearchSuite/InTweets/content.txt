@@ -1,17 +1,6 @@
-!* Story
+!3 Story: Allow to search Tweets
 
-In order to find out what users are Tweeting about
-I want to be able to search through Tweets
-
-*!
-!*> Setup
-
-|Search Tweets|
-
-*!
-
------- '''Scenario''' ''search Tweets'' ------
-|When|I search for "cool"      |
-|Then|I should find cool Tweets|
-
+![ Search Tweets
+It should find Tweets
+]!
 
