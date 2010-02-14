@@ -1,6 +1,7 @@
 !3 Story: Allow to search Tweets
 
 ![ Search Tweets
-It should find Tweets
+zunzun should find Tweets
+and place them at the top of Home tweets
 ]!
 

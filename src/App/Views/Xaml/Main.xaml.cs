@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Windows;
+﻿using System.Windows;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
-using Zunzun.Domain;
 
 namespace Zunzun.App.Views.Xaml {
 
@@ -24,6 +21,8 @@ namespace Zunzun.App.Views.Xaml {
             AddHandler(Retweet.Event, new RoutedEventHandler(Update.OnRetweet));
             AddHandler(DirectMessage.Event, new RoutedEventHandler(Update.OnDirectMessage));
 
+            AddHandler(NewTweets.Event, new RoutedEventHandler(Home.OnNewTweets));
+            
             ToggleUpdate.Click += Update.OnToggleVisibility;
         }
 
@@ -44,11 +43,6 @@ namespace Zunzun.App.Views.Xaml {
         public void RequestLogin() {
             var Login = new Settings { Owner = this };
             Login.ShowDialog();
-        }
-
-        public void Show(List<Tweet> Tweets) { 
-            var Home = ContentPlaceholder.Child as HomeView;
-            Home.OnNewTweets(Tweets);
         }
 
         void Load(object Sender, RoutedEventArgs Args) {

@@ -20,8 +20,6 @@ namespace Zunzun.App.Presenters {
             View.AddHandler(FollowUser.Event, Handler(OnFollowUser)); 
             View.AddHandler(UnfollowUser.Event, Handler(OnUnfollowUser)); 
             View.AddHandler(ShowUserHome.Event, Handler(OnShowUserHome)); 
-            
-            View.AddHandler(NewTweets.Event, Handler(OnNewTweets)); 
         }
 
         public virtual Delegate Handler(EventHandler<RoutedEventArgs> Method) { return
@@ -45,11 +43,6 @@ namespace Zunzun.App.Presenters {
             Show(UserHome, Sender, Args);
             View.AddHandler(UserChanged.Event, Handler(UserHome.OnUserChanged));
             View.Show(UserHome);
-        }
-
-        void OnNewTweets(object Sender, RoutedEventArgs Args) {
-            var Tweets = (Args as TweetsEvent.Args).Tweets;
-            View.Show(Tweets);
         }
 
         public virtual void Show(UserHome UserHome, object Sender, RoutedEventArgs Args) {

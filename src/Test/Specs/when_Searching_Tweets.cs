@@ -15,7 +15,7 @@ namespace Zunzun.Specs {
         public class a_SearchPresenter : BehaviorOf<SearchPresenter> {
         
             [TestMethod]
-            public void should_find_and_show_tweets() {
+            public void should_find_and_notify_tweets() {
                 var Tweets = new List<Tweet>();
                 
                 Given.View.SearchText.Is("search text");

@@ -1,6 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
+using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 
@@ -27,8 +27,10 @@ namespace Zunzun.App.Views.Xaml {
             Presenter.Load();
         }
 
-        public void OnNewTweets(List<Tweet> Tweets) {
-            Presenter.Add(Tweets);
+        public void OnNewTweets(object Sender, RoutedEventArgs Args) {
+            var NewTweets = (Args as TweetsEvent.Args).Tweets;
+            
+            Presenter.Add(NewTweets);
         }
     }
 }
