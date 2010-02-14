@@ -81,6 +81,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Xaml\Search.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Views\Xaml\Settings.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -111,6 +115,8 @@
     <Compile Include="Controls\TweetsListBox.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
     <Compile Include="Converters\StringToVisibility.cs" />
+    <Compile Include="Events\NewTweets.cs" />
+    <Compile Include="Events\TweetsEvent.cs" />
     <Compile Include="Events\DirectMessage.cs" />
     <Compile Include="Events\Extensions.cs" />
     <Compile Include="Events\FollowUser.cs" />
@@ -132,6 +138,9 @@
       <DependentUpon>Home.xaml</DependentUpon>
     </Compile>
     <Compile Include="Controls\RichTextBlock.cs" />
+    <Compile Include="Views\Xaml\Search.xaml.cs">
+      <DependentUpon>Search.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Xaml\Settings.xaml.cs">
       <DependentUpon>Settings.xaml</DependentUpon>
     </Compile>

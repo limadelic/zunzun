@@ -1,7 +1,6 @@
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Fluent;
-using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Helpers;
 
 namespace Zunzun.Domain.Classes {
@@ -54,10 +53,6 @@ namespace Zunzun.Domain.Classes {
 
         public virtual ITwitterLeafNode TweetsContainingSpec(string SearchText) { return
             TwitterAPI.Request.Search().Query().Containing(SearchText).AsJson()            
-        ;}
-
-        public virtual TwitterSearchResult TweetsFoundFor(string SearchText) { return
-            TweetsContainingSpec(SearchText).Request().AsSearchResult()            
         ;}
 
         static ITwitterLeafNode UpdateStatusSpec(string Content) { return

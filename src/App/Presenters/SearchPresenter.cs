@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -9,7 +10,11 @@ namespace Zunzun.App.Presenters {
         public TweetService TweetService { get; set; }
 
         public void Search() {
-            View.Tweets = TweetService.TweetsContaining(View.SearchText);
+            NotifyNewTweets(TweetService.TweetsContaining(View.SearchText));
+        }
+
+        public virtual void NotifyNewTweets(List<Tweet> Tweets) {
+            Events.NewTweets.Found(Tweets, View);
         }
     }
 }

@@ -34,7 +34,10 @@
 			<Border x:Name="ContentPlaceholder" Grid.Row="1">
 				<local:Home x:Name="Home"/>
 			</Border>
-			<local:UpdateStatus x:Name="Update" d:LayoutOverrides="Height" Grid.Row="2"/>
+			<StackPanel x:Name="InputControls" VerticalAlignment="Bottom" Grid.Row="1" Orientation="Vertical">
+				<local:Search x:Name="Search"/>
+				<local:UpdateStatus x:Name="Update"/>
+			</StackPanel>
         </Grid>
 	</Border>
 </Window>

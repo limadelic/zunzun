@@ -6,11 +6,10 @@ using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
-using ShouldAssertions=FluentSpec.ShouldAssertions;
 
 namespace Zunzun.Specs {
 
-    public class when_Searching_Tweets {
+    public class when_searching_Tweets {
     
         [TestClass]
         public class a_SearchPresenter : BehaviorOf<SearchPresenter> {
@@ -24,7 +23,7 @@ namespace Zunzun.Specs {
                 
                 When.Search();
                 
-                ShouldAssertions.ShouldBe(The.View.Tweets, Tweets);
+                Should.NotifyNewTweets(Tweets);
             }
         }
         

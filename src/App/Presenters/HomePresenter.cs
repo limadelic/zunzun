@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Zunzun.App.Model;
 using Zunzun.App.Views;
 using Zunzun.Domain;
@@ -30,6 +31,10 @@ namespace Zunzun.App.Presenters {
 
         public void CheckForNewTweets() {
             var NewTweets = TweetService.TweetsSince(LatestTweet.Id);
+            Add(NewTweets);
+        }
+
+        public void Add(List<Tweet> NewTweets) {
             View.Tweets.InsertAtTop(NewTweets);
         }
     }

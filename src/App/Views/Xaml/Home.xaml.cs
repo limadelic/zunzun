@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Windows;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
@@ -8,8 +9,8 @@ namespace Zunzun.App.Views.Xaml {
     public partial class Home : HomeView {
     
         HomePresenter Presenter { get; set; }
-        public ObservableCollection<Tweet> Tweets { get; set; }      
-          
+        public ObservableCollection<Tweet> Tweets { get; set; }
+
         public Home() {
             Setup();
             InitializeComponent();
@@ -24,6 +25,10 @@ namespace Zunzun.App.Views.Xaml {
             if (Zunzun.App.Settings.IsInDesignMode) return;
             
             Presenter.Load();
+        }
+
+        public void OnNewTweets(List<Tweet> Tweets) {
+            Presenter.Add(Tweets);
         }
     }
 }

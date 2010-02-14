@@ -1,5 +1,7 @@
 using System;
+using System.Collections.Generic;
 using System.Windows;
+using Zunzun.Domain;
 
 namespace Zunzun.App.Views {
 
@@ -9,5 +11,6 @@ namespace Zunzun.App.Views {
         void Show(UIElement ContentControl);
         void RequestLogin();
         void Close();
+        void Show(List<Tweet> Tweets);
     }
 }
