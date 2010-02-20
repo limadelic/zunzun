@@ -1,4 +1,5 @@
-﻿using System.Collections.ObjectModel;
+﻿using System;
+using System.Collections.ObjectModel;
 using System.Windows;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
@@ -9,7 +10,18 @@ namespace Zunzun.App.Views.Xaml {
     public partial class Home : HomeView {
     
         HomePresenter Presenter { get; set; }
-        public ObservableCollection<Tweet> Tweets { get; set; }
+        public ObservableCollection<Tweet> HomeTweets { get; set; }
+        public ObservableCollection<Tweet> ConvoTweets { get; set; }
+        public void MakeHomeVisible()
+        {
+            throw new NotImplementedException();
+        }
+
+        public void MakeConversationVisible()
+        {
+            ConvoTweetsLBX.Visibility = Visibility.Visible;
+            HomeTweetsLBX.Visibility = Visibility.Collapsed;
+        }
 
         public Home() {
             Setup();
@@ -18,7 +30,7 @@ namespace Zunzun.App.Views.Xaml {
 
         void Setup() {
             Presenter = PresenterFactory.NewHomePresenter(this);
-            Tweets = new ObservableCollection<Tweet>();
+            HomeTweets = new ObservableCollection<Tweet>();
         }
 
         void OnLoad(object Sender, RoutedEventArgs Args) {
@@ -31,6 +43,11 @@ namespace Zunzun.App.Views.Xaml {
             var NewTweets = (Args as TweetsEvent.Args).Tweets;
             
             Presenter.Add(NewTweets);
+        }
+
+        public void ShowConversation(object sender, RoutedEventArgs Args)
+        {
+            Presenter.ShowConversation((Args as TweetEvent.Args).Tweet);
         }
     }
 }

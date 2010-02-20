@@ -22,6 +22,7 @@ namespace Zunzun.App.Views.Xaml {
             AddHandler(DirectMessage.Event, new RoutedEventHandler(Update.OnDirectMessage));
 
             AddHandler(NewTweets.Event, new RoutedEventHandler(Home.OnNewTweets));
+            AddHandler(Conversation.Event, new RoutedEventHandler(Home.ShowConversation));
             
             ToggleUpdate.Click += Update.OnToggleVisibility;
         }

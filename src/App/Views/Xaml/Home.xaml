@@ -8,5 +8,10 @@
     x:Class="Zunzun.App.Views.Xaml.Home" 
     mc:Ignorable="d" Loaded="OnLoad">
     
-	<Controls:TweetsListBox x:Name="TweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding Tweets, ElementName=userControl, Mode=Default}"/>
+	<StackPanel x:Name="TweetPanel" >
+    
+		<Controls:TweetsListBox x:Name="HomeTweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding HomeTweets, ElementName=userControl, Mode=Default}" Visibility="Visible"/>
+   	 	<Controls:TweetsListBox x:Name="ConvoTweetsLBX" Background="{x:Null}" BorderBrush="{x:Null}" ItemContainerStyle="{DynamicResource TweetsItemContainerStyle}" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Style="{DynamicResource TweetsListBox}" ItemsSource="{Binding ConvoTweets, ElementName=userControl, Mode=Default}" Visibility="Collapsed"/>
+	</StackPanel>
+   	 
 </UserControl>

@@ -13,11 +13,11 @@ namespace Zunzun.Specs.Fixtures {
         readonly HomePresenter HomePresenter;
         readonly HomeView HomeView;
         
-        Tweet Tweet { get { return HomeView.Tweets[0]; } }
+        Tweet Tweet { get { return HomeView.HomeTweets[0]; } }
         
         public ShowHome() {
             HomeView = Create.TestObjectFor<HomeView>();
-            HomeView.Tweets = new ObservableCollection<Tweet>();
+            HomeView.HomeTweets = new ObservableCollection<Tweet>();
             
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
         }
@@ -26,7 +26,7 @@ namespace Zunzun.Specs.Fixtures {
 
             When("Home is shown", () => HomePresenter.Show());
             
-            Then("it should contain Tweets", () => HomeView.Tweets.ToList().ShouldNotBeEmpty());
+            Then("it should contain Tweets", () => HomeView.HomeTweets.ToList().ShouldNotBeEmpty());
 
             When("a Tweet is displayed", () => HomePresenter.Show());
             

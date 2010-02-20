@@ -5,6 +5,9 @@ namespace Zunzun.App.Views {
     
     public interface HomeView {
     
-        ObservableCollection<Tweet> Tweets { get; set; }
+        ObservableCollection<Tweet> HomeTweets { get; set; }
+        ObservableCollection<Tweet> ConvoTweets { get; set; }
+        void MakeHomeVisible();
+        void MakeConversationVisible();
     }
 }

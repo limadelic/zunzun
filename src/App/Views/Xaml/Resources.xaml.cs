@@ -24,5 +24,10 @@ namespace Zunzun.App.Views.Xaml {
             var Tweet = (Sender as FrameworkElement).DataContext as Tweet;
             Events.ShowUserHome.Of(Tweet.Author.UserName, Sender);
         }
+
+        void OnConversation(object Sender, RoutedEventArgs Args) {
+            var Tweet = (Sender as FrameworkElement).DataContext as Tweet;
+            Events.Conversation.To(Tweet, Sender);
+        }
     }
 }

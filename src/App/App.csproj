@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{F6506512-A9B2-49D2-8A36-49E49068C358}</ProjectGuid>
     <OutputType>WinExe</OutputType>
@@ -116,6 +116,7 @@
     <Compile Include="Controls\TweetsListBox.cs" />
     <Compile Include="Converters\BoolToVisibility.cs" />
     <Compile Include="Converters\StringToVisibility.cs" />
+    <Compile Include="Events\Conversation.cs" />
     <Compile Include="Events\NewTweets.cs" />
     <Compile Include="Events\TweetsEvent.cs" />
     <Compile Include="Events\DirectMessage.cs" />

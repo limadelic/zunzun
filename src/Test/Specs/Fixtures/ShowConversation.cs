@@ -1,4 +1,3 @@
-using System.Collections.Generic;
 using System.Linq;
 using FluentSpec;
 using Zunzun.App.Presenters;
@@ -11,15 +10,16 @@ namespace Zunzun.Specs.Fixtures {
     public class ShowConversation : Spec {
 
         private readonly UpdateStatusPresenter StatusPresenter;
-        private readonly ConversationPresenter ConvoPresenter;
-        private List<Tweet> CurrentConvo;
+        private readonly HomePresenter ConvoPresenter;
+        private readonly HomeView HomeView;
         private Tweet origTweet;
         private string origContent;
 
         public ShowConversation()
         {
+            HomeView = Create.TestObjectFor<HomeView>();
             StatusPresenter = PresenterFactory.NewStatusPresenter(Create.TestObjectFor<UpdateStatusView>());
-            ConvoPresenter = PresenterFactory.NewConversationPresenter();
+            ConvoPresenter = PresenterFactory.NewHomePresenter(HomeView);
         }
 
         protected override void SetUpSteps() {
@@ -34,9 +34,9 @@ namespace Zunzun.Specs.Fixtures {
                 StatusPresenter.Update();
             });
 
-            When("I look at the Conversation", () => CurrentConvo = ConvoPresenter.GetConversation(origTweet));
+            When("I look at the Conversation", () => ConvoPresenter.ShowConversation(origTweet));
 
-            Then("it should say {0}", Something => CurrentConvo.Contains(new TweetClass {Content = Something }));
+            Then("it should say {0}", Something => HomeView.HomeTweets.Contains(new TweetClass {Content = Something }));
         }
 
         private Tweet GetOriginalTweet() { return new TweetServiceClass().Tweets.Where(x => x.Content == origContent).First(); }

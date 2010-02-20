@@ -1,10 +1,12 @@
 using System;
+using System.Collections.ObjectModel;
 using Dimebrain.TweetSharp.Fluent;
 using System.Collections.Generic;
 using Dimebrain.TweetSharp.Model;
 using FluentSpec;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
+using Zunzun.Utils;
 using ObjectFactory=Zunzun.Domain.ObjectFactory;
 
 namespace Zunzun.Specs.Helpers {
@@ -103,7 +105,7 @@ namespace Zunzun.Specs.Helpers {
             SpecFrom(RawError)
         ;}}
 
-        public static IEnumerable<Tweet> ListOfTweetsWithTwoReplies { get { return new List<Tweet>  {
+        public static ObservableCollection<Tweet> ListOfTweetsWithTwoReplies { get { return new ObservableCollection<Tweet>  {
             TweetWithUserAndId, 
             new TweetClass(), 
             ReplyingTweet(42, 43), 
@@ -112,14 +114,14 @@ namespace Zunzun.Specs.Helpers {
             new TweetClass()
         };}}
 
-        public static List<Tweet> ListOfTweetsWithReplyHierarchy { get {
-            var list = new List<Tweet> {
+        public static ObservableCollection<Tweet> ListOfTweetsWithReplyHierarchy { get {
+            var list = new ObservableCollection<Tweet> {
                 ReplyingTweet(43, 45),
                 ReplyingTweet(44, 46),
                 ReplyingTweet(45, 47),
             };
 
-            list.AddRange(ListOfTweetsWithTwoReplies);
+            ListOfTweetsWithTwoReplies.ForEach(list.Add);
             return list;
         }}
 

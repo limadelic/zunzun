@@ -19,7 +19,7 @@ namespace Zunzun.Specs.Fixtures {
         
         public SearchTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
-            HomeView.Tweets = new ObservableCollection<Tweet>();
+            HomeView.HomeTweets = new ObservableCollection<Tweet>();
             
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
         }
@@ -31,7 +31,7 @@ namespace Zunzun.Specs.Fixtures {
         
         public bool and_place_them_at_the_top_of_Home_tweets() { return Verify.That(() => {
             HomePresenter.Add(TweetsFound);
-            HomeView.Tweets[0].ShouldBe(TweetsFound[0]);
+            HomeView.HomeTweets[0].ShouldBe(TweetsFound[0]);
         });}
     }
 }

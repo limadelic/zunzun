@@ -18,11 +18,11 @@ namespace Zunzun.Specs.Fixtures {
 
         readonly Tweet Tweet = Actors.UniqueTweet;
         
-        ObservableCollection<Tweet> TweetsShown { get { return HomeView.Tweets; } }
+        ObservableCollection<Tweet> TweetsShown { get { return HomeView.HomeTweets; } }
         
         public RefreshingTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
-            HomeView.Tweets = new ObservableCollection<Tweet>();
+            HomeView.HomeTweets = new ObservableCollection<Tweet>();
 
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
             HomePresenter.Timer = new TestTimer();

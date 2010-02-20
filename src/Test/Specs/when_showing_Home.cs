@@ -32,23 +32,23 @@ namespace Zunzun.Specs {
             [TestMethod]
             public void should_display_the_Tweets() {
             
-                Given.View.Tweets = new ObservableCollection<Tweet>();
+                Given.View.HomeTweets = new ObservableCollection<Tweet>();
                 Given.TweetService.Tweets.Are(Tweets);
 
                 When.Show();
 
-                The.View.Tweets.ToList().ShouldBe(Tweets);
+                The.View.HomeTweets.ToList().ShouldBe(Tweets);
             }
             
             [TestMethod]
             public void should_clear_before_displaying_Tweets() {
             
-                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
+                Given.View.HomeTweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
                 Given.TweetService.Tweets.Are(Tweets);
 
                 When.Show();
 
-                The.View.Tweets.ToList().ShouldBe(Tweets);
+                The.View.HomeTweets.ToList().ShouldBe(Tweets);
             }
             
             [TestMethod]
@@ -66,12 +66,12 @@ namespace Zunzun.Specs {
                 var LatestTweet = CurrentTweets[0];
                 var NewTweets = Actors.TwoTweets;
 
-                Given.View.Tweets = CurrentTweets;
+                Given.View.HomeTweets = CurrentTweets;
                 Given.TweetService.TweetsSince(LatestTweet.Id).Are(NewTweets);
 
                 When.CheckForNewTweets();
 
-                The.View.Tweets.ToList()
+                The.View.HomeTweets.ToList()
                     .ShouldBe(NewTweets.Concat(Tweets).ToList());
             }
 
@@ -81,12 +81,12 @@ namespace Zunzun.Specs {
                 var LatestTweet = CurrentTweets[0];
                 var NewTweet = Actors.UniqueTweet;
 
-                Given.View.Tweets = new ObservableCollection<Tweet>(Tweets);
+                Given.View.HomeTweets = new ObservableCollection<Tweet>(Tweets);
                 Given.TweetService.TweetsSince(LatestTweet.Id).Is(new List<Tweet> {NewTweet});
                 
                 When.CheckForNewTweets();
                 
-                The.View.Tweets[0].ShouldBe(NewTweet);
+                The.View.HomeTweets[0].ShouldBe(NewTweet);
             }
         }
         
