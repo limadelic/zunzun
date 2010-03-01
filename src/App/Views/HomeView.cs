@@ -1,13 +1,11 @@
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using Zunzun.Domain;
 
 namespace Zunzun.App.Views {
     
     public interface HomeView {
     
-        ObservableCollection<Tweet> HomeTweets { get; set; }
-        ObservableCollection<Tweet> ConvoTweets { get; set; }
-        void MakeHomeVisible();
-        void MakeConversationVisible();
+//        void Insert(List<Tweet> tweets);
+        void Show(List<Tweet> tweets);
     }
 }

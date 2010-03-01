@@ -1,5 +1,5 @@
 using System;
-using System.Collections.ObjectModel;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using FluentSpec;
@@ -18,11 +18,10 @@ namespace Zunzun.Specs.Fixtures {
 
         readonly Tweet Tweet = Actors.UniqueTweet;
         
-        ObservableCollection<Tweet> TweetsShown { get { return HomeView.HomeTweets; } }
+        List<Tweet> TweetsShown { get { return HomePresenter.TweetCache; } }
         
         public RefreshingTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
-            HomeView.HomeTweets = new ObservableCollection<Tweet>();
 
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
             HomePresenter.Timer = new TestTimer();

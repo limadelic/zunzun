@@ -1,26 +1,27 @@
-﻿using System;
+﻿using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Windows;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
+using Zunzun.Utils;
 
 namespace Zunzun.App.Views.Xaml {
 
     public partial class Home : HomeView {
     
         HomePresenter Presenter { get; set; }
-        public ObservableCollection<Tweet> HomeTweets { get; set; }
-        public ObservableCollection<Tweet> ConvoTweets { get; set; }
-        public void MakeHomeVisible()
-        {
-            throw new NotImplementedException();
-        }
+        private ObservableCollection<Tweet> HomeTweets { get; set; }
 
-        public void MakeConversationVisible()
+//        public void Insert(List<Tweet> Tweets)
+//        {
+//            HomeTweets.InsertAtTop(Tweets);
+//        }
+
+        public void Show(List<Tweet> Tweets)
         {
-            ConvoTweetsLBX.Visibility = Visibility.Visible;
-            HomeTweetsLBX.Visibility = Visibility.Collapsed;
+            HomeTweets.Clear();
+            HomeTweets.InsertAtTop(Tweets);
         }
 
         public Home() {

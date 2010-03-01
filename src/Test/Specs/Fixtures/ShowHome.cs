@@ -1,4 +1,3 @@
-using System.Collections.ObjectModel;
 using System.Linq;
 using FluentSpec;
 using Zunzun.Specs.Helpers;
@@ -13,11 +12,10 @@ namespace Zunzun.Specs.Fixtures {
         readonly HomePresenter HomePresenter;
         readonly HomeView HomeView;
         
-        Tweet Tweet { get { return HomeView.HomeTweets[0]; } }
+        Tweet Tweet { get { return HomePresenter.TweetCache[0]; } }
         
         public ShowHome() {
             HomeView = Create.TestObjectFor<HomeView>();
-            HomeView.HomeTweets = new ObservableCollection<Tweet>();
             
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
         }
@@ -26,7 +24,7 @@ namespace Zunzun.Specs.Fixtures {
 
             When("Home is shown", () => HomePresenter.Show());
             
-            Then("it should contain Tweets", () => HomeView.HomeTweets.ToList().ShouldNotBeEmpty());
+            Then("it should contain Tweets", () => HomePresenter.TweetCache.ToList().ShouldNotBeEmpty());
 
             When("a Tweet is displayed", () => HomePresenter.Show());
             

@@ -1,5 +1,4 @@
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Linq;
 using Zunzun.App.Model;
 using Zunzun.App.Views;
@@ -13,6 +12,7 @@ namespace Zunzun.App.Presenters {
         public HomeView View { get; set; }
         public TweetService TweetService { get; set; }
         public Timer Timer { get; set; }
+        public virtual List<Tweet> TweetCache { get; private set; }
 
         public void Load() {
             Show();
@@ -20,8 +20,8 @@ namespace Zunzun.App.Presenters {
         }
 
         public virtual void Show() {
-            View.HomeTweets.Clear();
-            TweetService.Tweets.ForEach(View.HomeTweets.Add);
+              TweetCache = TweetService.Tweets;
+              View.Show(TweetCache);
         }
 
         public virtual void SetupTimer() {
@@ -29,31 +29,27 @@ namespace Zunzun.App.Presenters {
             Timer.NotifyEvery(Settings.DefaultRefreshCycle);
         }
 
-        Tweet LatestTweet { get { return View.HomeTweets[0]; }}
+        Tweet LatestTweet { get { return TweetCache[0]; }}
 
-        public void CheckForNewTweets() {
+        public virtual void CheckForNewTweets() {
             var NewTweets = TweetService.TweetsSince(LatestTweet.Id);
             Add(NewTweets);
+            View.Show(TweetCache);
         }
 
-        public void Add(List<Tweet> NewTweets) {
-            View.HomeTweets.InsertAtTop(NewTweets);
-        }
+        public void Add(List<Tweet> Tweets) { TweetCache.InsertAtTop(Tweets); }
 
         Tweet rootTweet { get; set; }
 
         public void ShowConversation(Tweet tweet)
         {
-            ConstructConversation(tweet);
-            View.MakeConversationVisible();
+            View.Show(ConstructConversation(tweet));
         }
 
-        private void ConstructConversation(Tweet tweet)
+        public virtual List<Tweet> ConstructConversation(Tweet tweet)
         {
             rootTweet = RootTweet(tweet);
-            View.ConvoTweets = new ObservableCollection<Tweet>(
-                View.HomeTweets.Where(Tweet => ConversationIds.Contains(Tweet.Id)).ToList()
-            );
+            return TweetCache.Where(Tweet => ConversationIds.Contains(Tweet.Id)).ToList();
         }
 
         protected List<long> ConversationIds
@@ -68,7 +64,7 @@ namespace Zunzun.App.Presenters {
 
         private void ConversationIdsHelper(Tweet currentTweet, ICollection<long> ids)
         {
-            var children = View.HomeTweets.Where(tweet => tweet.ReplyTo == currentTweet.Id);
+            var children = TweetCache.Where(tweet => tweet.ReplyTo == currentTweet.Id);
 
             if (children.Count() == 0) return;
 
@@ -86,11 +82,10 @@ namespace Zunzun.App.Presenters {
             while (currentTweet.ReplyTo > 0)
             {
                 var tempTweet = currentTweet;
-                currentTweet = View.HomeTweets.Where(x => x.Id == tempTweet.ReplyTo).First();
+                currentTweet = TweetCache.Where(x => x.Id == tempTweet.ReplyTo).First();
             }
 
             return currentTweet;
-        } 
-
+        }
     }
 }

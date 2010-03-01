@@ -24,7 +24,6 @@
       <INDENT_ANONYMOUS_METHOD_BLOCK>False</INDENT_ANONYMOUS_METHOD_BLOCK>
       <INDENT_CASE_FROM_SWITCH>False</INDENT_CASE_FROM_SWITCH>
       <INDENT_EMBRACED_INITIALIZER_BLOCK>False</INDENT_EMBRACED_INITIALIZER_BLOCK>
-      <INDENT_SIZE>4</INDENT_SIZE>
       <INITIALIZER_BRACES>END_OF_LINE</INITIALIZER_BRACES>
       <INVOCABLE_DECLARATION_BRACES>END_OF_LINE</INVOCABLE_DECLARATION_BRACES>
       <KEEP_USER_LINEBREAKS>False</KEEP_USER_LINEBREAKS>
@@ -57,6 +56,8 @@
     </FormatSettings>
     <UsingsSettings />
     <Naming2>
+      <EventHandlerPatternLong>$object$_On$event$</EventHandlerPatternLong>
+      <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
       <PredefinedRule Inspect="True" Prefix="I" Suffix="" Style="AaBb" ElementKind="Interfaces" />
       <PredefinedRule Inspect="True" Prefix="T" Suffix="" Style="AaBb" ElementKind="TypeParameters" />
@@ -67,24 +68,32 @@
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="PublicFields" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Constants" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="StaticReadonly" />
-      <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="NotPublicStaticFields" />
-      <PredefinedRule Inspect="True" Prefix="_" Suffix="" Style="aaBb" ElementKind="NotPublicInstanceFields" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="EnumMember" />
       <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Other" />
     </Naming2>
   </CSharp>
   <VB>
-    <FormatSettings>
-      <INDENT_SIZE>4</INDENT_SIZE>
-    </FormatSettings>
+    <FormatSettings />
     <ImportsSettings />
-    <Naming2 />
+    <Naming2>
+      <EventHandlerPatternLong>$object$_On$event$</EventHandlerPatternLong>
+      <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
+    </Naming2>
   </VB>
+  <Web>
+    <Naming2 />
+  </Web>
+  <Xaml>
+    <Naming2 />
+  </Xaml>
+  <XML>
+    <FormatSettings />
+  </XML>
   <GenerateMemberBody />
   <Naming2>
+    <EventHandlerPatternLong>$object$_On$event$</EventHandlerPatternLong>
+    <EventHandlerPatternShort>$event$Handler</EventHandlerPatternShort>
     <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Locals" />
-    <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="NotPublicInstanceFields" />
-    <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="NotPublicStaticFields" />
     <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="Parameters" />
     <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="MethodPropertyEvent" />
     <PredefinedRule Inspect="True" Prefix="" Suffix="" Style="AaBb" ElementKind="TypesAndNamespaces" />
