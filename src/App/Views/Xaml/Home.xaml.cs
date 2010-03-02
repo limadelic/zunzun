@@ -11,7 +11,7 @@ namespace Zunzun.App.Views.Xaml {
     public partial class Home : HomeView {
     
         HomePresenter Presenter { get; set; }
-        private ObservableCollection<Tweet> HomeTweets { get; set; }
+        public ObservableCollection<Tweet> HomeTweets { get; set; }
 
 //        public void Insert(List<Tweet> Tweets)
 //        {
