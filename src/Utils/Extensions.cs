@@ -27,10 +27,8 @@ namespace Zunzun.Utils {
 
         public static void InsertAtTop<T>(this List<T> Items, List<T> NewItems)
         {
-            if(Items.Count > 0)
-                Items.InsertRange(0, NewItems);
-            else 
-                Items = NewItems;
+            for (var i = NewItems.Count - 1; i >= 0; i--) 
+                Items.Insert(0, NewItems[i]);
         }
 
         public static void Debug(this object obj) { Debugger.Launch(); }

@@ -15,21 +15,21 @@ namespace Zunzun.Specs
         [TestMethod]
         public void should_contain_original_Tweet()
         {
-            Given.TweetCache.Is(Actors.ListOfTweetsWithTwoReplies);
+            Given.Tweets.Is(Actors.ListOfTweetsWithTwoReplies);
             The.ConstructConversation(origTweet).ShouldContain(origTweet);
         }
 
         [TestMethod]
         public void should_contain_replies_to_original_Tweet()
         {
-            Given.TweetCache.Is(Actors.ListOfTweetsWithTwoReplies);
+            Given.Tweets.Is(Actors.ListOfTweetsWithTwoReplies);
             The.ConstructConversation(origTweet).Count.ShouldBe(3);
         }
 
         [TestMethod]
         public void should_have_Tweets_with_multiple_levels_of_reply()
         {
-            Given.TweetCache.Is(Actors.ListOfTweetsWithReplyHierarchy);
+            Given.Tweets.Is(Actors.ListOfTweetsWithReplyHierarchy);
             The.ConstructConversation(origTweet).Count.ShouldBe(6);
         }
 
@@ -37,7 +37,7 @@ namespace Zunzun.Specs
         public void should_contain_all_the_Tweets_in_the_conversation_if_passed_nonroot_Tweet()
         {
             var list = Actors.ListOfTweetsWithReplyHierarchy;
-            Given.TweetCache.Is(list);
+            Given.Tweets.Is(list);
 
             The.ConstructConversation(list[5]).Count.ShouldBe(6);
         }

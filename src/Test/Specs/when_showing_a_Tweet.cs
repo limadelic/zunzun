@@ -6,7 +6,7 @@ namespace Zunzun.Specs {
 
     [TestClass]
     public class when_showing_a_Tweet : BehaviorOf<SourceToString> {
-
+    
         [TestMethod]
         public void should_show_the_Source_name() {
 

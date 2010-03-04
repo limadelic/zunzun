@@ -11,14 +11,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		LocalTestRun.testrunconfig = LocalTestRun.testrunconfig
 		Zunzun.vsmdi = Zunzun.vsmdi
-		Zunzun1.vsmdi = Zunzun1.vsmdi
+		Zunzun2.vsmdi = Zunzun2.vsmdi
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Utils", "Utils\Utils.csproj", "{E4F850ED-2C67-4DF5-B644-7663A9A9E283}"
 EndProject
 Global
 	GlobalSection(TestCaseManagementSettings) = postSolution
-		CategoryFile = Zunzun1.vsmdi
+		CategoryFile = Zunzun2.vsmdi
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU

@@ -11,18 +11,7 @@ namespace Zunzun.App.Views.Xaml {
     public partial class Home : HomeView {
     
         HomePresenter Presenter { get; set; }
-        public ObservableCollection<Tweet> HomeTweets { get; set; }
-
-//        public void Insert(List<Tweet> Tweets)
-//        {
-//            HomeTweets.InsertAtTop(Tweets);
-//        }
-
-        public void Show(List<Tweet> Tweets)
-        {
-            HomeTweets.Clear();
-            HomeTweets.InsertAtTop(Tweets);
-        }
+        public ObservableCollection<Tweet> Tweets { get; set; }
 
         public Home() {
             Setup();
@@ -31,7 +20,7 @@ namespace Zunzun.App.Views.Xaml {
 
         void Setup() {
             Presenter = PresenterFactory.NewHomePresenter(this);
-            HomeTweets = new ObservableCollection<Tweet>();
+            Tweets = new ObservableCollection<Tweet>();
         }
 
         void OnLoad(object Sender, RoutedEventArgs Args) {

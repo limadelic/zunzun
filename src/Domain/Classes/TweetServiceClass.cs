@@ -2,16 +2,21 @@ using System.Collections.Generic;
 using Dimebrain.TweetSharp.Extensions;
 using Dimebrain.TweetSharp.Fluent;
 using Zunzun.Domain.Helpers;
+using Zunzun.Utils;
 
 namespace Zunzun.Domain.Classes {
 
     public class TweetServiceClass : TweetService {
-        
-        public List<Tweet> Tweets { get { return Request(HomeSpec); }}
 
-        public List<Tweet> TweetsSince(long Id) { return 
-            Request(TweetsSinceSpec(Id))
-        ;}
+        List<Tweet> tweets;
+        public virtual List<Tweet> Tweets { get { return tweets ?? InitTweets; }}
+        public List<Tweet> InitTweets { get { return tweets = Request(HomeSpec); }}
+
+        public List<Tweet> TweetsSince(long Id) {
+            var Results = Request(TweetsSinceSpec(Id));
+            Tweets.InsertAtTop(Results);
+            return Results;
+        }
 
         public List<Tweet> TweetsBy(User SpecificUser) { return 
             Request(TweetsByUserNameSpec(SpecificUser.UserName))

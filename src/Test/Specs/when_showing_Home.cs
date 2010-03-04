@@ -1,12 +1,15 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using System.Threading;
 using Dimebrain.TweetSharp.Fluent;
-using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
+using FluentSpec;
+
 
 namespace Zunzun.Specs {
     [TestClass]
@@ -24,21 +27,34 @@ namespace Zunzun.Specs {
             }
 
             [TestMethod]
+            public void should_display_the_Tweets() {
+            
+                Given.View.Tweets = new ObservableCollection<Tweet>();
+                Given.Tweets.Are(Tweets);
+
+                When.Show();
+
+                The.View.Tweets.ToList().ShouldBe(Tweets);
+            }
+            
+            [TestMethod]
+            public void should_clear_before_displaying_Tweets() {
+            
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
+                Given.Tweets.Are(Tweets);
+
+                When.Show();
+
+                The.View.Tweets.ToList().ShouldBe(Tweets);
+            }
+            
+            [TestMethod]
             public void should_cache_the_Tweets() {
                 Given.TweetService.Tweets.Are(Tweets);
 
                 When.Show();
 
-                The.TweetCache.ShouldBe(Tweets);
-            }
-
-            [TestMethod]
-            public void should_display_the_Tweets() {
-                Given.TweetCache.Is(Tweets);
-
-                When.Show();
-
-                The.View.Should().Show(Tweets);
+                The.Tweets.ShouldBe(Tweets);
             }
 
             [TestMethod]
@@ -54,30 +70,34 @@ namespace Zunzun.Specs {
                 var LatestTweet = Tweets[0];
                 var NewTweets = Actors.TwoTweets;
 
-                Given.TweetCache.Is(Tweets);
+                Given.View.Tweets = new ObservableCollection<Tweet>();
+                Given.Tweets.Is(Tweets);
                 Given.TweetService.TweetsSince(LatestTweet.Id).Are(NewTweets);
 
                 When.CheckForNewTweets();
 
-                The.View.Should().Show(The.TweetCache);
+                The.View.Tweets.ToList().ShouldBe(NewTweets);
             }
 
             [TestMethod]
             public void should_place_new_Tweets_above_older_ones() {
                 var LatestTweet = Tweets[0];
-                var NewTweet = new List<Tweet> {Actors.UniqueTweet};
+                var NewTweet = Actors.UniqueTweet;
 
-                Given.TweetCache.Is(Tweets);
-                Given.TweetService.TweetsSince(LatestTweet.Id).Is(NewTweet);
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
+                Given.Tweets.Are(Tweets);
+                Given.TweetService.TweetsSince(LatestTweet.Id)
+                    .Is(new List<Tweet> { NewTweet });
 
                 When.CheckForNewTweets();
 
-                Then.Should().Add(NewTweet);
+                The.View.Tweets[0].ShouldBe(NewTweet);
             }
         }
 
         [TestClass]
         public class the_Timer : BehaviorOf<TestTimer> {
+        
             [Ignore] // timer works only with the UI loaded
             [TestMethod]
             public void should_tick() {
@@ -96,7 +116,7 @@ namespace Zunzun.Specs {
         [TestClass]
         public class the_TweetService : BehaviorOf<TweetServiceClass> {
             readonly ITwitterLeafNode FiveTweets = Actors.FiveTweetsTestSpec;
-
+            
             [TestMethod]
             public void should_retrieve_the_Tweets() {
                 Given.HomeSpec.Is(FiveTweets);
@@ -105,8 +125,15 @@ namespace Zunzun.Specs {
 
             [TestMethod]
             public void should_retrieve_Tweets_since_latest_id() {
+                var Tweets = new List<Tweet>();
+                
+                Given.Tweets.Are(Tweets);
                 Given.TweetsSinceSpec(42).WillReturn(FiveTweets);
-                The.TweetsSince(42).Count.ShouldBe(5);
+                
+                var ActualTweets = The.TweetsSince(42);
+                
+                ActualTweets.Count.ShouldBe(5);
+                Tweets.ShouldContain(ActualTweets);
             }
         }
     }

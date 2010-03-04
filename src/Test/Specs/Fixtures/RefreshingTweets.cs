@@ -18,7 +18,7 @@ namespace Zunzun.Specs.Fixtures {
 
         readonly Tweet Tweet = Actors.UniqueTweet;
         
-        List<Tweet> TweetsShown { get { return HomePresenter.TweetCache; } }
+        List<Tweet> TweetsShown { get { return HomePresenter.Tweets; } }
         
         public RefreshingTweets() {
             HomeView = Create.TestObjectFor<HomeView>();

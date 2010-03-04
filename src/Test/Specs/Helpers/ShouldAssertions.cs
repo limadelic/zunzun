@@ -32,6 +32,11 @@ namespace Zunzun.Specs.Helpers {
             Assert.IsTrue(Items.Contains(Item), "Item is not in List");
         }
 
+        public static void ShouldContain<T>(this List<T> Items, List<T> SomeItems) {
+            
+            SomeItems.ForEach(Items.ShouldContain);
+        }
+
         public static void ShouldBe<T>(this List<T> Ones, List<T> Others) {
             
             Ones.Count.ShouldBe(Others.Count);

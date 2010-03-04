@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using FluentSpec;
 using Zunzun.App.Presenters;
 using Zunzun.App.Views;
@@ -18,6 +19,7 @@ namespace Zunzun.Specs.Fixtures {
         
         public SearchTweets() {
             HomeView = Create.TestObjectFor<HomeView>();
+            HomeView.Tweets = new ObservableCollection<Tweet>();
             
             HomePresenter = PresenterFactory.NewHomePresenter(HomeView);
             HomePresenter.Load();
@@ -30,7 +32,7 @@ namespace Zunzun.Specs.Fixtures {
         
         public bool and_place_them_at_the_top_of_Home_tweets() { return Verify.That(() => {
             HomePresenter.Add(TweetsFound);
-            HomePresenter.TweetCache[0].ShouldBe(TweetsFound[0]);
+            HomeView.Tweets[0].ShouldBe(TweetsFound[0]);
         });}
     }
 }

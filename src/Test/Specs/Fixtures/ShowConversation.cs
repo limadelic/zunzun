@@ -37,7 +37,7 @@ namespace Zunzun.Specs.Fixtures {
 
             When("I look at the Conversation", () => ConvoPresenter.ShowConversation(origTweet));
 
-            Then("it should say {0}", Something => ConvoPresenter.TweetCache.Contains(new TweetClass {Content = Something }));
+            Then("it should say {0}", Something => ConvoPresenter.Tweets.Contains(new TweetClass {Content = Something }));
         }
 
         private Tweet GetOriginalTweet() { return new TweetServiceClass().Tweets.Where(x => x.Content == origContent).First(); }
