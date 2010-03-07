@@ -58,6 +58,8 @@
     <Reference Include="System.Core">
       <RequiredTargetFramework>3.5</RequiredTargetFramework>
     </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.XML" />
     <Reference Include="WindowsBase">
       <RequiredTargetFramework>3.0</RequiredTargetFramework>
     </Reference>
@@ -84,6 +86,7 @@
     <Compile Include="Fixtures\UserLogin.cs" />
     <Compile Include="given_user_settings.cs" />
     <Compile Include="Helpers\Actors.cs" />
+    <Compile Include="Helpers\Error.cs" />
     <Compile Include="Helpers\Verify.cs" />
     <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
     <Compile Include="Helpers\FitnesseExtensions.cs" />

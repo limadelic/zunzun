@@ -10,7 +10,7 @@ namespace Zunzun.Domain.Classes {
 
         List<Tweet> tweets;
         public virtual List<Tweet> Tweets { get { return tweets ?? InitTweets; }}
-        public List<Tweet> InitTweets { get { return tweets = Request(HomeSpec); }}
+        List<Tweet> InitTweets { get { return tweets = Request(HomeSpec); }}
 
         public List<Tweet> TweetsSince(long Id) {
             var Results = Request(TweetsSinceSpec(Id));

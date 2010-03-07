@@ -1,6 +1,7 @@
 using System;
 using System.Collections.Generic;
 using fitnesse.fixtures;
+using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
 
@@ -85,8 +86,7 @@ namespace Zunzun.Specs.Fixtures {
                 return true;
                 
             } catch (Exception e) {
-                var Msg = "Failed on step [" + CurrentStep + "] due to [" + e.Message + "]";
-                Console.WriteLine(Msg);
+                Error.Add(GetType().Name, CurrentStep.Name, e.Message);
                 return false;
             }
         }

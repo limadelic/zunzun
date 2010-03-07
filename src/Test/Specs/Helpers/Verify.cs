@@ -9,7 +9,7 @@ namespace Zunzun.Specs.Helpers {
                 Action();
                 return true;
             }  catch (Exception e) {
-                Console.WriteLine(e.ToString());
+                Error.Add(e);
                 return false;
             }
         }

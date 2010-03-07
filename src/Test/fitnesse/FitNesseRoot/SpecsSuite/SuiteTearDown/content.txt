@@ -1,0 +1,21 @@
+!*> Errors
+
+|Error|
+|Log? |
+|     |
+
+*!
+!*< this is just to get it green
+
+|do         |
+|reject|crap|
+
+*!
+
+
+
+
+
+
+
+
