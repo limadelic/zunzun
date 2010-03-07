@@ -25,6 +25,19 @@ namespace Zunzun.Specs {
                 
                 Should.NotifyNewTweets(Tweets);
             }
+
+            [TestMethod]
+            public void should_toggle_visibility()
+            {
+
+                Given.View.IsVisible = true;
+
+                When.ToggleUpdateVisibility();
+                Then.View.IsVisible.ShouldBeFalse();
+
+                When.ToggleUpdateVisibility();
+                Then.View.IsVisible.ShouldBeTrue();
+            }
         }
         
         [TestClass]

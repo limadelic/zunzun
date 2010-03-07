@@ -30,7 +30,8 @@ namespace Zunzun.Specs.Fixtures {
         protected override void SetUpSteps() {
 
             Given("the Refresh Cycle is {0} seconds", RefreshCycle => 
-                App.Settings.DefaultRefreshCycle = Convert.ToInt32(RefreshCycle) * 1000
+                App.Settings.DefaultRefreshCycle = 
+                    Int32.Parse(RefreshCycle) * 1000
             );
 
             And("Home is shown", () => {
@@ -52,7 +53,8 @@ namespace Zunzun.Specs.Fixtures {
 
             And("the Tweet should be shown above the older ones", () => {
                 TweetsShown.ToList().ShouldContain(Tweet);
-                TweetsShown.IndexOf(Tweet).ShouldBeLessThan(TweetsShown.IndexOf(OriginalFirstTweet));}
+                TweetsShown.IndexOf(Tweet).ShouldBeLessThan(
+                    TweetsShown.IndexOf(OriginalFirstTweet));}
             );
         }
     }

@@ -16,5 +16,9 @@ namespace Zunzun.App.Presenters {
         public virtual void NotifyNewTweets(List<Tweet> Tweets) {
             Events.NewTweets.Found(Tweets, View);
         }
+
+        public void ToggleUpdateVisibility() { 
+            View.IsVisible = !View.IsVisible;
+        }
     }
 }

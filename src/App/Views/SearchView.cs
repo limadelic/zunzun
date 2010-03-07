@@ -7,5 +7,6 @@ namespace Zunzun.App.Views {
     
         string SearchText { get; }
         List<Tweet> Tweets { get; set; }
+        bool IsVisible { get; set; }
     }
 }

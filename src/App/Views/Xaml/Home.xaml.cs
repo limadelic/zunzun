@@ -1,10 +1,8 @@
-﻿using System.Collections.Generic;
-using System.Collections.ObjectModel;
+﻿using System.Collections.ObjectModel;
 using System.Windows;
 using Zunzun.App.Events;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
-using Zunzun.Utils;
 
 namespace Zunzun.App.Views.Xaml {
 

@@ -25,6 +25,7 @@ namespace Zunzun.App.Views.Xaml {
             AddHandler(Conversation.Event, new RoutedEventHandler(Home.ShowConversation));
             
             ToggleUpdate.Click += Update.OnToggleVisibility;
+            ToggleSearch.Click += Search.OnToggleVisibility;
         }
 
         void OnClose(object Sender, RoutedEventArgs Args) {

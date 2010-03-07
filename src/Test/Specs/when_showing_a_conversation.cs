@@ -1,6 +1,5 @@
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
-using System.Linq;
 using Zunzun.App.Presenters;
 using Zunzun.Domain;
 using Zunzun.Specs.Helpers;
