@@ -24,7 +24,7 @@ namespace Zunzun.Specs.Helpers {
         string LogTable { get { return log.Aggregate(
             "<table style=\"color: black;\">" + 
                 HeaderRow, 
-                (Row, Error) => Row + NewRow(Error)) + 
+                (Rows, Error) => Rows + NewRow(Error)) + 
             "</table>"
         ;}}
 
