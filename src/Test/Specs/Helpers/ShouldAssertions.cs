@@ -22,15 +22,15 @@ namespace Zunzun.Specs.Helpers {
             Whole.StartsWith(Start).ShouldBeTrue();
         }
         
-        public static void ShouldEndWith(this string Whole, string End) {
-            
-            Whole.EndsWith(End).ShouldBeTrue();
-        }
+//        public static void ShouldEndWith(this string Whole, string End) {
+//            
+//            Whole.EndsWith(End).ShouldBeTrue();
+//        }
         
-        public static void ShouldContain<T>(this List<T> Items, T Item) {
-            
-            Assert.IsTrue(Items.Contains(Item), "Item is not in List");
-        }
+//        public static void ShouldContain<T>(this List<T> Items, T Item) {
+//            
+//            Assert.IsTrue(Items.Contains(Item), "Item is not in List");
+//        }
 
         public static void ShouldContain<T>(this List<T> Items, List<T> SomeItems) {
             
@@ -45,10 +45,10 @@ namespace Zunzun.Specs.Helpers {
                 Ones[i].ShouldBe(Others[i]);
         }
 
-        public static void ShouldNotBeEmpty(this string String) {
-            
-            Assert.IsFalse(String.IsNullOrEmpty(String), "Unexpected Empty String");
-        }
+//        public static void ShouldNotBeEmpty(this string String) {
+//            
+//            Assert.IsFalse(String.IsNullOrEmpty(String), "Unexpected Empty String");
+//        }
 
         public static void ShouldBeA<T>(this Object Obj) {
             
