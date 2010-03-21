@@ -66,6 +66,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="a_Tweet.cs" />
+    <Compile Include="Fixtures\Calc.cs" />
     <Compile Include="Fixtures\FollowAndUnfollow.cs" />
     <Compile Include="Fixtures\OutlineStep.cs" />
     <Compile Include="Fixtures\ProvideHyperlinkForTweetContent .cs" />
@@ -91,7 +92,6 @@
     <Compile Include="Helpers\BehaviorOfZunzunPresenter.cs" />
     <Compile Include="Helpers\FitnesseExtensions.cs" />
     <Compile Include="Helpers\Given.cs" />
-    <Compile Include="Helpers\ShouldAssertions.cs" />
     <Compile Include="Helpers\TestTimer.cs" />
     <Compile Include="Helpers\TokensAssertions.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />

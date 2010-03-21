@@ -1,4 +1,5 @@
 using fitlibrary;
+using FluentSpec;
 using Zunzun.Specs.Helpers;
 
 namespace Zunzun.Specs.Fixtures {
