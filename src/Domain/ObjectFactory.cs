@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using Dimebrain.TweetSharp.Model;
 using Zunzun.Domain.Classes;
 using Zunzun.Domain.PhotoWebServices;
@@ -58,5 +59,9 @@ namespace Zunzun.Domain {
             Location = User.Location,
             TimeZone = User.TimeZone
         };}
+
+        public static Conversation NewConversation(List<Tweet> Tweets) {
+            return new ConversationClass { Tweets = Tweets };
+        }
     }
 }

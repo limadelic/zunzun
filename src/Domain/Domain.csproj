@@ -3,7 +3,7 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProductVersion>9.0.30729</ProductVersion>
+    <ProductVersion>9.0.21022</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1312AB15-85D1-4963-94C9-EEA2BCE53E78}</ProjectGuid>
     <OutputType>Library</OutputType>
@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Classes\ConversationClass.cs" />
     <Compile Include="Classes\UrlShrinkerClass.cs" />
     <Compile Include="Classes\TweetClass.cs" />
     <Compile Include="Classes\TweetServiceClass.cs" />
@@ -58,6 +59,7 @@
     <Compile Include="Classes\UserClass.cs" />
     <Compile Include="Classes\UserServiceClass.cs" />
     <Compile Include="Classes\UserSettingsClass.cs" />
+    <Compile Include="Conversation.cs" />
     <Compile Include="Helpers\TweetConverters.cs" />
     <Compile Include="Helpers\UserConverters.cs" />
     <Compile Include="ObjectFactory.cs" />
