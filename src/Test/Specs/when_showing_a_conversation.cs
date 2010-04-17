@@ -58,7 +58,7 @@ namespace Zunzun.Specs
 
             [TestMethod]
             public void should_constuct_conversation() {
-                var Tweet = Actors.UniqueTweet;
+                var Tweet = Actors.TweetWithUserAndId;
                 var List = Actors.ListOfTweetsWithTwoReplies;
 
                 Given.TweetService.Tweets.WillReturn(List);
