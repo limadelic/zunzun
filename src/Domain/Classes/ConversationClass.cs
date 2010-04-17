@@ -1,4 +1,3 @@
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using Zunzun.Utils;
@@ -18,36 +17,36 @@ namespace Zunzun.Domain.Classes {
         {
             get
             {
-                var list = new List<long> { rootTweet.Id };
-                ConversationIdsHelper(rootTweet, list);
-                return list;
+                var List = new List<long> { rootTweet.Id };
+                ConversationIdsHelper(rootTweet, List);
+                return List;
             }
         }
 
-        private void ConversationIdsHelper(Tweet currentTweet, ICollection<long> ids)
+        private void ConversationIdsHelper(Tweet CurrentTweet, ICollection<long> Ids)
         {
-            var children = Tweets.Where(tweet => tweet.ReplyTo == currentTweet.Id);
+            var Children = Tweets.Where(Tweet => Tweet.ReplyTo == CurrentTweet.Id);
 
-            if (children.Count() == 0) return;
+            if (Children.Count() == 0) return;
 
-            children.ForEach(tweet =>
+            Children.ForEach(Tweet =>
             {
-                ids.Add(tweet.Id);
-                ConversationIdsHelper(tweet, ids);
+                Ids.Add(Tweet.Id);
+                ConversationIdsHelper(Tweet, Ids);
             });
         }
 
-        protected Tweet RootTweet(Tweet tweet)
+        protected Tweet RootTweet(Tweet Tweet)
         {
-            var currentTweet = tweet;
+            var CurrentTweet = Tweet;
 
-            while (currentTweet.ReplyTo > 0)
+            while (CurrentTweet.ReplyTo > 0)
             {
-                var tempTweet = currentTweet;
-                currentTweet = Tweets.Where(x => x.Id == tempTweet.ReplyTo).First();
+                var TempTweet = CurrentTweet;
+                CurrentTweet = Tweets.Where(X => X.Id == TempTweet.ReplyTo).First();
             }
 
-            return currentTweet;
+            return CurrentTweet;
         }
     }
 }

@@ -1,6 +1,10 @@
+using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Linq;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
+using Zunzun.App.Views.Xaml;
 using Zunzun.Domain;
 using Zunzun.Domain.Classes;
 using Zunzun.Specs.Helpers;
@@ -52,8 +56,9 @@ namespace Zunzun.Specs
             
             [TestMethod]
             public void should_clear_the_View() {
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.TwoTweets);
                 When.ShowConversation(Actors.UniqueTweet);
-                Then.Should().View.Tweets.Clear();
+                The.View.Tweets.ToList().ShouldBe(new List<Tweet>());
             }
 
             [TestMethod]
@@ -65,6 +70,13 @@ namespace Zunzun.Specs
                 When.ShowConversation(Tweet);
                 Then.Should().Add(ObjectFactory.NewConversation(List).ConstructConversation(Tweet));
             }
+
+            [TestMethod]
+            public void should_enter_Conversation_display_mode() {
+                When.ShowConversation(Actors.UniqueTweet);
+                Then.InConversationMode.ShouldBe(true);
+            }
         }
+
     }
 }

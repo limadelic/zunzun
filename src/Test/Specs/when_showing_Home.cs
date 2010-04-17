@@ -66,7 +66,7 @@ namespace Zunzun.Specs {
             }
 
             [TestMethod]
-            public void should_keep_the_Tweets_sync() {
+            public void should_keep_the_Tweets_synced() {
                 var LatestTweet = Tweets[0];
                 var NewTweets = Actors.TwoTweets;
 
@@ -92,6 +92,40 @@ namespace Zunzun.Specs {
                 When.CheckForNewTweets();
 
                 The.View.Tweets[0].ShouldBe(NewTweet);
+            }
+
+            [TestMethod]
+            public void should_do_nothing_when_in_Conversation_mode_and_there_are_no_new_Tweets() {
+                var LatestTweet = Tweets[0];
+                
+                //we are displaying a conversation,
+                Given.InConversationMode = true;
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.ListOfTweetsWithReplyHierarchy);
+                
+                //and there are no new tweets
+                Given.Tweets.Are(Tweets);
+                Given.TweetService.TweetsSince(LatestTweet.Id)
+                    .Is(new List<Tweet>());
+
+                When.CheckForNewTweets();
+
+                The.View.Tweets.ToList().ShouldBe(Actors.ListOfTweetsWithReplyHierarchy);
+            }
+
+            [TestMethod]
+            public void should_replace_Conversation_with_Home_when_there_are_new_Tweets() {
+                var LatestTweet = Tweets[0];
+                var NewTweet = Actors.UniqueTweet;
+
+                Given.InConversationMode = true;
+                Given.View.Tweets = new ObservableCollection<Tweet>(Actors.ListOfTweetsWithReplyHierarchy);
+                Given.Tweets.Are(Tweets);
+                Given.TweetService.TweetsSince(LatestTweet.Id)
+                    .Is(new List<Tweet> { NewTweet });
+
+                When.CheckForNewTweets();
+
+                The.View.Tweets.ToList().ShouldBe(Tweets);
             }
         }
 
