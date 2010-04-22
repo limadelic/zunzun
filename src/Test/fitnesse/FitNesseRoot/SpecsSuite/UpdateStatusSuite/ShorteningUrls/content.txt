@@ -50,7 +50,7 @@ I want to be able to shorten urls
 |Scenarios|                                        |
 |service  |status update|shorten                   |
 |u.nu     |${Url}       |http://u.nu/4kea4         |
-|is.gd    |${Url}       |http://is.gd/5t6cT        |
+|is.gd    |${Url}       |http://is.gd/bCPL6        |
 |bit.ly   |${Url}       |http://bit.ly/5y7pgg      |
 |tinyurl  |${Url}       |http://tinyurl.com/ya9wfr4|
 
