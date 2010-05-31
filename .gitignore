@@ -2,6 +2,7 @@
 *.user
 bin/
 obj/
+dotnet/
 *ReSharper*/
 ErrorLogs/
 testResults/
