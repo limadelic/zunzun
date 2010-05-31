@@ -31,5 +31,9 @@ namespace Zunzun.App.Views.Xaml {
         public void OnToggleVisibility(object Sender, RoutedEventArgs Args) {
             Presenter.ToggleUpdateVisibility();
         }
+
+        private void OnKeyDown(object Sender, System.Windows.Input.KeyEventArgs Args) {
+            Presenter.KeyDown(Args.Key);
+        }
     }
 }

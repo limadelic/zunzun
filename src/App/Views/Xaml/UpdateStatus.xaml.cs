@@ -90,8 +90,12 @@ namespace Zunzun.App.Views.Xaml {
             Presenter.UpdateTextPasted();
         }
 
-        private void OnUploadPhoto(object sender, RoutedEventArgs e) {
+        private void OnUploadPhoto(object Sender, RoutedEventArgs Args) {
             Presenter.UploadPhoto();
+        }
+
+        private void OnKeyDown(object Sender, System.Windows.Input.KeyEventArgs Args) {
+            Presenter.KeyDown(Args.Key);
         }
     }
 }

@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Windows.Input;
 using Dimebrain.TweetSharp.Fluent;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
@@ -37,6 +38,16 @@ namespace Zunzun.Specs {
 
                 When.ToggleUpdateVisibility();
                 Then.View.IsVisible.ShouldBeTrue();
+            }
+
+            [TestMethod]
+            public void should_trigger_search_on_enter() {
+
+                When.KeyDown(Key.X);
+                It.ShouldNot().Search();
+                
+                When.KeyDown(Key.Enter);
+                It.Should().Search();
             }
         }
         

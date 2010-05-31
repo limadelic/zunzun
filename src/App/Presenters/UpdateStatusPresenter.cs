@@ -1,3 +1,4 @@
+using System.Windows.Input;
 using Zunzun.App.Views;
 using Zunzun.Domain;
 
@@ -29,7 +30,7 @@ namespace Zunzun.App.Presenters {
 
         protected bool HasAssociatedTweet { get { return AssociatedTweetId > 0; } }
 
-        public void Update() {
+        public virtual void Update() {
             if (string.IsNullOrEmpty(View.UpdateText)) return;
 
             var Tweet = Domain.ObjectFactory.NewTweet(View.UpdateText);
@@ -96,6 +97,10 @@ namespace Zunzun.App.Presenters {
                 View.CursorPos, 
                 NewPhotoWebService.Upload(View.RequestedPhoto)
             );
+        }
+
+        public void KeyDown(Key Key) {
+            if (Key == Key.Enter) Update();
         }
     }
 }

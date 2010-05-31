@@ -1,4 +1,5 @@
 using System;
+using System.Windows.Input;
 using FluentSpec;
 using Microsoft.VisualStudio.TestTools.UnitTesting;
 using Zunzun.App.Presenters;
@@ -34,8 +35,7 @@ namespace Zunzun.Specs {
             }
 
             [TestMethod]
-            public void should_not_send_empty_updates()
-            {
+            public void should_not_send_empty_updates() {
 
                 Given.View.UpdateText = string.Empty;
                 When.Update();
@@ -62,6 +62,16 @@ namespace Zunzun.Specs {
 
                 When.ToggleUpdateVisibility();
                 Then.View.IsVisible.ShouldBeTrue();
+            }
+
+            [TestMethod]
+            public void should_send_update_on_enter() {
+
+                When.KeyDown(Key.X);
+                It.ShouldNot().Update();
+                
+                When.KeyDown(Key.Enter);
+                It.Should().Update();
             }
         }
 

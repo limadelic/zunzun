@@ -7,8 +7,8 @@
     		<ColumnDefinition/>
     		<ColumnDefinition Width="Auto"/>
     	</Grid.ColumnDefinitions>
-    	<TextBox x:Name="SearchTXT" SpellCheck.IsEnabled="True" Margin="3,0,0,0" BorderBrush="{DynamicResource InfoBrush}" Background="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" />
-    	<Button x:Name="SearchBTT" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" IsDefault="True" Grid.Column="1" d:LayoutOverrides="GridBox" Click="OnSearch"/>
+    	<TextBox x:Name="SearchTXT" SpellCheck.IsEnabled="True" Margin="3,0,0,0" BorderBrush="{DynamicResource InfoBrush}" Background="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" KeyDown="OnKeyDown" />
+    	<Button x:Name="SearchBTT" Content="S" Style="{DynamicResource DefaultButtonStyle}" Width="18" Height="18" Background="{DynamicResource BTTBrush}" BorderBrush="{DynamicResource InfoBrush}" Foreground="{DynamicResource ContentBrush}" FontSize="{DynamicResource ContentFontSize}" Grid.Column="1" d:LayoutOverrides="GridBox" Click="OnSearch"/>
             
     </Grid>
 </UserControl>
