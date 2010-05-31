@@ -1,4 +1,6 @@
 using System;
+using System.Collections.Generic;
+using System.Linq;
 using fit;
 
 namespace Zunzun.Specs.Helpers {
@@ -9,6 +11,10 @@ namespace Zunzun.Specs.Helpers {
             for (var each = Parse; each != null; each = each.More)
                 Process(each);
             return Parse;
+        }
+
+        public static List<object> ToNamedObjectList(this List<string> Names) {
+            return Names.Select(Name => new { Name } as object).ToList();
         }
     }
 }
