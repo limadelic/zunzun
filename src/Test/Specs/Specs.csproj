@@ -37,7 +37,7 @@
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
-    <OutputPath>..\fitnesse\dotnet\</OutputPath>
+    <OutputPath>..\fitnesse\fixtures\</OutputPath>
     <DefineConstants>DEBUG;TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
@@ -130,11 +130,6 @@
     <Compile Include="when_Tweeting_Photos.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="..\fitnesse\dotnet\fitnesse.config">
-      <Link>fitnesse.config</Link>
-    </None>
-  </ItemGroup>
-  <ItemGroup>
     <ProjectReference Include="..\..\App\App.csproj">
       <Project>{F6506512-A9B2-49D2-8A36-49E49068C358}</Project>
       <Name>App</Name>
@@ -169,6 +164,11 @@
       <ProductName>Windows Installer 3.1</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="fitnesse.config">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </None>
   </ItemGroup>
   <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

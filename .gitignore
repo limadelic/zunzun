@@ -2,10 +2,11 @@
 *.user
 bin/
 obj/
-dotnet/
+fixtures/
 *ReSharper*/
 ErrorLogs/
 testResults/
 TestResults/
 .idea/
 RecentChanges/
+Thumbs.db
